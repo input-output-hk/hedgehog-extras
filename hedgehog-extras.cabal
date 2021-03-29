@@ -1,8 +1,10 @@
-cabal-version: 2.4
+cabal-version: 3.0
 
 name:                   hedgehog-extras
 version:                0.1.0.0
-description:            The cardano full node
+synopsis:               Supplemental library for hedgehog
+description:            Supplemental library for hedgehog.
+category:               Test
 author:                 IOHK
 maintainer:             operations@iohk.io
 license:                Apache-2.0
@@ -10,7 +12,11 @@ license-files:          LICENSE
                         NOTICE
 build-type:             Simple
 
-common base                         { build-depends: base                             >= 4.14       && < 4.15     }
+source-repository head
+  type:                 git
+  location:             https://github.com/input-output-hk/hedgehog-extras
+
+common base                         { build-depends: base                             >= 4.12       && < 4.15     }
 
 common maybe-Win32-network
   if os(windows)
