@@ -1,0 +1,279 @@
+name: Binaries
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  push:
+    branches:
+      - 'main'
+    tags:
+      - "v*"
+  pull_request:
+
+jobs:
+  build:
+    environment: cabal-cache
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ghc: ["8.6.5", "8.10.4"]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Select optimal cabal version
+        run: |
+          case "$OS" in
+            Windows_NT)   echo "CABAL_VERSION=3.4.0.1-rc3"  >> $GITHUB_ENV;;
+            *)            echo "CABAL_VERSION=3.4.0.0"      >> $GITHUB_ENV;;
+          esac
+
+      - uses: haskell/actions/setup@v1
+        id: setup-haskell
+        with:
+          ghc-version: ${{ matrix.ghc }}
+          cabal-version: ${{ env.CABAL_VERSION }}
+
+      - name: Cache configuration
+        run: |
+          echo "GIT_SHA=$(git rev-parse --short HEAD)"  >> $GITHUB_ENV
+          echo "CACHE_VERSION=3oqhaby"                  >> $GITHUB_ENV
+
+      - name: Configure project
+        run: cabal configure --enable-tests --enable-benchmarks --write-ghc-environment-files=ghc8.4.4+
+
+      - name: Record dependencies
+        run: |
+          cat ${{ env.PLAN_JSON }} | jq -r '."install-plan"[].id' | sort | uniq > dependencies.txt
+
+      - name: Restore cabal cache
+        uses: haskell-works/cabal-cache-action@v1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
+          BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
+          BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
+        with:
+          args: |
+            sync-from-archive \
+              --threads       "$BINARY_CACHE_THREADS" \
+              --archive-uri   "$BINARY_CACHE_URI" \
+              --region        "$BINARY_CACHE_REGION" \
+              --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
+
+      - name: Build dependencies
+        run: cabal build --dependencies-only --enable-tests --enable-benchmarks --write-ghc-environment-files=ghc8.4.4+
+
+      - name: Save cabal cache
+        uses: haskell-works/cabal-cache-action@v1
+        if: ${{ always() }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
+          BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
+          BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
+        with:
+          args: |
+            sync-to-archive \
+              --threads       "$BINARY_CACHE_THREADS" \
+              --archive-uri   "$BINARY_CACHE_URI" \
+              --region        "$BINARY_CACHE_REGION" \
+              --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
+
+      - name: Build
+        run: cabal build all --enable-tests --enable-benchmarks --write-ghc-environment-files=ghc8.4.4+
+
+      - name: Save cabal cache
+        uses: haskell-works/cabal-cache-action@v1
+        if: ${{ always() }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
+          BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
+          BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
+        with:
+          args: |
+            sync-to-archive \
+              --threads       "$BINARY_CACHE_THREADS" \
+              --archive-uri   "$BINARY_CACHE_URI" \
+              --region        "$BINARY_CACHE_REGION" \
+              --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
+
+      - name: Test
+        run: cabal test all --enable-tests --enable-benchmarks --write-ghc-environment-files=ghc8.4.4+
+
+      - name: Compress Binary
+        id: compress_binary
+        env:
+          GHC_VER: ${{ matrix.ghc }}
+        run: |
+          cat dist-newstyle/cache/plan.json | jq -r '
+              ."install-plan"[]
+            | select(."component-name")
+            | select(.style == "local")
+            | select(."component-name" | startswith("exe:"))
+            | ."bin-file"' > release-files.txt
+
+          mkdir -p artifacts
+
+          echo "Publishing the following files:"
+
+          while IFS= read -r line; do
+            echo "  $line"
+            cp "$line" artifacts
+          done < release-files.txt
+
+          tar zcvf artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz artifacts
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
+          path: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
+
+  check:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check if cabal project is sane
+        run: |
+          PROJECT_DIR=$PWD
+          mkdir -p $PROJECT_DIR/build/sdist
+          for i in $(git ls-files | grep '\.cabal'); do
+            cd $PROJECT_DIR && cd `dirname $i`
+            cabal check
+          done
+
+      - name: Tag new version
+        id: tag
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          package_version="$(cat *.cabal | grep '^version:' | cut -d : -f 2 | xargs)"
+
+          echo "Package version is v$package_version"
+
+          git fetch --unshallow origin
+
+          if git tag "v$package_version"; then
+            echo "Tagging with new version "v$package_version""
+
+            if git push origin "v$package_version"; then
+              echo "Tagged with new version "v$package_version""
+
+              echo "::set-output name=tag::v$package_version"
+            fi
+          fi
+
+      - name: Show tag
+        run: |
+          echo "Ref: ${{ github.ref }}"
+          echo "Tag: ${{ steps.tag.outputs.tag }}"
+
+
+  release:
+    needs: [build, check]
+    runs-on: ubuntu-latest
+
+    if: ${{ needs.check.outputs.tag != '' }}
+
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create source distribution
+        run: |
+          PROJECT_DIR=$PWD
+          mkdir -p $PROJECT_DIR/build/sdist
+          for i in $(git ls-files | grep '\.cabal'); do
+            cd $PROJECT_DIR && cd `dirname $i`
+            cabal v2-sdist -o $PROJECT_DIR/build/sdist
+          done;
+      
+      - name: Generate Changelog
+        run: |
+          git fetch --unshallow
+
+          if git describe --tags 'HEAD^' --abbrev=0 > last-tag; then
+            git log --no-merges --format="%C(auto) %h %s" "$(cat last-tag)..HEAD"
+          else
+            git log --no-merges --format="%C(auto) %h %s"
+          fi > changelog.txt
+
+          cat changelog.txt
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ needs.check.outputs.tag }}
+          release_name: Release ${{ needs.check.outputs.tag }}
+          draft: false
+          prerelease: false
+          body_path: changelog.txt
+
+  publish:
+    needs: [build, release]
+
+    runs-on: ${{ matrix.os }}
+
+    if: ${{ needs.check.outputs.tag != '' }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ghc: ["8.10.4"]
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/download-artifact@v2
+        id: download_artifact
+        with:
+          name: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
+          path: .
+
+      - name: Compute axes
+        id: axes
+        run: |
+          case ${{ matrix.os }} in
+            ubuntu-*)   os="linux"    ;;
+            macos-*)    os="darwin"   ;;
+            windows-*)  os="windows"  ;;
+            *)          exit 1        ;; # error
+          esac
+          arch_os="$(uname -m)-$os"
+          echo "::set-output name=arch_os::$arch_os"
+
+      - name: Upload Artifacts to Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
+
+      - name: Upload Artifacts to Release
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.release.outputs.upload_url }}
+          asset_path: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
+          asset_name: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
+          asset_content_type: application/tar+gzip

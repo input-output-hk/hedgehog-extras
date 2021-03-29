@@ -1,0 +1,103 @@
+name: "Haddock documentation"
+
+on:
+  push:
+
+jobs:
+  haddocks:
+    environment: cabal-cache
+
+    name: "Haddocks"
+
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        shell: bash
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ghc: ["8.10.4"]
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Configure to use libsodium
+      run: |
+        cat >> cabal.project <<EOF
+        package cardano-crypto-praos
+          flags: -external-libsodium-vrf
+        EOF
+
+    - name: Install Haskell
+      uses: haskell/actions/setup@v1
+      id: setup-haskell
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: '3.4.0.0'
+
+    - name: Update Hackage index
+      run: cabal v2-update
+
+    - name: Checkout ouroboros-network repository
+      uses: actions/checkout@v2
+
+    - name: Build dependencies
+      run: cabal configure --enable-tests
+
+    - name: Dry run
+      run: |
+        mkdir -p ./haddocks
+        DRY_RUN=1 ./scripts/haddocs.sh ./haddocks true
+
+    - name: Restore cabal cache
+      uses: haskell-works/cabal-cache-action@v1
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
+        BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
+        BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
+      with:
+        args: |
+          sync-from-archive \
+            --threads       "$BINARY_CACHE_THREADS" \
+            --archive-uri   "$BINARY_CACHE_URI" \
+            --region        "$BINARY_CACHE_REGION" \
+            --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
+
+    - name: build Haddock documentation 🔧
+      run: |
+        mkdir -p ./haddocks
+        ./scripts/haddocs.sh ./haddocks
+
+    - name: Save cabal cache
+      uses: haskell-works/cabal-cache-action@v1
+      if: ${{ always() }}
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
+        BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
+        BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
+      with:
+        args: |
+          sync-to-archive \
+            --threads       "$BINARY_CACHE_THREADS" \
+            --archive-uri   "$BINARY_CACHE_URI" \
+            --region        "$BINARY_CACHE_REGION" \
+            --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
+
+    - name: deploy to gh-pages 🚀
+      run: |
+        git config --local user.email "marcin.szamotulski@iohk.io"
+        git config --local user.name ${{ github.actor }}
+        git fetch origin gh-pages:gh-pages
+        git checkout gh-pages
+        cp -r ./haddocks/* ./
+        rm -rf haddocks
+        git add -A
+        git commit -m "Deployed haddocks" || true
+        git push https://${{ github.actor }}:${{ github.token }}@github.com/${{ github.repository }}.git HEAD:gh-pages
