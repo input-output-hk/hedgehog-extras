@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE StandaloneDeriving #-}</span><span>
+</span><span id="line-3"></span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Hedgehog.Extras.Test.MonadAssertion</span><span>
+</span><span id="line-5"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#MonadAssertion"><span class="hs-identifier">MonadAssertion</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Monad</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Monad.Trans.Class</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Either</span></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Function</span></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Monoid</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">mempty</span></span><span class="hs-special">)</span><span>
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Trans.Except</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">E</span></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Trans.Resource</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Trans.Resource.Internal</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Hedgehog</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Hedgehog.Internal.Property</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">class</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Monad</span></span><span> </span><span class="annot"><a href="#local-6989586621679093787"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span id="MonadAssertion"><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#MonadAssertion"><span class="hs-identifier hs-var">MonadAssertion</span></a></span></span><span> </span><span id="local-6989586621679093787"><span class="annot"><a href="#local-6989586621679093787"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679093790"><span id="throwAssertion"><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#throwAssertion"><span class="hs-identifier hs-type">throwAssertion</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">H.Failure</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679093787"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679093790"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679093789"><span id="catchAssertion"><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#catchAssertion"><span class="hs-identifier hs-type">catchAssertion</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="#local-6989586621679093787"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679093789"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">H.Failure</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679093787"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679093789"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679093787"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679093789"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span id="local-6989586621679093739"><span class="hs-keyword">instance</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Monad</span></span><span> </span><span class="annot"><a href="#local-6989586621679093739"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#MonadAssertion"><span class="hs-identifier hs-type">MonadAssertion</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">H.TestT</span></span><span> </span><span class="annot"><a href="#local-6989586621679093739"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679093734"><span class="annot"><span class="annottext">throwAssertion :: Failure -&gt; TestT m a
+</span><a href="#local-6989586621679093734"><span class="hs-identifier hs-var hs-var hs-var hs-var">throwAssertion</span></a></span></span><span> </span><span id="local-6989586621679093733"><span class="annot"><span class="annottext">Failure
+</span><a href="#local-6989586621679093733"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Test a -&gt; TestT m a
+forall (m :: * -&gt; *) a. MonadTest m =&gt; Test a -&gt; m a
+</span><span class="hs-identifier hs-var">H.liftTest</span></span><span> </span><span class="annot"><span class="annottext">(Test a -&gt; TestT m a) -&gt; Test a -&gt; TestT m a
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(Either Failure a, Journal) -&gt; Test a
+forall a. (Either Failure a, Journal) -&gt; Test a
+</span><span class="hs-identifier hs-var">H.mkTest</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Failure -&gt; Either Failure a
+forall a b. a -&gt; Either a b
+</span><span class="hs-identifier hs-var">Left</span></span><span> </span><span class="annot"><span class="annottext">Failure
+</span><a href="#local-6989586621679093733"><span class="hs-identifier hs-var">f</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Journal
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span class="hs-special">)</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679093730"><span class="annot"><span class="annottext">catchAssertion :: TestT m a -&gt; (Failure -&gt; TestT m a) -&gt; TestT m a
+</span><a href="#local-6989586621679093730"><span class="hs-identifier hs-var hs-var hs-var hs-var">catchAssertion</span></a></span></span><span> </span><span id="local-6989586621679093729"><span class="annot"><span class="annottext">TestT m a
+</span><a href="#local-6989586621679093729"><span class="hs-identifier hs-var">g</span></a></span></span><span> </span><span id="local-6989586621679093728"><span class="annot"><span class="annottext">Failure -&gt; TestT m a
+</span><a href="#local-6989586621679093728"><span class="hs-identifier hs-var">h</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ExceptT Failure (WriterT Journal m) a -&gt; TestT m a
+forall (m :: * -&gt; *) a.
+ExceptT Failure (WriterT Journal m) a -&gt; TestT m a
+</span><span class="hs-identifier hs-var">H.TestT</span></span><span> </span><span class="annot"><span class="annottext">(ExceptT Failure (WriterT Journal m) a -&gt; TestT m a)
+-&gt; ExceptT Failure (WriterT Journal m) a -&gt; TestT m a
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ExceptT Failure (WriterT Journal m) a
+-&gt; (Failure -&gt; ExceptT Failure (WriterT Journal m) a)
+-&gt; ExceptT Failure (WriterT Journal m) a
+forall (m :: * -&gt; *) e a e'.
+Monad m =&gt;
+ExceptT e m a -&gt; (e -&gt; ExceptT e' m a) -&gt; ExceptT e' m a
+</span><span class="hs-identifier hs-var">E.catchE</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TestT m a -&gt; ExceptT Failure (WriterT Journal m) a
+forall (m :: * -&gt; *) a.
+TestT m a -&gt; ExceptT Failure (WriterT Journal m) a
+</span><span class="hs-identifier hs-var hs-var">H.unTest</span></span><span> </span><span class="annot"><span class="annottext">TestT m a
+</span><a href="#local-6989586621679093729"><span class="hs-identifier hs-var">g</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TestT m a -&gt; ExceptT Failure (WriterT Journal m) a
+forall (m :: * -&gt; *) a.
+TestT m a -&gt; ExceptT Failure (WriterT Journal m) a
+</span><span class="hs-identifier hs-var hs-var">H.unTest</span></span><span> </span><span class="annot"><span class="annottext">(TestT m a -&gt; ExceptT Failure (WriterT Journal m) a)
+-&gt; (Failure -&gt; TestT m a)
+-&gt; Failure
+-&gt; ExceptT Failure (WriterT Journal m) a
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">Failure -&gt; TestT m a
+</span><a href="#local-6989586621679093728"><span class="hs-identifier hs-var">h</span></a></span><span class="hs-special">)</span></span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span id="local-6989586621679093723"><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#MonadAssertion"><span class="hs-identifier hs-type">MonadAssertion</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679093723"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#MonadAssertion"><span class="hs-identifier hs-type">MonadAssertion</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">IO.ResourceT</span></span><span> </span><span class="annot"><a href="#local-6989586621679093723"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679093719"><span class="annot"><span class="annottext">throwAssertion :: Failure -&gt; ResourceT m a
+</span><a href="#local-6989586621679093719"><span class="hs-identifier hs-var hs-var hs-var hs-var">throwAssertion</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">m a -&gt; ResourceT m a
+forall (t :: (* -&gt; *) -&gt; * -&gt; *) (m :: * -&gt; *) a.
+(MonadTrans t, Monad m) =&gt;
+m a -&gt; t m a
+</span><span class="hs-identifier hs-var">lift</span></span><span> </span><span class="annot"><span class="annottext">(m a -&gt; ResourceT m a)
+-&gt; (Failure -&gt; m a) -&gt; Failure -&gt; ResourceT m a
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">Failure -&gt; m a
+forall (m :: * -&gt; *) a. MonadAssertion m =&gt; Failure -&gt; m a
+</span><a href="Hedgehog.Extras.Test.MonadAssertion.html#throwAssertion"><span class="hs-identifier hs-var">throwAssertion</span></a></span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679093717"><span class="annot"><span class="annottext">catchAssertion :: ResourceT m a -&gt; (Failure -&gt; ResourceT m a) -&gt; ResourceT m a
+</span><a href="#local-6989586621679093717"><span class="hs-identifier hs-var hs-var hs-var hs-var">catchAssertion</span></a></span></span><span> </span><span id="local-6989586621679093716"><span class="annot"><span class="annottext">ResourceT m a
+</span><a href="#local-6989586621679093716"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span id="local-6989586621679093715"><span class="annot"><span class="annottext">Failure -&gt; ResourceT m a
+</span><a href="#local-6989586621679093715"><span class="hs-identifier hs-var">h</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(IORef ReleaseMap -&gt; m a) -&gt; ResourceT m a
+forall (m :: * -&gt; *) a. (IORef ReleaseMap -&gt; m a) -&gt; ResourceT m a
+</span><span class="hs-identifier hs-var">IO.ResourceT</span></span><span> </span><span class="annot"><span class="annottext">((IORef ReleaseMap -&gt; m a) -&gt; ResourceT m a)
+-&gt; (IORef ReleaseMap -&gt; m a) -&gt; ResourceT m a
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679093713"><span class="annot"><span class="annottext">IORef ReleaseMap
+</span><a href="#local-6989586621679093713"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">ResourceT m a -&gt; IORef ReleaseMap -&gt; m a
+forall (m :: * -&gt; *) a. ResourceT m a -&gt; IORef ReleaseMap -&gt; m a
+</span><span class="hs-identifier hs-var hs-var">IO.unResourceT</span></span><span> </span><span class="annot"><span class="annottext">ResourceT m a
+</span><a href="#local-6989586621679093716"><span class="hs-identifier hs-var">r</span></a></span><span> </span><span class="annot"><span class="annottext">IORef ReleaseMap
+</span><a href="#local-6989586621679093713"><span class="hs-identifier hs-var">i</span></a></span><span> </span><span class="annot"><span class="annottext">m a -&gt; (Failure -&gt; m a) -&gt; m a
+forall (m :: * -&gt; *) a.
+MonadAssertion m =&gt;
+m a -&gt; (Failure -&gt; m a) -&gt; m a
+</span><a href="Hedgehog.Extras.Test.MonadAssertion.html#catchAssertion"><span class="hs-operator hs-var">`catchAssertion`</span></a></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679093711"><span class="annot"><span class="annottext">Failure
+</span><a href="#local-6989586621679093711"><span class="hs-identifier hs-var">e</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">ResourceT m a -&gt; IORef ReleaseMap -&gt; m a
+forall (m :: * -&gt; *) a. ResourceT m a -&gt; IORef ReleaseMap -&gt; m a
+</span><span class="hs-identifier hs-var hs-var">IO.unResourceT</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Failure -&gt; ResourceT m a
+</span><a href="#local-6989586621679093715"><span class="hs-identifier hs-var">h</span></a></span><span> </span><span class="annot"><span class="annottext">Failure
+</span><a href="#local-6989586621679093711"><span class="hs-identifier hs-var">e</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">IORef ReleaseMap
+</span><a href="#local-6989586621679093713"><span class="hs-identifier hs-var">i</span></a></span></span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span id="local-6989586621679093705"><span id="local-6989586621679093707"><span id="local-6989586621679093710"><span class="hs-keyword">deriving</span><span> </span><span class="hs-keyword">instance</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Monad</span></span><span> </span><span class="annot"><a href="#local-6989586621679093710"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html#MonadAssertion"><span class="hs-identifier hs-type">MonadAssertion</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">H.PropertyT</span></span><span> </span><span class="annot"><a href="#local-6989586621679093710"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span></span></span></span><span>
+</span><span id="line-33"></span></pre></body></html>
