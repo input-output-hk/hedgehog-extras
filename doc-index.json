@@ -534,30 +534,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:rewriteLbsJson"
   },
   {
-    "display_html": "<a href=\"#v:copyRewriteYamlFile\">copyRewriteYamlFile</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; (Value &#8594; Value) &#8594; m ()",
-    "name": "copyRewriteYamlFile",
-    "module": "Hedgehog.Extras.Test.File",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:copyRewriteYamlFile"
-  },
-  {
-    "display_html": "<a href=\"#v:readYamlFile\">readYamlFile</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m (<a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Either.html#t:Either\" title=\"Data.Either\">Either</a> ParseException Value)",
-    "name": "readYamlFile",
-    "module": "Hedgehog.Extras.Test.File",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:readYamlFile"
-  },
-  {
-    "display_html": "<a href=\"#v:rewriteYamlFile\">rewriteYamlFile</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; (Value &#8594; Value) &#8594; m ()",
-    "name": "rewriteYamlFile",
-    "module": "Hedgehog.Extras.Test.File",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:rewriteYamlFile"
-  },
-  {
-    "display_html": "<a href=\"#v:rewriteLbsYaml\">rewriteLbsYaml</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; (Value &#8594; Value) &#8594; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/bytestring-0.10.12.0/Data-ByteString-Lazy.html#t:ByteString\" title=\"Data.ByteString.Lazy\">ByteString</a> &#8594; m <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/bytestring-0.10.12.0/Data-ByteString-Lazy.html#t:ByteString\" title=\"Data.ByteString.Lazy\">ByteString</a>",
-    "name": "rewriteLbsYaml",
-    "module": "Hedgehog.Extras.Test.File",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:rewriteLbsYaml"
-  },
-  {
     "display_html": "<a href=\"#v:cat\">cat</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
     "name": "cat",
     "module": "Hedgehog.Extras.Test.File",
@@ -568,12 +544,6 @@
     "name": "assertIsJsonFile",
     "module": "Hedgehog.Extras.Test.File",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:assertIsJsonFile"
-  },
-  {
-    "display_html": "<a href=\"#v:assertIsYamlFile\">assertIsYamlFile</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
-    "name": "assertIsYamlFile",
-    "module": "Hedgehog.Extras.Test.File",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:assertIsYamlFile"
   },
   {
     "display_html": "<a href=\"#v:assertFilesExist\">assertFilesExist</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; [<a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a>] &#8594; m ()",
