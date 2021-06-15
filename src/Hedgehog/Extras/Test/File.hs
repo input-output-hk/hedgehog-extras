@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE TypeApplications #-}
 
 module Hedgehog.Extras.Test.File
@@ -47,6 +48,7 @@ import           Data.Text (Text)
 import           Data.Time.Clock (UTCTime)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
+import           Hedgehog.Extras.Stock.Monad
 import           Hedgehog.Extras.Stock.OS
 import           System.IO (FilePath, Handle, IOMode)
 import           Text.Show
@@ -168,7 +170,7 @@ copyRewriteJsonFile src dst f = GHC.withFrozenCallStack $ do
 -- | Annotate the contents of the 'filePath' file.
 cat :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
 cat filePath = GHC.withFrozenCallStack $ do
-  contents <- readFile filePath
+  !contents <- forceM $ readFile filePath
   void . H.annotate $ L.unlines
     [ "━━━━ File: " <> filePath <> " ━━━━"
     , contents
