@@ -18,14 +18,14 @@
 </span><span id="line-18"></span><span class="hs-comment">-- | Show 'UTCTime' in seconds since epoch</span><span>
 </span><span id="line-19"></span><span class="annot"><a href="Hedgehog.Extras.Stock.Time.html#showUTCTimeSeconds"><span class="hs-identifier hs-type">showUTCTimeSeconds</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">UTCTime</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span id="showUTCTimeSeconds"><span class="annot"><span class="annottext">showUTCTimeSeconds :: UTCTime -&gt; String
-</span><a href="Hedgehog.Extras.Stock.Time.html#showUTCTimeSeconds"><span class="hs-identifier hs-var hs-var">showUTCTimeSeconds</span></a></span></span><span> </span><span id="local-6989586621679093901"><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679093901"><span class="hs-identifier hs-var">time</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int64 -&gt; String
+</span><a href="Hedgehog.Extras.Stock.Time.html#showUTCTimeSeconds"><span class="hs-identifier hs-var hs-var">showUTCTimeSeconds</span></a></span></span><span> </span><span id="local-6989586621679095248"><span class="annot"><span class="annottext">UTCTime
+</span><a href="#local-6989586621679095248"><span class="hs-identifier hs-var">time</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int64 -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="hs-glyph">@</span><span class="annot"><span class="hs-identifier hs-type">Int64</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">POSIXTime -&gt; Int64
 forall a b. (RealFrac a, Integral b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">floor</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">UTCTime -&gt; POSIXTime
 </span><span class="hs-identifier hs-var">DTC.utcTimeToPOSIXSeconds</span></span><span> </span><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679093901"><span class="hs-identifier hs-var">time</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679095248"><span class="hs-identifier hs-var">time</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
 </span><span id="line-22"></span><span class="hs-comment">-- | Format the given time as an ISO 8601 date-time string</span><span>
 </span><span id="line-23"></span><span class="annot"><a href="Hedgehog.Extras.Stock.Time.html#formatIso8601"><span class="hs-identifier hs-type">formatIso8601</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">UTCTime</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
