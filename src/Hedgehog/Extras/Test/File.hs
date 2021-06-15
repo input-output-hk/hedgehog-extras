@@ -22,9 +22,16 @@ module Hedgehog.Extras.Test.File
   , rewriteJsonFile
   , rewriteLbsJson
 
+  , copyRewriteYamlFile
+  , readYamlFile
+  , rewriteYamlFile
+  , rewriteLbsYaml
+
   , cat
 
   , assertIsJsonFile
+  , assertIsYamlFile
+
   , assertFilesExist
   , assertFileOccurences
   , assertFileLines
@@ -35,7 +42,7 @@ module Hedgehog.Extras.Test.File
 
 import           Control.Monad
 import           Control.Monad.IO.Class
-import           Data.Aeson
+import           Data.Aeson (Value)
 import           Data.Bool
 import           Data.Either
 import           Data.Function
@@ -53,10 +60,12 @@ import           Hedgehog.Extras.Stock.OS
 import           System.IO (FilePath, Handle, IOMode)
 import           Text.Show
 
+import qualified Data.Aeson as J
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.List as L
 import qualified Data.Text.IO as T
 import qualified Data.Time.Clock as DTC
+import qualified Data.Yaml as Y
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
 import qualified Hedgehog.Extras.Test.Base as H
@@ -147,12 +156,12 @@ textReadFile filePath = GHC.withFrozenCallStack $ do
 readJsonFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m (Either String Value)
 readJsonFile filePath = GHC.withFrozenCallStack $ do
   void . H.annotate $ "Reading JSON file: " <> filePath
-  H.evalIO $ eitherDecode @Value <$> LBS.readFile filePath
+  H.evalIO $ J.eitherDecode @Value <$> LBS.readFile filePath
 
 rewriteLbsJson :: (MonadTest m, HasCallStack) => (Value -> Value) -> LBS.ByteString -> m LBS.ByteString
 rewriteLbsJson f lbs = GHC.withFrozenCallStack $ do
-  case eitherDecode lbs of
-    Right iv -> return (encode (f iv))
+  case J.eitherDecode lbs of
+    Right iv -> return (J.encode (f iv))
     Left msg -> H.failMessage GHC.callStack msg
 
 -- | Rewrite the 'filePath' JSON file using the function 'f'.
@@ -166,6 +175,30 @@ copyRewriteJsonFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> Fil
 copyRewriteJsonFile src dst f = GHC.withFrozenCallStack $ do
   void . H.annotate $ "Rewriting JSON from file: " <> src <> " to file " <> dst
   lbsReadFile src >>= rewriteLbsJson f >>= lbsWriteFile dst
+
+-- | Read the 'filePath' file as YAML.
+readYamlFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m (Either Y.ParseException Value)
+readYamlFile filePath = GHC.withFrozenCallStack $ do
+  void . H.annotate $ "Reading YAML file: " <> filePath
+  H.evalIO $ Y.decodeEither' @Value . LBS.toStrict <$> LBS.readFile filePath
+
+rewriteLbsYaml :: (MonadTest m, HasCallStack) => (Value -> Value) -> LBS.ByteString -> m LBS.ByteString
+rewriteLbsYaml f lbs = GHC.withFrozenCallStack $ do
+  case Y.decodeEither' (LBS.toStrict lbs) of
+    Right iv -> return (J.encode (f iv))
+    Left msg -> H.failMessage GHC.callStack (show msg)
+
+-- | Rewrite the 'filePath' YAML file using the function 'f'.
+rewriteYamlFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> (Value -> Value) -> m ()
+rewriteYamlFile filePath f = GHC.withFrozenCallStack $ do
+  void . H.annotate $ "Rewriting YAML file: " <> filePath
+  lbsReadFile filePath >>= rewriteLbsYaml f >>= lbsWriteFile filePath
+
+-- | Rewrite the 'filePath' YAML file using the function 'f'.
+copyRewriteYamlFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> FilePath -> (Value -> Value) -> m ()
+copyRewriteYamlFile src dst f = GHC.withFrozenCallStack $ do
+  void . H.annotate $ "Rewriting YAML from file: " <> src <> " to file " <> dst
+  lbsReadFile src >>= rewriteLbsYaml f >>= lbsWriteFile dst
 
 -- | Annotate the contents of the 'filePath' file.
 cat :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
@@ -182,6 +215,14 @@ assertIsJsonFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
 assertIsJsonFile fp = GHC.withFrozenCallStack $ do
   jsonResult <- readJsonFile fp
   case jsonResult of
+    Right _ -> return ()
+    Left msg -> H.failMessage GHC.callStack msg
+
+-- | Assert the 'filePath' can be parsed as YAML.
+assertIsYamlFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+assertIsYamlFile fp = GHC.withFrozenCallStack $ do
+  result <- readJsonFile fp
+  case result of
     Right _ -> return ()
     Left msg -> H.failMessage GHC.callStack msg
 
