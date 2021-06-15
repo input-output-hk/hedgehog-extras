@@ -59,6 +59,7 @@ library
                       , transformers
                       , unliftio
                       , unordered-containers
+                      , yaml
   exposed-modules:      Hedgehog.Extras.Aeson
                         Hedgehog.Extras.Internal.Cli
                         Hedgehog.Extras.Internal.Plan
