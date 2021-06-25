@@ -678,6 +678,12 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:procFlex"
   },
   {
+    "display_html": "<a href=\"#v:binFlex\">binFlex</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a>",
+    "name": "binFlex",
+    "module": "Hedgehog.Extras.Test.Process",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:binFlex"
+  },
+  {
     "display_html": "<a href=\"#v:getProjectBase\">getProjectBase</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m) &#8658; m <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a>",
     "name": "getProjectBase",
     "module": "Hedgehog.Extras.Test.Process",
