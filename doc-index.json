@@ -714,8 +714,8 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:waitSecondsForProcess"
   },
   {
-    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:ExecConfig\">ExecConfig</a> = <a href=\"#v:ExecConfig\">ExecConfig</a> {<ul class=\"subs\"><li><a href=\"#v:execConfigEnv\">execConfigEnv</a> &#8759; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> [(<a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a>, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a>)]</li></ul>}",
-    "name": "ExecConfig ExecConfig execConfigEnv",
+    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:ExecConfig\">ExecConfig</a> = <a href=\"#v:ExecConfig\">ExecConfig</a> {<ul class=\"subs\"><li><a href=\"#v:execConfigEnv\">execConfigEnv</a> &#8759; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> [(<a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a>, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a>)]</li><li><a href=\"#v:execConfigCwd\">execConfigCwd</a> &#8759; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a></li></ul>}",
+    "name": "ExecConfig ExecConfig execConfigEnv execConfigCwd",
     "module": "Hedgehog.Extras.Test.Process",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#t:ExecConfig"
   },
