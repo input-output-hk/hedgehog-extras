@@ -30,6 +30,13 @@ module Hedgehog.Extras.Test.Base
 
   , noteTempFile
 
+  , nothingFail
+  , nothingFailM
+  , leftFail
+  , leftFailM
+  , jsonErrorFail
+  , jsonErrorFailM
+
   , failWithCustom
   , failMessage
 
@@ -57,6 +64,7 @@ import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader
 import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
+import           Data.Aeson (Result (..))
 import           Data.Bool
 import           Data.Either (Either (..))
 import           Data.Eq
@@ -266,6 +274,30 @@ noteTempFile tempDir filePath = GHC.withFrozenCallStack $ do
   let relPath = tempDir <> "/" <> filePath
   H.annotate relPath
   return relPath
+
+nothingFail :: (MonadTest m, HasCallStack) => Maybe a -> m a
+nothingFail r = GHC.withFrozenCallStack $ case r of
+  Just a -> return a
+  Nothing -> failMessage GHC.callStack "Expected Just"
+
+nothingFailM :: (MonadTest m, HasCallStack) => m (Maybe a) -> m a
+nothingFailM f = f >>= nothingFail
+
+leftFail :: (MonadTest m, Show e, HasCallStack) => Either e a -> m a
+leftFail r = GHC.withFrozenCallStack $ case r of
+  Right a -> return a
+  Left e -> failMessage GHC.callStack ("Expected Right: " <> show e)
+
+leftFailM :: (MonadTest m, Show e, HasCallStack) => m (Either e a) -> m a
+leftFailM f = f >>= leftFail
+
+jsonErrorFail :: (MonadTest m, HasCallStack) => Result a -> m a
+jsonErrorFail r = GHC.withFrozenCallStack $ case r of
+  Success a -> return a
+  Error msg -> failMessage GHC.callStack ("Expected Right: " <> msg)
+
+jsonErrorFailM :: (MonadTest m, HasCallStack) => m (Result a) -> m a
+jsonErrorFailM f = f >>= jsonErrorFail
 
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --
