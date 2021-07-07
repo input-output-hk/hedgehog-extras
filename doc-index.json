@@ -372,6 +372,18 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:leftFailM"
   },
   {
+    "display_html": "<a href=\"#v:jsonErrorFail\">jsonErrorFail</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; Result a &#8594; m a",
+    "name": "jsonErrorFail",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:jsonErrorFail"
+  },
+  {
+    "display_html": "<a href=\"#v:jsonErrorFailM\">jsonErrorFailM</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; m (Result a) &#8594; m a",
+    "name": "jsonErrorFailM",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:jsonErrorFailM"
+  },
+  {
     "display_html": "<a href=\"#v:failWithCustom\">failWithCustom</a> &#8759; MonadTest m &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:CallStack\" title=\"GHC.Stack\">CallStack</a> &#8594; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> Diff &#8594; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m a",
     "name": "failWithCustom",
     "module": "Hedgehog.Extras.Test.Base",
