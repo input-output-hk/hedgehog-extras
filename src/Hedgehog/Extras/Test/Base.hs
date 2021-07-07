@@ -275,27 +275,33 @@ noteTempFile tempDir filePath = GHC.withFrozenCallStack $ do
   H.annotate relPath
   return relPath
 
+-- | Fail when the result is Nothing.
 nothingFail :: (MonadTest m, HasCallStack) => Maybe a -> m a
 nothingFail r = GHC.withFrozenCallStack $ case r of
   Just a -> return a
   Nothing -> failMessage GHC.callStack "Expected Just"
 
+-- | Fail when the computed result is Nothing.
 nothingFailM :: (MonadTest m, HasCallStack) => m (Maybe a) -> m a
 nothingFailM f = f >>= nothingFail
 
+-- | Fail when the result is Left.
 leftFail :: (MonadTest m, Show e, HasCallStack) => Either e a -> m a
 leftFail r = GHC.withFrozenCallStack $ case r of
   Right a -> return a
   Left e -> failMessage GHC.callStack ("Expected Right: " <> show e)
 
+-- | Fail when the computed result is Left.
 leftFailM :: (MonadTest m, Show e, HasCallStack) => m (Either e a) -> m a
 leftFailM f = f >>= leftFail
 
+-- | Fail when the result is Error.
 jsonErrorFail :: (MonadTest m, HasCallStack) => Result a -> m a
 jsonErrorFail r = GHC.withFrozenCallStack $ case r of
   Success a -> return a
   Error msg -> failMessage GHC.callStack ("Expected Right: " <> msg)
 
+-- | Fail when the computed result is Error.
 jsonErrorFailM :: (MonadTest m, HasCallStack) => m (Result a) -> m a
 jsonErrorFailM f = f >>= jsonErrorFail
 

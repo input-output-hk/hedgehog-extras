@@ -32,7 +32,7 @@ import           Data.Eq
 import           Data.Function
 import           Data.Int
 import           Data.Maybe (Maybe (..))
-import           Data.Semigroup ((<>))
+import           Data.Monoid (Last(..), mempty, (<>))
 import           Data.String (String)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
@@ -62,14 +62,14 @@ import qualified System.Process as IO
 
 -- | Configuration for starting a new process.  This is a subset of 'IO.CreateProcess'.
 data ExecConfig = ExecConfig
-  { execConfigEnv :: Maybe [(String, String)]
-  , execConfigCwd :: Maybe FilePath
+  { execConfigEnv :: Last [(String, String)]
+  , execConfigCwd :: Last FilePath
   } deriving (Eq, Show)
 
 defaultExecConfig :: ExecConfig
 defaultExecConfig = ExecConfig
-  { execConfigEnv = Nothing
-  , execConfigCwd = Nothing
+  { execConfigEnv = mempty
+  , execConfigCwd = mempty
   }
 
 -- | Discover the location of the plan.json file.
@@ -173,8 +173,8 @@ exec
   -> m String
 exec execConfig bin arguments = GHC.withFrozenCallStack $ do
   let cp = (IO.proc bin arguments)
-        { IO.env = execConfigEnv execConfig
-        , IO.cwd = execConfigCwd execConfig
+        { IO.env = getLast $ execConfigEnv execConfig
+        , IO.cwd = getLast $ execConfigCwd execConfig
         }
   H.annotate . ("Command: " <>) $ bin <> " " <> L.unwords arguments
   (exitResult, stdout, stderr) <- H.evalIO $ IO.readCreateProcessWithExitCode cp ""
@@ -300,7 +300,8 @@ procFlex'
 procFlex' execConfig pkg binaryEnv arguments = GHC.withFrozenCallStack . H.evalM $ do
   bin <- binFlex pkg binaryEnv
   return (IO.proc bin arguments)
-    { IO.env = execConfigEnv execConfig
+    { IO.env = getLast $ execConfigEnv execConfig
+    , IO.cwd = getLast $ execConfigCwd execConfig
     }
 
 -- | Compute the project base.  This will be based on either the "CARDANO_NODE_SRC"
