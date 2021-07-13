@@ -60,10 +60,12 @@ library
                       , unliftio
                       , unordered-containers
                       , yaml
-  exposed-modules:      Hedgehog.Extras.Aeson
+  exposed-modules:      Hedgehog.Extras
+                        Hedgehog.Extras.Aeson
                         Hedgehog.Extras.Internal.Cli
                         Hedgehog.Extras.Internal.Plan
                         Hedgehog.Extras.Internal.Test.Integration
+                        Hedgehog.Extras.Stock
                         Hedgehog.Extras.Stock.Aeson
                         Hedgehog.Extras.Stock.CallStack
                         Hedgehog.Extras.Stock.IO.File
@@ -75,6 +77,7 @@ library
                         Hedgehog.Extras.Stock.OS
                         Hedgehog.Extras.Stock.String
                         Hedgehog.Extras.Stock.Time
+                        Hedgehog.Extras.Test
                         Hedgehog.Extras.Test.Base
                         Hedgehog.Extras.Test.Concurrent
                         Hedgehog.Extras.Test.File
