@@ -204,6 +204,72 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-Time.html#v:formatIso8601"
   },
   {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-Time.html\">Hedgehog.Extras.Stock.Time</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-String.html\">Hedgehog.Extras.Stock.String</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-OS.html\">Hedgehog.Extras.Stock.OS</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-Monad.html\">Hedgehog.Extras.Stock.Monad</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-IO-Process.html\">Hedgehog.Extras.Stock.IO.Process</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-IO-Network-Sprocket.html\">Hedgehog.Extras.Stock.IO.Network.Sprocket</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-IO-Network-Socket.html\">Hedgehog.Extras.Stock.IO.Network.Socket</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-IO-Network-NamedPipe.html\">Hedgehog.Extras.Stock.IO.Network.NamedPipe</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-IO-File.html\">Hedgehog.Extras.Stock.IO.File</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-CallStack.html\">Hedgehog.Extras.Stock.CallStack</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Stock-Aeson.html\">Hedgehog.Extras.Stock.Aeson</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Stock",
+    "link": "hedgehog-extras/"
+  },
+  {
     "display_html": "<a href=\"#v:threadDelay\">threadDelay</a> &#8759; (MonadTest m, <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m) &#8658; <a href=\"file:///opt/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m ()",
     "name": "threadDelay",
     "module": "Hedgehog.Extras.Test.Concurrent",
@@ -766,5 +832,47 @@
     "name": "defaultExecConfig",
     "module": "Hedgehog.Extras.Test.Process",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:defaultExecConfig"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-Process.html\">Hedgehog.Extras.Test.Process</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-Network.html\">Hedgehog.Extras.Test.Network</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-MonadAssertion.html\">Hedgehog.Extras.Test.MonadAssertion</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-File.html\">Hedgehog.Extras.Test.File</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-Concurrent.html\">Hedgehog.Extras.Test.Concurrent</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-Base.html\">Hedgehog.Extras.Test.Base</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test.html\">Hedgehog.Extras.Test</a>",
+    "name": "",
+    "module": "Hedgehog.Extras",
+    "link": "hedgehog-extras/"
   }
 ]
