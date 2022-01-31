@@ -1,5 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Hedgehog.Extras.Test.Base
   ( propertyOnce
@@ -56,9 +57,10 @@ module Hedgehog.Extras.Test.Base
   , release
 
   , runFinallies
+
+  , retry
   ) where
 
-import           Control.Concurrent.STM as STM
 import           Control.Monad
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
@@ -70,6 +72,7 @@ import           Data.Either (Either (..))
 import           Data.Eq
 import           Data.Foldable
 import           Data.Function (($), (.))
+import           Data.Int
 import           Data.Maybe (Maybe (..), listToMaybe, maybe)
 import           Data.Monoid (Monoid (..))
 import           Data.Ord
@@ -78,6 +81,7 @@ import           Data.String (String)
 import           Data.Time.Clock (UTCTime)
 import           Data.Traversable
 import           Data.Tuple
+import           GHC.Num
 import           GHC.Stack (CallStack, HasCallStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration
@@ -89,6 +93,7 @@ import           System.IO (FilePath, IO)
 import           Text.Show
 
 import qualified Control.Concurrent as IO
+import qualified Control.Concurrent.STM as STM
 import qualified Control.Monad.Trans.Resource as IO
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
@@ -444,3 +449,19 @@ runFinallies f = do
       finals <- liftIO . STM.atomically $ STM.swapTVar (integrationStateFinals s) []
       mapM_ reportFinally finals
       H.throwAssertion assertion
+
+retry :: forall a. Int -> Integration a -> Integration a
+retry n f = go 0
+  where go :: Int -> Integration a
+        go i = do
+          note_ $ "Retry attempt " <> show i <> " of " <> show n
+          result <- H.catchAssertion (fmap Right f) (return . Left)
+
+          case result of
+            Right a -> return a
+            Left assertion -> do
+              if i >= n
+                then go (i + 1)
+                else do
+                  note_ $ "All " <> show (n + 1) <> " attempts failed"
+                  H.throwAssertion assertion

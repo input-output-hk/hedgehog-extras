@@ -37,7 +37,7 @@ library
   import:               base, project-config
                       , maybe-Win32-network
   hs-source-dirs:       src
-  build-depends:        aeson             >= 1.5.6.0
+  build-depends:        aeson             >= 1.5.6.0 && < 2.0.0.0
                       , aeson-pretty      >= 0.8.5
                       , async
                       , bytestring
