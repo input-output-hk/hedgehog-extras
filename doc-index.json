@@ -510,6 +510,18 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDeadlineIO"
   },
   {
+    "display_html": "<a href=\"#v:waitByDurationM\">waitByDurationM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; m <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
+    "name": "waitByDurationM",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDurationM"
+  },
+  {
+    "display_html": "<a href=\"#v:waitByDurationIO\">waitByDurationIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
+    "name": "waitByDurationIO",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDurationIO"
+  },
+  {
     "display_html": "<a href=\"#v:onFailure\">onFailure</a> &#8759; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> () &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> ()",
     "name": "onFailure",
     "module": "Hedgehog.Extras.Test.Base",
