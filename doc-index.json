@@ -498,28 +498,52 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:assertIO"
   },
   {
-    "display_html": "<a href=\"#v:waitByDeadlineM\">waitByDeadlineM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; m <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
-    "name": "waitByDeadlineM",
+    "display_html": "<a href=\"#v:justByDeadlineM\">justByDeadlineM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; m (<a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a) &#8594; m a",
+    "name": "justByDeadlineM",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDeadlineM"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:justByDeadlineM"
   },
   {
-    "display_html": "<a href=\"#v:waitByDeadlineIO\">waitByDeadlineIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
-    "name": "waitByDeadlineIO",
+    "display_html": "<a href=\"#v:justByDeadlineIO\">justByDeadlineIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (<a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a) &#8594; m a",
+    "name": "justByDeadlineIO",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDeadlineIO"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:justByDeadlineIO"
   },
   {
-    "display_html": "<a href=\"#v:waitByDurationM\">waitByDurationM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; m <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
-    "name": "waitByDurationM",
+    "display_html": "<a href=\"#v:trueByDeadlineM\">trueByDeadlineM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; m <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
+    "name": "trueByDeadlineM",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDurationM"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:trueByDeadlineM"
   },
   {
-    "display_html": "<a href=\"#v:waitByDurationIO\">waitByDurationIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
-    "name": "waitByDurationIO",
+    "display_html": "<a href=\"#v:trueByDeadlineIO\">trueByDeadlineIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
+    "name": "trueByDeadlineIO",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:waitByDurationIO"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:trueByDeadlineIO"
+  },
+  {
+    "display_html": "<a href=\"#v:justByDurationM\">justByDurationM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; m (<a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a) &#8594; m a",
+    "name": "justByDurationM",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:justByDurationM"
+  },
+  {
+    "display_html": "<a href=\"#v:justByDurationIO\">justByDurationIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (<a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a) &#8594; m a",
+    "name": "justByDurationIO",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:justByDurationIO"
+  },
+  {
+    "display_html": "<a href=\"#v:trueByDurationM\">trueByDurationM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; m <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
+    "name": "trueByDurationM",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:trueByDurationM"
+  },
+  {
+    "display_html": "<a href=\"#v:trueByDurationIO\">trueByDurationIO</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/time-1.9.3/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a> &#8594; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
+    "name": "trueByDurationIO",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:trueByDurationIO"
   },
   {
     "display_html": "<a href=\"#v:onFailure\">onFailure</a> &#8759; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> () &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> ()",
