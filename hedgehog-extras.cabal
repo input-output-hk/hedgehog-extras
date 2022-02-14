@@ -55,7 +55,7 @@ library
                       , stm
                       , temporary
                       , text
-                      , time
+                      , time              >= 1.9.1
                       , transformers
                       , unliftio
                       , unordered-containers

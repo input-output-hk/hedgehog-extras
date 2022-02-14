@@ -31,6 +31,8 @@ module Hedgehog.Extras.Test.Base
 
   , noteTempFile
 
+  , headM
+
   , nothingFail
   , nothingFailM
   , leftFail
@@ -48,8 +50,10 @@ module Hedgehog.Extras.Test.Base
   , assertM
   , assertIO
 
-  , waitByDeadlineM
-  , waitByDeadlineIO
+  , byDeadlineM
+  , byDeadlineIO
+  , byDurationM
+  , byDurationIO
 
   , onFailure
 
@@ -72,13 +76,14 @@ import           Data.Either (Either (..))
 import           Data.Eq
 import           Data.Foldable
 import           Data.Function (($), (.))
+import           Data.Functor
 import           Data.Int
 import           Data.Maybe (Maybe (..), listToMaybe, maybe)
 import           Data.Monoid (Monoid (..))
 import           Data.Ord
 import           Data.Semigroup (Semigroup (..))
 import           Data.String (String)
-import           Data.Time.Clock (UTCTime)
+import           Data.Time.Clock (NominalDiffTime, UTCTime)
 import           Data.Traversable
 import           Data.Tuple
 import           GHC.Num
@@ -87,8 +92,10 @@ import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration
 import           Hedgehog.Extras.Stock.CallStack
 import           Hedgehog.Extras.Stock.Monad
+import           Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
 import           Hedgehog.Internal.Property (Diff, liftTest, mkTest)
 import           Hedgehog.Internal.Source (getCaller)
+import           Prelude (floor)
 import           System.IO (FilePath, IO)
 import           Text.Show
 
@@ -300,6 +307,10 @@ leftFail r = GHC.withFrozenCallStack $ case r of
 leftFailM :: (MonadTest m, Show e, HasCallStack) => m (Either e a) -> m a
 leftFailM f = f >>= leftFail
 
+headM :: (MonadTest m, HasCallStack) => [a] -> m a
+headM (a:_) = return a
+headM [] = GHC.withFrozenCallStack $ failMessage GHC.callStack "Cannot take head of empty list"
+
 -- | Fail when the result is Error.
 jsonErrorFail :: (MonadTest m, HasCallStack) => Result a -> m a
 jsonErrorFail r = GHC.withFrozenCallStack $ case r of
@@ -309,6 +320,48 @@ jsonErrorFail r = GHC.withFrozenCallStack $ case r of
 -- | Fail when the computed result is Error.
 jsonErrorFailM :: (MonadTest m, HasCallStack) => m (Result a) -> m a
 jsonErrorFailM f = f >>= jsonErrorFail
+
+-- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
+--
+-- Expiration of the deadline results in an assertion failure
+byDeadlineIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> IO a -> m a
+byDeadlineIO period deadline f = GHC.withFrozenCallStack $ byDeadlineM period deadline $ liftIO f
+
+-- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
+--
+-- Expiration of the deadline results in an assertion failure
+byDeadlineM :: forall m a. (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> m a -> m a
+byDeadlineM period deadline f = GHC.withFrozenCallStack $ do
+  start <- liftIO DTC.getCurrentTime
+  a <- goM
+  end <- liftIO DTC.getCurrentTime
+  note_ $ "Operation completed in " <> show (DTC.diffUTCTime end start)
+  return a
+  where goM :: m a
+        goM = H.catchAssertion f $ \e -> do
+          currentTime <- liftIO DTC.getCurrentTime
+          if currentTime < deadline
+            then do
+              liftIO $ IO.threadDelay (floor (DTC.nominalDiffTimeToSeconds period * 1000000))
+              goM
+            else do
+              H.annotateShow currentTime
+              void $ failMessage GHC.callStack "Condition not met by deadline"
+              H.throwAssertion e
+ 
+-- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
+--
+-- Expiration of the duration results in an assertion failure
+byDurationIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> IO a -> m a
+byDurationIO period duration f = GHC.withFrozenCallStack $ byDurationM period duration $ liftIO f
+
+-- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
+--
+-- Expiration of the duration results in an assertion failure
+byDurationM :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> m a -> m a
+byDurationM period duration f = GHC.withFrozenCallStack $ do
+  deadline <- DTC.addUTCTime duration <$> liftIO DTC.getCurrentTime
+  byDeadlineM period deadline f
 
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --
@@ -341,37 +394,6 @@ assertByDeadlineM deadline f = GHC.withFrozenCallStack $ do
       else do
         H.annotateShow currentTime
         failMessage GHC.callStack "Condition not met by deadline"
-
-
--- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
---
--- Expiration of the deadline results in an assertion failure
-waitByDeadlineIO :: (MonadTest m, MonadIO m, HasCallStack) => UTCTime -> IO Bool -> m ()
-waitByDeadlineIO deadline f = GHC.withFrozenCallStack $ do
-  success <- liftIO f
-  unless success $ do
-    currentTime <- liftIO DTC.getCurrentTime
-    if currentTime < deadline
-      then do
-        liftIO $ IO.threadDelay 1000000
-        waitByDeadlineIO deadline f
-      else do
-        H.annotateShow currentTime
-        failMessage GHC.callStack "Condition not met by deadline"
-
--- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
---
--- Expiration of the deadline results in an assertion failure
-waitByDeadlineM :: (MonadTest m, MonadIO m, HasCallStack) => UTCTime -> m Bool -> m ()
-waitByDeadlineM deadline f = GHC.withFrozenCallStack $ do
-  success <- f
-  unless success $ do
-    currentTime <- liftIO DTC.getCurrentTime
-    if currentTime < deadline
-      then do
-        liftIO $ IO.threadDelay 1000000
-        waitByDeadlineM deadline f
-      else H.annotateShow currentTime
 
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --

@@ -142,17 +142,19 @@ execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
     IO.RawCommand cmd args -> cmd <> " " <> L.unwords args
   (exitResult, stdout, stderr) <- H.evalIO $ IO.readCreateProcessWithExitCode cp ""
   case exitResult of
-    IO.ExitFailure exitCode -> H.failMessage GHC.callStack . L.unlines $
-      [ "Process exited with non-zero exit-code"
-      , "━━━━ command ━━━━"
-      , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
-      , "━━━━ stdout ━━━━"
-      , stdout
-      , "━━━━ stderr ━━━━"
-      , stderr
-      , "━━━━ exit code ━━━━"
-      , show @Int exitCode
-      ]
+    IO.ExitFailure exitCode -> do
+      H.annotate $ L.unlines $
+        [ "Process exited with non-zero exit-code"
+        , "━━━━ command ━━━━"
+        , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
+        , "━━━━ stdout ━━━━"
+        , stdout
+        , "━━━━ stderr ━━━━"
+        , stderr
+        , "━━━━ exit code ━━━━"
+        , show @Int exitCode
+        ]
+      H.failMessage GHC.callStack "Execute process failed"
     IO.ExitSuccess -> return stdout
 
 -- | Execute a process, returning '()'.
