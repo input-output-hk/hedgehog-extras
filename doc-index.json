@@ -66,6 +66,12 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-Aeson.html#v:rewriteObject"
   },
   {
+    "display_html": "<a href=\"#v:rewriteArrayElements\">rewriteArrayElements</a> &#8759; (Value &#8594; Value) &#8594; Value &#8594; Value",
+    "name": "rewriteArrayElements",
+    "module": "Hedgehog.Extras.Stock.Aeson",
+    "link": "hedgehog-extras/Hedgehog-Extras-Stock-Aeson.html#v:rewriteArrayElements"
+  },
+  {
     "display_html": "<a href=\"#v:callerModuleName\">callerModuleName</a> &#8759; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-String.html#t:String\" title=\"Data.String\">String</a>",
     "name": "callerModuleName",
     "module": "Hedgehog.Extras.Stock.CallStack",
