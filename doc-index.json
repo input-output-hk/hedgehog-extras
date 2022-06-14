@@ -426,12 +426,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:headM"
   },
   {
-    "display_html": "<a href=\"#v:fromJustM\">fromJustM</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a &#8594; m a",
-    "name": "fromJustM",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:fromJustM"
-  },
-  {
     "display_html": "<a href=\"#v:nothingFail\">nothingFail</a> &#8759; (MonadTest m, <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///home/runner/.ghcup/ghc/8.10.4/share/doc/ghc-8.10.4/html/libraries/base-4.14.1.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a &#8594; m a",
     "name": "nothingFail",
     "module": "Hedgehog.Extras.Test.Base",
