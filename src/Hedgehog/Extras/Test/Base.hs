@@ -32,6 +32,7 @@ module Hedgehog.Extras.Test.Base
   , noteTempFile
 
   , headM
+  , fromJustM
 
   , nothingFail
   , nothingFailM
@@ -310,6 +311,10 @@ leftFailM f = f >>= leftFail
 headM :: (MonadTest m, HasCallStack) => [a] -> m a
 headM (a:_) = return a
 headM [] = GHC.withFrozenCallStack $ failMessage GHC.callStack "Cannot take head of empty list"
+
+fromJustM :: (MonadTest m, HasCallStack) => Maybe a -> m a
+fromJustM (Just a) = return a
+fromJustM Nothing = GHC.withFrozenCallStack $ failMessage GHC.callStack "Cannot take head of empty list"
 
 -- | Fail when the result is Error.
 jsonErrorFail :: (MonadTest m, HasCallStack) => Result a -> m a
