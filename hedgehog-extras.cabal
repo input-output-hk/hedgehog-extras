@@ -46,7 +46,7 @@ library
                       , exceptions
                       , filepath
                       , hedgehog
-                      , hw-aeson          >= 0.1.5.0
+                      , hw-aeson          >= 0.1.8.0
                       , mmorph
                       , mtl
                       , network
