@@ -32,7 +32,7 @@ import           Data.Eq
 import           Data.Function
 import           Data.Int
 import           Data.Maybe (Maybe (..))
-import           Data.Monoid (Last(..), mempty, (<>))
+import           Data.Monoid (Last (..), mempty, (<>))
 import           Data.String (String)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
@@ -307,17 +307,24 @@ procFlex' execConfig pkg binaryEnv arguments = GHC.withFrozenCallStack . H.evalM
     }
 
 -- | Compute the project base.  This will be based on either the "CARDANO_NODE_SRC"
--- environment variable or the parent directory.  Both should point to the
--- root directory of the Github project checkout.
+-- environment variable or the first parent directory that contains the `cabal.project`.
+-- Both should point to the root directory of the Github project checkout.
 getProjectBase
   :: (MonadTest m, MonadIO m)
   => m String
 getProjectBase = do
+  let
+    findUp dir = do
+      atBase <- liftIO $ IO.doesFileExist (dir <> "/cabal.project")
+      if atBase
+        then return dir
+        else do
+          let up = dir <> "/.."
+          upExist <- liftIO $ IO.doesDirectoryExist up
+          if upExist
+            then findUp up
+            else liftIO $ fail "Could not detect project base directory (containing cabal.project)"
   maybeNodeSrc <- liftIO $ IO.lookupEnv "CARDANO_NODE_SRC"
   case maybeNodeSrc of
     Just path -> return path
-    Nothing -> do
-      atBase <- liftIO $ IO.doesFileExist "cabal.project"
-      if atBase
-        then return "."
-        else return ".."
+    Nothing -> findUp "."
