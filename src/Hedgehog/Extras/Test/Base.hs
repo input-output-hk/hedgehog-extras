@@ -329,14 +329,14 @@ jsonErrorFailM f = f >>= jsonErrorFail
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --
 -- Expiration of the deadline results in an assertion failure
-byDeadlineIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> IO a -> m a
-byDeadlineIO period deadline f = GHC.withFrozenCallStack $ byDeadlineM period deadline $ liftIO f
+byDeadlineIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> String -> IO a -> m a
+byDeadlineIO period deadline errorMessage f = GHC.withFrozenCallStack $ byDeadlineM period deadline errorMessage $ liftIO f
 
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --
 -- Expiration of the deadline results in an assertion failure
-byDeadlineM :: forall m a. (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> m a -> m a
-byDeadlineM period deadline f = GHC.withFrozenCallStack $ do
+byDeadlineM :: forall m a. (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> String -> m a -> m a
+byDeadlineM period deadline errorMessage f = GHC.withFrozenCallStack $ do
   start <- liftIO DTC.getCurrentTime
   a <- goM
   end <- liftIO DTC.getCurrentTime
@@ -351,22 +351,22 @@ byDeadlineM period deadline f = GHC.withFrozenCallStack $ do
               goM
             else do
               H.annotateShow currentTime
-              void $ failMessage GHC.callStack "Condition not met by deadline"
+              void $ failMessage GHC.callStack $ "Condition not met by deadline: " <> errorMessage
               H.throwAssertion e
  
 -- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
 --
 -- Expiration of the duration results in an assertion failure
-byDurationIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> IO a -> m a
-byDurationIO period duration f = GHC.withFrozenCallStack $ byDurationM period duration $ liftIO f
+byDurationIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> String -> IO a -> m a
+byDurationIO period duration errorMessage f = GHC.withFrozenCallStack $ byDurationM period duration errorMessage $ liftIO f
 
 -- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
 --
 -- Expiration of the duration results in an assertion failure
-byDurationM :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> m a -> m a
-byDurationM period duration f = GHC.withFrozenCallStack $ do
+byDurationM :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> String -> m a -> m a
+byDurationM period duration errorMessage f = GHC.withFrozenCallStack $ do
   deadline <- DTC.addUTCTime duration <$> liftIO DTC.getCurrentTime
-  byDeadlineM period deadline f
+  byDeadlineM period deadline errorMessage f
 
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --
