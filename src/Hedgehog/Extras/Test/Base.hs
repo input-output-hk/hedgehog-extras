@@ -141,9 +141,7 @@ workspace :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> (FilePath -> 
 workspace prefixPath f = GHC.withFrozenCallStack $ do
   systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
   maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
-  let systemPrefixPath = systemTemp <> "/" <> prefixPath
-  H.evalIO $ IO.createDirectoryIfMissing True systemPrefixPath
-  ws <- H.evalIO $ IO.createTempDirectory systemPrefixPath "test"
+  ws <- H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
   H.annotate $ "Workspace: " <> ws
   liftIO $ IO.writeFile (ws <> "/module") callerModuleName
   f ws
@@ -353,7 +351,7 @@ byDeadlineM period deadline errorMessage f = GHC.withFrozenCallStack $ do
               H.annotateShow currentTime
               void $ failMessage GHC.callStack $ "Condition not met by deadline: " <> errorMessage
               H.throwAssertion e
- 
+
 -- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
 --
 -- Expiration of the duration results in an assertion failure
