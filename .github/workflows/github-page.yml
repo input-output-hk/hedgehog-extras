@@ -5,11 +5,13 @@ on:
 
 jobs:
   haddocks:
-    environment: cabal-cache
-
     name: "Haddocks"
-
+    environment: cabal-cache
     runs-on: ${{ matrix.os }}
+
+    env:
+      # Modify this value to "invalidate" the cabal cache.
+      CABAL_CACHE_VERSION: "2022-12-30"
 
     defaults:
       run:
@@ -18,77 +20,79 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ghc: ["8.10.4"]
+        ghc: ["9.2.5"]
+        cabal: ["3.8.1.0"]
         os: [ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Configure to use libsodium
-      run: |
-        cat >> cabal.project <<EOF
-        package cardano-crypto-praos
-          flags: -external-libsodium-vrf
-        EOF
+    - uses: actions/checkout@v2
 
     - name: Install Haskell
-      uses: haskell/actions/setup@v1
+      uses: input-output-hk/setup-haskell@v1
       id: setup-haskell
       with:
         ghc-version: ${{ matrix.ghc }}
-        cabal-version: '3.4.0.0'
+        cabal-version: ${{ matrix.cabal }}
 
     - name: Update Hackage index
-      run: cabal v2-update
+      run: cabal update
 
     - name: Checkout ouroboros-network repository
       uses: actions/checkout@v2
 
     - name: Build dependencies
-      run: cabal configure --enable-tests
+      run: |
+        cabal configure --enable-tests
+        cabal build all --dry-run
 
     - name: Dry run
       run: |
         mkdir -p ./haddocks
         DRY_RUN=1 ./scripts/haddocs.sh ./haddocks true
 
-    - name: Restore cabal cache
-      uses: haskell-works/cabal-cache-action@v1
+    # For users who fork cardano-node and want to define a writable cache, then can set up their own
+    # S3 bucket then define in their forked repository settings the following secrets:
+    #
+    #   AWS_ACCESS_KEY_ID
+    #   AWS_SECRET_ACCESS_KEY
+    #   BINARY_CACHE_URI
+    #   BINARY_CACHE_REGION
+    - name: Cabal cache over S3
+      uses: action-works/cabal-cache-s3@v1
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
-        BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
-        BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
       with:
-        args: |
-          sync-from-archive \
-            --threads       "$BINARY_CACHE_THREADS" \
-            --archive-uri   "$BINARY_CACHE_URI" \
-            --region        "$BINARY_CACHE_REGION" \
-            --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
+        region: ${{ secrets.BINARY_CACHE_REGION }}
+        dist-dir: dist-newstyle
+        store-path: ${{ steps.setup-haskell.outputs.cabal-store }}
+        threads: 16
+        archive-uri: ${{ secrets.BINARY_CACHE_URI }}/${{ env.CABAL_CACHE_VERSION }}/${{ runner.os }}
+        skip: "${{ secrets.BINARY_CACHE_URI == '' }}"
+
+    # It's important to ensure that people who fork this repository can not only successfully build in
+    # CI by default, but also have meaning cabal store caching.
+    #
+    # Because syncing with S3 requires credentials, we cannot rely on S3 for this. For this reason a
+    # https fallback is used. The https server mirrors the content of the S3 bucket. The https cabal
+    # store archive is read-only for security reasons.
+    #
+    # Users who fork this repository who want to have a writable cabal store archive are encouraged
+    # to set up their own S3 bucket.
+    - name: Cabal cache over HTTPS
+      uses: action-works/cabal-cache-s3@v1
+      with:
+        dist-dir: dist-newstyle
+        store-path: ${{ steps.setup-haskell.outputs.cabal-store }}
+        threads: 16
+        archive-uri: https://iohk.cache.haskellworks.io/${{ env.CABAL_CACHE_VERSION }}/${{ runner.os }}
+        skip: "${{ secrets.BINARY_CACHE_URI != '' }}"
+        enable-save: false
 
     - name: build Haddock documentation 🔧
       run: |
         mkdir -p ./haddocks
         ./scripts/haddocs.sh ./haddocks
-
-    - name: Save cabal cache
-      uses: haskell-works/cabal-cache-action@v1
-      if: ${{ always() }}
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        BINARY_CACHE_THREADS: ${{ secrets.BINARY_CACHE_THREADS }}
-        BINARY_CACHE_REGION: ${{ secrets.BINARY_CACHE_REGION }}
-        BINARY_CACHE_URI: ${{ secrets.BINARY_CACHE_URI }}
-      with:
-        args: |
-          sync-to-archive \
-            --threads       "$BINARY_CACHE_THREADS" \
-            --archive-uri   "$BINARY_CACHE_URI" \
-            --region        "$BINARY_CACHE_REGION" \
-            --store-path    "${{ steps.setup-haskell.outputs.cabal-store }}"
 
     - name: deploy to gh-pages 🚀
       run: |
