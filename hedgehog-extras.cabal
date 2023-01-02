@@ -56,6 +56,10 @@ library
                       , unliftio
                       , unordered-containers
                       , yaml
+
+  if os(windows)
+    exposed-modules:    Hedgehog.Extras.Internal.Win32.NamedPipes
+    build-depends:      Win32             >= 2.5.4.1
   exposed-modules:      Hedgehog.Extras
                         Hedgehog.Extras.Aeson
                         Hedgehog.Extras.Internal.Cli
