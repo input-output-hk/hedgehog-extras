@@ -21,30 +21,32 @@ module Hedgehog.Extras.Test.Process
   , defaultExecConfig
   ) where
 
-import           Control.Monad
-import           Control.Monad.Catch hiding (catch)
+import           Control.Monad (Monad(..),  MonadFail(fail), void)
+import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.IO.Class (MonadIO, liftIO)
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register)
 import           Data.Aeson (eitherDecode)
-import           Data.Bool
-import           Data.Either
-import           Data.Eq
-import           Data.Function
-import           Data.Int
+import           Data.Bool (Bool(..))
+import           Data.Either (Either(..))
+import           Data.Eq (Eq(..))
+import           Data.Function (($), (&), (.))
+import           Data.Functor (Functor(..))
+import           Data.Int (Int)
 import           Data.Maybe (Maybe (..))
 import           Data.Monoid (Last (..), mempty, (<>))
 import           Data.String (String)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Cli (argQuote)
-import           Hedgehog.Extras.Internal.Plan
+import           Hedgehog.Extras.Internal.Plan (Component(..), Plan(..))
 import           Hedgehog.Extras.Stock.IO.Process (TimedOut (..))
 import           Prelude (error)
 import           System.Exit (ExitCode)
+import           System.FilePath (takeDirectory)
 import           System.FilePath.Posix ((</>))
-import           System.IO (FilePath, Handle)
+import           System.IO (FilePath, Handle, IO)
 import           System.Process (CmdSpec (..), CreateProcess (..), Pid, ProcessHandle)
-import           Text.Show
+import           Text.Show (Show(show))
 
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.List as L
@@ -72,13 +74,28 @@ defaultExecConfig = ExecConfig
   , execConfigCwd = mempty
   }
 
+-- | Find the nearest plan.json going upwards from the current directory.
+findDefaultPlanJsonFile :: IO FilePath
+findDefaultPlanJsonFile = IO.getCurrentDirectory >>= go
+  where go :: FilePath -> IO FilePath
+        go d = do
+          let file = d </> "dist-newstyle/cache/plan.json"
+          exists <- IO.doesFileExist file
+          if exists
+            then return file
+            else do
+              let parent = takeDirectory d
+              if parent == d
+                then return "dist-newstyle/cache/plan.json"
+                else go parent
+
 -- | Discover the location of the plan.json file.
 planJsonFile :: String
 planJsonFile = IO.unsafePerformIO $ do
   maybeBuildDir <- liftIO $ IO.lookupEnv "CABAL_BUILDDIR"
   case maybeBuildDir of
     Just buildDir -> return $ ".." </> buildDir </> "cache/plan.json"
-    Nothing -> return "../dist-newstyle/cache/plan.json"
+    Nothing -> findDefaultPlanJsonFile
 {-# NOINLINE planJsonFile #-}
 
 exeSuffix :: String
