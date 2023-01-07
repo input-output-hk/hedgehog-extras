@@ -1,6 +1,7 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric       #-}
+{-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE TypeApplications    #-}
 
 module Hedgehog.Extras.Test.Process
   ( createProcess
@@ -35,6 +36,7 @@ import           Data.Int (Int)
 import           Data.Maybe (Maybe (..))
 import           Data.Monoid (Last (..), mempty, (<>))
 import           Data.String (String)
+import           GHC.Generics (Generic)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Cli (argQuote)
@@ -66,7 +68,7 @@ import qualified System.Process as IO
 data ExecConfig = ExecConfig
   { execConfigEnv :: Last [(String, String)]
   , execConfigCwd :: Last FilePath
-  } deriving (Eq, Show)
+  } deriving (Eq, Generic, Show)
 
 defaultExecConfig :: ExecConfig
 defaultExecConfig = ExecConfig

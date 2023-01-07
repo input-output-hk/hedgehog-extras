@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveGeneric       #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
 module Hedgehog.Extras.Stock.IO.Process
@@ -14,6 +15,7 @@ import           Data.Eq
 import           Data.Function
 import           Data.Int
 import           Data.Maybe
+import           GHC.Generics (Generic)
 import           GHC.Num
 import           System.Exit
 import           System.IO
@@ -24,7 +26,7 @@ import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.Async as IO
 import qualified System.Process as IO
 
-data TimedOut = TimedOut deriving (Eq, Show)
+data TimedOut = TimedOut deriving (Generic, Eq, Show)
 
 maybeWaitForProcess
   :: ProcessHandle

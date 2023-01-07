@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveGeneric #-}
 
 module Hedgehog.Extras.Internal.Test.Integration
   ( Integration
@@ -7,9 +8,11 @@ module Hedgehog.Extras.Internal.Test.Integration
   , runIntegrationReaderT
   ) where
 
-import           Control.Monad.Reader
+import           Control.Monad.IO.Class (MonadIO(..))
+import           Control.Monad.Reader (ReaderT(runReaderT) )
 import           Control.Monad.Trans.Resource (ResourceT)
-import           Data.Functor
+import           Data.Functor ( (<$>) )
+import           GHC.Generics (Generic)
 import           System.IO (IO)
 
 import qualified Control.Concurrent.STM as STM
@@ -17,7 +20,7 @@ import qualified Hedgehog as H
 
 newtype IntegrationState = IntegrationState
   { integrationStateFinals :: STM.TVar [Integration ()]
-  }
+  } deriving (Generic)
 
 type Integration a = H.PropertyT (ReaderT IntegrationState (ResourceT IO)) a
 

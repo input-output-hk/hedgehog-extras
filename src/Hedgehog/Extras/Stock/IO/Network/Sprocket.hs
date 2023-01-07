@@ -1,3 +1,5 @@
+{-# LANGUAGE DeriveGeneric #-}
+
 module Hedgehog.Extras.Stock.IO.Network.Sprocket
   ( Sprocket(..)
   , doesSprocketExist
@@ -6,16 +8,17 @@ module Hedgehog.Extras.Stock.IO.Network.Sprocket
   , maxSprocketArgumentNameLength
   ) where
 
-import           Data.Bool
-import           Data.Char
-import           Data.Eq
-import           Data.Functor
-import           Data.Int
-import           Data.Semigroup
+import           Data.Bool (Bool)
+import           Data.Char (Char)
+import           Data.Eq (Eq((==)))
+import           Data.Functor (Functor(fmap))
+import           Data.Int (Int)
+import           Data.Semigroup (Semigroup((<>)))
 import           Data.String (String)
-import           Hedgehog.Extras.Stock.OS
+import           Hedgehog.Extras.Stock.OS (isWin32)
 import           System.IO (FilePath, IO)
-import           Text.Show
+import           Text.Show (Show)
+import           GHC.Generics (Generic)
 
 import qualified Hedgehog.Extras.Stock.IO.Network.NamedPipe as IO
 import qualified Hedgehog.Extras.Stock.IO.Network.Socket as IO
@@ -24,7 +27,7 @@ import qualified Hedgehog.Extras.Stock.IO.Network.Socket as IO
 data Sprocket = Sprocket
   { sprocketBase :: String
   , sprocketName :: String
-  } deriving (Eq, Show)
+  } deriving (Generic, Eq, Show)
 
 -- | Test if the sprocket exists
 doesSprocketExist :: Sprocket -> IO Bool
