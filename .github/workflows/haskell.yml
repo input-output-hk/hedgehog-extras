@@ -33,6 +33,12 @@ jobs:
           - ghc: "8.10.7"
             os: ubuntu-latest
             aeson: "1.5.6.0"
+          - ghc: "8.8.4"
+            os: ubuntu-latest
+            aeson: "1.5.6.0"
+          - ghc: "8.6.5"
+            os: ubuntu-latest
+            aeson: "1.5.6.0"
 
     steps:
       - uses: actions/checkout@v3

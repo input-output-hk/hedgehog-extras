@@ -22,8 +22,9 @@ module Hedgehog.Extras.Test.Process
   , defaultExecConfig
   ) where
 
-import           Control.Monad (Monad(..),  MonadFail(fail), void)
+import           Control.Monad (Monad(..), void)
 import           Control.Monad.Catch (MonadCatch)
+import           Control.Monad.Fail (MonadFail(..))
 import           Control.Monad.IO.Class (MonadIO, liftIO)
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register)
 import           Data.Aeson (eitherDecode)
