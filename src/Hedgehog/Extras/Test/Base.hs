@@ -156,10 +156,12 @@ workspace prefixPath f = GHC.withFrozenCallStack $ do
 --
 -- The directory will be deleted if the block succeeds, but left behind if
 -- the block fails.
-moduleWorkspace :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> (FilePath -> m ()) -> m ()
-moduleWorkspace prefixPath f = GHC.withFrozenCallStack $ do
+--
+-- The 'prefix' argument should not contain directory delimeters.
+moduleWorkspace :: (MonadTest m, MonadIO m, HasCallStack) => String -> (FilePath -> m ()) -> m ()
+moduleWorkspace prefix f = GHC.withFrozenCallStack $ do
   let srcModule = maybe "UnknownModule" (GHC.srcLocModule . snd) (listToMaybe (GHC.getCallStack GHC.callStack))
-  workspace (prefixPath <> "/" <> srcModule) f
+  workspace (prefix <> "-" <> srcModule) f
 
 -- | Annotate the given string at the context supplied by the callstack.
 noteWithCallstack :: MonadTest m => CallStack -> String -> m ()
