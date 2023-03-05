@@ -576,10 +576,16 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:runFinallies"
   },
   {
-    "display_html": "<a href=\"#v:retry\">retry</a> &#8759; &#8704; a. <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> a &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> a",
+    "display_html": "<a href=\"#v:retry\">retry</a> &#8759; &#8704; a. <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> a) &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> a",
     "name": "retry",
     "module": "Hedgehog.Extras.Test.Base",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:retry"
+  },
+  {
+    "display_html": "<a href=\"#v:retry-39-\">retry'</a> &#8759; &#8704; a. <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> a &#8594; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> a",
+    "name": "retry'",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:retry-39-"
   },
   {
     "display_html": "<a href=\"#v:createDirectoryIfMissing\">createDirectoryIfMissing</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
