@@ -64,41 +64,42 @@ module Hedgehog.Extras.Test.Base
   , runFinallies
 
   , retry
+  , retry'
   ) where
 
-import           Control.Monad
+import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
-import           Control.Monad.Reader
+import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
-import           Data.Bool
+import           Data.Bool (Bool, (&&))
 import           Data.Either (Either (..))
-import           Data.Eq
-import           Data.Foldable
-import           Data.Function (($), (.))
-import           Data.Functor
-import           Data.Int
+import           Data.Eq (Eq ((/=)))
+import           Data.Foldable (for_)
+import           Data.Function (const, ($), (.))
+import           Data.Functor ((<$>))
+import           Data.Int (Int)
 import           Data.Maybe (Maybe (..), listToMaybe, maybe)
 import           Data.Monoid (Monoid (..))
-import           Data.Ord
+import           Data.Ord (Ord ((<), (>=)))
 import           Data.Semigroup (Semigroup (..))
 import           Data.String (String)
 import           Data.Time.Clock (NominalDiffTime, UTCTime)
-import           Data.Traversable
-import           Data.Tuple
-import           GHC.Num
+import           Data.Traversable (Traversable)
+import           Data.Tuple (snd)
+import           GHC.Num (Num ((*), (+)))
 import           GHC.Stack (CallStack, HasCallStack)
 import           Hedgehog (MonadTest)
-import           Hedgehog.Extras.Internal.Test.Integration
-import           Hedgehog.Extras.Stock.CallStack
-import           Hedgehog.Extras.Stock.Monad
+import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
+import           Hedgehog.Extras.Stock.CallStack (callerModuleName)
+import           Hedgehog.Extras.Stock.Monad (forceM)
 import           Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
 import           Hedgehog.Internal.Property (Diff, liftTest, mkTest)
 import           Hedgehog.Internal.Source (getCaller)
 import           Prelude (floor)
 import           System.IO (FilePath, IO)
-import           Text.Show
+import           Text.Show (Show (show))
 
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
@@ -106,6 +107,7 @@ import qualified Control.Monad.Trans.Resource as IO
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
+import qualified Hedgehog.Extras.Internal.Test.Integration as H
 import qualified Hedgehog.Extras.Test.MonadAssertion as H
 import qualified Hedgehog.Internal.Property as H
 import qualified System.Directory as IO
@@ -119,7 +121,7 @@ import qualified System.IO.Temp as IO
 -- | Run a property with only one test.  This is intended for allowing hedgehog
 -- to run unit tests.
 propertyOnce :: HasCallStack => Integration () -> H.Property
-propertyOnce = H.withTests 1 . H.property . hoist runResourceT . hoist runIntegrationReaderT
+propertyOnce = H.withTests 1 . H.property . hoist runResourceT . hoist H.runIntegrationReaderT
 
 -- | Takes a 'CallStack' so the error can be rendered at the appropriate call site.
 failWithCustom :: MonadTest m => CallStack -> Maybe Diff -> String -> m a
@@ -477,12 +479,12 @@ runFinallies f = do
       mapM_ reportFinally finals
       H.throwAssertion assertion
 
-retry :: forall a. Int -> Integration a -> Integration a
+retry :: forall a. Int -> (Int -> Integration a) -> Integration a
 retry n f = go 0
   where go :: Int -> Integration a
         go i = do
           note_ $ "Retry attempt " <> show i <> " of " <> show n
-          result <- H.catchAssertion (fmap Right f) (return . Left)
+          result <- H.catchAssertion (fmap Right (f i)) (return . Left)
 
           case result of
             Right a -> return a
@@ -492,3 +494,6 @@ retry n f = go 0
                 else do
                   note_ $ "All " <> show (n + 1) <> " attempts failed"
                   H.throwAssertion assertion
+
+retry' :: forall a. Int -> Integration a -> Integration a
+retry' n f = retry n (const f)
