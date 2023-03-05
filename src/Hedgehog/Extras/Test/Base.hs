@@ -38,6 +38,10 @@ module Hedgehog.Extras.Test.Base
   , nothingFailM
   , leftFail
   , leftFailM
+
+  , onLeft
+  , onNothing
+
   , jsonErrorFail
   , jsonErrorFailM
 
@@ -313,6 +317,12 @@ leftFailM f = f >>= leftFail
 headM :: (MonadTest m, HasCallStack) => [a] -> m a
 headM (a:_) = return a
 headM [] = GHC.withFrozenCallStack $ failMessage GHC.callStack "Cannot take head of empty list"
+
+onLeft :: Monad m => (e -> m a) -> m (Either e a) -> m a
+onLeft h f = f >>= either h pure
+
+onNothing :: Monad m => m a -> m (Maybe a) -> m a
+onNothing h f = f >>= maybe h pure
 
 fromJustM :: (MonadTest m, HasCallStack) => Maybe a -> m a
 fromJustM (Just a) = return a
