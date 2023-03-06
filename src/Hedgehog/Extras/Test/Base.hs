@@ -499,10 +499,10 @@ retry n f = go 0
           case result of
             Right a -> return a
             Left assertion -> do
-              if i >= n
+              if i < n
                 then go (i + 1)
                 else do
-                  note_ $ "All " <> show (n + 1) <> " attempts failed"
+                  note_ $ "All " <> show n <> " attempts failed"
                   H.throwAssertion assertion
 
 retry' :: forall a. Int -> Integration a -> Integration a
