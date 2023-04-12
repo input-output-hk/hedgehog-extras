@@ -78,7 +78,6 @@ import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
 import           Data.Bool (Bool, (&&))
-import           Data.Either (Either (..))
 import           Data.Eq (Eq ((/=)))
 import           Data.Foldable (for_)
 import           Data.Function (const, ($), (.))
@@ -86,7 +85,7 @@ import           Data.Functor ((<$>))
 import           Data.Int (Int)
 import           Data.Maybe (Maybe (..), listToMaybe, maybe)
 import           Data.Monoid (Monoid (..))
-import           Data.Ord (Ord ((<), (>=)))
+import           Data.Ord (Ord ((<)))
 import           Data.Semigroup (Semigroup (..))
 import           Data.String (String)
 import           Data.Time.Clock (NominalDiffTime, UTCTime)
@@ -105,9 +104,11 @@ import           Prelude (floor)
 import           System.IO (FilePath, IO)
 import           Text.Show (Show (show))
 
+import           Control.Applicative (Applicative (..))
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
 import qualified Control.Monad.Trans.Resource as IO
+import           Data.Either
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
