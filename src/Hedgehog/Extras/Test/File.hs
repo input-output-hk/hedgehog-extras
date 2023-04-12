@@ -4,6 +4,8 @@
 module Hedgehog.Extras.Test.File
   ( createDirectoryIfMissing
   , createDirectoryIfMissing_
+  , createSubdirectoryIfMissing
+  , createSubdirectoryIfMissing_
   , copyFile
   , renameFile
   , createFileLink
@@ -74,19 +76,44 @@ import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
 import qualified Hedgehog.Extras.Test.Base as H
 import qualified System.Directory as IO
+import           System.FilePath ((</>))
 import qualified System.IO as IO
 
--- | Create the 'filePath' directory if it is missing.
+-- | Create the 'directory' directory if it is missing.
 createDirectoryIfMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m FilePath
-createDirectoryIfMissing filePath = GHC.withFrozenCallStack $ do
-  H.annotate $ "Creating directory if missing: " <> filePath
-  H.evalIO $ IO.createDirectoryIfMissing True filePath
-  pure filePath
+createDirectoryIfMissing directory = GHC.withFrozenCallStack $ do
+  H.annotate $ "Creating directory if missing: " <> directory
+  H.evalIO $ IO.createDirectoryIfMissing True directory
+  pure directory
 
--- | Create the 'filePath' directory if it is missing.
+-- | Create the 'directory' directory if it is missing.
 createDirectoryIfMissing_ :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
-createDirectoryIfMissing_ filePath = GHC.withFrozenCallStack $
-  void $ createDirectoryIfMissing filePath
+createDirectoryIfMissing_ directory = GHC.withFrozenCallStack $
+  void $ createDirectoryIfMissing directory
+
+-- | Create the 'subdirectory' subdirectory if it is missing.  The subdirectory is returned.
+createSubdirectoryIfMissing :: ()
+  => HasCallStack
+  => MonadTest m
+  => MonadIO m
+  => FilePath
+  -> FilePath
+  -> m FilePath
+createSubdirectoryIfMissing parent subdirectory = GHC.withFrozenCallStack $ do
+  H.annotate $ "Creating subdirectory if missing: " <> subdirectory
+  H.evalIO $ IO.createDirectoryIfMissing True $ parent </> subdirectory
+  pure subdirectory
+
+-- | Create the 'subdirectory' subdirectory if it is missing.  The subdirectory is returned.
+createSubdirectoryIfMissing_ :: ()
+  => HasCallStack
+  => MonadTest m
+  => MonadIO m
+  => FilePath
+  -> FilePath
+  -> m ()
+createSubdirectoryIfMissing_ parent subdirectory = GHC.withFrozenCallStack $
+  void $ createSubdirectoryIfMissing parent subdirectory
 
 -- | Copy the contents of the 'src' file to the 'dst' file.
 copyFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> FilePath -> m ()
