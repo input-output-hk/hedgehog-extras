@@ -41,6 +41,7 @@ module Hedgehog.Extras.Test.File
   , appendFileTimeDelta
   ) where
 
+import           Control.Applicative (Applicative (..))
 import           Control.Monad
 import           Control.Monad.IO.Class
 import           Data.Aeson (Value)
