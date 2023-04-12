@@ -3,6 +3,7 @@
 
 module Hedgehog.Extras.Test.File
   ( createDirectoryIfMissing
+  , createDirectoryIfMissing_
   , copyFile
   , renameFile
   , createFileLink
@@ -73,10 +74,16 @@ import qualified System.Directory as IO
 import qualified System.IO as IO
 
 -- | Create the 'filePath' directory if it is missing.
-createDirectoryIfMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+createDirectoryIfMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m FilePath
 createDirectoryIfMissing filePath = GHC.withFrozenCallStack $ do
   H.annotate $ "Creating directory if missing: " <> filePath
   H.evalIO $ IO.createDirectoryIfMissing True filePath
+  pure filePath
+
+-- | Create the 'filePath' directory if it is missing.
+createDirectoryIfMissing_ :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+createDirectoryIfMissing_ filePath = GHC.withFrozenCallStack $
+  void $ createDirectoryIfMissing filePath
 
 -- | Copy the contents of the 'src' file to the 'dst' file.
 copyFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> FilePath -> m ()
