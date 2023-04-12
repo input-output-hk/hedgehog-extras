@@ -20,11 +20,13 @@ module Hedgehog.Extras.Test.File
 
   , copyRewriteJsonFile
   , readJsonFile
+  , readJsonFileOk
   , rewriteJsonFile
   , rewriteLbsJson
 
   , copyRewriteYamlFile
   , readYamlFile
+  , readYamlFileOk
   , rewriteYamlFile
   , rewriteLbsYaml
 
@@ -166,6 +168,11 @@ readJsonFile filePath = GHC.withFrozenCallStack $ do
   void . H.annotate $ "Reading JSON file: " <> filePath
   H.evalIO $ J.eitherDecode @Value <$> LBS.readFile filePath
 
+-- | Read the 'filePath' file as JSON. Same as 'readJsonFile' but fails on error.
+readJsonFileOk :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m Value
+readJsonFileOk filePath = GHC.withFrozenCallStack $
+  H.leftFailM $ readJsonFile filePath
+
 rewriteLbsJson :: (MonadTest m, HasCallStack) => (Value -> Value) -> LBS.ByteString -> m LBS.ByteString
 rewriteLbsJson f lbs = GHC.withFrozenCallStack $ do
   case J.eitherDecode lbs of
@@ -189,6 +196,11 @@ readYamlFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m (Either 
 readYamlFile filePath = GHC.withFrozenCallStack $ do
   void . H.annotate $ "Reading YAML file: " <> filePath
   H.evalIO $ Y.decodeEither' @Value . LBS.toStrict <$> LBS.readFile filePath
+
+-- | Read the 'filePath' file as YAML.  Same as 'readYamlFile' but fails on error.
+readYamlFileOk :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m Value
+readYamlFileOk filePath = GHC.withFrozenCallStack $
+  H.leftFailM $ readYamlFile filePath
 
 rewriteLbsYaml :: (MonadTest m, HasCallStack) => (Value -> Value) -> LBS.ByteString -> m LBS.ByteString
 rewriteLbsYaml f lbs = GHC.withFrozenCallStack $ do
