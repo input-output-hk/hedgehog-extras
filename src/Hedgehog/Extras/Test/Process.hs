@@ -343,11 +343,11 @@ getProjectBase
 getProjectBase = do
   let
     findUp dir = do
-      atBase <- liftIO $ IO.doesFileExist (dir <> "/cabal.project")
+      atBase <- liftIO $ IO.doesFileExist (dir </> "cabal.project")
       if atBase
         then return dir
         else do
-          let up = dir <> "/.."
+          let up = dir </> ".."
           upExist <- liftIO $ IO.doesDirectoryExist up
           if upExist
             then findUp up

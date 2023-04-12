@@ -71,6 +71,7 @@ module Hedgehog.Extras.Test.Base
   , retry'
   ) where
 
+import           Control.Applicative (Applicative (..))
 import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
@@ -78,6 +79,7 @@ import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
 import           Data.Bool (Bool, (&&))
+import           Data.Either (Either (..), either)
 import           Data.Eq (Eq ((/=)))
 import           Data.Foldable (for_)
 import           Data.Function (const, ($), (.))
@@ -101,14 +103,13 @@ import           Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
 import           Hedgehog.Internal.Property (Diff, liftTest, mkTest)
 import           Hedgehog.Internal.Source (getCaller)
 import           Prelude (floor)
+import           System.FilePath ((</>))
 import           System.IO (FilePath, IO)
 import           Text.Show (Show (show))
 
-import           Control.Applicative (Applicative (..))
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
 import qualified Control.Monad.Trans.Resource as IO
-import           Data.Either
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
@@ -150,7 +151,7 @@ workspace prefixPath f = GHC.withFrozenCallStack $ do
   maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
   ws <- H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
   H.annotate $ "Workspace: " <> ws
-  liftIO $ IO.writeFile (ws <> "/module") callerModuleName
+  liftIO $ IO.writeFile (ws </> "module") callerModuleName
   f ws
   when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $ do
     H.evalIO $ IO.removeDirectoryRecursive ws
@@ -291,7 +292,7 @@ noteEachIO_ f = GHC.withFrozenCallStack $ do
 -- | Return the test file path after annotating it relative to the project root directory
 noteTempFile :: (MonadTest m, HasCallStack) => FilePath -> FilePath -> m FilePath
 noteTempFile tempDir filePath = GHC.withFrozenCallStack $ do
-  let relPath = tempDir <> "/" <> filePath
+  let relPath = tempDir </> filePath
   H.annotate relPath
   return relPath
 
