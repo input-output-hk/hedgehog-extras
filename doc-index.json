@@ -684,6 +684,12 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:readJsonFile"
   },
   {
+    "display_html": "<a href=\"#v:readJsonFileOk\">readJsonFileOk</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m Value",
+    "name": "readJsonFileOk",
+    "module": "Hedgehog.Extras.Test.File",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:readJsonFileOk"
+  },
+  {
     "display_html": "<a href=\"#v:rewriteJsonFile\">rewriteJsonFile</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; (Value &#8594; Value) &#8594; m ()",
     "name": "rewriteJsonFile",
     "module": "Hedgehog.Extras.Test.File",
@@ -706,6 +712,12 @@
     "name": "readYamlFile",
     "module": "Hedgehog.Extras.Test.File",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:readYamlFile"
+  },
+  {
+    "display_html": "<a href=\"#v:readYamlFileOk\">readYamlFileOk</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m Value",
+    "name": "readYamlFileOk",
+    "module": "Hedgehog.Extras.Test.File",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:readYamlFileOk"
   },
   {
     "display_html": "<a href=\"#v:rewriteYamlFile\">rewriteYamlFile</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; (Value &#8594; Value) &#8594; m ()",
@@ -874,6 +886,12 @@
     "name": "getPid",
     "module": "Hedgehog.Extras.Test.Process",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:getPid"
+  },
+  {
+    "display_html": "<a href=\"#v:getPidOk\">getPidOk</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/process-1.6.16.0/System-Process.html#t:ProcessHandle\" title=\"System.Process\">ProcessHandle</a> &#8594; m <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/process-1.6.16.0/System-Process.html#t:Pid\" title=\"System.Process\">Pid</a>",
+    "name": "getPidOk",
+    "module": "Hedgehog.Extras.Test.Process",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:getPidOk"
   },
   {
     "display_html": "<a href=\"#v:waitSecondsForProcess\">waitSecondsForProcess</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/process-1.6.16.0/System-Process.html#t:ProcessHandle\" title=\"System.Process\">ProcessHandle</a> &#8594; m (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Either.html#t:Either\" title=\"Data.Either\">Either</a> <a href=\"Hedgehog-Extras-Stock-IO-Process.html#t:TimedOut\" title=\"Hedgehog.Extras.Stock.IO.Process\">TimedOut</a> <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-Exit.html#t:ExitCode\" title=\"System.Exit\">ExitCode</a>)",
