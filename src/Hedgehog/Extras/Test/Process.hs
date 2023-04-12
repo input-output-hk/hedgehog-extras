@@ -1,7 +1,7 @@
-{-# LANGUAGE DeriveGeneric       #-}
-{-# LANGUAGE OverloadedStrings   #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications    #-}
+{-# LANGUAGE TypeApplications #-}
 
 module Hedgehog.Extras.Test.Process
   ( createProcess
@@ -16,22 +16,23 @@ module Hedgehog.Extras.Test.Process
   , waitForProcess
   , maybeWaitForProcess
   , getPid
+  , getPidOk
   , waitSecondsForProcess
 
   , ExecConfig(..)
   , defaultExecConfig
   ) where
 
-import           Control.Monad (Monad(..),  MonadFail(fail), void)
+import           Control.Monad (Monad (..), MonadFail (fail), void)
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.IO.Class (MonadIO, liftIO)
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register)
 import           Data.Aeson (eitherDecode)
-import           Data.Bool (Bool(..))
-import           Data.Either (Either(..))
-import           Data.Eq (Eq(..))
+import           Data.Bool (Bool (..))
+import           Data.Either (Either (..))
+import           Data.Eq (Eq (..))
 import           Data.Function (($), (&), (.))
-import           Data.Functor (Functor(..))
+import           Data.Functor (Functor (..))
 import           Data.Int (Int)
 import           Data.Maybe (Maybe (..))
 import           Data.Monoid (Last (..), mempty, (<>))
@@ -40,7 +41,7 @@ import           GHC.Generics (Generic)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Cli (argQuote)
-import           Hedgehog.Extras.Internal.Plan (Component(..), Plan(..))
+import           Hedgehog.Extras.Internal.Plan (Component (..), Plan (..))
 import           Hedgehog.Extras.Stock.IO.Process (TimedOut (..))
 import           Prelude (error)
 import           System.Exit (ExitCode)
@@ -48,7 +49,7 @@ import           System.FilePath (takeDirectory)
 import           System.FilePath.Posix ((</>))
 import           System.IO (FilePath, Handle, IO)
 import           System.Process (CmdSpec (..), CreateProcess (..), Pid, ProcessHandle)
-import           Text.Show (Show(show))
+import           Text.Show (Show (show))
 
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.List as L
@@ -129,6 +130,14 @@ getPid
   => ProcessHandle
   -> m (Maybe Pid)
 getPid hProcess = GHC.withFrozenCallStack . H.evalIO $ IO.getPid hProcess
+
+-- | Get the process ID.
+getPidOk
+  :: (MonadTest m, MonadIO m, HasCallStack)
+  => ProcessHandle
+  -> m Pid
+getPidOk hProcess = GHC.withFrozenCallStack $
+  H.nothingFailM $ getPid hProcess
 
 -- | Create a process returning its stdout.
 --
