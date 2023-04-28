@@ -4,7 +4,6 @@ module Hedgehog.Extras.Test.Network
   ( doesFileExists
   , isPortOpen
   , doesSocketExist
-  , assertFileExists
   , assertPortOpen
   , assertSocketExists
   , doesSprocketExist
@@ -45,10 +44,6 @@ isPortOpen port = GHC.withFrozenCallStack $ do
 -- | Test if a socket file exists
 doesSocketExist :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m Bool
 doesSocketExist = GHC.withFrozenCallStack . H.evalIO . IO.doesSocketExist
-
--- | Assert that a file exists
-assertFileExists :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
-assertFileExists = GHC.withFrozenCallStack . H.assertM . doesFileExists
 
 -- | Assert that a port is open
 assertPortOpen :: (MonadTest m, MonadIO m, HasCallStack) => Int -> m ()
