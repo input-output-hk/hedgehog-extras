@@ -37,7 +37,10 @@ module Hedgehog.Extras.Test.File
   , assertIsJsonFile
   , assertIsYamlFile
 
+  , assertFileExists
   , assertFilesExist
+  , assertFileMissing
+  , assertFilesMissing
   , assertFileOccurences
   , assertFileLines
   , assertEndsWithSingleNewline
@@ -68,6 +71,7 @@ import           Text.Show
 
 import qualified Data.Aeson as J
 import qualified Data.ByteString.Lazy as LBS
+import           Data.Foldable (for_)
 import qualified Data.List as L
 import qualified Data.Text.IO as T
 import qualified Data.Time.Clock as DTC
@@ -273,14 +277,25 @@ assertIsYamlFile fp = GHC.withFrozenCallStack $ do
     Right _ -> return ()
     Left msg -> H.failMessage GHC.callStack msg
 
--- | Checks if all files gives exists. If this fails, all files are deleted.
-assertFilesExist :: (MonadTest m, MonadIO m, HasCallStack) => [FilePath] -> m ()
-assertFilesExist [] = return ()
-assertFilesExist (file:rest) = do
+-- | Asserts that the given file exists.
+assertFileExists :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+assertFileExists file = GHC.withFrozenCallStack $ do
   exists <- H.evalIO $ IO.doesFileExist file
-  if exists
-    then GHC.withFrozenCallStack $ assertFilesExist rest
-    else H.failWithCustom GHC.callStack Nothing (file <> " has not been successfully created.")
+  unless exists $ H.failWithCustom GHC.callStack Nothing (file <> " has not been successfully created.")
+
+-- | Asserts that all of the given files exist.
+assertFilesExist :: (MonadTest m, MonadIO m, HasCallStack) => [FilePath] -> m ()
+assertFilesExist files = GHC.withFrozenCallStack $ for_ files assertFileExists
+
+-- | Asserts that the given file is missing.
+assertFileMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+assertFileMissing file = GHC.withFrozenCallStack $ do
+  exists <- H.evalIO $ IO.doesFileExist file
+  when exists $ H.failWithCustom GHC.callStack Nothing (file <> " should not have been created.")
+
+-- | Asserts that all of the given files are missing.
+assertFilesMissing :: (MonadTest m, MonadIO m, HasCallStack) => [FilePath] -> m ()
+assertFilesMissing files = GHC.withFrozenCallStack $ for_ files assertFileMissing
 
 -- | Assert the file contains the given number of occurrences of the given string
 assertFileOccurences :: (MonadTest m, MonadIO m, HasCallStack) => Int -> String -> FilePath -> m ()
