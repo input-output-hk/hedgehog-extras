@@ -16,12 +16,13 @@ source-repository head
   type:                 git
   location:             https://github.com/input-output-hk/hedgehog-extras
 
-common base                         { build-depends: base                             >= 4.12       && < 4.17     }
 common aeson                        { build-depends: aeson                            >= 1.5.6.0                  }
 common aeson-pretty                 { build-depends: aeson-pretty                     >= 0.8.5                    }
 common async                        { build-depends: async                                                        }
+common base                         { build-depends: base                             >= 4.12       && < 4.17     }
 common bytestring                   { build-depends: bytestring                                                   }
 common deepseq                      { build-depends: deepseq                                                      }
+common Diff                         { build-depends: Diff                                                         }
 common directory                    { build-depends: directory                                                    }
 common exceptions                   { build-depends: exceptions                                                   }
 common filepath                     { build-depends: filepath                                                     }
@@ -63,6 +64,7 @@ library
                         async,
                         bytestring,
                         deepseq,
+                        Diff,
                         directory,
                         exceptions,
                         filepath,
@@ -108,6 +110,7 @@ library
                         Hedgehog.Extras.Test.Base
                         Hedgehog.Extras.Test.Concurrent
                         Hedgehog.Extras.Test.File
+                        Hedgehog.Extras.Test.Golden
                         Hedgehog.Extras.Test.MonadAssertion
                         Hedgehog.Extras.Test.Network
                         Hedgehog.Extras.Test.Process
