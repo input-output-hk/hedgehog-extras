@@ -5,16 +5,16 @@ module Hedgehog.Extras.Stock.String
   , readM
   ) where
 
+import           Control.Monad.Catch (MonadCatch)
 import           Data.Function
 import           Data.String
+import           GHC.Stack
+import           Text.Read
+import           Text.Show (Show)
 
 import qualified Data.List as L
 import qualified Data.Text as T
-import Text.Read
-import Text.Show (Show)
 import qualified Hedgehog as H
-import Control.Monad.Catch (MonadCatch)
-import GHC.Stack
 import qualified Hedgehog.Extras.Test.Base as H
 
 -- | Strip whitepsace from the beginning and end of the string.
