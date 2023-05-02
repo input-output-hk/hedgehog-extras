@@ -54,6 +54,7 @@ import           Control.Monad.IO.Class
 import           Data.Aeson (Value)
 import           Data.Bool
 import           Data.Either
+import           Data.Foldable (for_)
 import           Data.Function
 import           Data.Functor
 import           Data.Int
@@ -66,12 +67,12 @@ import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Stock.Monad
 import           Hedgehog.Extras.Stock.OS
+import           System.FilePath ((</>))
 import           System.IO (FilePath, Handle, IOMode)
 import           Text.Show
 
 import qualified Data.Aeson as J
 import qualified Data.ByteString.Lazy as LBS
-import           Data.Foldable (for_)
 import qualified Data.List as L
 import qualified Data.Text.IO as T
 import qualified Data.Time.Clock as DTC
@@ -80,7 +81,6 @@ import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
 import qualified Hedgehog.Extras.Test.Base as H
 import qualified System.Directory as IO
-import           System.FilePath ((</>))
 import qualified System.IO as IO
 
 -- | Create the 'directory' directory if it is missing.

@@ -11,20 +11,21 @@ import           Data.Algorithm.DiffOutput (ppDiff)
 import           Data.Bool
 import           Data.Eq
 import           Data.Function
-import qualified Data.List as List
 import           Data.Maybe
 import           Data.Monoid
 import           Data.String
 import           GHC.Stack (HasCallStack, callStack)
-import qualified GHC.Stack as GHC
 import           Hedgehog (MonadTest)
-import qualified Hedgehog.Extras.Test as H
 import           Hedgehog.Extras.Test.Base (failMessage)
+import           System.FilePath (takeDirectory)
+import           System.IO (FilePath)
+
+import qualified Data.List as List
+import qualified GHC.Stack as GHC
+import qualified Hedgehog.Extras.Test as H
 import qualified Hedgehog.Internal.Property as H
 import qualified System.Directory as IO
 import qualified System.Environment as IO
-import           System.FilePath (takeDirectory)
-import           System.IO (FilePath)
 import qualified System.IO.Unsafe as IO
 
 -- | Whether the test should create the golden files if the file does ont exist.
