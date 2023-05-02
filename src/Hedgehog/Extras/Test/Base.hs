@@ -54,6 +54,7 @@ module Hedgehog.Extras.Test.Base
   , assertByDeadlineIOFinally
   , assertM
   , assertIO
+  , assertWithinTolerance
 
   , byDeadlineM
   , byDeadlineIO
@@ -87,13 +88,11 @@ import           Data.Functor ((<$>))
 import           Data.Int (Int)
 import           Data.Maybe (Maybe (..), listToMaybe, maybe)
 import           Data.Monoid (Monoid (..))
-import           Data.Ord (Ord ((<)))
 import           Data.Semigroup (Semigroup (..))
 import           Data.String (String)
 import           Data.Time.Clock (NominalDiffTime, UTCTime)
 import           Data.Traversable (Traversable)
 import           Data.Tuple (snd)
-import           GHC.Num (Num ((*), (+)))
 import           GHC.Stack (CallStack, HasCallStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
@@ -102,7 +101,7 @@ import           Hedgehog.Extras.Stock.Monad (forceM)
 import           Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
 import           Hedgehog.Internal.Property (Diff, liftTest, mkTest)
 import           Hedgehog.Internal.Source (getCaller)
-import           Prelude (floor)
+import           Prelude (Num (..), Ord (..), floor)
 import           System.FilePath ((</>))
 import           System.IO (FilePath, IO)
 import           Text.Show (Show (show))
@@ -461,6 +460,16 @@ assertM f = GHC.withFrozenCallStack $ f >>= H.assert
 -- | Run the IO action 'f' and assert the return value is 'True'.
 assertIO :: (MonadTest m, MonadIO m, HasCallStack) => IO Bool -> m ()
 assertIO f = GHC.withFrozenCallStack $ H.evalIO (forceM f) >>= H.assert
+
+-- | Tests if @|c - v| <= r@
+assertWithinTolerance :: (Show a, Ord a, Num a, HasCallStack, H.MonadTest m)
+                  => a -- ^ tested value @v@
+                  -> a -- ^ expected value @c@
+                  -> a -- ^ tolerance range @r@
+                  -> m ()
+assertWithinTolerance v c r = GHC.withFrozenCallStack $ do
+  H.diff v (>=) (c - r)
+  H.diff v (<=) (c + r)
 
 -- | Release the given release key.
 release :: (MonadTest m, MonadIO m) => ReleaseKey -> m ()
