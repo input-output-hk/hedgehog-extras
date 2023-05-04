@@ -432,6 +432,18 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:assertByDeadlineIOFinally"
   },
   {
+    "display_html": "<a href=\"#v:assertWith\">assertWith</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> p, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; p &#8594; (p &#8594; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>) &#8594; m ()",
+    "name": "assertWith",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:assertWith"
+  },
+  {
+    "display_html": "<a href=\"#v:assertWithM\">assertWithM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> p, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; p &#8594; (p &#8594; m <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>) &#8594; m ()",
+    "name": "assertWithM",
+    "module": "Hedgehog.Extras.Test.Base",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:assertWithM"
+  },
+  {
     "display_html": "<a href=\"#v:assertM\">assertM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; m <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
     "name": "assertM",
     "module": "Hedgehog.Extras.Test.Base",
@@ -750,10 +762,10 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-String.html#v:firstLine"
   },
   {
-    "display_html": "<a href=\"#v:readM\">readM</a> &#8759; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Read.html#t:Read\" title=\"Text.Read\">Read</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m a",
-    "name": "readM",
+    "display_html": "<a href=\"#v:readNoteM\">readNoteM</a> &#8759; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Read.html#t:Read\" title=\"Text.Read\">Read</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m a",
+    "name": "readNoteM",
     "module": "Hedgehog.Extras.Stock.String",
-    "link": "hedgehog-extras/Hedgehog-Extras-Stock-String.html#v:readM"
+    "link": "hedgehog-extras/Hedgehog-Extras-Stock-String.html#v:readNoteM"
   },
   {
     "display_html": "module <a href=\"Hedgehog-Extras-Stock-Time.html\">Hedgehog.Extras.Stock.Time</a>",
