@@ -52,6 +52,8 @@ module Hedgehog.Extras.Test.Base
   , assertByDeadlineIO
   , assertByDeadlineMFinally
   , assertByDeadlineIOFinally
+  , assertWith
+  , assertWithM
   , assertM
   , assertIO
   , assertWithinTolerance
@@ -452,6 +454,20 @@ assertByDeadlineMFinally deadline f g = GHC.withFrozenCallStack $ do
         H.annotateShow currentTime
         g
         failMessage GHC.callStack "Condition not met by deadline"
+
+-- | Run the test function against the value. Report the value on the failure.
+assertWith :: (H.MonadTest m, Show p, HasCallStack) => p -> (p -> Bool) -> m ()
+assertWith v f = GHC.withFrozenCallStack $ assertWithM v (pure . f)
+
+-- | Run the test function against the value. Report the value on the failure.
+assertWithM :: (H.MonadTest m, Show p, HasCallStack) => p -> (p -> m Bool) -> m ()
+assertWithM v f = GHC.withFrozenCallStack $ do
+  result <- f v
+  if result
+     then H.success
+     else do
+       noteShow_ v
+       H.assert result
 
 -- | Run the monadic action 'f' and assert the return value is 'True'.
 assertM :: (MonadTest m, HasCallStack) => m Bool -> m ()
