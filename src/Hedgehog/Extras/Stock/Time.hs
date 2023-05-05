@@ -6,7 +6,6 @@ module Hedgehog.Extras.Stock.Time
   ) where
 
 import           Data.Int
-import           Data.Maybe
 import           Data.String
 import           Data.Time.Clock (UTCTime)
 import           Prelude (floor)
@@ -21,4 +20,4 @@ showUTCTimeSeconds time = show @Int64 (floor (DTC.utcTimeToPOSIXSeconds time))
 
 -- | Format the given time as an ISO 8601 date-time string
 formatIso8601 :: UTCTime -> String
-formatIso8601 = DT.formatTime DT.defaultTimeLocale (DT.iso8601DateFormat (Just "%H:%M:%SZ"))
+formatIso8601 = DT.formatTime DT.defaultTimeLocale "%Y-%m-%dT%H:%M:%SZ"
