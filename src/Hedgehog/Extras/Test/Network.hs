@@ -7,6 +7,7 @@ module Hedgehog.Extras.Test.Network
   , assertPortOpen
   , assertSocketExists
   , doesSprocketExist
+  , downloadToFile
   ) where
 
 import           Control.Exception (IOException, try)
@@ -23,12 +24,15 @@ import           Hedgehog.Extras.Stock.IO.Network.Sprocket (Sprocket, sprocketSy
 import           System.IO (FilePath)
 import           Text.Show
 
+import qualified Data.ByteString.Lazy as LBS
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
 import qualified Hedgehog.Extras.Stock.IO.Network.NamedPipe as IO
 import qualified Hedgehog.Extras.Stock.IO.Network.Socket as IO
 import qualified Hedgehog.Extras.Stock.OS as OS
 import qualified Hedgehog.Extras.Test.Base as H
+import qualified Network.HTTP.Conduit as HTTP
+import           Prelude (String)
 import qualified System.Directory as IO
 
 -- | Test if a file exists
@@ -64,3 +68,9 @@ doesSprocketExist socket = GHC.withFrozenCallStack $ do
     Left (e :: IOException) -> do
       H.annotate $ "Error: " <> show e
       return False
+
+-- | Download from a URl to a file
+downloadToFile :: (MonadTest m, MonadIO m, HasCallStack) => String -> FilePath -> m ()
+downloadToFile url path = GHC.withFrozenCallStack $ do
+  H.note_ $ "Downloading " <> url <> " to " <> path
+  H.evalIO $ HTTP.simpleHttp url >>= LBS.writeFile path
