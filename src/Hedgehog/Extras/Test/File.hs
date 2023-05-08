@@ -128,7 +128,7 @@ copyFile src dst = GHC.withFrozenCallStack $ do
 -- | Rename the 'src' file to 'dst'.
 renameFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> FilePath -> m ()
 renameFile src dst = GHC.withFrozenCallStack $ do
-  H.annotate $ "Copying from " <> show src <> " to " <> show dst
+  H.annotate $ "Renaming from " <> show src <> " to " <> show dst
   H.evalIO $ IO.renameFile src dst
 
 -- | Create a symbolic link from 'dst' to 'src'.
