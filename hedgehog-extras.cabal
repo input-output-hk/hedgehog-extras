@@ -35,6 +35,7 @@ common network                      { build-depends: network                    
 common process                      { build-depends: process                                                      }
 common resourcet                    { build-depends: resourcet                                                    }
 common stm                          { build-depends: stm                                                          }
+common tar                          { build-depends: tar                                                          }
 common temporary                    { build-depends: temporary                                                    }
 common text                         { build-depends: text                                                         }
 common time                         { build-depends: time                             >= 1.9.1                    }
@@ -42,6 +43,7 @@ common transformers                 { build-depends: transformers               
 common unliftio                     { build-depends: unliftio                                                     }
 common unordered-containers         { build-depends: unordered-containers                                         }
 common yaml                         { build-depends: yaml                                                         }
+common zlib                         { build-depends: zlib                                                         }
 
 common Win32
   if os(windows)
@@ -78,6 +80,7 @@ library
                         process,
                         resourcet,
                         stm,
+                        tar,
                         temporary,
                         text,
                         time,
@@ -86,6 +89,7 @@ library
                         unordered-containers,
                         Win32,
                         yaml,
+                        zlib,
   hs-source-dirs:       src
 
 
