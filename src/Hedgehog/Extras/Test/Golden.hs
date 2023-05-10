@@ -60,6 +60,7 @@ diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
       referenceLines <- List.lines <$> H.readFile referenceFile
       let difference = getGroupedDiff actualLines referenceLines
       case difference of
+        []       -> pure ()
         [Both{}] -> pure ()
         _        -> failMessage callStack $ ppDiff difference
     else if createFiles
