@@ -62,7 +62,9 @@ diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
       case difference of
         []       -> pure ()
         [Both{}] -> pure ()
-        _        -> failMessage callStack $ ppDiff difference
+        _        -> do
+          H.note_ $ "Golden test failed against golden file: " <> referenceFile
+          failMessage callStack $ ppDiff difference
     else if createFiles
       then do
         -- CREATE_GOLDEN_FILES is set, so we create any golden files that don't
