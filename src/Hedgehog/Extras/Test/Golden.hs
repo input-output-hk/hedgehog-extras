@@ -4,6 +4,7 @@ module Hedgehog.Extras.Test.Golden
   ) where
 
 import           Control.Applicative
+import           Control.Exception (bracket_)
 import           Control.Monad
 import           Control.Monad.IO.Class (MonadIO (liftIO))
 import           Data.Algorithm.Diff (PolyDiff (Both), getGroupedDiff)
@@ -18,15 +19,29 @@ import           GHC.Stack (HasCallStack, callStack)
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Test.Base (failMessage)
 import           System.FilePath (takeDirectory)
-import           System.IO (FilePath)
+import           System.IO (FilePath, IO)
 
+import qualified Control.Concurrent.QSem as IO
 import qualified Data.List as List
 import qualified GHC.Stack as GHC
 import qualified Hedgehog.Extras.Test as H
 import qualified Hedgehog.Internal.Property as H
 import qualified System.Directory as IO
 import qualified System.Environment as IO
+import qualified System.IO as IO
 import qualified System.IO.Unsafe as IO
+
+sem :: IO.QSem
+sem = IO.unsafePerformIO $ IO.newQSem 1
+{-# NOINLINE sem #-}
+
+semBracket :: IO a -> IO a
+semBracket = bracket_ (IO.waitQSem sem) (IO.signalQSem sem)
+
+-- | The file to log whenever a golden file is referenced.
+mGoldenFileLogFile :: Maybe FilePath
+mGoldenFileLogFile = IO.unsafePerformIO $
+  IO.lookupEnv "GOLDEN_FILE_LOG_FILE"
 
 -- | Whether the test should create the golden files if the file does ont exist.
 createFiles :: Bool
@@ -35,7 +50,9 @@ createFiles = IO.unsafePerformIO $ do
   return $ value == Just "1"
 
 -- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is
--- set to "1", then should the gold file not exist it would be created.
+-- set to "1", then should the gold file not exist it would be created.  If
+-- GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file path will be
+-- logged to the specified file.
 --
 -- Set the environment variable when you intend to generate or re-generate the golden
 -- file for example when running the test for the first time or if the golden file
@@ -53,6 +70,9 @@ diffVsGoldenFile
   -> FilePath -- ^ Reference file
   -> m ()
 diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
+  forM_ mGoldenFileLogFile $ \logFile ->
+    liftIO $ semBracket $ IO.appendFile logFile $ referenceFile <> "\n"
+
   fileExists <- liftIO $ IO.doesFileExist referenceFile
 
   if fileExists
@@ -82,7 +102,9 @@ diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
     actualLines = List.lines actualContent
 
 -- | Diff file against the golden file.  If CREATE_GOLDEN_FILES environment is
--- set to "1", then should the gold file not exist it would be created.
+-- set to "1", then should the gold file not exist it would be created.  If
+-- GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file path will be
+-- logged to the specified file.
 --
 -- Set the environment variable when you intend to generate or re-generate the golden
 -- file for example when running the test for the first time or if the golden file
