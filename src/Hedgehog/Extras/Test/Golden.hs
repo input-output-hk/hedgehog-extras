@@ -1,3 +1,4 @@
+{-# LANGUAGE MultiWayIf #-}
 module Hedgehog.Extras.Test.Golden
   ( diffVsGoldenFile,
     diffFileVsGoldenFile,
@@ -43,14 +44,21 @@ mGoldenFileLogFile :: Maybe FilePath
 mGoldenFileLogFile = IO.unsafePerformIO $
   IO.lookupEnv "GOLDEN_FILE_LOG_FILE"
 
--- | Whether the test should create the golden files if the file does ont exist.
+-- | Whether the test should create the golden files if the file does not exist.
 createFiles :: Bool
 createFiles = IO.unsafePerformIO $ do
   value <- IO.lookupEnv "CREATE_GOLDEN_FILES"
   return $ value == Just "1"
 
--- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is
--- set to "1", then should the gold file not exist it would be created.  If
+-- | Whether the test should recreate the golden files even if the files do exist.
+recreateFiles :: Bool
+recreateFiles = IO.unsafePerformIO $ do
+  value <- IO.lookupEnv "RECREATE_GOLDEN_FILES"
+  return $ value == Just "1"
+
+-- | Diff contents against the golden file. If CREATE_GOLDEN_FILES environment is
+-- set to "1", then should the gold file not exist it would be created. If
+-- RECREATE_GOLDEN_FILES is set to "1", the golden files will be overwritten. If
 -- GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file path will be
 -- logged to the specified file.
 --
@@ -61,8 +69,7 @@ createFiles = IO.unsafePerformIO $ do
 -- To re-generate a golden file you must also delete the golden file because golden
 -- files are never overwritten.
 --
--- TODO: Improve the help output by saying the difference of
--- each input.
+-- TODO: Improve the help output by saying the difference of each input.
 diffVsGoldenFile
   :: HasCallStack
   => (MonadIO m, MonadTest m)
@@ -75,8 +82,8 @@ diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
 
   fileExists <- liftIO $ IO.doesFileExist referenceFile
 
-  if fileExists
-    then do
+  if
+    | fileExists && not recreateFiles -> do
       referenceLines <- List.lines <$> H.readFile referenceFile
       let difference = getGroupedDiff actualLines referenceLines
       case difference of
@@ -85,19 +92,17 @@ diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
         _        -> do
           H.note_ $ "Golden test failed against golden file: " <> referenceFile
           failMessage callStack $ ppDiff difference
-    else if createFiles
-      then do
-        -- CREATE_GOLDEN_FILES is set, so we create any golden files that don't
-        -- already exist.
-        H.note_ $ "Creating golden file " <> referenceFile
-        H.createDirectoryIfMissing_ (takeDirectory referenceFile)
-        H.writeFile referenceFile actualContent
-      else do
-        H.note_ $ mconcat
-          [ "Golden file " <> referenceFile
-          , " does not exist.  To create, run with CREATE_GOLDEN_FILES=1"
-          ]
-        H.failure
+    | ((not fileExists && createFiles) || recreateFiles) -> do
+      -- CREATE_GOLDEN_FILES or RECREATE_GOLDEN_FILES is set, so we write all golden files
+      H.note_ $ "Creating golden file " <> referenceFile
+      H.createDirectoryIfMissing_ (takeDirectory referenceFile)
+      H.writeFile referenceFile actualContent
+    | otherwise -> do
+      H.note_ $ mconcat
+        [ "Golden file " <> referenceFile
+        , " does not exist.  To create, run with CREATE_GOLDEN_FILES=1 or RECREATE_GOLDEN_FILES=1"
+        ]
+      H.failure
   where
     actualLines = List.lines actualContent
 
