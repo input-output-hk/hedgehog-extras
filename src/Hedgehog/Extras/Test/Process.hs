@@ -332,6 +332,8 @@ procFlex' execConfig pkg binaryEnv arguments = GHC.withFrozenCallStack . H.evalM
   return (IO.proc bin arguments)
     { IO.env = getLast $ execConfigEnv execConfig
     , IO.cwd = getLast $ execConfigCwd execConfig
+    -- this allows sending signals to the created processes, without killing the test-suite process
+    , IO.create_group = True
     }
 
 -- | Compute the project base.  This will be based on either the "CARDANO_NODE_SRC"
