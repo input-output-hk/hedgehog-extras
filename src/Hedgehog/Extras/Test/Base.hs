@@ -32,6 +32,7 @@ module Hedgehog.Extras.Test.Base
   , noteTempFile
 
   , headM
+  , indexM
   , fromJustM
 
   , nothingFail
@@ -81,7 +82,7 @@ import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
-import           Data.Bool (Bool, (&&))
+import           Data.Bool (Bool, (&&), otherwise)
 import           Data.Either (Either (..), either)
 import           Data.Eq (Eq ((/=)))
 import           Data.Foldable (for_)
@@ -111,6 +112,7 @@ import           Text.Show (Show (show))
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
 import qualified Control.Monad.Trans.Resource as IO
+import qualified Data.List as L
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
@@ -317,9 +319,28 @@ leftFail r = GHC.withFrozenCallStack $ case r of
 leftFailM :: (MonadTest m, Show e, HasCallStack) => m (Either e a) -> m a
 leftFailM f = f >>= leftFail
 
+maybeAt :: Int -> [a] -> Maybe a
+maybeAt n xs
+  | n < 0 = Nothing
+  | otherwise = L.foldr go (const Nothing) xs n
+      where
+        go :: a -> (Int -> Maybe a) -> Int -> Maybe a
+        go x r k =
+          case k of
+            0 -> Just x
+            _ -> r (k - 1)
+
 headM :: (MonadTest m, HasCallStack) => [a] -> m a
 headM (a:_) = return a
 headM [] = GHC.withFrozenCallStack $ failMessage GHC.callStack "Cannot take head of empty list"
+
+indexM :: (MonadTest m, HasCallStack) => Int -> [a] -> m a
+indexM n xs =
+  case maybeAt n xs of
+    Just x -> pure x
+    Nothing ->
+      GHC.withFrozenCallStack $
+        failMessage GHC.callStack $ "Cannot get index " <> show n <> " of list of length " <> show (L.length xs)
 
 onLeft :: Monad m => (e -> m a) -> m (Either e a) -> m a
 onLeft h f = f >>= either h pure
@@ -327,6 +348,7 @@ onLeft h f = f >>= either h pure
 onNothing :: Monad m => m a -> m (Maybe a) -> m a
 onNothing h f = f >>= maybe h pure
 
+-- | Index into a list.  On failure, a friendly message is included in the test report.
 fromJustM :: (MonadTest m, HasCallStack) => Maybe a -> m a
 fromJustM (Just a) = return a
 fromJustM Nothing = GHC.withFrozenCallStack $ failMessage GHC.callStack "Cannot take head of empty list"
