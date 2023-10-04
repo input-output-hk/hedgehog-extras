@@ -28,7 +28,6 @@ common exceptions                   { build-depends: exceptions                 
 common filepath                     { build-depends: filepath                                                     }
 common hedgehog                     { build-depends: hedgehog                                                     }
 common http-conduit                 { build-depends: http-conduit                                                 }
-common hw-aeson                     { build-depends: hw-aeson                         >= 0.1.8.0                  }
 common mmorph                       { build-depends: mmorph                                                       }
 common mtl                          { build-depends: mtl                                                          }
 common network                      { build-depends: network                                                      }
@@ -73,7 +72,6 @@ library
                         filepath,
                         hedgehog,
                         http-conduit,
-                        hw-aeson,
                         mmorph,
                         mtl,
                         network,

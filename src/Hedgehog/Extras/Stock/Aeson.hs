@@ -7,9 +7,9 @@ import           Data.Aeson
 import           Data.Functor
 import           Data.HashMap.Lazy
 import           Data.Text
-import           Prelude ((.), ($))
+import           Prelude (($), (.))
 
-import qualified HaskellWorks.Data.Aeson.Compat.Map as KM
+import qualified Data.Aeson.KeyMap as KM
 
 -- | Rewrite a JSON object to another JSON object using the function 'f'.
 --
