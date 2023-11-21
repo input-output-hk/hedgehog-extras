@@ -19,7 +19,7 @@ source-repository head
 common aeson                        { build-depends: aeson                            >= 2.1.0.0                  }
 common aeson-pretty                 { build-depends: aeson-pretty                     >= 0.8.5                    }
 common async                        { build-depends: async                                                        }
-common base                         { build-depends: base                             >= 4.12       && < 4.19     }
+common base                         { build-depends: base                             >= 4.12       && < 4.20     }
 common bytestring                   { build-depends: bytestring                                                   }
 common deepseq                      { build-depends: deepseq                                                      }
 common Diff                         { build-depends: Diff                                                         }
@@ -40,7 +40,6 @@ common text                         { build-depends: text                       
 common time                         { build-depends: time                             >= 1.9.1                    }
 common transformers                 { build-depends: transformers                                                 }
 common unliftio                     { build-depends: unliftio                                                     }
-common unordered-containers         { build-depends: unordered-containers                                         }
 common yaml                         { build-depends: yaml                                                         }
 common zlib                         { build-depends: zlib                                                         }
 
@@ -84,7 +83,6 @@ library
                         time,
                         transformers,
                         unliftio,
-                        unordered-containers,
                         Win32,
                         yaml,
                         zlib,
