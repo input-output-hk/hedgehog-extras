@@ -60,7 +60,7 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Internal-Test-Integration.html#v:runIntegrationReaderT"
   },
   {
-    "display_html": "<a href=\"#v:rewriteObject\">rewriteObject</a> &#8759; (KeyMap Value &#8594; KeyMap Value) &#8594; Value &#8594; Value",
+    "display_html": "<a href=\"#v:rewriteObject\">rewriteObject</a> &#8759; (HashMap <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/text-1.2.5.0/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a> Value &#8594; HashMap <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/text-1.2.5.0/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a> Value) &#8594; Value &#8594; Value",
     "name": "rewriteObject",
     "module": "Hedgehog.Extras.Stock.Aeson",
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-Aeson.html#v:rewriteObject"
