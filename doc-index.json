@@ -60,7 +60,7 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Internal-Test-Integration.html#v:runIntegrationReaderT"
   },
   {
-    "display_html": "<a href=\"#v:rewriteObject\">rewriteObject</a> &#8759; (HashMap <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/text-1.2.5.0/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a> Value &#8594; HashMap <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/text-1.2.5.0/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a> Value) &#8594; Value &#8594; Value",
+    "display_html": "<a href=\"#v:rewriteObject\">rewriteObject</a> &#8759; (KeyMap Value &#8594; KeyMap Value) &#8594; Value &#8594; Value",
     "name": "rewriteObject",
     "module": "Hedgehog.Extras.Stock.Aeson",
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-Aeson.html#v:rewriteObject"
@@ -340,12 +340,6 @@
     "name": "headM",
     "module": "Hedgehog.Extras.Test.Base",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:headM"
-  },
-  {
-    "display_html": "<a href=\"#v:indexM\">indexM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; [a] &#8594; m a",
-    "name": "indexM",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:indexM"
   },
   {
     "display_html": "<a href=\"#v:fromJustM\">fromJustM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> a &#8594; m a",
