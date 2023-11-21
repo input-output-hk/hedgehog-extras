@@ -7,8 +7,6 @@ import           Data.Aeson
 import           Data.Aeson.KeyMap (KeyMap)
 import           Data.Functor
 
-import qualified Data.Aeson.KeyMap as KM
-
 -- | Rewrite a JSON object to another JSON object using the function 'f'.
 --
 -- All other JSON values are preserved.
