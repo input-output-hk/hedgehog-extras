@@ -44,15 +44,65 @@ mGoldenFileLogFile = IO.unsafePerformIO $
   IO.lookupEnv "GOLDEN_FILE_LOG_FILE"
 
 -- | Whether the test should create the golden files if the file does ont exist.
-createFiles :: Bool
-createFiles = IO.unsafePerformIO $ do
+createGoldenFiles :: Bool
+createGoldenFiles = IO.unsafePerformIO $ do
   value <- IO.lookupEnv "CREATE_GOLDEN_FILES"
   return $ value == Just "1"
 
+-- | Whether the test should create the golden files if the file does ont exist.
+recreateGoldenFiles :: Bool
+recreateGoldenFiles = IO.unsafePerformIO $ do
+  value <- IO.lookupEnv "RECREATE_GOLDEN_FILES"
+  return $ value == Just "1"
+
+writeGoldenFile :: ()
+  => MonadIO m
+  => MonadTest m
+  => FilePath
+  -> String
+  -> m ()
+writeGoldenFile goldenFile actualContent = do
+  H.note_ $ "Creating golden file " <> goldenFile
+  H.createDirectoryIfMissing_ (takeDirectory goldenFile)
+  H.writeFile goldenFile actualContent
+
+reportGoldenFileMissing :: ()
+  => MonadIO m
+  => MonadTest m
+  => FilePath
+  -> m ()
+reportGoldenFileMissing goldenFile = do
+  H.note_ $ unlines
+    [ "Golden file " <> goldenFile <> " does not exist."
+    , "To create golden file, run with CREATE_GOLDEN_FILES=1."
+    , "To recreate golden file, run with RECREATE_GOLDEN_FILES=1."
+    ]
+  H.failure
+
+checkAgainstGoldenFile :: ()
+  => MonadIO m
+  => MonadTest m
+  => FilePath
+  -> [String]
+  -> m ()
+checkAgainstGoldenFile goldenFile actualLines = do
+  referenceLines <- List.lines <$> H.readFile goldenFile
+  let difference = getGroupedDiff actualLines referenceLines
+  case difference of
+    []       -> pure ()
+    [Both{}] -> pure ()
+    _        -> do
+      H.note_ $ unlines
+        [ "Golden test failed against golden file: " <> goldenFile
+        , "To recreate golden file, run with RECREATE_GOLDEN_FILES=1."
+        ]
+      failMessage callStack $ ppDiff difference
+
 -- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is
--- set to "1", then should the gold file not exist it would be created.  If
--- GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file path will be
--- logged to the specified file.
+-- set to "1", then should the golden file not exist it would be created.  If
+-- RECREATE_GOLDEN_FILES is set to "1", then should the golden file exist it would
+-- be recreated. If GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file
+-- path will be logged to the specified file.
 --
 -- Set the environment variable when you intend to generate or re-generate the golden
 -- file for example when running the test for the first time or if the golden file
@@ -69,35 +119,21 @@ diffVsGoldenFile
   => String   -- ^ Actual content
   -> FilePath -- ^ Reference file
   -> m ()
-diffVsGoldenFile actualContent referenceFile = GHC.withFrozenCallStack $ do
+diffVsGoldenFile actualContent goldenFile = GHC.withFrozenCallStack $ do
   forM_ mGoldenFileLogFile $ \logFile ->
-    liftIO $ semBracket $ IO.appendFile logFile $ referenceFile <> "\n"
+    liftIO $ semBracket $ IO.appendFile logFile $ goldenFile <> "\n"
 
-  fileExists <- liftIO $ IO.doesFileExist referenceFile
+  fileExists <- liftIO $ IO.doesFileExist goldenFile
 
-  if fileExists
-    then do
-      referenceLines <- List.lines <$> H.readFile referenceFile
-      let difference = getGroupedDiff actualLines referenceLines
-      case difference of
-        []       -> pure ()
-        [Both{}] -> pure ()
-        _        -> do
-          H.note_ $ "Golden test failed against golden file: " <> referenceFile
-          failMessage callStack $ ppDiff difference
-    else if createFiles
-      then do
-        -- CREATE_GOLDEN_FILES is set, so we create any golden files that don't
-        -- already exist.
-        H.note_ $ "Creating golden file " <> referenceFile
-        H.createDirectoryIfMissing_ (takeDirectory referenceFile)
-        H.writeFile referenceFile actualContent
-      else do
-        H.note_ $ mconcat
-          [ "Golden file " <> referenceFile
-          , " does not exist.  To create, run with CREATE_GOLDEN_FILES=1"
-          ]
-        H.failure
+  if recreateGoldenFiles
+    then writeGoldenFile goldenFile actualContent
+    else if createGoldenFiles
+      then if fileExists
+        then checkAgainstGoldenFile goldenFile actualLines
+        else writeGoldenFile goldenFile actualContent
+      else if fileExists
+        then checkAgainstGoldenFile goldenFile actualLines
+        else reportGoldenFileMissing goldenFile
   where
     actualLines = List.lines actualContent
 
