@@ -1,3 +1,5 @@
+{-# LANGUAGE MultiWayIf #-}
+
 module Hedgehog.Extras.Test.Golden
   ( diffVsGoldenFile,
     diffFileVsGoldenFile,
@@ -43,13 +45,13 @@ mGoldenFileLogFile :: Maybe FilePath
 mGoldenFileLogFile = IO.unsafePerformIO $
   IO.lookupEnv "GOLDEN_FILE_LOG_FILE"
 
--- | Whether the test should create the golden files if the file does ont exist.
+-- | Whether the test should create the golden files if the files do not exist.
 createGoldenFiles :: Bool
 createGoldenFiles = IO.unsafePerformIO $ do
   value <- IO.lookupEnv "CREATE_GOLDEN_FILES"
   return $ value == Just "1"
 
--- | Whether the test should create the golden files if the file does ont exist.
+-- | Whether the test should recreate the golden files if the files already exist.
 recreateGoldenFiles :: Bool
 recreateGoldenFiles = IO.unsafePerformIO $ do
   value <- IO.lookupEnv "RECREATE_GOLDEN_FILES"
@@ -74,8 +76,8 @@ reportGoldenFileMissing :: ()
 reportGoldenFileMissing goldenFile = do
   H.note_ $ unlines
     [ "Golden file " <> goldenFile <> " does not exist."
-    , "To create golden file, run with CREATE_GOLDEN_FILES=1."
-    , "To recreate golden file, run with RECREATE_GOLDEN_FILES=1."
+    , "To create it, run with CREATE_GOLDEN_FILES=1."
+    , "To recreate it, run with RECREATE_GOLDEN_FILES=1."
     ]
   H.failure
 
@@ -125,15 +127,12 @@ diffVsGoldenFile actualContent goldenFile = GHC.withFrozenCallStack $ do
 
   fileExists <- liftIO $ IO.doesFileExist goldenFile
 
-  if recreateGoldenFiles
-    then writeGoldenFile goldenFile actualContent
-    else if createGoldenFiles
-      then if fileExists
-        then checkAgainstGoldenFile goldenFile actualLines
-        else writeGoldenFile goldenFile actualContent
-      else if fileExists
-        then checkAgainstGoldenFile goldenFile actualLines
-        else reportGoldenFileMissing goldenFile
+  if
+    | recreateGoldenFiles -> writeGoldenFile goldenFile actualContent
+    | fileExists          -> checkAgainstGoldenFile goldenFile actualLines
+    | createGoldenFiles   -> writeGoldenFile goldenFile actualContent
+    | otherwise           -> reportGoldenFileMissing goldenFile
+
   where
     actualLines = List.lines actualContent
 
