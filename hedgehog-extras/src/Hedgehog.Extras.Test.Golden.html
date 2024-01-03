@@ -152,27 +152,29 @@ t a -&gt; (a -&gt; m b) -&gt; m ()
 </span><span id="line-84"></span><span>
 </span><span id="line-85"></span><span>  </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679122413"><span class="hs-identifier hs-var">fileExists</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-var">&amp;&amp;</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-var">&amp;&amp;</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool
+</span><a href="Hedgehog.Extras.Test.Golden.html#createFiles"><span class="hs-identifier hs-var">createFiles</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-var">||</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">not</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="Hedgehog.Extras.Test.Golden.html#recreateFiles"><span class="hs-identifier hs-var">recreateFiles</span></a></span><span>
+</span><a href="Hedgehog.Extras.Test.Golden.html#recreateFiles"><span class="hs-identifier hs-var">recreateFiles</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-86"></span><span>    </span><span class="hs-keyword">then</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-87"></span><span>      </span><span class="hs-comment">-- RECREATE_GOLDEN_FILES is not set so we compare the actual content against</span><span>
 </span><span id="line-88"></span><span>      </span><span class="hs-comment">-- the golden file.</span><span>
-</span><span id="line-89"></span><span>      </span><span id="local-6989586621679122409"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679122409"><span class="hs-identifier hs-var">referenceLines</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><span id="line-89"></span><span>      </span><span id="local-6989586621679122408"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679122408"><span class="hs-identifier hs-var">referenceLines</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">List.lines</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 String -&gt; m String
 </span><a href="Hedgehog.Extras.Test.File.html#readFile"><span class="hs-identifier hs-var">H.readFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122468"><span class="hs-identifier hs-var">referenceFile</span></a></span><span>
-</span><span id="line-90"></span><span>      </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679122403"><span class="annot"><span class="annottext">difference :: [Diff [String]]
-</span><a href="#local-6989586621679122403"><span class="hs-identifier hs-var hs-var">difference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; [Diff [a]]
+</span><span id="line-90"></span><span>      </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679122402"><span class="annot"><span class="annottext">difference :: [Diff [String]]
+</span><a href="#local-6989586621679122402"><span class="hs-identifier hs-var hs-var">difference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; [Diff [a]]
 </span><span class="hs-identifier hs-var">getGroupedDiff</span></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679122402"><span class="hs-identifier hs-var">actualLines</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679122409"><span class="hs-identifier hs-var">referenceLines</span></a></span><span>
+</span><a href="#local-6989586621679122401"><span class="hs-identifier hs-var">actualLines</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679122408"><span class="hs-identifier hs-var">referenceLines</span></a></span><span>
 </span><span id="line-91"></span><span>      </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Diff [String]]
-</span><a href="#local-6989586621679122403"><span class="hs-identifier hs-var">difference</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679122402"><span class="hs-identifier hs-var">difference</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-92"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-93"></span><span>        </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Both</span></span><span class="hs-special">{</span><span class="hs-special">}</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
@@ -190,7 +192,7 @@ String -&gt; m String
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">callStack</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">[Diff [String]] -&gt; String
 </span><span class="hs-identifier hs-var">ppDiff</span></span><span> </span><span class="annot"><span class="annottext">[Diff [String]]
-</span><a href="#local-6989586621679122403"><span class="hs-identifier hs-var">difference</span></a></span><span>
+</span><a href="#local-6989586621679122402"><span class="hs-identifier hs-var">difference</span></a></span><span>
 </span><span id="line-97"></span><span>    </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="Hedgehog.Extras.Test.Golden.html#createFiles"><span class="hs-identifier hs-var">createFiles</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-var">||</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
@@ -232,8 +234,8 @@ String -&gt; String -&gt; m ()
 </span><span id="line-110"></span><span>        </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. (MonadTest m, HasCallStack) =&gt; m a
 </span><span class="hs-identifier hs-var">H.failure</span></span><span>
 </span><span id="line-111"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-112"></span><span>    </span><span id="local-6989586621679122402"><span class="annot"><span class="annottext">actualLines :: [String]
-</span><a href="#local-6989586621679122402"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><span id="line-112"></span><span>    </span><span id="local-6989586621679122401"><span class="annot"><span class="annottext">actualLines :: [String]
+</span><a href="#local-6989586621679122401"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">List.lines</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122469"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-113"></span><span>
