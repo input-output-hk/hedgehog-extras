@@ -145,9 +145,9 @@ String -&gt; String -&gt; m ()
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; does not exist.&quot;</span></span><span>
 </span><span id="line-77"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;To create, run with CREATE_GOLDEN_FILES=1.&quot;</span></span><span>
+</span><span class="hs-string">&quot;To create golden file, run with CREATE_GOLDEN_FILES=1.&quot;</span></span><span>
 </span><span id="line-78"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;To recreate, run with RECREATE_GOLDEN_FILES=1.&quot;</span></span><span>
+</span><span class="hs-string">&quot;To recreate golden file, run with RECREATE_GOLDEN_FILES=1.&quot;</span></span><span>
 </span><span id="line-79"></span><span>    </span><span class="hs-special">]</span><span>
 </span><span id="line-80"></span><span>  </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. (MonadTest m, HasCallStack) =&gt; m a
 </span><span class="hs-identifier hs-var">H.failure</span></span><span>
@@ -187,39 +187,44 @@ String -&gt; m String
 </span><span class="hs-identifier">_</span></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-95"></span><span>      </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *). (MonadTest m, HasCallStack) =&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Base.html#note_"><span class="hs-identifier hs-var">H.note_</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">unlines</span></a></span><span>
+</span><span id="line-96"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Golden test failed against golden file: &quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122568"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
-</span><span id="line-96"></span><span>      </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. MonadTest m =&gt; CallStack -&gt; String -&gt; m a
+</span><span id="line-97"></span><span>        </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;To recreate golden file, run with RECREATE_GOLDEN_FILES=1.&quot;</span></span><span>
+</span><span id="line-98"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-99"></span><span>      </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. MonadTest m =&gt; CallStack -&gt; String -&gt; m a
 </span><a href="Hedgehog.Extras.Test.Base.html#failMessage"><span class="hs-identifier hs-var">failMessage</span></a></span><span> </span><span class="annot"><span class="annottext">HasCallStack =&gt; CallStack
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">callStack</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">[Diff [String]] -&gt; String
 </span><span class="hs-identifier hs-var">ppDiff</span></span><span> </span><span class="annot"><span class="annottext">[Diff [String]]
 </span><a href="#local-6989586621679122560"><span class="hs-identifier hs-var">difference</span></a></span><span>
-</span><span id="line-97"></span><span>
-</span><span id="line-98"></span><span class="hs-comment">-- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
-</span><span id="line-99"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the golden file not exist it would be created.  If</span><span>
-</span><span id="line-100"></span><span class="hs-comment">-- RECREATE_GOLDEN_FILES is set to &quot;1&quot;, then should the golden file exist it would</span><span>
-</span><span id="line-101"></span><span class="hs-comment">-- be recreated. If GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file</span><span>
-</span><span id="line-102"></span><span class="hs-comment">-- path will be logged to the specified file.</span><span>
-</span><span id="line-103"></span><span class="hs-comment">--</span><span>
-</span><span id="line-104"></span><span class="hs-comment">-- Set the environment variable when you intend to generate or re-generate the golden</span><span>
-</span><span id="line-105"></span><span class="hs-comment">-- file for example when running the test for the first time or if the golden file</span><span>
-</span><span id="line-106"></span><span class="hs-comment">-- genuinely needs to change.</span><span>
-</span><span id="line-107"></span><span class="hs-comment">--</span><span>
-</span><span id="line-108"></span><span class="hs-comment">-- To re-generate a golden file you must also delete the golden file because golden</span><span>
-</span><span id="line-109"></span><span class="hs-comment">-- files are never overwritten.</span><span>
+</span><span id="line-100"></span><span>
+</span><span id="line-101"></span><span class="hs-comment">-- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
+</span><span id="line-102"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the golden file not exist it would be created.  If</span><span>
+</span><span id="line-103"></span><span class="hs-comment">-- RECREATE_GOLDEN_FILES is set to &quot;1&quot;, then should the golden file exist it would</span><span>
+</span><span id="line-104"></span><span class="hs-comment">-- be recreated. If GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file</span><span>
+</span><span id="line-105"></span><span class="hs-comment">-- path will be logged to the specified file.</span><span>
+</span><span id="line-106"></span><span class="hs-comment">--</span><span>
+</span><span id="line-107"></span><span class="hs-comment">-- Set the environment variable when you intend to generate or re-generate the golden</span><span>
+</span><span id="line-108"></span><span class="hs-comment">-- file for example when running the test for the first time or if the golden file</span><span>
+</span><span id="line-109"></span><span class="hs-comment">-- genuinely needs to change.</span><span>
 </span><span id="line-110"></span><span class="hs-comment">--</span><span>
-</span><span id="line-111"></span><span class="hs-comment">-- TODO: Improve the help output by saying the difference of</span><span>
-</span><span id="line-112"></span><span class="hs-comment">-- each input.</span><span>
-</span><span id="line-113"></span><span id="local-6989586621679122678"><span class="annot"><a href="Hedgehog.Extras.Test.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-type">diffVsGoldenFile</span></a></span><span>
-</span><span id="line-114"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">HasCallStack</span></a></span><span>
-</span><span id="line-115"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">MonadIO</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679122678"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadTest</span></span><span> </span><span class="annot"><a href="#local-6989586621679122678"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-116"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>   </span><span class="hs-comment">-- ^ Actual content</span><span>
-</span><span id="line-117"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-comment">-- ^ Reference file</span><span>
-</span><span id="line-118"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679122678"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
-</span><span id="line-119"></span><span id="diffVsGoldenFile"><span class="annot"><span class="annottext">diffVsGoldenFile :: forall (m :: * -&gt; *).
+</span><span id="line-111"></span><span class="hs-comment">-- To re-generate a golden file you must also delete the golden file because golden</span><span>
+</span><span id="line-112"></span><span class="hs-comment">-- files are never overwritten.</span><span>
+</span><span id="line-113"></span><span class="hs-comment">--</span><span>
+</span><span id="line-114"></span><span class="hs-comment">-- TODO: Improve the help output by saying the difference of</span><span>
+</span><span id="line-115"></span><span class="hs-comment">-- each input.</span><span>
+</span><span id="line-116"></span><span id="local-6989586621679122678"><span class="annot"><a href="Hedgehog.Extras.Test.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-type">diffVsGoldenFile</span></a></span><span>
+</span><span id="line-117"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">HasCallStack</span></a></span><span>
+</span><span id="line-118"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">MonadIO</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679122678"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadTest</span></span><span> </span><span class="annot"><a href="#local-6989586621679122678"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-119"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>   </span><span class="hs-comment">-- ^ Actual content</span><span>
+</span><span id="line-120"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-comment">-- ^ Reference file</span><span>
+</span><span id="line-121"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679122678"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-122"></span><span id="diffVsGoldenFile"><span class="annot"><span class="annottext">diffVsGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679122553"><span class="annot"><span class="annottext">String
@@ -227,14 +232,14 @@ String -&gt; String -&gt; m ()
 </span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-120"></span><span>  </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
+</span><span id="line-123"></span><span>  </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
 (Foldable t, Monad m) =&gt;
 t a -&gt; (a -&gt; m b) -&gt; m ()
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">forM_</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="Hedgehog.Extras.Test.Golden.html#mGoldenFileLogFile"><span class="hs-identifier hs-var">mGoldenFileLogFile</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679122530"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122530"><span class="hs-identifier hs-var">logFile</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span>
-</span><span id="line-121"></span><span>    </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
+</span><span id="line-124"></span><span>    </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">liftIO</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. IO a -&gt; IO a
 </span><a href="Hedgehog.Extras.Test.Golden.html#semBracket"><span class="hs-identifier hs-var">semBracket</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -245,39 +250,25 @@ t a -&gt; (a -&gt; m b) -&gt; m ()
 </span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;\n&quot;</span></span><span>
-</span><span id="line-122"></span><span>
-</span><span id="line-123"></span><span>  </span><span id="local-6989586621679122528"><span class="annot"><span class="annottext">Bool
+</span><span id="line-125"></span><span>
+</span><span id="line-126"></span><span>  </span><span id="local-6989586621679122528"><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679122528"><span class="hs-identifier hs-var">fileExists</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">liftIO</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; IO Bool
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/directory-1.3.6.2/src"><span class="hs-identifier hs-var">IO.doesFileExist</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
-</span><span id="line-124"></span><span>
-</span><span id="line-125"></span><span>  </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span id="line-127"></span><span>
+</span><span id="line-128"></span><span>  </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="Hedgehog.Extras.Test.Golden.html#recreateGoldenFiles"><span class="hs-identifier hs-var">recreateGoldenFiles</span></a></span><span>
-</span><span id="line-126"></span><span>    </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
+</span><span id="line-129"></span><span>    </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
 (MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122553"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
-</span><span id="line-127"></span><span>    </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span id="line-130"></span><span>    </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="Hedgehog.Extras.Test.Golden.html#createGoldenFiles"><span class="hs-identifier hs-var">createGoldenFiles</span></a></span><span>
-</span><span id="line-128"></span><span>      </span><span class="hs-keyword">then</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679122528"><span class="hs-identifier hs-var">fileExists</span></a></span><span>
-</span><span id="line-129"></span><span>        </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
-(MonadIO m, MonadTest m) =&gt;
-String -&gt; [String] -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var">checkAgainstGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679122526"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
-</span><span id="line-130"></span><span>        </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
-(MonadIO m, MonadTest m) =&gt;
-String -&gt; String -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679122553"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
-</span><span id="line-131"></span><span>      </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span id="line-131"></span><span>      </span><span class="hs-keyword">then</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679122528"><span class="hs-identifier hs-var">fileExists</span></a></span><span>
 </span><span id="line-132"></span><span>        </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
 (MonadIO m, MonadTest m) =&gt;
@@ -285,33 +276,47 @@ String -&gt; [String] -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var">checkAgainstGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
 </span><a href="#local-6989586621679122526"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
-</span><span id="line-133"></span><span>        </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *). (MonadIO m, MonadTest m) =&gt; String -&gt; m ()
+</span><span id="line-133"></span><span>        </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
+(MonadIO m, MonadTest m) =&gt;
+String -&gt; String -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679122553"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><span id="line-134"></span><span>      </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679122528"><span class="hs-identifier hs-var">fileExists</span></a></span><span>
+</span><span id="line-135"></span><span>        </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
+(MonadIO m, MonadTest m) =&gt;
+String -&gt; [String] -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var">checkAgainstGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679122526"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
+</span><span id="line-136"></span><span>        </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *). (MonadIO m, MonadTest m) =&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var">reportGoldenFileMissing</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122552"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
-</span><span id="line-134"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-135"></span><span>    </span><span id="local-6989586621679122526"><span class="annot"><span class="annottext">actualLines :: [String]
+</span><span id="line-137"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-138"></span><span>    </span><span id="local-6989586621679122526"><span class="annot"><span class="annottext">actualLines :: [String]
 </span><a href="#local-6989586621679122526"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">List.lines</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122553"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
-</span><span id="line-136"></span><span>
-</span><span id="line-137"></span><span class="hs-comment">-- | Diff file against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
-</span><span id="line-138"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the gold file not exist it would be created.  If</span><span>
-</span><span id="line-139"></span><span class="hs-comment">-- GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file path will be</span><span>
-</span><span id="line-140"></span><span class="hs-comment">-- logged to the specified file.</span><span>
-</span><span id="line-141"></span><span class="hs-comment">--</span><span>
-</span><span id="line-142"></span><span class="hs-comment">-- Set the environment variable when you intend to generate or re-generate the golden</span><span>
-</span><span id="line-143"></span><span class="hs-comment">-- file for example when running the test for the first time or if the golden file</span><span>
-</span><span id="line-144"></span><span class="hs-comment">-- genuinely needs to change.</span><span>
-</span><span id="line-145"></span><span class="hs-comment">--</span><span>
-</span><span id="line-146"></span><span class="hs-comment">-- To re-generate a golden file you must also delete the golden file because golden</span><span>
-</span><span id="line-147"></span><span class="hs-comment">-- files are never overwritten.</span><span>
-</span><span id="line-148"></span><span id="local-6989586621679122525"><span class="annot"><a href="Hedgehog.Extras.Test.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-type">diffFileVsGoldenFile</span></a></span><span>
-</span><span id="line-149"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">HasCallStack</span></a></span><span>
-</span><span id="line-150"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">MonadIO</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679122525"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadTest</span></span><span> </span><span class="annot"><a href="#local-6989586621679122525"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-151"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-comment">-- ^ Actual file</span><span>
-</span><span id="line-152"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-comment">-- ^ Reference file</span><span>
-</span><span id="line-153"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679122525"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
-</span><span id="line-154"></span><span id="diffFileVsGoldenFile"><span class="annot"><span class="annottext">diffFileVsGoldenFile :: forall (m :: * -&gt; *).
+</span><span id="line-139"></span><span>
+</span><span id="line-140"></span><span class="hs-comment">-- | Diff file against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
+</span><span id="line-141"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the gold file not exist it would be created.  If</span><span>
+</span><span id="line-142"></span><span class="hs-comment">-- GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file path will be</span><span>
+</span><span id="line-143"></span><span class="hs-comment">-- logged to the specified file.</span><span>
+</span><span id="line-144"></span><span class="hs-comment">--</span><span>
+</span><span id="line-145"></span><span class="hs-comment">-- Set the environment variable when you intend to generate or re-generate the golden</span><span>
+</span><span id="line-146"></span><span class="hs-comment">-- file for example when running the test for the first time or if the golden file</span><span>
+</span><span id="line-147"></span><span class="hs-comment">-- genuinely needs to change.</span><span>
+</span><span id="line-148"></span><span class="hs-comment">--</span><span>
+</span><span id="line-149"></span><span class="hs-comment">-- To re-generate a golden file you must also delete the golden file because golden</span><span>
+</span><span id="line-150"></span><span class="hs-comment">-- files are never overwritten.</span><span>
+</span><span id="line-151"></span><span id="local-6989586621679122525"><span class="annot"><a href="Hedgehog.Extras.Test.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-type">diffFileVsGoldenFile</span></a></span><span>
+</span><span id="line-152"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">HasCallStack</span></a></span><span>
+</span><span id="line-153"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">MonadIO</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679122525"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadTest</span></span><span> </span><span class="annot"><a href="#local-6989586621679122525"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-154"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-comment">-- ^ Actual file</span><span>
+</span><span id="line-155"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-comment">-- ^ Reference file</span><span>
+</span><span id="line-156"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679122525"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-157"></span><span id="diffFileVsGoldenFile"><span class="annot"><span class="annottext">diffFileVsGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffFileVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679122518"><span class="annot"><span class="annottext">String
@@ -319,16 +324,16 @@ String -&gt; String -&gt; m ()
 </span><a href="#local-6989586621679122517"><span class="hs-identifier hs-var">referenceFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-155"></span><span>  </span><span id="local-6989586621679122506"><span class="annot"><span class="annottext">String
+</span><span id="line-158"></span><span>  </span><span id="local-6989586621679122506"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122506"><span class="hs-identifier hs-var">contents</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 String -&gt; m String
 </span><a href="Hedgehog.Extras.Test.File.html#readFile"><span class="hs-identifier hs-var">H.readFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122518"><span class="hs-identifier hs-var">actualFile</span></a></span><span>
-</span><span id="line-156"></span><span>  </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
+</span><span id="line-159"></span><span>  </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var">diffVsGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122506"><span class="hs-identifier hs-var">contents</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679122517"><span class="hs-identifier hs-var">referenceFile</span></a></span><span>
-</span><span id="line-157"></span></pre></body></html>
+</span><span id="line-160"></span></pre></body></html>
