@@ -6,6 +6,7 @@
 module Hedgehog.Extras.Test.Process
   ( createProcess
   , exec
+  , execAny
   , exec_
   , execFlex
   , execFlex'
@@ -194,7 +195,9 @@ exec_
   -> m ()
 exec_ execConfig bin arguments = void $ exec execConfig bin arguments
 
--- | Execute a process
+-- | Execute a process, returning the stdout. Fail if the call returns
+-- with a non-zero exit code. For a version that doesn't fail upon receiving
+-- a non-zero exit code, see 'execAny'.
 exec
   :: (MonadTest m, MonadIO m, HasCallStack)
   => ExecConfig
@@ -202,12 +205,7 @@ exec
   -> [String]
   -> m String
 exec execConfig bin arguments = GHC.withFrozenCallStack $ do
-  let cp = (IO.proc bin arguments)
-        { IO.env = getLast $ execConfigEnv execConfig
-        , IO.cwd = getLast $ execConfigCwd execConfig
-        }
-  H.annotate . ("Command: " <>) $ bin <> " " <> L.unwords arguments
-  (exitResult, stdout, stderr) <- H.evalIO $ IO.readCreateProcessWithExitCode cp ""
+  (exitResult, stdout, stderr) <- execAny execConfig bin arguments
   case exitResult of
     IO.ExitFailure exitCode -> H.failMessage GHC.callStack . L.unlines $
       [ "Process exited with non-zero exit-code"
@@ -221,6 +219,21 @@ exec execConfig bin arguments = GHC.withFrozenCallStack $ do
       , show @Int exitCode
       ]
     IO.ExitSuccess -> return stdout
+
+-- | Execute a process, returning the error code, the stdout, and the stderr.
+execAny
+  :: (MonadTest m, MonadIO m, HasCallStack)
+  => ExecConfig
+  -> String
+  -> [String]
+  -> m (ExitCode, String, String)
+execAny execConfig bin arguments = GHC.withFrozenCallStack $ do
+  let cp = (IO.proc bin arguments)
+        { IO.env = getLast $ execConfigEnv execConfig
+        , IO.cwd = getLast $ execConfigCwd execConfig
+        }
+  H.annotate . ("Command: " <>) $ bin <> " " <> L.unwords arguments
+  H.evalIO $ IO.readCreateProcessWithExitCode cp ""
 
 -- | Wait for process to exit.
 waitForProcess
