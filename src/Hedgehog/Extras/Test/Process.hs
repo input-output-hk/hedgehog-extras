@@ -44,7 +44,7 @@ import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Cli (argQuote)
 import           Hedgehog.Extras.Internal.Plan (Component (..), Plan (..))
 import           Hedgehog.Extras.Stock.IO.Process (TimedOut (..))
-import           Prelude (error)
+import           Prelude (error, (++))
 import           System.Exit (ExitCode)
 import           System.FilePath (takeDirectory)
 import           System.FilePath.Posix ((</>))
@@ -173,16 +173,12 @@ execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
   case exitResult of
     IO.ExitFailure exitCode -> do
       H.annotate $ L.unlines $
-        [ "Process exited with non-zero exit-code"
+        [ "Process exited with non-zero exit-code: " ++ show @Int exitCode
         , "━━━━ command ━━━━"
         , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
-        , "━━━━ stdout ━━━━"
-        , stdout
-        , "━━━━ stderr ━━━━"
-        , stderr
-        , "━━━━ exit code ━━━━"
-        , show @Int exitCode
         ]
+        ++ if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout]
+        ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
       H.failMessage GHC.callStack "Execute process failed"
     IO.ExitSuccess -> return stdout
 
@@ -208,16 +204,12 @@ exec execConfig bin arguments = GHC.withFrozenCallStack $ do
   (exitResult, stdout, stderr) <- execAny execConfig bin arguments
   case exitResult of
     IO.ExitFailure exitCode -> H.failMessage GHC.callStack . L.unlines $
-      [ "Process exited with non-zero exit-code"
+      [ "Process exited with non-zero exit-code: " ++ show @Int exitCode
       , "━━━━ command ━━━━"
       , bin <> " " <> L.unwords (fmap argQuote arguments)
-      , "━━━━ stdout ━━━━"
-      , stdout
-      , "━━━━ stderr ━━━━"
-      , stderr
-      , "━━━━ exit code ━━━━"
-      , show @Int exitCode
       ]
+      ++ if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout]
+      ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
     IO.ExitSuccess -> return stdout
 
 -- | Execute a process, returning the error code, the stdout, and the stderr.
