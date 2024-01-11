@@ -185,10 +185,10 @@ execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
 execFlexAny'
   :: (MonadTest m, MonadCatch m, MonadIO m, HasCallStack)
   => ExecConfig
-  -> String
-  -> String
+  -> String -- ^ @pkgBin@: name of the binary to launch via 'cabal exec'
+  -> String -- ^ @envBin@: environment variable defining the binary to launch the process, when in Nix
   -> [String]
-  -> m (ExitCode, String, String)
+  -> m (ExitCode, String, String) -- ^ exit code, stdout, stderr
 execFlexAny' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
   cp <- procFlex' execConfig pkgBin envBin arguments
   H.annotate . ("Command: " <>) $ case IO.cmdspec cp of
@@ -230,9 +230,9 @@ exec execConfig bin arguments = GHC.withFrozenCallStack $ do
 execAny
   :: (MonadTest m, MonadIO m, HasCallStack)
   => ExecConfig
-  -> String
-  -> [String]
-  -> m (ExitCode, String, String)
+  -> String -- ^ The binary to launch
+  -> [String] -- ^ The binary's arguments
+  -> m (ExitCode, String, String) -- ^ exit code, stdout, stderr
 execAny execConfig bin arguments = GHC.withFrozenCallStack $ do
   let cp = (IO.proc bin arguments)
         { IO.env = getLast $ execConfigEnv execConfig
