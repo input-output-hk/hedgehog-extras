@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">GHC.Generics</span></a></span><span>
 </span><span id="line-16"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Text.Show</span></a></span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span id="local-6989586621679118278"><span id="local-6989586621679118279"></span></span><span class="hs-keyword">data</span><span> </span><span id="Component"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-var">Component</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Component"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-var">Component</span></a></span></span><span>
+</span><span id="line-18"></span><span id="local-6989586621679118455"><span id="local-6989586621679118456"></span></span><span class="hs-keyword">data</span><span> </span><span id="Component"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-var">Component</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Component"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-var">Component</span></a></span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-special">{</span><span> </span><span id="componentName"><span class="annot"><span class="annottext">Component -&gt; Maybe Text
 </span><a href="Hedgehog.Extras.Internal.Plan.html#componentName"><span class="hs-identifier hs-var hs-var">componentName</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/text-1.2.5.0/src"><span class="hs-identifier hs-type">Text</span></a></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-special">,</span><span> </span><span id="binFile"><span class="annot"><span class="annottext">Component -&gt; Maybe Text
@@ -27,13 +27,13 @@ forall a.
 (forall x. a -&gt; Rep a x) -&gt; (forall x. Rep a x -&gt; a) -&gt; Generic a
 $cto :: forall x. Rep Component x -&gt; Component
 $cfrom :: forall x. Component -&gt; Rep Component x
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118263"><span id="local-6989586621679118269"><span class="annot"><span class="annottext">Component -&gt; Component -&gt; Bool
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118440"><span id="local-6989586621679118446"><span class="annot"><span class="annottext">Component -&gt; Component -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Component -&gt; Component -&gt; Bool
 $c/= :: Component -&gt; Component -&gt; Bool
 == :: Component -&gt; Component -&gt; Bool
 $c== :: Component -&gt; Component -&gt; Bool
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118249"><span id="local-6989586621679118251"><span id="local-6989586621679118259"><span class="annot"><span class="annottext">Int -&gt; Component -&gt; ShowS
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118426"><span id="local-6989586621679118428"><span id="local-6989586621679118436"><span class="annot"><span class="annottext">Int -&gt; Component -&gt; ShowS
 [Component] -&gt; ShowS
 Component -&gt; String
 forall a.
@@ -46,7 +46,7 @@ showsPrec :: Int -&gt; Component -&gt; ShowS
 $cshowsPrec :: Int -&gt; Component -&gt; ShowS
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span id="local-6989586621679118245"><span id="local-6989586621679118246"></span></span><span class="hs-keyword">newtype</span><span> </span><span id="Plan"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-var">Plan</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Plan"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-var">Plan</span></a></span></span><span>
+</span><span id="line-24"></span><span id="local-6989586621679118422"><span id="local-6989586621679118423"></span></span><span class="hs-keyword">newtype</span><span> </span><span id="Plan"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-var">Plan</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Plan"><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-var">Plan</span></a></span></span><span>
 </span><span id="line-25"></span><span>  </span><span class="hs-special">{</span><span> </span><span id="installPlan"><span class="annot"><span class="annottext">Plan -&gt; [Component]
 </span><a href="Hedgehog.Extras.Internal.Plan.html#installPlan"><span class="hs-identifier hs-var hs-var">installPlan</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-special">}</span><span>
@@ -56,13 +56,13 @@ forall a.
 (forall x. a -&gt; Rep a x) -&gt; (forall x. Rep a x -&gt; a) -&gt; Generic a
 $cto :: forall x. Rep Plan x -&gt; Plan
 $cfrom :: forall x. Plan -&gt; Rep Plan x
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118232"><span id="local-6989586621679118238"><span class="annot"><span class="annottext">Plan -&gt; Plan -&gt; Bool
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118409"><span id="local-6989586621679118415"><span class="annot"><span class="annottext">Plan -&gt; Plan -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Plan -&gt; Plan -&gt; Bool
 $c/= :: Plan -&gt; Plan -&gt; Bool
 == :: Plan -&gt; Plan -&gt; Bool
 $c== :: Plan -&gt; Plan -&gt; Bool
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118218"><span id="local-6989586621679118220"><span id="local-6989586621679118226"><span class="annot"><span class="annottext">Int -&gt; Plan -&gt; ShowS
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679118395"><span id="local-6989586621679118397"><span id="local-6989586621679118403"><span class="annot"><span class="annottext">Int -&gt; Plan -&gt; ShowS
 [Plan] -&gt; ShowS
 Plan -&gt; String
 forall a.
@@ -75,36 +75,36 @@ showsPrec :: Int -&gt; Plan -&gt; ShowS
 $cshowsPrec :: Int -&gt; Plan -&gt; ShowS
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679118215"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-type">Plan</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679118206"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Plan
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679118392"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-type">Plan</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679118383"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Plan
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Plan&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679118203"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679118203"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Component] -&gt; Plan
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679118380"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679118380"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Component] -&gt; Plan
 </span><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-var">Plan</span></a></span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679118203"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser a
+</span><a href="#local-6989586621679118380"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser a
 </span><span class="hs-operator hs-var">.:</span></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;install-plan&quot;</span></span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679118198"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679118189"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Component
-</span><a href="#local-6989586621679118189"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679118375"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679118366"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Component
+</span><a href="#local-6989586621679118366"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Plan&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679118188"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679118188"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe Text -&gt; Maybe Text -&gt; Component
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679118365"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679118365"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe Text -&gt; Maybe Text -&gt; Component
 </span><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-var">Component</span></a></span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679118188"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
+</span><a href="#local-6989586621679118365"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">.:?</span></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;component-name&quot;</span></span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679118188"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
+</span><a href="#local-6989586621679118365"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">.:?</span></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;bin-file&quot;</span></span><span>
 </span><span id="line-37"></span></pre></body></html>
