@@ -10,6 +10,7 @@ module Hedgehog.Extras.Test.Process
   , exec_
   , execFlex
   , execFlex'
+  , execFlexAny'
   , procFlex
   , binFlex
 
@@ -165,11 +166,7 @@ execFlex'
   -> [String]
   -> m String
 execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
-  cp <- procFlex' execConfig pkgBin envBin arguments
-  H.annotate . ("Command: " <>) $ case IO.cmdspec cp of
-    IO.ShellCommand cmd -> cmd
-    IO.RawCommand cmd args -> cmd <> " " <> L.unwords args
-  (exitResult, stdout, stderr) <- H.evalIO $ IO.readCreateProcessWithExitCode cp ""
+  (exitResult, stdout, stderr) <- execFlexAny' execConfig pkgBin envBin arguments
   case exitResult of
     IO.ExitFailure exitCode -> do
       H.annotate $ L.unlines $
@@ -181,6 +178,23 @@ execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
         ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
       H.failMessage GHC.callStack "Execute process failed"
     IO.ExitSuccess -> return stdout
+
+-- | Run a process, returning its exit code, its stdout, and its stderr.
+-- Contrary to @execFlex'@, this function doesn't fail if the call fails.
+-- So, if you want to test something negative, this is the function to use.
+execFlexAny'
+  :: (MonadTest m, MonadCatch m, MonadIO m, HasCallStack)
+  => ExecConfig
+  -> String
+  -> String
+  -> [String]
+  -> m (ExitCode, String, String)
+execFlexAny' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
+  cp <- procFlex' execConfig pkgBin envBin arguments
+  H.annotate . ("Command: " <>) $ case IO.cmdspec cp of
+    IO.ShellCommand cmd -> cmd
+    IO.RawCommand cmd args -> cmd <> " " <> L.unwords args
+  H.evalIO $ IO.readCreateProcessWithExitCode cp ""
 
 -- | Execute a process, returning '()'.
 exec_
