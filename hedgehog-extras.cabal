@@ -28,6 +28,9 @@ common exceptions                   { build-depends: exceptions                 
 common filepath                     { build-depends: filepath                                                     }
 common hedgehog                     { build-depends: hedgehog                                                     }
 common http-conduit                 { build-depends: http-conduit                                                 }
+common lifted-async                 { build-depends: lifted-async                                                 }
+common lifted-base                  { build-depends: lifted-base                                                  }
+common monad-control                { build-depends: monad-control                                                }
 common mmorph                       { build-depends: mmorph                                                       }
 common mtl                          { build-depends: mtl                                                          }
 common network                      { build-depends: network                                                      }
@@ -39,6 +42,7 @@ common temporary                    { build-depends: temporary                  
 common text                         { build-depends: text                                                         }
 common time                         { build-depends: time                             >= 1.9.1                    }
 common transformers                 { build-depends: transformers                                                 }
+common transformers-base            { build-depends: transformers-base                                            }
 common unliftio                     { build-depends: unliftio                                                     }
 common yaml                         { build-depends: yaml                                                         }
 common zlib                         { build-depends: zlib                                                         }
@@ -71,6 +75,9 @@ library
                         filepath,
                         hedgehog,
                         http-conduit,
+                        lifted-async,
+                        lifted-base,
+                        monad-control,
                         mmorph,
                         mtl,
                         network,
@@ -82,6 +89,7 @@ library
                         text,
                         time,
                         transformers,
+                        transformers-base,
                         unliftio,
                         Win32,
                         yaml,
