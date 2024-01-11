@@ -6,9 +6,11 @@
 module Hedgehog.Extras.Test.Process
   ( createProcess
   , exec
+  , execAny
   , exec_
   , execFlex
   , execFlex'
+  , execFlexAny'
   , procFlex
   , binFlex
 
@@ -43,7 +45,7 @@ import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Cli (argQuote)
 import           Hedgehog.Extras.Internal.Plan (Component (..), Plan (..))
 import           Hedgehog.Extras.Stock.IO.Process (TimedOut (..))
-import           Prelude (error)
+import           Prelude (error, (++))
 import           System.Exit (ExitCode)
 import           System.FilePath (takeDirectory)
 import           System.FilePath.Posix ((</>))
@@ -164,26 +166,35 @@ execFlex'
   -> [String]
   -> m String
 execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
+  (exitResult, stdout, stderr) <- execFlexAny' execConfig pkgBin envBin arguments
+  case exitResult of
+    IO.ExitFailure exitCode -> do
+      H.annotate $ L.unlines $
+        [ "Process exited with non-zero exit-code: " ++ show @Int exitCode
+        , "━━━━ command ━━━━"
+        , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
+        ]
+        ++ if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout]
+        ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
+      H.failMessage GHC.callStack "Execute process failed"
+    IO.ExitSuccess -> return stdout
+
+-- | Run a process, returning its exit code, its stdout, and its stderr.
+-- Contrary to @execFlex'@, this function doesn't fail if the call fails.
+-- So, if you want to test something negative, this is the function to use.
+execFlexAny'
+  :: (MonadTest m, MonadCatch m, MonadIO m, HasCallStack)
+  => ExecConfig
+  -> String -- ^ @pkgBin@: name of the binary to launch via 'cabal exec'
+  -> String -- ^ @envBin@: environment variable defining the binary to launch the process, when in Nix
+  -> [String]
+  -> m (ExitCode, String, String) -- ^ exit code, stdout, stderr
+execFlexAny' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
   cp <- procFlex' execConfig pkgBin envBin arguments
   H.annotate . ("Command: " <>) $ case IO.cmdspec cp of
     IO.ShellCommand cmd -> cmd
     IO.RawCommand cmd args -> cmd <> " " <> L.unwords args
-  (exitResult, stdout, stderr) <- H.evalIO $ IO.readCreateProcessWithExitCode cp ""
-  case exitResult of
-    IO.ExitFailure exitCode -> do
-      H.annotate $ L.unlines $
-        [ "Process exited with non-zero exit-code"
-        , "━━━━ command ━━━━"
-        , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
-        , "━━━━ stdout ━━━━"
-        , stdout
-        , "━━━━ stderr ━━━━"
-        , stderr
-        , "━━━━ exit code ━━━━"
-        , show @Int exitCode
-        ]
-      H.failMessage GHC.callStack "Execute process failed"
-    IO.ExitSuccess -> return stdout
+  H.evalIO $ IO.readCreateProcessWithExitCode cp ""
 
 -- | Execute a process, returning '()'.
 exec_
@@ -194,7 +205,9 @@ exec_
   -> m ()
 exec_ execConfig bin arguments = void $ exec execConfig bin arguments
 
--- | Execute a process
+-- | Execute a process, returning the stdout. Fail if the call returns
+-- with a non-zero exit code. For a version that doesn't fail upon receiving
+-- a non-zero exit code, see 'execAny'.
 exec
   :: (MonadTest m, MonadIO m, HasCallStack)
   => ExecConfig
@@ -202,25 +215,31 @@ exec
   -> [String]
   -> m String
 exec execConfig bin arguments = GHC.withFrozenCallStack $ do
+  (exitResult, stdout, stderr) <- execAny execConfig bin arguments
+  case exitResult of
+    IO.ExitFailure exitCode -> H.failMessage GHC.callStack . L.unlines $
+      [ "Process exited with non-zero exit-code: " ++ show @Int exitCode
+      , "━━━━ command ━━━━"
+      , bin <> " " <> L.unwords (fmap argQuote arguments)
+      ]
+      ++ if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout]
+      ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
+    IO.ExitSuccess -> return stdout
+
+-- | Execute a process, returning the error code, the stdout, and the stderr.
+execAny
+  :: (MonadTest m, MonadIO m, HasCallStack)
+  => ExecConfig
+  -> String -- ^ The binary to launch
+  -> [String] -- ^ The binary's arguments
+  -> m (ExitCode, String, String) -- ^ exit code, stdout, stderr
+execAny execConfig bin arguments = GHC.withFrozenCallStack $ do
   let cp = (IO.proc bin arguments)
         { IO.env = getLast $ execConfigEnv execConfig
         , IO.cwd = getLast $ execConfigCwd execConfig
         }
   H.annotate . ("Command: " <>) $ bin <> " " <> L.unwords arguments
-  (exitResult, stdout, stderr) <- H.evalIO $ IO.readCreateProcessWithExitCode cp ""
-  case exitResult of
-    IO.ExitFailure exitCode -> H.failMessage GHC.callStack . L.unlines $
-      [ "Process exited with non-zero exit-code"
-      , "━━━━ command ━━━━"
-      , bin <> " " <> L.unwords (fmap argQuote arguments)
-      , "━━━━ stdout ━━━━"
-      , stdout
-      , "━━━━ stderr ━━━━"
-      , stderr
-      , "━━━━ exit code ━━━━"
-      , show @Int exitCode
-      ]
-    IO.ExitSuccess -> return stdout
+  H.evalIO $ IO.readCreateProcessWithExitCode cp ""
 
 -- | Wait for process to exit.
 waitForProcess
