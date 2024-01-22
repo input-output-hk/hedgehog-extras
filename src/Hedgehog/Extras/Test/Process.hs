@@ -174,8 +174,8 @@ execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
         , "━━━━ command ━━━━"
         , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
         ]
-        ++ if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout]
-        ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
+        ++ (if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout])
+        ++ (if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr])
       H.failMessage GHC.callStack "Execute process failed"
     IO.ExitSuccess -> return stdout
 
@@ -222,8 +222,8 @@ exec execConfig bin arguments = GHC.withFrozenCallStack $ do
       , "━━━━ command ━━━━"
       , bin <> " " <> L.unwords (fmap argQuote arguments)
       ]
-      ++ if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout]
-      ++ if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr]
+      ++ (if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout])
+      ++ (if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr])
     IO.ExitSuccess -> return stdout
 
 -- | Execute a process, returning the error code, the stdout, and the stderr.
