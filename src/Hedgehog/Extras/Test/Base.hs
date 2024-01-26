@@ -307,7 +307,7 @@ nothingFail r = GHC.withFrozenCallStack $ case r of
 
 -- | Fail when the computed result is Nothing.
 nothingFailM :: (MonadTest m, HasCallStack) => m (Maybe a) -> m a
-nothingFailM f = f >>= nothingFail
+nothingFailM f = GHC.withFrozenCallStack $ f >>= nothingFail
 
 -- | Fail when the result is Left.
 leftFail :: (MonadTest m, Show e, HasCallStack) => Either e a -> m a
@@ -317,7 +317,7 @@ leftFail r = GHC.withFrozenCallStack $ case r of
 
 -- | Fail when the computed result is Left.
 leftFailM :: (MonadTest m, Show e, HasCallStack) => m (Either e a) -> m a
-leftFailM f = f >>= leftFail
+leftFailM f = GHC.withFrozenCallStack $ f >>= leftFail
 
 maybeAt :: Int -> [a] -> Maybe a
 maybeAt n xs
@@ -361,7 +361,7 @@ jsonErrorFail r = GHC.withFrozenCallStack $ case r of
 
 -- | Fail when the computed result is Error.
 jsonErrorFailM :: (MonadTest m, HasCallStack) => m (Result a) -> m a
-jsonErrorFailM f = f >>= jsonErrorFail
+jsonErrorFailM f = GHC.withFrozenCallStack $ f >>= jsonErrorFail
 
 -- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
 --
