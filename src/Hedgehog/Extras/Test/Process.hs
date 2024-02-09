@@ -34,7 +34,7 @@ import           Data.Bool (Bool (..))
 import           Data.Either (Either (..))
 import           Data.Eq (Eq (..))
 import           Data.Function (($), (&), (.))
-import           Data.Functor (Functor (..))
+import           Data.Functor ((<$>))
 import           Data.Int (Int)
 import           Data.Maybe (Maybe (..))
 import           Data.Monoid (Last (..), mempty, (<>))
@@ -170,10 +170,7 @@ execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
   case exitResult of
     IO.ExitFailure exitCode -> do
       H.annotate $ L.unlines $
-        [ "Process exited with non-zero exit-code: " ++ show @Int exitCode
-        , "━━━━ command ━━━━"
-        , pkgBin <> " " <> L.unwords (fmap argQuote arguments)
-        ]
+        [ "Process exited with non-zero exit-code: " ++ show @Int exitCode ]
         ++ (if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout])
         ++ (if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr])
       H.failMessage GHC.callStack "Execute process failed"
@@ -191,9 +188,9 @@ execFlexAny'
   -> m (ExitCode, String, String) -- ^ exit code, stdout, stderr
 execFlexAny' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
   cp <- procFlex' execConfig pkgBin envBin arguments
-  H.annotate . ("Command: " <>) $ case IO.cmdspec cp of
+  H.annotate . ("━━━━ command ━━━━\n" <>) $ case IO.cmdspec cp of
     IO.ShellCommand cmd -> cmd
-    IO.RawCommand cmd args -> cmd <> " " <> L.unwords args
+    IO.RawCommand cmd args -> cmd <> " " <> L.unwords (argQuote <$> args)
   H.evalIO $ IO.readCreateProcessWithExitCode cp ""
 
 -- | Execute a process, returning '()'.
@@ -218,10 +215,7 @@ exec execConfig bin arguments = GHC.withFrozenCallStack $ do
   (exitResult, stdout, stderr) <- execAny execConfig bin arguments
   case exitResult of
     IO.ExitFailure exitCode -> H.failMessage GHC.callStack . L.unlines $
-      [ "Process exited with non-zero exit-code: " ++ show @Int exitCode
-      , "━━━━ command ━━━━"
-      , bin <> " " <> L.unwords (fmap argQuote arguments)
-      ]
+      [ "Process exited with non-zero exit-code: " ++ show @Int exitCode ]
       ++ (if L.null stdout then [] else ["━━━━ stdout ━━━━" , stdout])
       ++ (if L.null stderr then [] else ["━━━━ stderr ━━━━" , stderr])
     IO.ExitSuccess -> return stdout
@@ -238,7 +232,7 @@ execAny execConfig bin arguments = GHC.withFrozenCallStack $ do
         { IO.env = getLast $ execConfigEnv execConfig
         , IO.cwd = getLast $ execConfigCwd execConfig
         }
-  H.annotate . ("Command: " <>) $ bin <> " " <> L.unwords arguments
+  H.annotate . ( "━━━━ command ━━━━\n" <>) $ bin <> " " <> L.unwords (argQuote <$> arguments)
   H.evalIO $ IO.readCreateProcessWithExitCode cp ""
 
 -- | Wait for process to exit.
