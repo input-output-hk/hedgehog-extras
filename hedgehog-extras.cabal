@@ -16,7 +16,7 @@ source-repository head
   type:                 git
   location:             https://github.com/input-output-hk/hedgehog-extras
 
-common aeson                        { build-depends: aeson                            >= 2.1.0.0                  }
+common aeson                        { build-depends: aeson                            == 2.0.0.0                  }
 common aeson-pretty                 { build-depends: aeson-pretty                     >= 0.8.5                    }
 common async                        { build-depends: async                                                        }
 common base                         { build-depends: base                             >= 4.12       && < 4.20     }
