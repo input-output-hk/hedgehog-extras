@@ -47,6 +47,7 @@ module Hedgehog.Extras.Test.File
   , assertEndsWithSingleNewline
 
   , appendFileTimeDelta
+  , assertDirectoryMissing
   ) where
 
 import           Control.Applicative (Applicative (..))
@@ -336,3 +337,9 @@ appendFileTimeDelta filePath offsetTime = GHC.withFrozenCallStack $ do
   baseTime <- H.noteShowIO DTC.getCurrentTime
   let delay = DTC.diffUTCTime baseTime offsetTime
   appendFile filePath $ show @DTC.NominalDiffTime delay <> "\n"
+
+-- | Asserts that the given directory is missing.
+assertDirectoryMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+assertDirectoryMissing dir = GHC.withFrozenCallStack $ do
+  exists <- H.evalIO $ IO.doesDirectoryExist dir
+  when exists $ H.failWithCustom GHC.callStack Nothing (dir <> " should not have been created.")
