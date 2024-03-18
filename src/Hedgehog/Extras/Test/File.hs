@@ -338,6 +338,12 @@ appendFileTimeDelta filePath offsetTime = GHC.withFrozenCallStack $ do
   let delay = DTC.diffUTCTime baseTime offsetTime
   appendFile filePath $ show @DTC.NominalDiffTime delay <> "\n"
 
+-- | Asserts that the given directory exists.
+assertDirectoryExists :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
+assertDirectoryExists dir = GHC.withFrozenCallStack $ do
+  exists <- H.evalIO $ IO.doesDirectoryExist dir
+  unless exists $ H.failWithCustom GHC.callStack Nothing (dir <> " has not been successfully created.")
+
 -- | Asserts that the given directory is missing.
 assertDirectoryMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
 assertDirectoryMissing dir = GHC.withFrozenCallStack $ do
