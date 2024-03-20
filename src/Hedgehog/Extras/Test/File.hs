@@ -342,10 +342,10 @@ appendFileTimeDelta filePath offsetTime = GHC.withFrozenCallStack $ do
 assertDirectoryExists :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
 assertDirectoryExists dir = GHC.withFrozenCallStack $ do
   exists <- H.evalIO $ IO.doesDirectoryExist dir
-  unless exists $ H.failWithCustom GHC.callStack Nothing (dir <> " has not been successfully created.")
+  unless exists $ H.failWithCustom GHC.callStack Nothing ("Directory " <> dir <> " does  exist on the file system.")
 
 -- | Asserts that the given directory is missing.
 assertDirectoryMissing :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m ()
 assertDirectoryMissing dir = GHC.withFrozenCallStack $ do
   exists <- H.evalIO $ IO.doesDirectoryExist dir
-  when exists $ H.failWithCustom GHC.callStack Nothing (dir <> " should not have been created.")
+  when exists $ H.failWithCustom GHC.callStack Nothing ("Directory " <> dir <> " does not exist on the file system.")
