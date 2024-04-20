@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Hedgehog.Extras.Stock.IO.Network.Port</span><span>
+</span><span id="line-2"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier">randomPort</span></a></span><span>
+</span><span id="line-3"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Control.Monad</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Monad</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Function</span></a></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Network.Socket</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">System.IO</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier">IO</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">-- | Return a random available port on a specified host address</span><span>
+</span><span id="line-11"></span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier hs-type">randomPort</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HostAddress</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">IO</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">PortNumber</span></span><span>
+</span><span id="line-12"></span><span id="randomPort"><span class="annot"><span class="annottext">randomPort :: HostAddress -&gt; IO PortNumber
+</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier hs-var hs-var">randomPort</span></a></span></span><span> </span><span id="local-6989586621679120551"><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679120551"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-13"></span><span>  </span><span id="local-6989586621679120550"><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679120550"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Family -&gt; SocketType -&gt; ProtocolNumber -&gt; IO Socket
+</span><span class="hs-identifier hs-var">socket</span></span><span> </span><span class="annot"><span class="annottext">Family
+</span><span class="hs-identifier hs-var">AF_INET</span></span><span> </span><span class="annot"><span class="annottext">SocketType
+</span><span class="hs-identifier hs-var">Stream</span></span><span> </span><span class="annot"><span class="annottext">ProtocolNumber
+</span><span class="hs-identifier hs-var">defaultProtocol</span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">Socket -&gt; SockAddr -&gt; IO ()
+</span><span class="hs-identifier hs-var">bind</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679120550"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">PortNumber -&gt; HostAddress -&gt; SockAddr
+</span><span class="hs-identifier hs-var">SockAddrInet</span></span><span> </span><span class="annot"><span class="annottext">PortNumber
+</span><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679120551"><span class="hs-identifier hs-var">hostAddress</span></a></span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="hs-identifier hs-type">SockAddrInet</span></span><span> </span><span id="local-6989586621679120543"><span class="annot"><span class="annottext">PortNumber
+</span><a href="#local-6989586621679120543"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="annot"><span class="annottext">HostAddress
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IO SockAddr
+</span><span class="hs-identifier hs-var">getSocketName</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679120550"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">Socket -&gt; IO ()
+</span><span class="hs-identifier hs-var">close</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679120550"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">PortNumber
+</span><a href="#local-6989586621679120543"><span class="hs-identifier hs-var">port</span></a></span><span>
+</span><span id="line-18"></span></pre></body></html>
