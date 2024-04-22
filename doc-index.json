@@ -90,24 +90,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-IO-Network-NamedPipe.html#v:doesNamedPipeExist"
   },
   {
-    "display_html": "<a href=\"#v:randomPort\">randomPort</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-Fail.html#t:MonadFail\" title=\"Control.Monad.Fail\">MonadFail</a> m &#8658; HostAddress &#8594; m PortNumber",
-    "name": "randomPort",
-    "module": "Hedgehog.Extras.Stock.IO.Network.Port",
-    "link": "hedgehog-extras/Hedgehog-Extras-Stock-IO-Network-Port.html#v:randomPort"
-  },
-  {
-    "display_html": "<a href=\"#v:reserveRandomPort\">reserveRandomPort</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-Fail.html#t:MonadFail\" title=\"Control.Monad.Fail\">MonadFail</a> m &#8658; MonadResource m &#8658; HostAddress &#8594; m (ReleaseKey, PortNumber)",
-    "name": "reserveRandomPort",
-    "module": "Hedgehog.Extras.Stock.IO.Network.Port",
-    "link": "hedgehog-extras/Hedgehog-Extras-Stock-IO-Network-Port.html#v:reserveRandomPort"
-  },
-  {
-    "display_html": "<a href=\"#v:portInUse\">portInUse</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; HostAddress &#8594; PortNumber &#8594; m <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
-    "name": "portInUse",
-    "module": "Hedgehog.Extras.Stock.IO.Network.Port",
-    "link": "hedgehog-extras/Hedgehog-Extras-Stock-IO-Network-Port.html#v:portInUse"
-  },
-  {
     "display_html": "<a href=\"#v:doesSocketExist\">doesSocketExist</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
     "name": "doesSocketExist",
     "module": "Hedgehog.Extras.Stock.IO.Network.Socket",
@@ -766,6 +748,12 @@
     "name": "appendFileTimeDelta",
     "module": "Hedgehog.Extras.Test.File",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:appendFileTimeDelta"
+  },
+  {
+    "display_html": "<a href=\"#v:assertDirectoryExists\">assertDirectoryExists</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
+    "name": "assertDirectoryExists",
+    "module": "Hedgehog.Extras.Test.File",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:assertDirectoryExists"
   },
   {
     "display_html": "<a href=\"#v:assertDirectoryMissing\">assertDirectoryMissing</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
