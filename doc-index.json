@@ -90,7 +90,7 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-IO-Network-NamedPipe.html#v:doesNamedPipeExist"
   },
   {
-    "display_html": "<a href=\"#v:randomPort\">randomPort</a> &#8759; HostAddress &#8594; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> PortNumber",
+    "display_html": "<a href=\"#v:randomPort\">randomPort</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-Fail.html#t:MonadFail\" title=\"Control.Monad.Fail\">MonadFail</a> m &#8658; HostAddress &#8594; m PortNumber",
     "name": "randomPort",
     "module": "Hedgehog.Extras.Stock.IO.Network.Port",
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-IO-Network-Port.html#v:randomPort"
