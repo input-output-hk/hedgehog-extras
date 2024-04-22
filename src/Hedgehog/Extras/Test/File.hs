@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
-{-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE TypeApplications #-}
 
 module Hedgehog.Extras.Test.File
   ( createDirectoryIfMissing
@@ -47,6 +47,7 @@ module Hedgehog.Extras.Test.File
   , assertEndsWithSingleNewline
 
   , appendFileTimeDelta
+  , assertDirectoryExists
   , assertDirectoryMissing
   ) where
 

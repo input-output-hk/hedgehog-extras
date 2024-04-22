@@ -76,13 +76,13 @@ module Hedgehog.Extras.Test.Base
   ) where
 
 import           Control.Applicative (Applicative (..))
-import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
+import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, when)
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
-import           Data.Bool (Bool, (&&), otherwise)
+import           Data.Bool (Bool, otherwise, (&&))
 import           Data.Either (Either (..), either)
 import           Data.Eq (Eq ((/=)))
 import           Data.Foldable (for_)
@@ -373,14 +373,14 @@ byDeadlineIO period deadline errorMessage f = GHC.withFrozenCallStack $ byDeadli
 --
 -- Expiration of the deadline results in an assertion failure
 byDeadlineM :: forall m a. (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> String -> m a -> m a
-byDeadlineM period deadline errorMessage f = GHC.withFrozenCallStack $ do
+byDeadlineM period deadline customErrorMessage f = GHC.withFrozenCallStack $ do
   start <- liftIO DTC.getCurrentTime
   a <- goM
   end <- liftIO DTC.getCurrentTime
   note_ $ "Operation completed in " <> show (DTC.diffUTCTime end start)
   return a
   where goM :: m a
-        goM = H.catchAssertion f $ \e -> do
+        goM = H.catchAssertion f $ \(H.Failure mspan emessage mdiff) -> do
           currentTime <- liftIO DTC.getCurrentTime
           if currentTime < deadline
             then do
@@ -388,8 +388,8 @@ byDeadlineM period deadline errorMessage f = GHC.withFrozenCallStack $ do
               goM
             else do
               H.annotateShow currentTime
-              void $ failMessage GHC.callStack $ "Condition not met by deadline: " <> errorMessage
-              H.throwAssertion e
+              let modifiedFailure = L.unlines ["Condition not met by deadline: " <> customErrorMessage, " ", emessage]
+              H.throwAssertion $ H.Failure mspan modifiedFailure mdiff
 
 -- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
 --
