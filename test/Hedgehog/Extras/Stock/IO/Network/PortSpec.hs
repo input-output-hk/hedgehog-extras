@@ -1,0 +1,26 @@
+module Hedgehog.Extras.Stock.IO.Network.PortSpec
+  ( hprop_randomPort
+  ) where
+
+import           Data.Function
+import           Data.Semigroup
+import           Hedgehog (Property)
+import qualified Hedgehog as H
+import qualified Hedgehog.Extras as H
+import qualified Hedgehog.Extras.Stock.IO.Network.Port as IO
+import qualified Network.Socket as N
+import           Text.Show
+
+hprop_randomPort :: Property
+hprop_randomPort =
+  H.propertyOnce $ do
+    let hostAddress = N.tupleToHostAddress (0, 0, 0, 0)
+
+    pn <- H.evalIO $ IO.randomPort hostAddress
+
+    H.note_ $ "Allocated port: " <> show pn
+
+    -- Check that the port is available and can be bound to a socket.
+    sock <- H.evalIO $ N.socket N.AF_INET N.Stream N.defaultProtocol
+    H.evalIO $ N.bind sock $ N.SockAddrInet pn hostAddress
+    H.evalIO $ N.close sock
