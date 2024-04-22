@@ -27,17 +27,21 @@ common directory                    { build-depends: directory                  
 common exceptions                   { build-depends: exceptions                                                   }
 common filepath                     { build-depends: filepath                                                     }
 common hedgehog                     { build-depends: hedgehog                                                     }
+common hedgehog-quickcheck          { build-depends: hedgehog-quickcheck                                          }
 common http-conduit                 { build-depends: http-conduit                                                 }
 common lifted-async                 { build-depends: lifted-async                                                 }
 common lifted-base                  { build-depends: lifted-base                                                  }
-common monad-control                { build-depends: monad-control                                                }
 common mmorph                       { build-depends: mmorph                                                       }
+common monad-control                { build-depends: monad-control                                                }
 common mtl                          { build-depends: mtl                                                          }
 common network                      { build-depends: network                                                      }
 common process                      { build-depends: process                                                      }
 common resourcet                    { build-depends: resourcet                                                    }
 common stm                          { build-depends: stm                                                          }
 common tar                          { build-depends: tar                              <  0.6                      }
+common tasty                        { build-depends: tasty                                                        }
+common tasty-hedgehog               { build-depends: tasty-hedgehog                                               }
+common tasty-quickcheck             { build-depends: tasty-quickcheck                                             }
 common temporary                    { build-depends: temporary                                                    }
 common text                         { build-depends: text                                                         }
 common time                         { build-depends: time                             >= 1.9.1                    }
@@ -46,6 +50,8 @@ common transformers-base            { build-depends: transformers-base          
 common unliftio                     { build-depends: unliftio                                                     }
 common yaml                         { build-depends: yaml                                                         }
 common zlib                         { build-depends: zlib                                                         }
+
+common hedgehog-extras              { build-depends: hedgehog-extras                                              }
 
 common Win32
   if os(windows)
@@ -109,6 +115,7 @@ library
                         Hedgehog.Extras.Stock.CallStack
                         Hedgehog.Extras.Stock.IO.File
                         Hedgehog.Extras.Stock.IO.Network.NamedPipe
+                        Hedgehog.Extras.Stock.IO.Network.Port
                         Hedgehog.Extras.Stock.IO.Network.Socket
                         Hedgehog.Extras.Stock.IO.Network.Sprocket
                         Hedgehog.Extras.Stock.IO.Process
@@ -124,3 +131,18 @@ library
                         Hedgehog.Extras.Test.MonadAssertion
                         Hedgehog.Extras.Test.Network
                         Hedgehog.Extras.Test.Process
+
+test-suite hedgehog-extras-test
+  import:               base, project-config,
+                        hedgehog,
+                        hedgehog-extras,
+                        network,
+                        tasty,
+                        tasty-hedgehog,
+  hs-source-dirs:       test
+  main-is:              hedgehog-extras-test.hs
+  type:                 exitcode-stdio-1.0
+
+  other-modules:        Hedgehog.Extras.Stock.IO.Network.PortSpec
+
+  build-tool-depends:   tasty-discover:tasty-discover
