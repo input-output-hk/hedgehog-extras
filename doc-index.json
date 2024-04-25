@@ -1014,6 +1014,60 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:defaultExecConfig"
   },
   {
+    "display_html": "<a href=\"#v:runWithWatchdog_\">runWithWatchdog_</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadBaseControl <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig\" title=\"Hedgehog.Extras.Test.TestWatchdog\">WatchdogConfig</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; m a) &#8594; m a",
+    "name": "runWithWatchdog_",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithWatchdog_"
+  },
+  {
+    "display_html": "<a href=\"#v:runWithWatchdog\">runWithWatchdog</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadBaseControl <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig\" title=\"Hedgehog.Extras.Test.TestWatchdog\">WatchdogConfig</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m a) &#8594; m a",
+    "name": "runWithWatchdog",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithWatchdog"
+  },
+  {
+    "display_html": "<a href=\"#v:runWithDefaultWatchdog_\">runWithDefaultWatchdog_</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadBaseControl <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; m a) &#8594; m a",
+    "name": "runWithDefaultWatchdog_",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithDefaultWatchdog_"
+  },
+  {
+    "display_html": "<a href=\"#v:runWithDefaultWatchdog\">runWithDefaultWatchdog</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadBaseControl <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m a) &#8594; m a",
+    "name": "runWithDefaultWatchdog",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithDefaultWatchdog"
+  },
+  {
+    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Watchdog\">Watchdog</a>",
+    "name": "Watchdog",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog"
+  },
+  {
+    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:WatchdogConfig\">WatchdogConfig</a> = <a href=\"#v:WatchdogConfig\">WatchdogConfig</a> {<ul class=\"subs\"><li><a href=\"#v:watchdogTimeout\">watchdogTimeout</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a></li></ul>}",
+    "name": "WatchdogConfig WatchdogConfig watchdogTimeout",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig"
+  },
+  {
+    "display_html": "<a href=\"#v:kickWatchdog\">kickWatchdog</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m ()",
+    "name": "kickWatchdog",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:kickWatchdog"
+  },
+  {
+    "display_html": "<a href=\"#v:poisonWatchdog\">poisonWatchdog</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m ()",
+    "name": "poisonWatchdog",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:poisonWatchdog"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-TestWatchdog.html\">Hedgehog.Extras.Test.TestWatchdog</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
+  },
+  {
     "display_html": "module <a href=\"Hedgehog-Extras-Test-Process.html\">Hedgehog.Extras.Test.Process</a>",
     "name": "",
     "module": "Hedgehog.Extras.Test",
