@@ -48,6 +48,7 @@ module Hedgehog.Extras.Test.File
 
   , appendFileTimeDelta
   , assertDirectoryMissing
+  , assertDirectoryExists
   ) where
 
 import           Control.Applicative (Applicative (..))

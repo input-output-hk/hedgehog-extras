@@ -131,18 +131,26 @@ library
                         Hedgehog.Extras.Test.MonadAssertion
                         Hedgehog.Extras.Test.Network
                         Hedgehog.Extras.Test.Process
+                        Hedgehog.Extras.Test.TestWatchdog
+                        Hedgehog.Extras.Test.Tripwire
 
 test-suite hedgehog-extras-test
   import:               base, project-config,
                         hedgehog,
                         hedgehog-extras,
                         network,
+                        process,
+                        resourcet,
                         tasty,
                         tasty-hedgehog,
+                        transformers,
+                        time,
   hs-source-dirs:       test
   main-is:              hedgehog-extras-test.hs
   type:                 exitcode-stdio-1.0
 
   other-modules:        Hedgehog.Extras.Stock.IO.Network.PortSpec
+                        Hedgehog.Extras.Test.TestWatchdogSpec
 
   build-tool-depends:   tasty-discover:tasty-discover
+  ghc-options:          -threaded -rtsopts "-with-rtsopts=-N -T"
