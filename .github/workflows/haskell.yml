@@ -20,7 +20,7 @@ jobs:
 
     env:
       # Modify this value to "invalidate" the cabal cache.
-      CABAL_CACHE_VERSION: "2022-12-30"
+      CABAL_CACHE_VERSION: "2024-05-01-1"
 
     strategy:
       fail-fast: false

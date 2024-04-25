@@ -66,14 +66,17 @@ __Don't use concurrency abstractions from this module, when you need to aggregat
 -}
 module Hedgehog.Extras.Test.Concurrent
   ( threadDelay
+  , asyncRegister_
   -- * Re-exports of concurrency abstractions from @lifted-base@
   , module Control.Concurrent.Async.Lifted
+  , module Control.Concurrent.MVar.Lifted
   , module System.Timeout.Lifted
   ) where
 
 import           Control.Applicative
 import           Control.Concurrent.Async.Lifted
 import qualified Control.Concurrent.Lifted as IO
+import           Control.Concurrent.MVar.Lifted
 import           Control.Monad.Base
 import           Control.Monad.IO.Class
 import           Control.Monad.Trans.Control
@@ -85,12 +88,27 @@ import           System.IO (IO)
 import           System.Timeout.Lifted
 import qualified UnliftIO
 
+import           Control.Monad
+import           Control.Monad.Catch (MonadCatch)
+import           GHC.Stack
 import           Hedgehog
 import qualified Hedgehog as H
 
 -- | Delay the thread by 'n' milliseconds.
-threadDelay :: (MonadTest m, MonadIO m) => Int -> m ()
+threadDelay :: (HasCallStack, MonadTest m, MonadIO m) => Int -> m ()
 threadDelay n = GHC.withFrozenCallStack . H.evalIO $ IO.threadDelay n
+
+-- | Runs an action in background, and registers its cancellation to 'MonadResource'.
+asyncRegister_ :: HasCallStack
+               => MonadTest m
+               => MonadResource m
+               => MonadCatch m
+               => IO a -- ^ Action to run in background
+               -> m ()
+asyncRegister_ act = GHC.withFrozenCallStack $ void . H.evalM $ allocate (async act) cleanUp
+  where
+    cleanUp :: Async a -> IO ()
+    cleanUp a = cancel a >> void (link a)
 
 instance MonadBase IO (ResourceT IO) where
   liftBase = liftIO
