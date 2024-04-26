@@ -1068,6 +1068,12 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:poisonWatchdog"
   },
   {
+    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:WatchdogException\">WatchdogException</a> = <a href=\"#v:WatchdogException\">WatchdogException</a> {<ul class=\"subs\"><li><a href=\"#v:timeElapsed\">timeElapsed</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/time-1.11.1.1/Data-Time-Clock.html#t:NominalDiffTime\" title=\"Data.Time.Clock\">NominalDiffTime</a></li></ul>}",
+    "name": "WatchdogException WatchdogException timeElapsed",
+    "module": "Hedgehog.Extras.Test.TestWatchdog",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogException"
+  },
+  {
     "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Tripwire\">Tripwire</a>",
     "name": "Tripwire",
     "module": "Hedgehog.Extras.Test.Tripwire",
