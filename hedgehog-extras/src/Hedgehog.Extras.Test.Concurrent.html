@@ -110,7 +110,7 @@ IO a -&gt; m a
 </span><span class="hs-identifier hs-var">IO.threadDelay</span></span><span> </span><span class="annot"><span class="annottext">Int
 </span><a href="#local-6989586621679122873"><span class="hs-identifier hs-var">n</span></a></span><span>
 </span><span id="line-100"></span><span>
-</span><span id="line-101"></span><span class="hs-comment">-- | Runs an action in background, and registers cleanup to `MonadResource m`</span><span>
+</span><span id="line-101"></span><span class="hs-comment">-- | Runs an action in background, and registers its cancellation to 'MonadResource'.</span><span>
 </span><span id="line-102"></span><span id="local-6989586621679122930"><span id="local-6989586621679122933"><span class="annot"><a href="Hedgehog.Extras.Test.Concurrent.html#asyncRegister_"><span class="hs-identifier hs-type">asyncRegister_</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">HasCallStack</span></a></span><span>
 </span><span id="line-103"></span><span>               </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadTest</span></span><span> </span><span class="annot"><a href="#local-6989586621679122933"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-104"></span><span>               </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadResource</span></span><span> </span><span class="annot"><a href="#local-6989586621679122933"><span class="hs-identifier hs-type">m</span></a></span><span>
