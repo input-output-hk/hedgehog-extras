@@ -210,10 +210,16 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Stock-Time.html#v:formatIso8601"
   },
   {
-    "display_html": "<a href=\"#v:threadDelay\">threadDelay</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m ()",
+    "display_html": "<a href=\"#v:threadDelay\">threadDelay</a> &#8759; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m ()",
     "name": "threadDelay",
     "module": "Hedgehog.Extras.Test.Concurrent",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Concurrent.html#v:threadDelay"
+  },
+  {
+    "display_html": "<a href=\"#v:asyncRegister_\">asyncRegister_</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadTest m &#8658; MonadResource m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m ()",
+    "name": "asyncRegister_",
+    "module": "Hedgehog.Extras.Test.Concurrent",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Concurrent.html#v:asyncRegister_"
   },
   {
     "display_html": "<span class=\"keyword\">class</span> <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad.html#t:Monad\" title=\"Control.Monad\">Monad</a> m &#8658; <a href=\"#t:MonadAssertion\">MonadAssertion</a> m <span class=\"keyword\">where</span><ul class=\"subs\"><li><a href=\"#v:throwAssertion\">throwAssertion</a> &#8759; Failure &#8594; m a</li><li><a href=\"#v:catchAssertion\">catchAssertion</a> &#8759; m a &#8594; (Failure &#8594; m a) &#8594; m a</li></ul>",
@@ -1060,6 +1066,48 @@
     "name": "poisonWatchdog",
     "module": "Hedgehog.Extras.Test.TestWatchdog",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:poisonWatchdog"
+  },
+  {
+    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Tripwire\">Tripwire</a>",
+    "name": "Tripwire",
+    "module": "Hedgehog.Extras.Test.Tripwire",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#t:Tripwire"
+  },
+  {
+    "display_html": "<a href=\"#v:makeTripwire\">makeTripwire</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; m <a href=\"Hedgehog-Extras-Test-Tripwire.html#t:Tripwire\" title=\"Hedgehog.Extras.Test.Tripwire\">Tripwire</a>",
+    "name": "makeTripwire",
+    "module": "Hedgehog.Extras.Test.Tripwire",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#v:makeTripwire"
+  },
+  {
+    "display_html": "<a href=\"#v:triggerTripwire\">triggerTripwire</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-Tripwire.html#t:Tripwire\" title=\"Hedgehog.Extras.Test.Tripwire\">Tripwire</a> &#8594; m ()",
+    "name": "triggerTripwire",
+    "module": "Hedgehog.Extras.Test.Tripwire",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#v:triggerTripwire"
+  },
+  {
+    "display_html": "<a href=\"#v:resetTripwire\">resetTripwire</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-Tripwire.html#t:Tripwire\" title=\"Hedgehog.Extras.Test.Tripwire\">Tripwire</a> &#8594; m ()",
+    "name": "resetTripwire",
+    "module": "Hedgehog.Extras.Test.Tripwire",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#v:resetTripwire"
+  },
+  {
+    "display_html": "<a href=\"#v:checkTripwire\">checkTripwire</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadTest m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-Tripwire.html#t:Tripwire\" title=\"Hedgehog.Extras.Test.Tripwire\">Tripwire</a> &#8594; m ()",
+    "name": "checkTripwire",
+    "module": "Hedgehog.Extras.Test.Tripwire",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#v:checkTripwire"
+  },
+  {
+    "display_html": "<a href=\"#v:isTriggered\">isTriggered</a> &#8759; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-Tripwire.html#t:Tripwire\" title=\"Hedgehog.Extras.Test.Tripwire\">Tripwire</a> &#8594; m (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:CallStack\" title=\"GHC.Stack\">CallStack</a>)",
+    "name": "isTriggered",
+    "module": "Hedgehog.Extras.Test.Tripwire",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#v:isTriggered"
+  },
+  {
+    "display_html": "module <a href=\"Hedgehog-Extras-Test-Tripwire.html\">Hedgehog.Extras.Test.Tripwire</a>",
+    "name": "",
+    "module": "Hedgehog.Extras.Test",
+    "link": "hedgehog-extras/"
   },
   {
     "display_html": "module <a href=\"Hedgehog-Extras-Test-TestWatchdog.html\">Hedgehog.Extras.Test.TestWatchdog</a>",
