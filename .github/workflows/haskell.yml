@@ -25,15 +25,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ghc: ["8.10.7", "9.2.7", "9.6.3", "9.8.1"]
+        ghc: ["9.2.8", "9.6.5", "9.8.2"]
         os: [ubuntu-latest, macos-latest, windows-latest]
-        cabal: ["3.10.1.0"]
+        cabal: ["3.10.3.0"]
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Haskell
-        uses: input-output-hk/setup-haskell@v1
+      - name: Setup Haskell
+        uses: haskell-actions/setup@v2
         id: setup-haskell
         with:
           ghc-version: ${{ matrix.ghc }}
