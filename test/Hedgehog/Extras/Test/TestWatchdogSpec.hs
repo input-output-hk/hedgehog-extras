@@ -1,5 +1,6 @@
 {-# LANGUAGE NumericUnderscores #-}
 {-# LANGUAGE LambdaCase #-}
+
 module Hedgehog.Extras.Test.TestWatchdogSpec where
 
 import           Control.Concurrent
@@ -103,6 +104,53 @@ hprop_check_watchdog_kills_hanged_thread_with_its_children = H.propertyOnce $ do
     H.byDeadlineM 0.2 deadline "tailPid" $ do
       tailPid <- liftIO $ H.readMVar procHandle >>= P.getPid
       tailPid === Nothing
+
+hprop_check_asyncRegister_finishes_with_test :: Property
+hprop_check_asyncRegister_finishes_with_test = H.propertyOnce $ do
+  childTid <- H.newEmptyMVar
+  grandChildTid1 <- H.newEmptyMVar
+  grandChildTid2 <- H.newEmptyMVar
+  childTripwire <- H.makeTripwire
+  grandChildTripwire1 <- H.makeTripwire
+  grandChildTripwire2 <- H.makeTripwire
+
+  -- test that asyncRegister_ gets killed when the main thread finishes
+  (result, _) <- spawnTestT $ do
+    liftIO $ myThreadId >>= H.putMVar childTid
+
+    H.asyncRegister_ $ do
+      liftIO $ myThreadId >>= H.putMVar grandChildTid1
+      threadDelay 10_000_000
+      H.trip_ grandChildTripwire1
+
+    H.asyncRegister_ $ do
+      liftIO $ myThreadId >>= H.putMVar grandChildTid2
+      threadDelay 10_000_000
+      H.trip_ grandChildTripwire2
+
+    H.trip_ childTripwire
+
+  result === Right ()
+  -- double check that main thread finished successfully
+  H.assertTripped childTripwire
+  H.assertNotTripped grandChildTripwire1
+  H.assertNotTripped grandChildTripwire2
+
+  -- Give OS 5 seconds to do the process cleanup
+  deadline <- D.addUTCTime 5 <$> liftIO D.getCurrentTime
+
+  H.byDeadlineM 0.2 deadline "childStatus" $ do
+    childStatus <- liftIO $ H.readMVar childTid >>= threadStatus
+    childStatus === ThreadFinished
+
+  H.byDeadlineM 0.2 deadline "grandChildStatus1" $ do
+    grandChildStatus1 <- liftIO $ H.readMVar grandChildTid1 >>= threadStatus
+    grandChildStatus1 === ThreadFinished
+
+  H.byDeadlineM 0.2 deadline "grandChildStatus2" $ do
+    grandChildStatus2 <- liftIO $ H.readMVar grandChildTid2 >>= threadStatus
+    grandChildStatus2 === ThreadFinished
+
 
 assertWatchdogExceptionWasRaised :: HasCallStack
                                  => H.MonadTest m
