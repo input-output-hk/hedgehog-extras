@@ -23,6 +23,8 @@ randomPort :: ()
   -> m PortNumber
 randomPort hostAddress = do
   sock <- liftIO $ socket AF_INET Stream defaultProtocol
+  -- Allow the port to be reused immediately after the socket is closed
+  liftIO $ setSocketOption sock ReuseAddr 1
   liftIO $ bind sock $ SockAddrInet defaultPort hostAddress
   SockAddrInet port _ <- liftIO $ getSocketName sock
   liftIO $ close sock
@@ -35,6 +37,7 @@ reserveRandomPort :: ()
   -> m (ReleaseKey, PortNumber)
 reserveRandomPort hostAddress = do
   sock <- liftIO $ socket AF_INET Stream defaultProtocol
+  liftIO $ setSocketOption sock ReuseAddr 1
   liftIO $ bind sock $ SockAddrInet defaultPort hostAddress
   SockAddrInet port _ <- liftIO $ getSocketName sock
   releaseKey <- register $ close sock
@@ -48,6 +51,7 @@ portInUse :: ()
   -> m Bool
 portInUse hostAddress pn = do
   sock <- liftIO $ socket AF_INET Stream defaultProtocol
+  liftIO $ setSocketOption sock ReuseAddr 1
   result <- liftIO $ try @SomeException $ bind sock (SockAddrInet pn hostAddress)
   liftIO $ close sock
   return $ either (const False) (const True) result
