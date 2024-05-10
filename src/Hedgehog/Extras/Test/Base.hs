@@ -154,10 +154,10 @@ workspace prefixPath f = GHC.withFrozenCallStack $ do
   maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
   ws <- H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
   H.annotate $ "Workspace: " <> ws
-  liftIO $ IO.writeFile (ws </> "module") callerModuleName
+  H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
   f ws
   when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $ do
-    H.evalIO $ IO.removeDirectoryRecursive ws
+    H.evalIO $ IO.removePathForcibly ws
 
 -- | Create a workspace directory which will exist for at least the duration of
 -- the supplied block.
