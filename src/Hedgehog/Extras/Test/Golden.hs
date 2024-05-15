@@ -58,22 +58,24 @@ recreateGoldenFiles = IO.unsafePerformIO $ do
   return $ value == Just "1"
 
 writeGoldenFile :: ()
+  => HasCallStack
   => MonadIO m
   => MonadTest m
   => FilePath
   -> String
   -> m ()
-writeGoldenFile goldenFile actualContent = do
+writeGoldenFile goldenFile actualContent = GHC.withFrozenCallStack $ do
   H.note_ $ "Creating golden file " <> goldenFile
   H.createDirectoryIfMissing_ (takeDirectory goldenFile)
   H.writeFile goldenFile actualContent
 
 reportGoldenFileMissing :: ()
+  => HasCallStack
   => MonadIO m
   => MonadTest m
   => FilePath
   -> m ()
-reportGoldenFileMissing goldenFile = do
+reportGoldenFileMissing goldenFile = GHC.withFrozenCallStack $ do
   H.note_ $ unlines
     [ "Golden file " <> goldenFile <> " does not exist."
     , "To create it, run with CREATE_GOLDEN_FILES=1."
@@ -82,12 +84,13 @@ reportGoldenFileMissing goldenFile = do
   H.failure
 
 checkAgainstGoldenFile :: ()
+  => HasCallStack
   => MonadIO m
   => MonadTest m
   => FilePath
   -> [String]
   -> m ()
-checkAgainstGoldenFile goldenFile actualLines = do
+checkAgainstGoldenFile goldenFile actualLines = GHC.withFrozenCallStack $ do
   referenceLines <- List.lines <$> H.readFile goldenFile
   let difference = getGroupedDiff actualLines referenceLines
   case difference of
@@ -95,7 +98,7 @@ checkAgainstGoldenFile goldenFile actualLines = do
     [Both{}] -> pure ()
     _        -> do
       H.note_ $ unlines
-        [ "Golden test failed against golden file: " <> goldenFile
+        [ "Golden test failed against the golden file."
         , "To recreate golden file, run with RECREATE_GOLDEN_FILES=1."
         ]
       failMessage callStack $ ppDiff difference
