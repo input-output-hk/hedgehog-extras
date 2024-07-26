@@ -86,7 +86,7 @@ downloadToFile url path = GHC.withFrozenCallStack $ do
   H.note_ $ "Downloading " <> url <> " to " <> path
   H.evalIO $ HTTP.simpleHttp url >>= LBS.writeFile path
 
-tarErrors :: TAR.Entries (Either TAR.FormatError TAR.TarBombError) -> [Either TAR.FormatError TAR.TarBombError]
+tarErrors :: TAR.GenEntries tarPath linkTarget e -> [e]
 tarErrors entries = TAR.foldEntries (flip const) id (:) entries []
 
 -- | Download a github commit to a temporary directory, extract it and return the path to the extracted directory.

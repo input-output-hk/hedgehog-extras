@@ -19,7 +19,7 @@ source-repository head
 common aeson                        { build-depends: aeson                            >= 2.0.0.0                  }
 common aeson-pretty                 { build-depends: aeson-pretty                     >= 0.8.5                    }
 common async                        { build-depends: async                                                        }
-common base                         { build-depends: base                             >= 4.12       && < 4.20     }
+common base                         { build-depends: base                             >= 4.12       && < 4.21     }
 common bytestring                   { build-depends: bytestring                                                   }
 common deepseq                      { build-depends: deepseq                                                      }
 common Diff                         { build-depends: Diff                                                         }
@@ -38,7 +38,7 @@ common network                      { build-depends: network                    
 common process                      { build-depends: process                                                      }
 common resourcet                    { build-depends: resourcet                                                    }
 common stm                          { build-depends: stm                                                          }
-common tar                          { build-depends: tar                              <  0.6                      }
+common tar                          { build-depends: tar                              ^>= 0.6                     }
 common tasty                        { build-depends: tasty                                                        }
 common tasty-hedgehog               { build-depends: tasty-hedgehog                                               }
 common tasty-quickcheck             { build-depends: tasty-quickcheck                                             }
