@@ -60,6 +60,7 @@ module Hedgehog.Extras.Test.Base
 
   , failWithCustom
   , failMessage
+  , expectFailure
 
   , assertByDeadlineM
   , assertByDeadlineIO
@@ -155,6 +156,14 @@ failWithCustom cs mdiff msg = liftTest $ mkTest (Left $ H.Failure (getCaller cs)
 -- | Takes a 'CallStack' so the error can be rendered at the appropriate call site.
 failMessage :: MonadTest m => CallStack -> String -> m a
 failMessage cs = failWithCustom cs Nothing
+
+-- | Invert the behavior of a property: success becomes failure and vice versa.
+expectFailure :: HasCallStack => H.TestT IO m -> H.PropertyT IO ()
+expectFailure prop = GHC.withFrozenCallStack $ do
+  (res, _) <- H.evalIO $ H.runTestT prop
+  case res of
+    Left _ -> pure () -- Property failed so we succeed
+    _ -> H.failWith Nothing "Expected the test to fail but it passed" -- Property passed but we expected a failure
 
 -- | Create a workspace directory which will exist for at least the duration of
 -- the supplied block.
