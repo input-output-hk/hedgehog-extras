@@ -37,6 +37,7 @@ common mtl                          { build-depends: mtl                        
 common network                      { build-depends: network                                                      }
 common process                      { build-depends: process                                                      }
 common resourcet                    { build-depends: resourcet                                                    }
+common retry                        { build-depends: retry                             >= 0.9                     }
 common stm                          { build-depends: stm                                                          }
 common tar                          { build-depends: tar                              ^>= 0.6                     }
 common tasty                        { build-depends: tasty                                                        }
@@ -89,6 +90,7 @@ library
                         network,
                         process,
                         resourcet,
+                        retry,
                         stm,
                         tar,
                         temporary,
