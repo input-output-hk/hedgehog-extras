@@ -234,13 +234,13 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:propertyOnce"
   },
   {
-    "display_html": "<a href=\"#v:workspace\">workspace</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()) &#8594; m ()",
+    "display_html": "<a href=\"#v:workspace\">workspace</a> &#8759; MonadTest m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; MonadResource m &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()) &#8594; m ()",
     "name": "workspace",
     "module": "Hedgehog.Extras.Test.Base",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:workspace"
   },
   {
-    "display_html": "<a href=\"#v:moduleWorkspace\">moduleWorkspace</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()) &#8594; m ()",
+    "display_html": "<a href=\"#v:moduleWorkspace\">moduleWorkspace</a> &#8759; (MonadTest m, MonadResource m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; (<a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()) &#8594; m ()",
     "name": "moduleWorkspace",
     "module": "Hedgehog.Extras.Test.Base",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:moduleWorkspace"
@@ -288,34 +288,10 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShow"
   },
   {
-    "display_html": "<a href=\"#v:noteShowPretty\">noteShowPretty</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; a &#8594; m a",
-    "name": "noteShowPretty",
+    "display_html": "<a href=\"#v:noteShow_\">noteShow_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; a &#8594; m ()",
+    "name": "noteShow_",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowPretty"
-  },
-  {
-    "display_html": "<a href=\"#v:noteShowIO\">noteShowIO</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m a",
-    "name": "noteShowIO",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowIO"
-  },
-  {
-    "display_html": "<a href=\"#v:noteShowPrettyIO\">noteShowPrettyIO</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m a",
-    "name": "noteShowPrettyIO",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowPrettyIO"
-  },
-  {
-    "display_html": "<a href=\"#v:noteShowIO_\">noteShowIO_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m ()",
-    "name": "noteShowIO_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowIO_"
-  },
-  {
-    "display_html": "<a href=\"#v:noteShowPrettyIO_\">noteShowPrettyIO_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m ()",
-    "name": "noteShowPrettyIO_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowPrettyIO_"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShow_"
   },
   {
     "display_html": "<a href=\"#v:noteShowM\">noteShowM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; m a &#8594; m a",
@@ -324,34 +300,22 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowM"
   },
   {
-    "display_html": "<a href=\"#v:noteShowPrettyM\">noteShowPrettyM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; m a &#8594; m a",
-    "name": "noteShowPrettyM",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowPrettyM"
-  },
-  {
     "display_html": "<a href=\"#v:noteShowM_\">noteShowM_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; m a &#8594; m ()",
     "name": "noteShowM_",
     "module": "Hedgehog.Extras.Test.Base",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowM_"
   },
   {
-    "display_html": "<a href=\"#v:noteShowPrettyM_\">noteShowPrettyM_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/exceptions-0.10.4/Control-Monad-Catch.html#t:MonadCatch\" title=\"Control.Monad.Catch\">MonadCatch</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; m a &#8594; m ()",
-    "name": "noteShowPrettyM_",
+    "display_html": "<a href=\"#v:noteShowIO\">noteShowIO</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m a",
+    "name": "noteShowIO",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowPrettyM_"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowIO"
   },
   {
-    "display_html": "<a href=\"#v:noteShow_\">noteShow_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; a &#8594; m ()",
-    "name": "noteShow_",
+    "display_html": "<a href=\"#v:noteShowIO_\">noteShowIO_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a &#8594; m ()",
+    "name": "noteShowIO_",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShow_"
-  },
-  {
-    "display_html": "<a href=\"#v:noteShowPretty_\">noteShowPretty_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a) &#8658; a &#8594; m ()",
-    "name": "noteShowPretty_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowPretty_"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteShowIO_"
   },
   {
     "display_html": "<a href=\"#v:noteEach\">noteEach</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; f a &#8594; m (f a)",
@@ -360,34 +324,10 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEach"
   },
   {
-    "display_html": "<a href=\"#v:noteEachPretty\">noteEachPretty</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; f a &#8594; m (f a)",
-    "name": "noteEachPretty",
+    "display_html": "<a href=\"#v:noteEach_\">noteEach_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; f a &#8594; m ()",
+    "name": "noteEach_",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachPretty"
-  },
-  {
-    "display_html": "<a href=\"#v:noteEachIO\">noteEachIO</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (f a) &#8594; m (f a)",
-    "name": "noteEachIO",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachIO"
-  },
-  {
-    "display_html": "<a href=\"#v:noteEachPrettyIO\">noteEachPrettyIO</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (f a) &#8594; m (f a)",
-    "name": "noteEachPrettyIO",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachPrettyIO"
-  },
-  {
-    "display_html": "<a href=\"#v:noteEachIO_\">noteEachIO_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (f a) &#8594; m ()",
-    "name": "noteEachIO_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachIO_"
-  },
-  {
-    "display_html": "<a href=\"#v:noteEachPrettyIO_\">noteEachPrettyIO_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (f a) &#8594; m ()",
-    "name": "noteEachPrettyIO_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachPrettyIO_"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEach_"
   },
   {
     "display_html": "<a href=\"#v:noteEachM\">noteEachM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; m (f a) &#8594; m (f a)",
@@ -396,34 +336,22 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachM"
   },
   {
-    "display_html": "<a href=\"#v:noteEachPrettyM\">noteEachPrettyM</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; m (f a) &#8594; m (f a)",
-    "name": "noteEachPrettyM",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachPrettyM"
-  },
-  {
     "display_html": "<a href=\"#v:noteEachM_\">noteEachM_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; m (f a) &#8594; m ()",
     "name": "noteEachM_",
     "module": "Hedgehog.Extras.Test.Base",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachM_"
   },
   {
-    "display_html": "<a href=\"#v:noteEachPrettyM_\">noteEachPrettyM_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; m (f a) &#8594; m ()",
-    "name": "noteEachPrettyM_",
+    "display_html": "<a href=\"#v:noteEachIO\">noteEachIO</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (f a) &#8594; m (f a)",
+    "name": "noteEachIO",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachPrettyM_"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachIO"
   },
   {
-    "display_html": "<a href=\"#v:noteEach_\">noteEach_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; f a &#8594; m ()",
-    "name": "noteEach_",
+    "display_html": "<a href=\"#v:noteEachIO_\">noteEachIO_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> (f a) &#8594; m ()",
+    "name": "noteEachIO_",
     "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEach_"
-  },
-  {
-    "display_html": "<a href=\"#v:noteEachPretty_\">noteEachPretty_</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/Data-Traversable.html#t:Traversable\" title=\"Data.Traversable\">Traversable</a> f) &#8658; f a &#8594; m ()",
-    "name": "noteEachPretty_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachPretty_"
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:noteEachIO_"
   },
   {
     "display_html": "<a href=\"#v:noteTempFile\">noteTempFile</a> &#8759; (MonadTest m, <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a>",
