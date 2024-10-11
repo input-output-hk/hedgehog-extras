@@ -92,9 +92,9 @@ import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, un
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
-import           Control.Monad.Trans.Resource (ReleaseKey, runResourceT)
+import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register, runResourceT)
 import           Data.Aeson (Result (..))
-import           Data.Bool (Bool, (&&), otherwise)
+import           Data.Bool (Bool (..), otherwise, (&&))
 import           Data.Either (Either (..), either)
 import           Data.Eq (Eq ((/=)))
 import           Data.Foldable (for_)
@@ -108,7 +108,7 @@ import           Data.String (String)
 import           Data.Time.Clock (NominalDiffTime, UTCTime)
 import           Data.Traversable (Traversable)
 import           Data.Tuple (snd)
-import           GHC.Stack (CallStack, HasCallStack)
+import           GHC.Stack
 import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
 import           Hedgehog.Extras.Stock.CallStack (callerModuleName)
@@ -123,7 +123,10 @@ import           Text.Show (Show (show))
 
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
+import           Control.Exception (IOException)
+import           Control.Monad.Catch (Handler (..))
 import qualified Control.Monad.Trans.Resource as IO
+import qualified Control.Retry as R
 import qualified Data.List as L
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
@@ -161,8 +164,14 @@ failMessage cs = failWithCustom cs Nothing
 --
 -- The directory will be deleted if the block succeeds, but left behind if
 -- the block fails.
-workspace :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> (FilePath -> m ()) -> m ()
-workspace prefixPath f = GHC.withFrozenCallStack $ do
+workspace
+  :: MonadTest m
+  => HasCallStack
+  => MonadResource m
+  => FilePath
+  -> (FilePath -> m ())
+  -> m ()
+workspace prefixPath f = withFrozenCallStack $ do
   systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
   maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
   ws <- H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
@@ -170,7 +179,17 @@ workspace prefixPath f = GHC.withFrozenCallStack $ do
   H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
   f ws
   when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $ do
-    H.evalIO $ IO.removePathForcibly ws
+    -- try to delete the directory 20 times, 100ms apart
+    let retryPolicy = R.constantDelay 100000 <> R.limitRetries 20
+        -- retry only on IOExceptions
+        ioExH _ = Handler $ \(_ :: IOException) -> pure True
+    -- For some reason, the temporary directory removal sometimes fails.
+    -- Lets wrap this in MonadResource to try multiple times, during the cleanup, before we fail.
+    void
+      . register
+      . R.recovering retryPolicy [ioExH]
+      . const
+      $ IO.removePathForcibly ws
 
 -- | Create a workspace directory which will exist for at least the duration of
 -- the supplied block.
@@ -182,7 +201,7 @@ workspace prefixPath f = GHC.withFrozenCallStack $ do
 -- the block fails.
 --
 -- The 'prefix' argument should not contain directory delimeters.
-moduleWorkspace :: (MonadTest m, MonadIO m, HasCallStack) => String -> (FilePath -> m ()) -> m ()
+moduleWorkspace :: (MonadTest m, MonadResource m, HasCallStack) => String -> (FilePath -> m ()) -> m ()
 moduleWorkspace prefix f = GHC.withFrozenCallStack $ do
   let srcModule = maybe "UnknownModule" (GHC.srcLocModule . snd) (listToMaybe (GHC.getCallStack GHC.callStack))
   workspace (prefix <> "-" <> srcModule) f
