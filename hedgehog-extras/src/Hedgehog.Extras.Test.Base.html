@@ -283,7 +283,7 @@ IO a -&gt; m a
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">True</span></a></span><span>
 </span><span id="line-173"></span><span>    </span><span class="hs-comment">-- For some reason, the temporary directory removal sometimes fails.</span><span>
-</span><span id="line-174"></span><span>    </span><span class="hs-comment">-- Lets wrap this in MonadResource try multiple times before we fail.</span><span>
+</span><span id="line-174"></span><span>    </span><span class="hs-comment">-- Lets wrap this in MonadResource to try multiple times, during the cleanup, before we fail.</span><span>
 </span><span id="line-175"></span><span>    </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Functor f =&gt; f a -&gt; f ()
 </span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">void</span></a></span><span>
 </span><span id="line-176"></span><span>      </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
