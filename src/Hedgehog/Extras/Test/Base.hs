@@ -16,18 +16,30 @@ module Hedgehog.Extras.Test.Base
   , noteIO_
 
   , noteShow
-  , noteShow_
-  , noteShowM
-  , noteShowM_
+  , noteShowPretty
   , noteShowIO
+  , noteShowPrettyIO
   , noteShowIO_
+  , noteShowPrettyIO_
+  , noteShowM
+  , noteShowPrettyM
+  , noteShowM_
+  , noteShowPrettyM_
+  , noteShow_
+  , noteShowPretty_
 
   , noteEach
-  , noteEach_
-  , noteEachM
-  , noteEachM_
+  , noteEachPretty
   , noteEachIO
+  , noteEachPrettyIO
   , noteEachIO_
+  , noteEachPrettyIO_
+  , noteEachM
+  , noteEachPrettyM
+  , noteEachM_
+  , noteEachPrettyM_
+  , noteEach_
+  , noteEachPretty_
 
   , noteTempFile
 
@@ -119,6 +131,7 @@ import qualified Hedgehog as H
 import qualified Hedgehog.Extras.Internal.Test.Integration as H
 import qualified Hedgehog.Extras.Test.MonadAssertion as H
 import qualified Hedgehog.Internal.Property as H
+import qualified Hedgehog.Internal.Show as H
 import qualified System.Directory as IO
 import qualified System.Environment as IO
 import qualified System.Info as IO
@@ -224,15 +237,36 @@ noteShow a = GHC.withFrozenCallStack $ do
   noteWithCallstack GHC.callStack (show b)
   return b
 
+-- | Annotate the given value, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteShowPretty :: (MonadTest m, HasCallStack, Show a) => a -> m a
+noteShowPretty a = GHC.withFrozenCallStack $ do
+  !b <- H.eval a
+  noteWithCallstack GHC.callStack (H.showPretty b)
+  return b
+
 -- | Annotate the given value returning unit.
 noteShow_ :: (MonadTest m, HasCallStack, Show a) => a -> m ()
 noteShow_ a = GHC.withFrozenCallStack $ noteWithCallstack GHC.callStack (show a)
+
+-- | Annotate the given value returning unit, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteShowPretty_ :: (MonadTest m, HasCallStack, Show a) => a -> m ()
+noteShowPretty_ a = GHC.withFrozenCallStack $ noteWithCallstack GHC.callStack (H.showPretty a)
 
 -- | Annotate the given value in a monadic context.
 noteShowM :: (MonadTest m, MonadCatch m, HasCallStack, Show a) => m a -> m a
 noteShowM a = GHC.withFrozenCallStack $ do
   !b <- H.evalM a
   noteWithCallstack GHC.callStack (show b)
+  return b
+
+-- | Annotate the given value in a monadic context, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteShowPrettyM :: (MonadTest m, MonadCatch m, HasCallStack, Show a) => m a -> m a
+noteShowPrettyM a = GHC.withFrozenCallStack $ do
+  !b <- H.evalM a
+  noteWithCallstack GHC.callStack (H.showPretty b)
   return b
 
 -- | Annotate the given value in a monadic context returning unit.
@@ -242,11 +276,27 @@ noteShowM_ a = GHC.withFrozenCallStack $ do
   noteWithCallstack GHC.callStack (show b)
   return ()
 
+-- | Annotate the given value in a monadic context returning unit, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteShowPrettyM_ :: (MonadTest m, MonadCatch m, HasCallStack, Show a) => m a -> m ()
+noteShowPrettyM_ a = GHC.withFrozenCallStack $ do
+  !b <- H.evalM a
+  noteWithCallstack GHC.callStack (H.showPretty b)
+  return ()
+
 -- | Annotate the given value in IO.
 noteShowIO :: (MonadTest m, MonadIO m, HasCallStack, Show a) => IO a -> m a
 noteShowIO f = GHC.withFrozenCallStack $ do
   !a <- H.evalIO f
   noteWithCallstack GHC.callStack (show a)
+  return a
+
+-- | Annotate the given value in IO, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteShowPrettyIO :: (MonadTest m, MonadIO m, HasCallStack, Show a) => IO a -> m a
+noteShowPrettyIO f = GHC.withFrozenCallStack $ do
+  !a <- H.evalIO f
+  noteWithCallstack GHC.callStack (H.showPretty a)
   return a
 
 -- | Annotate the given value in IO returning unit.
@@ -256,15 +306,35 @@ noteShowIO_ f = GHC.withFrozenCallStack $ do
   noteWithCallstack GHC.callStack (show a)
   return ()
 
+-- | Annotate the given value in IO returning unit, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteShowPrettyIO_ :: (MonadTest m, MonadIO m, HasCallStack, Show a) => IO a -> m ()
+noteShowPrettyIO_ f = GHC.withFrozenCallStack $ do
+  !a <- H.evalIO f
+  noteWithCallstack GHC.callStack (H.showPretty a)
+  return ()
+
 -- | Annotate the each value in the given traversable.
 noteEach :: (MonadTest m, HasCallStack, Show a, Traversable f) => f a -> m (f a)
 noteEach as = GHC.withFrozenCallStack $ do
   for_ as $ noteWithCallstack GHC.callStack . show
   return as
 
+-- | Annotate the each value in the given traversable, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteEachPretty :: (MonadTest m, HasCallStack, Show a, Traversable f) => f a -> m (f a)
+noteEachPretty as = GHC.withFrozenCallStack $ do
+  for_ as $ noteWithCallstack GHC.callStack . H.showPretty
+  return as
+
 -- | Annotate the each value in the given traversable returning unit.
 noteEach_ :: (MonadTest m, HasCallStack, Show a, Traversable f) => f a -> m ()
 noteEach_ as = GHC.withFrozenCallStack $ for_ as $ noteWithCallstack GHC.callStack . show
+
+-- | Annotate the each value in the given traversable returning unit, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteEachPretty_ :: (MonadTest m, HasCallStack, Show a, Traversable f) => f a -> m ()
+noteEachPretty_ as = GHC.withFrozenCallStack $ for_ as $ noteWithCallstack GHC.callStack . H.showPretty
 
 -- | Annotate the each value in the given traversable in a monadic context.
 noteEachM :: (MonadTest m, HasCallStack, Show a, Traversable f) => m (f a) -> m (f a)
@@ -273,11 +343,26 @@ noteEachM f = GHC.withFrozenCallStack $ do
   for_ as $ noteWithCallstack GHC.callStack . show
   return as
 
+-- | Annotate the each value in the given traversable in a monadic context, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteEachPrettyM :: (MonadTest m, HasCallStack, Show a, Traversable f) => m (f a) -> m (f a)
+noteEachPrettyM f = GHC.withFrozenCallStack $ do
+  !as <- f
+  for_ as $ noteWithCallstack GHC.callStack . H.showPretty
+  return as
+
 -- | Annotate the each value in the given traversable in a monadic context returning unit.
 noteEachM_ :: (MonadTest m, HasCallStack, Show a, Traversable f) => m (f a) -> m ()
 noteEachM_ f = GHC.withFrozenCallStack $ do
   !as <- f
   for_ as $ noteWithCallstack GHC.callStack . show
+
+-- | Annotate the each value in the given traversable in a monadic context returning unit, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteEachPrettyM_ :: (MonadTest m, HasCallStack, Show a, Traversable f) => m (f a) -> m ()
+noteEachPrettyM_ f = GHC.withFrozenCallStack $ do
+  !as <- f
+  for_ as $ noteWithCallstack GHC.callStack . H.showPretty
 
 -- | Annotate the each value in the given traversable in IO.
 noteEachIO :: (MonadTest m, MonadIO m, HasCallStack, Show a, Traversable f) => IO (f a) -> m (f a)
@@ -286,11 +371,26 @@ noteEachIO f = GHC.withFrozenCallStack $ do
   for_ as $ noteWithCallstack GHC.callStack . show
   return as
 
+-- | Annotate the each value in the given traversable in IO, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteEachPrettyIO :: (MonadTest m, MonadIO m, HasCallStack, Show a, Traversable f) => IO (f a) -> m (f a)
+noteEachPrettyIO f = GHC.withFrozenCallStack $ do
+  !as <- H.evalIO f
+  for_ as $ noteWithCallstack GHC.callStack . H.showPretty
+  return as
+
 -- | Annotate the each value in the given traversable in IO returning unit.
 noteEachIO_ :: (MonadTest m, MonadIO m, HasCallStack, Show a, Traversable f) => IO (f a) -> m ()
 noteEachIO_ f = GHC.withFrozenCallStack $ do
   !as <- H.evalIO f
   for_ as $ noteWithCallstack GHC.callStack . show
+
+-- | Annotate the each value in the given traversable in IO returning unit, pretty printing it with indentation. Note that large data structures will take
+-- a significant amount of vertical screen space.
+noteEachPrettyIO_ :: (MonadTest m, MonadIO m, HasCallStack, Show a, Traversable f) => IO (f a) -> m ()
+noteEachPrettyIO_ f = GHC.withFrozenCallStack $ do
+  !as <- H.evalIO f
+  for_ as $ noteWithCallstack GHC.callStack . H.showPretty
 
 -- | Return the test file path after annotating it relative to the project root directory
 noteTempFile :: (MonadTest m, HasCallStack) => FilePath -> FilePath -> m FilePath
