@@ -60,6 +60,7 @@ module Hedgehog.Extras.Test.Base
 
   , failWithCustom
   , failMessage
+  , expectFailure
 
   , assertByDeadlineM
   , assertByDeadlineIO
@@ -89,7 +90,7 @@ module Hedgehog.Extras.Test.Base
 
 import           Control.Applicative (Applicative (..))
 import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
-import           Control.Monad.Catch (MonadCatch)
+import           Control.Monad.Catch (Handler (..), MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register, runResourceT)
@@ -124,7 +125,6 @@ import           Text.Show (Show (show))
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
 import           Control.Exception (IOException)
-import           Control.Monad.Catch (Handler (..))
 import qualified Control.Monad.Trans.Resource as IO
 import qualified Control.Retry as R
 import qualified Data.List as L
@@ -155,6 +155,14 @@ failWithCustom cs mdiff msg = liftTest $ mkTest (Left $ H.Failure (getCaller cs)
 -- | Takes a 'CallStack' so the error can be rendered at the appropriate call site.
 failMessage :: MonadTest m => CallStack -> String -> m a
 failMessage cs = failWithCustom cs Nothing
+
+-- | Invert the behavior of a property: success becomes failure and vice versa.
+expectFailure :: (MonadTest m, MonadIO m, HasCallStack) => H.TestT IO a -> m ()
+expectFailure prop = GHC.withFrozenCallStack $ do
+  (res, _) <- H.evalIO $ H.runTestT prop
+  case res of
+    Left _ -> pure () -- Property failed so we succeed
+    _ -> H.failWith Nothing "Expected the test to fail but it passed" -- Property passed but we expected a failure
 
 -- | Create a workspace directory which will exist for at least the duration of
 -- the supplied block.
