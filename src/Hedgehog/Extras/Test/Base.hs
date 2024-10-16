@@ -90,7 +90,7 @@ module Hedgehog.Extras.Test.Base
 
 import           Control.Applicative (Applicative (..))
 import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
-import           Control.Monad.Catch (MonadCatch)
+import           Control.Monad.Catch (Handler (..), MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register, runResourceT)
@@ -125,7 +125,6 @@ import           Text.Show (Show (show))
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
 import           Control.Exception (IOException)
-import           Control.Monad.Catch (Handler (..))
 import qualified Control.Monad.Trans.Resource as IO
 import qualified Control.Retry as R
 import qualified Data.List as L
@@ -158,7 +157,7 @@ failMessage :: MonadTest m => CallStack -> String -> m a
 failMessage cs = failWithCustom cs Nothing
 
 -- | Invert the behavior of a property: success becomes failure and vice versa.
-expectFailure :: HasCallStack => H.TestT IO m -> H.PropertyT IO ()
+expectFailure :: (MonadTest m, MonadIO m, HasCallStack) => H.TestT IO a -> m ()
 expectFailure prop = GHC.withFrozenCallStack $ do
   (res, _) <- H.evalIO $ H.runTestT prop
   case res of
