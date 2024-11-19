@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
-{-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE TypeApplications #-}
 
 module Hedgehog.Extras.Test.File
   ( createDirectoryIfMissing
@@ -65,6 +65,8 @@ import           Data.Maybe
 import           Data.Semigroup
 import           Data.String (String)
 import           Data.Text (Text)
+import qualified Data.Text as Text
+import qualified Data.Text.IO as Text
 import           Data.Time.Clock (UTCTime)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
@@ -158,7 +160,9 @@ appendFile filePath contents = GHC.withFrozenCallStack $ do
 writeFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> String -> m ()
 writeFile filePath contents = GHC.withFrozenCallStack $ do
   void . H.annotate $ "Writing file: " <> filePath
-  H.evalIO $ IO.writeFile filePath contents
+  H.evalIO $ IO.withFile filePath IO.WriteMode $ \handle -> do
+    IO.hSetEncoding handle IO.utf8
+    IO.hPutStr handle contents
 
 -- | Open a handle to the 'filePath' file.
 openFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> IOMode -> m Handle
@@ -170,7 +174,9 @@ openFile filePath mode = GHC.withFrozenCallStack $ do
 readFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> m String
 readFile filePath = GHC.withFrozenCallStack $ do
   void . H.annotate $ "Reading file: " <> filePath
-  H.evalIO $ IO.readFile filePath
+  liftIO $ IO.withFile filePath IO.ReadMode $ \handle -> do
+             IO.hSetEncoding handle IO.utf8
+             Text.unpack <$> Text.hGetContents handle
 
 -- | Write 'contents' to the 'filePath' file.
 lbsWriteFile :: (MonadTest m, MonadIO m, HasCallStack) => FilePath -> LBS.ByteString -> m ()
