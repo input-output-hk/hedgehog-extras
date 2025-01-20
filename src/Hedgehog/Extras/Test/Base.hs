@@ -61,6 +61,7 @@ module Hedgehog.Extras.Test.Base
   , failWithCustom
   , failMessage
   , expectFailure
+  , expectFailureWith
 
   , assertByDeadlineM
   , assertByDeadlineIO
@@ -163,6 +164,17 @@ expectFailure prop = GHC.withFrozenCallStack $ do
   case res of
     Left _ -> pure () -- Property failed so we succeed
     _ -> H.failWith Nothing "Expected the test to fail but it passed" -- Property passed but we expected a failure
+
+-- | Invert the behavior of a property: success becomes failure and vice versa.
+-- This function behaves like 'expectFailure' but it allows to check the failure
+-- is as expected. The function takes a 'Failure' and should itself be a test
+-- that fails if the failure is not as expected.
+expectFailureWith :: (MonadTest m, MonadIO m, HasCallStack) => (H.Failure -> m ()) -> H.TestT IO b -> m ()
+expectFailureWith checkFailure prop = GHC.withFrozenCallStack $ do
+  (res, _) <- H.evalIO $ H.runTestT prop
+  case res of
+    Left failure -> checkFailure failure
+    _ -> H.failWith Nothing "Expected the test to fail but it passed" -- Property pased but we expected a failure
 
 -- | Create a workspace directory which will exist for at least the duration of
 -- the supplied block.

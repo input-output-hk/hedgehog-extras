@@ -152,6 +152,7 @@ test-suite hedgehog-extras-test
   type:                 exitcode-stdio-1.0
 
   other-modules:        Hedgehog.Extras.Stock.IO.Network.PortSpec
+                        Hedgehog.Extras.Test.TestExpectFailure
                         Hedgehog.Extras.Test.TestWatchdogSpec
 
   build-tool-depends:   tasty-discover:tasty-discover
