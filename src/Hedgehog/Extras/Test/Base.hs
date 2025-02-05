@@ -159,11 +159,7 @@ failMessage cs = failWithCustom cs Nothing
 
 -- | Invert the behavior of a property: success becomes failure and vice versa.
 expectFailure :: (MonadTest m, MonadIO m, HasCallStack) => H.TestT IO a -> m ()
-expectFailure prop = GHC.withFrozenCallStack $ do
-  (res, _) <- H.evalIO $ H.runTestT prop
-  case res of
-    Left _ -> pure () -- Property failed so we succeed
-    _ -> H.failWith Nothing "Expected the test to fail but it passed" -- Property passed but we expected a failure
+expectFailure = GHC.withFrozenCallStack $ expectFailureWith (pure . const ())
 
 -- | Invert the behavior of a property: success becomes failure and vice versa.
 -- This function behaves like 'expectFailure' but it allows to check the failure
