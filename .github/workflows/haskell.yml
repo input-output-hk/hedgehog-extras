@@ -134,10 +134,10 @@ jobs:
 
       - name: Check if cabal project is sane
         run: |
-          PROJECT_DIR=$PWD
-          mkdir -p $PROJECT_DIR/build/sdist
+          PROJECT_DIR="$PWD"
+          mkdir -p "$PROJECT_DIR/build/sdist"
           for i in $(git ls-files | grep '\.cabal'); do
-            cd $PROJECT_DIR && cd `dirname $i`
+            cd "$PROJECT_DIR" && cd "$(dirname $i)"
             cabal check
           done
 
@@ -181,10 +181,10 @@ jobs:
 
       - name: Create source distribution
         run: |
-          PROJECT_DIR=$PWD
-          mkdir -p $PROJECT_DIR/build/sdist
+          PROJECT_DIR="$PWD"
+          mkdir -p "$PROJECT_DIR/build/sdist"
           for i in $(git ls-files | grep '\.cabal'); do
-            cd $PROJECT_DIR && cd `dirname $i`
+            cd "$PROJECT_DIR" && cd "$(dirname $i)"
             cabal v2-sdist -o $PROJECT_DIR/build/sdist
           done;
 
