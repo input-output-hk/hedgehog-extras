@@ -91,7 +91,7 @@ jobs:
 
     # Use a fresh cache each month
     - name: Store month number as environment variable used in cache version
-      run:  echo "MONTHNUM=$(date -u '+%m')" >> $GITHUB_ENV
+      run:  echo "MONTHNUM=$(date -u '+%m')" >> "$GITHUB_ENV"
 
     # From the dependency list we restore the cached dependencies.
     # We use the hash of `dependencies.txt` as part of the cache key because that will be stable
