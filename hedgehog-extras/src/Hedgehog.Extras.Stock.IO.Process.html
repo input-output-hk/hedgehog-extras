@@ -7,85 +7,110 @@
 </span><span id="line-7"></span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier">TimedOut</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
 </span><span id="line-8"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Concurrent.Async</span></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Control.Exception</span></a></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Control.Monad</span></a></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Either</span></a></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Eq</span></a></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Function</span></a></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Int</span></a></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Maybe</span></a></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">GHC.Generics</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Generic</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">GHC.Num</span></a></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">System.Exit</span></a></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">System.IO</span></a></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.6/async-2.2.5-e6f5848890d6d3a31e428473abfa761df77974995fb5b9ac794eb5697324e423/share/doc/html/src/Control.Concurrent.Async.html"><span class="hs-identifier">Control.Concurrent.Async</span></a></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Exception</span></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Monad</span></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Either</span></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Eq</span></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Function</span></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Int</span></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">GHC.Generics</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Generic</span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">GHC.Num</span></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">System.Exit</span></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">System.IO</span></span><span>
 </span><span id="line-22"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">System.Process</span></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Text.Show</span></a></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Text.Show</span></span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Control.Concurrent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Control.Concurrent.Async</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Control.Concurrent</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.6/async-2.2.5-e6f5848890d6d3a31e428473abfa761df77974995fb5b9ac794eb5697324e423/share/doc/html/src/Control.Concurrent.Async.html"><span class="hs-identifier">Control.Concurrent.Async</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
 </span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.Process</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
 </span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span id="local-6989586621679126799"><span id="local-6989586621679126800"></span></span><span class="hs-keyword">data</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall x. Rep TimedOut x -&gt; TimedOut
+</span><span id="line-29"></span><span class="hs-keyword">data</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679146890"><span id="local-6989586621679146892"><span class="annot"><span class="annottext">(forall x. TimedOut -&gt; Rep TimedOut x)
+-&gt; (forall x. Rep TimedOut x -&gt; TimedOut) -&gt; Generic TimedOut
+forall x. Rep TimedOut x -&gt; TimedOut
 forall x. TimedOut -&gt; Rep TimedOut x
 forall a.
 (forall x. a -&gt; Rep a x) -&gt; (forall x. Rep a x -&gt; a) -&gt; Generic a
-$cto :: forall x. Rep TimedOut x -&gt; TimedOut
 $cfrom :: forall x. TimedOut -&gt; Rep TimedOut x
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679126790"><span id="local-6989586621679126792"><span class="annot"><span class="annottext">TimedOut -&gt; TimedOut -&gt; Bool
+from :: forall x. TimedOut -&gt; Rep TimedOut x
+$cto :: forall x. Rep TimedOut x -&gt; TimedOut
+to :: forall x. Rep TimedOut x -&gt; TimedOut
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679146896"><span id="local-6989586621679146898"><span class="annot"><span class="annottext">TimedOut -&gt; TimedOut -&gt; Bool
+(TimedOut -&gt; TimedOut -&gt; Bool)
+-&gt; (TimedOut -&gt; TimedOut -&gt; Bool) -&gt; Eq TimedOut
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
-/= :: TimedOut -&gt; TimedOut -&gt; Bool
-$c/= :: TimedOut -&gt; TimedOut -&gt; Bool
-== :: TimedOut -&gt; TimedOut -&gt; Bool
 $c== :: TimedOut -&gt; TimedOut -&gt; Bool
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679126783"><span id="local-6989586621679126785"><span id="local-6989586621679126787"><span class="annot"><span class="annottext">Int -&gt; TimedOut -&gt; ShowS
+== :: TimedOut -&gt; TimedOut -&gt; Bool
+$c/= :: TimedOut -&gt; TimedOut -&gt; Bool
+/= :: TimedOut -&gt; TimedOut -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679146903"><span id="local-6989586621679146905"><span id="local-6989586621679146909"><span class="annot"><span class="annottext">Int -&gt; TimedOut -&gt; ShowS
 [TimedOut] -&gt; ShowS
 TimedOut -&gt; String
+(Int -&gt; TimedOut -&gt; ShowS)
+-&gt; (TimedOut -&gt; String) -&gt; ([TimedOut] -&gt; ShowS) -&gt; Show TimedOut
 forall a.
 (Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [TimedOut] -&gt; ShowS
-$cshowList :: [TimedOut] -&gt; ShowS
-show :: TimedOut -&gt; String
-$cshow :: TimedOut -&gt; String
-showsPrec :: Int -&gt; TimedOut -&gt; ShowS
 $cshowsPrec :: Int -&gt; TimedOut -&gt; ShowS
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+showsPrec :: Int -&gt; TimedOut -&gt; ShowS
+$cshow :: TimedOut -&gt; String
+show :: TimedOut -&gt; String
+$cshowList :: [TimedOut] -&gt; ShowS
+showList :: [TimedOut] -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-30"></span><span>
 </span><span id="line-31"></span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-type">maybeWaitForProcess</span></a></span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ProcessHandle</span></span><span>
-</span><span id="line-33"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">IO</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">ExitCode</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-33"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ExitCode</span></span><span class="hs-special">)</span><span>
 </span><span id="line-34"></span><span id="maybeWaitForProcess"><span class="annot"><span class="annottext">maybeWaitForProcess :: ProcessHandle -&gt; IO (Maybe ExitCode)
-</span><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-var hs-var">maybeWaitForProcess</span></a></span></span><span> </span><span id="local-6989586621679126781"><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679126781"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">forall e a. Exception e =&gt; IO a -&gt; (e -&gt; IO a) -&gt; IO a
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">catch</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">fmap</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ProcessHandle -&gt; IO ExitCode
+</span><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-var hs-var">maybeWaitForProcess</span></a></span></span><span> </span><span id="local-6989586621679146912"><span class="annot"><span class="annottext">ProcessHandle
+</span><a href="#local-6989586621679146912"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">IO (Maybe ExitCode)
+-&gt; (AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode)
+forall e a. Exception e =&gt; IO a -&gt; (e -&gt; IO a) -&gt; IO a
+</span><span class="hs-identifier hs-var">catch</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(ExitCode -&gt; Maybe ExitCode) -&gt; IO ExitCode -&gt; IO (Maybe ExitCode)
+forall a b. (a -&gt; b) -&gt; IO a -&gt; IO b
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-identifier hs-var">fmap</span></span><span> </span><span class="annot"><span class="annottext">ExitCode -&gt; Maybe ExitCode
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ProcessHandle -&gt; IO ExitCode
 </span><span class="hs-identifier hs-var">IO.waitForProcess</span></span><span> </span><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679126781"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span class="annot"><span class="annottext">AsyncCancelled
-</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">AsyncCancelled</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Nothing</span></a></span><span>
+</span><a href="#local-6989586621679146912"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">((AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode))
+-&gt; (AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span class="annot"><span class="annottext">AsyncCancelled
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.6/async-2.2.5-e6f5848890d6d3a31e428473abfa761df77974995fb5b9ac794eb5697324e423/share/doc/html/src/Control.Concurrent.Async.Internal.html#AsyncCancelled"><span class="hs-identifier hs-type">AsyncCancelled</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe ExitCode -&gt; IO (Maybe ExitCode)
+forall a. a -&gt; IO a
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">Maybe ExitCode
+forall a. Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span>
 </span><span id="line-36"></span><span>
 </span><span id="line-37"></span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#waitSecondsForProcess"><span class="hs-identifier hs-type">waitSecondsForProcess</span></a></span><span>
-</span><span id="line-38"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Int</span></a></span><span>
+</span><span id="line-38"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-39"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ProcessHandle</span></span><span>
-</span><span id="line-40"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">IO</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Either</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-type">TimedOut</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">ExitCode</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-40"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Either</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-type">TimedOut</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ExitCode</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-41"></span><span id="waitSecondsForProcess"><span class="annot"><span class="annottext">waitSecondsForProcess :: Int -&gt; ProcessHandle -&gt; IO (Either TimedOut (Maybe ExitCode))
-</span><a href="Hedgehog.Extras.Stock.IO.Process.html#waitSecondsForProcess"><span class="hs-identifier hs-var hs-var">waitSecondsForProcess</span></a></span></span><span> </span><span id="local-6989586621679126778"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679126778"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span id="local-6989586621679126777"><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679126777"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. IO a -&gt; IO b -&gt; IO (Either a b)
-</span><span class="hs-identifier hs-var">IO.race</span></span><span>
+</span><a href="Hedgehog.Extras.Stock.IO.Process.html#waitSecondsForProcess"><span class="hs-identifier hs-var hs-var">waitSecondsForProcess</span></a></span></span><span> </span><span id="local-6989586621679146915"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679146915"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span id="local-6989586621679146916"><span class="annot"><span class="annottext">ProcessHandle
+</span><a href="#local-6989586621679146916"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO TimedOut
+-&gt; IO (Maybe ExitCode) -&gt; IO (Either TimedOut (Maybe ExitCode))
+forall a b. IO a -&gt; IO b -&gt; IO (Either a b)
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.6/async-2.2.5-e6f5848890d6d3a31e428473abfa761df77974995fb5b9ac794eb5697324e423/share/doc/html/src/Control.Concurrent.Async.Internal.html#race"><span class="hs-identifier hs-var">IO.race</span></a></span><span>
 </span><span id="line-42"></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; IO ()
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">IO.threadDelay</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679126778"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><span class="hs-number">1000000</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&gt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../file:///usr/local/.ghcup/ghc/9.2.5/share/doc/ghc-9.2.5/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">TimedOut
+</span><span class="hs-identifier hs-var">IO.threadDelay</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679146915"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">1000000</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO TimedOut -&gt; IO TimedOut
+forall a b. IO a -&gt; IO b -&gt; IO b
+forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
+</span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">TimedOut -&gt; IO TimedOut
+forall a. a -&gt; IO a
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">TimedOut
 </span><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-43"></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ProcessHandle -&gt; IO (Maybe ExitCode)
 </span><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-var">maybeWaitForProcess</span></a></span><span> </span><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679126777"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679146916"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-44"></span></pre></body></html>
