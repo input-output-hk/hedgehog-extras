@@ -11,7 +11,7 @@ jobs:
 
     env:
       # Modify this value to "invalidate" the cabal cache.
-      CABAL_CACHE_VERSION: "2022-12-30"
+      CABAL_CACHE_VERSION: "2024-05-01-1"
 
     defaults:
       run:
@@ -20,74 +20,81 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ghc: ["9.2.5"]
-        cabal: ["3.8.1.0"]
+        ghc: ["9.6"]
+        cabal: ["3.14"]
         os: [ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Install Haskell
-      uses: input-output-hk/setup-haskell@v1
+      uses: input-output-hk/actions/haskell@latest
       id: setup-haskell
       with:
         ghc-version: ${{ matrix.ghc }}
         cabal-version: ${{ matrix.cabal }}
 
-    - name: Update Hackage index
+    - name: Install system dependencies
+      uses: input-output-hk/actions/base@latest
+      with:
+        use-sodium-vrf: true # default is true
+
+    - uses: actions/checkout@v4
+
+    - name: Cabal update
       run: cabal update
 
-    - name: Checkout ouroboros-network repository
-      uses: actions/checkout@v2
+    # A dry run `build all` operation does *NOT* download anything, it just looks at the package
+    # indices to generate an install plan.
+    - name: Build dry run
+      run: cabal build all --enable-tests --dry-run --minimize-conflict-set
 
-    - name: Build dependencies
+    # From the install plan we generate a dependency list.
+    - name: Record dependencies
+      id: record-deps
       run: |
-        cabal configure --enable-tests
-        cabal build all --dry-run
+        cat dist-newstyle/cache/plan.json | jq -r '."install-plan"[] | select(.style != "local") | .id' | sort | uniq > dependencies.txt
 
-    - name: Dry run
-      run: |
-        mkdir -p ./haddocks
-        DRY_RUN=1 ./scripts/haddocs.sh ./haddocks true
+    # Use a fresh cache each month
+    - name: Store month number as environment variable used in cache version
+      run:  echo "MONTHNUM=$(date -u '+%m')" >> "$GITHUB_ENV"
 
-    # For users who fork cardano-node and want to define a writable cache, then can set up their own
-    # S3 bucket then define in their forked repository settings the following secrets:
-    #
-    #   AWS_ACCESS_KEY_ID
-    #   AWS_SECRET_ACCESS_KEY
-    #   BINARY_CACHE_URI
-    #   BINARY_CACHE_REGION
-    - name: Cabal cache over S3
-      uses: action-works/cabal-cache-s3@v1
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    # From the dependency list we restore the cached dependencies.
+    # We use the hash of `dependencies.txt` as part of the cache key because that will be stable
+    # until the `index-state` values in the `cabal.project` file changes.
+    - name: Restore cached dependencies
+      uses: actions/cache/restore@v4
+      id: cache
       with:
-        region: ${{ secrets.BINARY_CACHE_REGION }}
-        dist-dir: dist-newstyle
-        store-path: ${{ steps.setup-haskell.outputs.cabal-store }}
-        threads: 16
-        archive-uri: ${{ secrets.BINARY_CACHE_URI }}/${{ env.CABAL_CACHE_VERSION }}/${{ runner.os }}
-        skip: "${{ secrets.BINARY_CACHE_URI == '' }}"
+        path: |
+          ${{ steps.setup-haskell.outputs.cabal-store }}
+          dist-newstyle
+        key:
+          cache-${{ env.CABAL_CACHE_VERSION }}-${{ runner.os }}-${{ matrix.ghc }}-${{ env.MONTHNUM }}-${{ hashFiles('dependencies.txt') }}
+        # try to restore previous cache from this month if there's no cache for the dependencies set
+        restore-keys: |
+          cache-${{ env.CABAL_CACHE_VERSION }}-${{ runner.os }}-${{ matrix.ghc }}-${{ env.MONTHNUM }}-
 
-    # It's important to ensure that people who fork this repository can not only successfully build in
-    # CI by default, but also have meaning cabal store caching.
-    #
-    # Because syncing with S3 requires credentials, we cannot rely on S3 for this. For this reason a
-    # https fallback is used. The https server mirrors the content of the S3 bucket. The https cabal
-    # store archive is read-only for security reasons.
-    #
-    # Users who fork this repository who want to have a writable cabal store archive are encouraged
-    # to set up their own S3 bucket.
-    - name: Cabal cache over HTTPS
-      uses: action-works/cabal-cache-s3@v1
+    # Now we install the dependencies. If the cache was found and restored in the previous step,
+    # this should be a no-op, but if the cache key was not found we need to build stuff so we can
+    # cache it for the next step.
+    - name: Install dependencies
+      run: cabal build all --enable-tests --only-dependencies
+
+    # Always store the cabal cache.
+    # This can fail (benign failure) if there is already a hash at that key.
+    - name: Cache Cabal store
+      uses: actions/cache/save@v4
       with:
-        dist-dir: dist-newstyle
-        store-path: ${{ steps.setup-haskell.outputs.cabal-store }}
-        threads: 16
-        archive-uri: https://iohk.cache.haskellworks.io/${{ env.CABAL_CACHE_VERSION }}/${{ runner.os }}
-        skip: "${{ secrets.BINARY_CACHE_URI != '' }}"
-        enable-save: false
+        path: |
+          ${{ steps.setup-haskell.outputs.cabal-store }}
+          dist-newstyle
+        key:
+          ${{ steps.cache.outputs.cache-primary-key }}
+
+    # Now we build.
+    - name: Build all
+      run: cabal build all
 
     - name: build Haddock documentation 🔧
       run: |
@@ -96,6 +103,7 @@ jobs:
 
     - name: deploy to gh-pages 🚀
       run: |
+        rm dependencies.txt # Otherwise checkout below will fail
         git config --local user.email "marcin.szamotulski@iohk.io"
         git config --local user.name ${{ github.actor }}
         git fetch origin gh-pages:gh-pages
