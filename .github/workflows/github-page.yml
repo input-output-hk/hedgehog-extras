@@ -1,6 +1,7 @@
 name: "Haddock documentation"
 
 on:
+  workflow_dispatch:
   push:
 
 jobs:
