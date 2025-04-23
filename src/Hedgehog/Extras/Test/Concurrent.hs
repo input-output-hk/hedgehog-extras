@@ -94,7 +94,7 @@ import           GHC.Stack
 import           Hedgehog
 import qualified Hedgehog as H
 
--- | Delay the thread by 'n' milliseconds.
+-- | Delay the thread by 'n' microseconds.
 threadDelay :: (HasCallStack, MonadTest m, MonadIO m) => Int -> m ()
 threadDelay n = GHC.withFrozenCallStack . H.evalIO $ IO.threadDelay n
 
