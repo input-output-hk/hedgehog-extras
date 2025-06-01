@@ -13,14 +13,14 @@
 </span><span id="line-13"></span><span class="annot"><span class="hs-comment">-- | Determine if the given string is found in the given file.</span></span><span>
 </span><span id="line-14"></span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.File.html#fileContains"><span class="hs-identifier hs-type">fileContains</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
 </span><span id="line-15"></span><span id="fileContains"><span class="annot"><span class="annottext">fileContains :: String -&gt; String -&gt; IO Bool
-</span><a href="Hedgehog.Extras.Stock.IO.File.html#fileContains"><span class="hs-identifier hs-var hs-var">fileContains</span></a></span></span><span> </span><span id="local-6989586621679156739"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679156739"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span id="local-6989586621679156740"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679156740"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679156739"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; Bool
+</span><a href="Hedgehog.Extras.Stock.IO.File.html#fileContains"><span class="hs-identifier hs-var hs-var">fileContains</span></a></span></span><span> </span><span id="local-6989586621679159796"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679159796"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span id="local-6989586621679159797"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679159797"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679159796"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; Bool
 forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><span class="hs-operator hs-var">`L.isInfixOf`</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; IO String -&gt; IO Bool
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; IO String
 </span><span class="hs-identifier hs-var">IO.readFile</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679156740"><span class="hs-identifier hs-var">path</span></a></span><span>
+</span><a href="#local-6989586621679159797"><span class="hs-identifier hs-var">path</span></a></span><span>
 </span><span id="line-16"></span></pre></body></html>
