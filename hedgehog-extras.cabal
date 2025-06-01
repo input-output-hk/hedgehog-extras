@@ -141,6 +141,7 @@ library
                         Hedgehog.Extras.Test.Concurrent
                         Hedgehog.Extras.Test.File
                         Hedgehog.Extras.Test.Golden
+                        Hedgehog.Extras.Test.New.Golden
                         Hedgehog.Extras.Test.New.UnitIO
                         Hedgehog.Extras.Test.MonadAssertion
                         Hedgehog.Extras.Test.Network
