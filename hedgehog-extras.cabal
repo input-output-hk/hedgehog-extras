@@ -26,21 +26,26 @@ common Diff                         { build-depends: Diff                       
 common directory                    { build-depends: directory                                                    }
 common exceptions                   { build-depends: exceptions                                                   }
 common filepath                     { build-depends: filepath                                                     }
+common generic-lens                 { build-depends: generic-lens                                                 }
 common hedgehog                     { build-depends: hedgehog                                                     }
 common hedgehog-quickcheck          { build-depends: hedgehog-quickcheck                                          }
 common http-conduit                 { build-depends: http-conduit                                                 }
+common hw-prelude                   { build-depends: hw-prelude                                                   }
 common lifted-async                 { build-depends: lifted-async                                                 }
 common lifted-base                  { build-depends: lifted-base                                                  }
+common microlens                    { build-depends: microlens                                                    }
 common mmorph                       { build-depends: mmorph                                                       }
 common monad-control                { build-depends: monad-control                                                }
 common mtl                          { build-depends: mtl                                                          }
 common network                      { build-depends: network                                                      }
+common primitive                    { build-depends: primitive                                                    }
 common process                      { build-depends: process                                                      }
 common resourcet                    { build-depends: resourcet                                                    }
 common retry                        { build-depends: retry                             >= 0.9                     }
 common stm                          { build-depends: stm                                                          }
 common tar                          { build-depends: tar                              ^>= 0.6                     }
 common tasty                        { build-depends: tasty                                                        }
+common tasty-discover               { build-depends: tasty-discover                    >= 5.0.2                   }
 common tasty-hedgehog               { build-depends: tasty-hedgehog                                               }
 common tasty-quickcheck             { build-depends: tasty-quickcheck                                             }
 common temporary                    { build-depends: temporary                                                    }
@@ -61,6 +66,7 @@ common Win32
 common project-config
   default-language:     Haskell2010
   default-extensions:   NoImplicitPrelude
+                        ImportQualifiedPost
   ghc-options:          -Wall
                         -Wcompat
                         -Wincomplete-record-updates
@@ -80,10 +86,13 @@ library
                         directory,
                         exceptions,
                         filepath,
+                        generic-lens,
                         hedgehog,
                         http-conduit,
+                        hw-prelude,
                         lifted-async,
                         lifted-base,
+                        microlens,
                         monad-control,
                         mmorph,
                         mtl,
@@ -93,6 +102,8 @@ library
                         retry,
                         stm,
                         tar,
+                        tasty-discover,
+                        tasty-hedgehog,
                         temporary,
                         text,
                         time,
@@ -130,20 +141,26 @@ library
                         Hedgehog.Extras.Test.Concurrent
                         Hedgehog.Extras.Test.File
                         Hedgehog.Extras.Test.Golden
+                        Hedgehog.Extras.Test.New.Monad
+                        Hedgehog.Extras.Test.New.Monad.UnitIO
                         Hedgehog.Extras.Test.MonadAssertion
                         Hedgehog.Extras.Test.Network
                         Hedgehog.Extras.Test.Process
+                        Hedgehog.Extras.Test.TestResult
                         Hedgehog.Extras.Test.TestWatchdog
                         Hedgehog.Extras.Test.Tripwire
 
 test-suite hedgehog-extras-test
   import:               base, project-config,
+                        exceptions,
                         hedgehog,
                         hedgehog-extras,
+                        hw-prelude,
                         network,
                         process,
                         resourcet,
                         tasty,
+                        tasty-discover,
                         tasty-hedgehog,
                         transformers,
                         time,
@@ -152,6 +169,7 @@ test-suite hedgehog-extras-test
   type:                 exitcode-stdio-1.0
 
   other-modules:        Hedgehog.Extras.Stock.IO.Network.PortSpec
+                        Hedgehog.Extras.Test.New.MonadSpec
                         Hedgehog.Extras.Test.TestExpectFailure
                         Hedgehog.Extras.Test.TestWatchdogSpec
 
