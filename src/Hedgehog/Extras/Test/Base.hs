@@ -498,13 +498,13 @@ jsonErrorFail r = GHC.withFrozenCallStack $ case r of
 jsonErrorFailM :: (MonadTest m, HasCallStack) => m (Result a) -> m a
 jsonErrorFailM f = GHC.withFrozenCallStack $ f >>= jsonErrorFail
 
--- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
+-- | Run the operation 'f' once per 'period' until it returns 'True' or the deadline expires.
 --
 -- Expiration of the deadline results in an assertion failure
 byDeadlineIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> String -> IO a -> m a
 byDeadlineIO period deadline errorMessage f = GHC.withFrozenCallStack $ byDeadlineM period deadline errorMessage $ liftIO f
 
--- | Run the operation 'f' once a second until it returns 'True' or the deadline expires.
+-- | Run the operation 'f' once per 'period' until it returns 'True' or the deadline expires.
 --
 -- Expiration of the deadline results in an assertion failure
 byDeadlineM :: forall m a. (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> UTCTime -> String -> m a -> m a
@@ -526,13 +526,13 @@ byDeadlineM period deadline errorMessage f = GHC.withFrozenCallStack $ do
               void $ failMessage GHC.callStack $ "Condition not met by deadline: " <> errorMessage
               H.throwAssertion e
 
--- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
+-- | Run the operation 'f' once per 'period' until it returns 'True' or the duration expires.
 --
 -- Expiration of the duration results in an assertion failure
 byDurationIO :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> String -> IO a -> m a
 byDurationIO period duration errorMessage f = GHC.withFrozenCallStack $ byDurationM period duration errorMessage $ liftIO f
 
--- | Run the operation 'f' once a second until it returns 'True' or the duration expires.
+-- | Run the operation 'f' once per 'period' until it returns 'True' or the duration expires.
 --
 -- Expiration of the duration results in an assertion failure
 byDurationM :: (MonadAssertion m, MonadTest m, MonadIO m, HasCallStack) => NominalDiffTime -> NominalDiffTime -> String -> m a -> m a
