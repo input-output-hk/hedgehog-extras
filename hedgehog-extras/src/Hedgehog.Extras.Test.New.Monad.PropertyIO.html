@@ -22,32 +22,31 @@
 </span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Catch</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadCatch</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">MonadMask</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">MonadThrow</span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Error.Class</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadError</span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Fix</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadFix</span></span><span class="hs-special">)</span><span>
-</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/primitive-0.9.1.0-6846e8b88c96a98b39b961d0d162ae3fc1f54d2da5f8ab25d2e5084b904c1f5c/share/doc/html/src/Control.Monad.Primitive.html"><span class="hs-identifier">Control.Monad.Primitive</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/primitive-0.9.1.0-6846e8b88c96a98b39b961d0d162ae3fc1f54d2da5f8ab25d2e5084b904c1f5c/share/doc/html/src/Control.Monad.Primitive.html#PrimMonad"><span class="hs-identifier">PrimMonad</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Reader</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadReader</span></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
-</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Trans.Reader</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">ReaderT</span></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
-</span><span id="line-28"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html"><span class="hs-identifier">Control.Monad.Trans.Resource</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#ResourceT"><span class="hs-identifier">ResourceT</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#MonadResource"><span class="hs-identifier">MonadResource</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html#runResourceT"><span class="hs-identifier">runResourceT</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-29"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Either</span></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/generic-lens-2.2.2.0-0e49ecc58486d77be7645b26e2b6b0551daa3839a908ceb1b083d9fa9f9ca370/share/doc/html/src/Data.Generics.Product.Any.html"><span class="hs-identifier">Data.Generics.Product.Any</span></a></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Monoid</span></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/src/HaskellWorks.Control.Monad.html"><span class="hs-identifier">HaskellWorks.Control.Monad</span></a></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/src/HaskellWorks.Prelude.html"><span class="hs-identifier">HaskellWorks.Prelude</span></a></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span> </span><span class="hs-keyword">hiding</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#forAll"><span class="hs-identifier">forAll</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-36"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html"><span class="hs-identifier">Hedgehog.Extras.Test.MonadAssertion</span></a></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html"><span class="hs-identifier">Hedgehog.Internal.Property</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/microlens-0.4.14.0-1d51715bca572ba7b87b0f58384440d5706f937fbc10dde834723592846ba584/share/doc/html/src/Lens.Micro.html"><span class="hs-identifier">Lens.Micro</span></a></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-discover-5.0.2-2b9a62a9b029b78a595ee3a999527888c8eccaae67d693b84fbeef8c0d5da77f/share/doc/html/src/Test.Tasty.Discover.html"><span class="hs-identifier">Test.Tasty.Discover</span></a></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-eaadc570d77fa93bb9b9d6cb6a2fef11b9e1c39d26b5307df58c3d399d34a94e/share/doc/html/src/Test.Tasty.Hedgehog.html"><span class="hs-identifier">Test.Tasty.Hedgehog</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-eaadc570d77fa93bb9b9d6cb6a2fef11b9e1c39d26b5307df58c3d399d34a94e/share/doc/html/src/Test.Tasty.Hedgehog.html#testProperty"><span class="hs-identifier">testProperty</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">newtype</span><span> </span><span id="PropertyEnv"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-var">PropertyEnv</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="PropertyEnv"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-var">PropertyEnv</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="unPropertyEnv"><span class="annot"><span class="annottext">PropertyEnv -&gt; TMVar (PropertyT IO ())
+</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Reader</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadReader</span></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Trans.Reader</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">ReaderT</span></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html"><span class="hs-identifier">Control.Monad.Trans.Resource</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#ResourceT"><span class="hs-identifier">ResourceT</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#MonadResource"><span class="hs-identifier">MonadResource</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html#runResourceT"><span class="hs-identifier">runResourceT</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-28"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Either</span></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/generic-lens-2.2.2.0-0e49ecc58486d77be7645b26e2b6b0551daa3839a908ceb1b083d9fa9f9ca370/share/doc/html/src/Data.Generics.Product.Any.html"><span class="hs-identifier">Data.Generics.Product.Any</span></a></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span>
+</span><span id="line-31"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Monoid</span></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/src/HaskellWorks.Control.Monad.html"><span class="hs-identifier">HaskellWorks.Control.Monad</span></a></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/src/HaskellWorks.Prelude.html"><span class="hs-identifier">HaskellWorks.Prelude</span></a></span><span>
+</span><span id="line-34"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span> </span><span class="hs-keyword">hiding</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#forAll"><span class="hs-identifier">forAll</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-35"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.MonadAssertion.html"><span class="hs-identifier">Hedgehog.Extras.Test.MonadAssertion</span></a></span><span>
+</span><span id="line-37"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html"><span class="hs-identifier">Hedgehog.Internal.Property</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
+</span><span id="line-38"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/microlens-0.4.14.0-1d51715bca572ba7b87b0f58384440d5706f937fbc10dde834723592846ba584/share/doc/html/src/Lens.Micro.html"><span class="hs-identifier">Lens.Micro</span></a></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-discover-5.0.2-2b9a62a9b029b78a595ee3a999527888c8eccaae67d693b84fbeef8c0d5da77f/share/doc/html/src/Test.Tasty.Discover.html"><span class="hs-identifier">Test.Tasty.Discover</span></a></span><span>
+</span><span id="line-40"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-eaadc570d77fa93bb9b9d6cb6a2fef11b9e1c39d26b5307df58c3d399d34a94e/share/doc/html/src/Test.Tasty.Hedgehog.html"><span class="hs-identifier">Test.Tasty.Hedgehog</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-eaadc570d77fa93bb9b9d6cb6a2fef11b9e1c39d26b5307df58c3d399d34a94e/share/doc/html/src/Test.Tasty.Hedgehog.html#testProperty"><span class="hs-identifier">testProperty</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-41"></span><span>
+</span><span id="line-42"></span><span class="hs-keyword">newtype</span><span> </span><span id="PropertyEnv"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-var">PropertyEnv</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="PropertyEnv"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-var">PropertyEnv</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="unPropertyEnv"><span class="annot"><span class="annottext">PropertyEnv -&gt; TMVar (PropertyT IO ())
 </span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#unPropertyEnv"><span class="hs-identifier hs-var hs-var">unPropertyEnv</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">TMVar</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#PropertyT"><span class="hs-identifier hs-type">PropertyT</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span class="hs-keyword">newtype</span><span> </span><span id="PropertyIO"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-var">PropertyIO</span></a></span></span><span> </span><span id="local-6989586621679161995"><span class="annot"><a href="#local-6989586621679161995"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="PropertyIO"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-var">PropertyIO</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="runPropertIO"><span class="annot"><span class="annottext">forall a.
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span class="hs-keyword">newtype</span><span> </span><span id="PropertyIO"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-var">PropertyIO</span></a></span></span><span> </span><span id="local-6989586621679161810"><span class="annot"><a href="#local-6989586621679161810"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="PropertyIO"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-var">PropertyIO</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="runPropertyIO"><span class="annot"><span class="annottext">forall a.
 PropertyIO a
 -&gt; ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) a
-</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#runPropertIO"><span class="hs-identifier hs-var hs-var">runPropertIO</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ExceptT</span></span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#Failure"><span class="hs-identifier hs-type">H.Failure</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#ResourceT"><span class="hs-identifier hs-type">ResourceT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">ReaderT</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><a href="#local-6989586621679161995"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-46"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162358"><span id="local-6989586621679162365"><span id="local-6989586621679162371"><span id="local-6989586621679162377"><span id="local-6989586621679162383"><span class="annot"><span class="annottext">Functor PropertyIO
+</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#runPropertyIO"><span class="hs-identifier hs-var hs-var">runPropertyIO</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ExceptT</span></span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#Failure"><span class="hs-identifier hs-type">H.Failure</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#ResourceT"><span class="hs-identifier hs-type">ResourceT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">ReaderT</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><a href="#local-6989586621679161810"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-45"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162163"><span id="local-6989586621679162170"><span id="local-6989586621679162176"><span id="local-6989586621679162182"><span id="local-6989586621679162188"><span class="annot"><span class="annottext">Functor PropertyIO
 Functor PropertyIO =&gt;
 (forall a. a -&gt; PropertyIO a)
 -&gt; (forall a b.
@@ -84,7 +83,7 @@ $c*&gt; :: forall a b. PropertyIO a -&gt; PropertyIO b -&gt; PropertyIO b
 $c&lt;* :: forall a b. PropertyIO a -&gt; PropertyIO b -&gt; PropertyIO a
 &lt;* :: forall a b. PropertyIO a -&gt; PropertyIO b -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Applicative</span></span></span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-47"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162411"><span id="local-6989586621679162417"><span class="annot"><span class="annottext">(forall a b. (a -&gt; b) -&gt; PropertyIO a -&gt; PropertyIO b)
+</span><span id="line-46"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162216"><span id="local-6989586621679162222"><span class="annot"><span class="annottext">(forall a b. (a -&gt; b) -&gt; PropertyIO a -&gt; PropertyIO b)
 -&gt; (forall a b. a -&gt; PropertyIO b -&gt; PropertyIO a)
 -&gt; Functor PropertyIO
 forall a b. a -&gt; PropertyIO b -&gt; PropertyIO a
@@ -97,7 +96,7 @@ fmap :: forall a b. (a -&gt; b) -&gt; PropertyIO a -&gt; PropertyIO b
 $c&lt;$ :: forall a b. a -&gt; PropertyIO b -&gt; PropertyIO a
 &lt;$ :: forall a b. a -&gt; PropertyIO b -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Functor</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-48"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162429"><span id="local-6989586621679162435"><span id="local-6989586621679162440"><span class="annot"><span class="annottext">Applicative PropertyIO
+</span><span id="line-47"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162234"><span id="local-6989586621679162240"><span id="local-6989586621679162245"><span class="annot"><span class="annottext">Applicative PropertyIO
 Applicative PropertyIO =&gt;
 (forall a b. PropertyIO a -&gt; (a -&gt; PropertyIO b) -&gt; PropertyIO b)
 -&gt; (forall a b. PropertyIO a -&gt; PropertyIO b -&gt; PropertyIO b)
@@ -119,7 +118,7 @@ $c&gt;&gt; :: forall a b. PropertyIO a -&gt; PropertyIO b -&gt; PropertyIO b
 $creturn :: forall a. a -&gt; PropertyIO a
 return :: forall a. a -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Monad</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-49"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162458"><span class="annot"><span class="annottext">MonadThrow PropertyIO
+</span><span id="line-48"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162263"><span class="annot"><span class="annottext">MonadThrow PropertyIO
 MonadThrow PropertyIO =&gt;
 (forall e a.
  (HasCallStack, Exception e) =&gt;
@@ -141,8 +140,8 @@ catch :: forall e a.
 (HasCallStack, Exception e) =&gt;
 PropertyIO a -&gt; (e -&gt; PropertyIO a) -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadCatch</span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-50"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162478"><span id="local-6989586621679162484"><span class="annot"><span class="hs-identifier hs-type">MonadError</span></span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#Failure"><span class="hs-identifier hs-type">H.Failure</span></a></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-51"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162495"><span class="annot"><span class="annottext">Monad PropertyIO
+</span><span id="line-49"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162283"><span id="local-6989586621679162289"><span class="annot"><span class="hs-identifier hs-type">MonadError</span></span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#Failure"><span class="hs-identifier hs-type">H.Failure</span></a></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-50"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162300"><span class="annot"><span class="annottext">Monad PropertyIO
 Monad PropertyIO =&gt;
 (forall a. String -&gt; PropertyIO a) -&gt; MonadFail PropertyIO
 forall a. String -&gt; PropertyIO a
@@ -152,7 +151,7 @@ Monad m =&gt;
 $cfail :: forall a. String -&gt; PropertyIO a
 fail :: forall a. String -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadFail</span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-52"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162510"><span class="annot"><span class="annottext">Monad PropertyIO
+</span><span id="line-51"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162315"><span class="annot"><span class="annottext">Monad PropertyIO
 Monad PropertyIO =&gt;
 (forall a. (a -&gt; PropertyIO a) -&gt; PropertyIO a)
 -&gt; MonadFix PropertyIO
@@ -163,7 +162,7 @@ Monad m =&gt;
 $cmfix :: forall a. (a -&gt; PropertyIO a) -&gt; PropertyIO a
 mfix :: forall a. (a -&gt; PropertyIO a) -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadFix</span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-53"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162525"><span class="annot"><span class="annottext">Monad PropertyIO
+</span><span id="line-52"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162330"><span class="annot"><span class="annottext">Monad PropertyIO
 Monad PropertyIO =&gt;
 (forall a. IO a -&gt; PropertyIO a) -&gt; MonadIO PropertyIO
 forall a. IO a -&gt; PropertyIO a
@@ -173,7 +172,7 @@ Monad m =&gt;
 $cliftIO :: forall a. IO a -&gt; PropertyIO a
 liftIO :: forall a. IO a -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadIO</span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-54"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162541"><span id="local-6989586621679162553"><span id="local-6989586621679162564"><span class="annot"><span class="annottext">MonadCatch PropertyIO
+</span><span id="line-53"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162346"><span id="local-6989586621679162358"><span id="local-6989586621679162369"><span class="annot"><span class="annottext">MonadCatch PropertyIO
 MonadCatch PropertyIO =&gt;
 (forall b.
  HasCallStack =&gt;
@@ -239,8 +238,8 @@ PropertyIO a
 -&gt; (a -&gt; PropertyIO b)
 -&gt; PropertyIO (b, c)
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">MonadMask</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-55"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162585"><span id="local-6989586621679162591"><span id="local-6989586621679162596"><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-56"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162610"><span class="annot"><span class="annottext">MonadIO PropertyIO
+</span><span id="line-54"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162390"><span id="local-6989586621679162396"><span id="local-6989586621679162401"><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-55"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162415"><span class="annot"><span class="annottext">MonadIO PropertyIO
 MonadIO PropertyIO =&gt;
 (forall a. ResourceT IO a -&gt; PropertyIO a)
 -&gt; MonadResource PropertyIO
@@ -251,7 +250,7 @@ MonadIO m =&gt;
 $cliftResourceT :: forall a. ResourceT IO a -&gt; PropertyIO a
 liftResourceT :: forall a. ResourceT IO a -&gt; PropertyIO a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#MonadResource"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadResource</span></a></span></span><span class="hs-special">)</span><span>
-</span><span id="line-57"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162627"><span class="annot"><span class="annottext">Monad PropertyIO
+</span><span id="line-56"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162432"><span class="annot"><span class="annottext">Monad PropertyIO
 Monad PropertyIO =&gt;
 (forall e a. (HasCallStack, Exception e) =&gt; e -&gt; PropertyIO a)
 -&gt; MonadThrow PropertyIO
@@ -263,47 +262,23 @@ Monad m =&gt;
 $cthrowM :: forall e a. (HasCallStack, Exception e) =&gt; e -&gt; PropertyIO a
 throwM :: forall e a. (HasCallStack, Exception e) =&gt; e -&gt; PropertyIO a
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadThrow</span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-58"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679162646"><span class="annot"><span class="annottext">Monad PropertyIO
-Monad PropertyIO =&gt;
-(forall a.
- (State# (PrimState PropertyIO)
-  -&gt; (# State# (PrimState PropertyIO), a #))
- -&gt; PropertyIO a)
--&gt; PrimMonad PropertyIO
-forall a.
-(State# (PrimState PropertyIO)
- -&gt; (# State# (PrimState PropertyIO), a #))
--&gt; PropertyIO a
-forall (m :: * -&gt; *).
-Monad m =&gt;
-(forall a.
- (State# (PrimState m) -&gt; (# State# (PrimState m), a #)) -&gt; m a)
--&gt; PrimMonad m
-$cprimitive :: forall a.
-(State# (PrimState PropertyIO)
- -&gt; (# State# (PrimState PropertyIO), a #))
--&gt; PropertyIO a
-primitive :: forall a.
-(State# (PrimState PropertyIO)
- -&gt; (# State# (PrimState PropertyIO), a #))
--&gt; PropertyIO a
-</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/primitive-0.9.1.0-6846e8b88c96a98b39b961d0d162ae3fc1f54d2da5f8ab25d2e5084b904c1f5c/share/doc/html/src/Control.Monad.Primitive.html#PrimMonad"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">PrimMonad</span></a></span></span><span class="hs-special">)</span><span>
-</span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-61"></span><span>  </span><span id="local-6989586621679162682"><span class="annot"><span class="annottext">liftTest :: forall a. Test a -&gt; PropertyIO a
-</span><a href="#local-6989586621679162682"><span class="hs-identifier hs-var hs-var hs-var hs-var">liftTest</span></a></span></span><span> </span><span id="local-6989586621679162684"><span class="annot"><span class="annottext">Test a
-</span><a href="#local-6989586621679162684"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-62"></span><span>    </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span> </span><span id="local-6989586621679162685"><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162685"><span class="hs-identifier hs-var">tmvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall r (m :: * -&gt; *). MonadReader r m =&gt; m r
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679162471"><span class="annot"><span class="annottext">liftTest :: forall a. Test a -&gt; PropertyIO a
+</span><a href="#local-6989586621679162471"><span class="hs-identifier hs-var hs-var hs-var hs-var">liftTest</span></a></span></span><span> </span><span id="local-6989586621679162473"><span class="annot"><span class="annottext">Test a
+</span><a href="#local-6989586621679162473"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-60"></span><span>    </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span> </span><span id="local-6989586621679162474"><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
+</span><a href="#local-6989586621679162474"><span class="hs-identifier hs-var">tmvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall r (m :: * -&gt; *). MonadReader r m =&gt; m r
 </span><span class="hs-identifier hs-var">ask</span></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679162687"><span class="annot"><span class="annottext">TMVar (TestResult a)
-</span><a href="#local-6989586621679162687"><span class="hs-identifier hs-var">mvA</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (TestResult a)) -&gt; PropertyIO (TMVar (TestResult a))
+</span><span id="line-61"></span><span>    </span><span class="hs-comment">-- Create a new TMVar in 'mvA' to hold the result of the test action.</span><span>
+</span><span id="line-62"></span><span>    </span><span id="local-6989586621679162476"><span class="annot"><span class="annottext">TMVar (TestResult a)
+</span><a href="#local-6989586621679162476"><span class="hs-identifier hs-var">mvA</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (TestResult a)) -&gt; PropertyIO (TMVar (TestResult a))
 forall a. IO a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">IO (TMVar (TestResult a))
 forall a. IO (TMVar a)
 </span><span class="hs-identifier hs-var">STM.newEmptyTMVarIO</span></span><span>
-</span><span id="line-64"></span><span>    </span><span class="annot"><span class="annottext">IO () -&gt; PropertyIO ()
+</span><span id="line-63"></span><span>    </span><span class="annot"><span class="annottext">IO () -&gt; PropertyIO ()
 forall a. IO a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; PropertyIO ()) -&gt; IO () -&gt; PropertyIO ()
@@ -315,10 +290,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ()) -&gt; PropertyT IO () -&gt; STM ()
 forall a. TMVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">putTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162685"><span class="hs-identifier hs-var">tmvAction</span></a></span><span> </span><span class="annot"><span class="annottext">(PropertyT IO () -&gt; STM ()) -&gt; PropertyT IO () -&gt; STM ()
+</span><a href="#local-6989586621679162474"><span class="hs-identifier hs-var">tmvAction</span></a></span><span> </span><span class="annot"><span class="annottext">(PropertyT IO () -&gt; STM ()) -&gt; PropertyT IO () -&gt; STM ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span>
-</span><span id="line-65"></span><span>      </span><span class="annot"><span class="annottext">PropertyT IO a -&gt; PropertyT IO (TestResult a)
+</span><span id="line-64"></span><span>      </span><span class="hs-comment">-- Send the action action to run by the 'PropertyT' thread.  This action will run the test</span><span>
+</span><span id="line-65"></span><span>      </span><span class="hs-comment">-- and put the result in the TMVar 'mvA'.  As the action is run in a separate thread, its</span><span>
+</span><span id="line-66"></span><span>      </span><span class="hs-comment">-- result cannot be simply returned.</span><span>
+</span><span id="line-67"></span><span>      </span><span class="annot"><span class="annottext">PropertyT IO a -&gt; PropertyT IO (TestResult a)
 forall (m :: * -&gt; *) a.
 (MonadAssertion m, MonadCatch m) =&gt;
 m a -&gt; m (TestResult a)
@@ -326,7 +304,7 @@ m a -&gt; m (TestResult a)
 forall a. Test a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadTest m =&gt; Test a -&gt; m a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#liftTest"><span class="hs-identifier hs-var">liftTest</span></a></span><span> </span><span class="annot"><span class="annottext">Test a
-</span><a href="#local-6989586621679162684"><span class="hs-identifier hs-var">f</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">PropertyT IO (TestResult a)
+</span><a href="#local-6989586621679162473"><span class="hs-identifier hs-var">f</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">PropertyT IO (TestResult a)
 -&gt; (TestResult a -&gt; PropertyT IO ()) -&gt; PropertyT IO ()
 forall a b.
 PropertyT IO a -&gt; (a -&gt; PropertyT IO b) -&gt; PropertyT IO b
@@ -345,9 +323,11 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a) -&gt; TestResult a -&gt; STM ()
 forall a. TMVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">STM.putTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a)
-</span><a href="#local-6989586621679162687"><span class="hs-identifier hs-var">mvA</span></a></span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679162694"><span class="annot"><span class="annottext">TestResult a
-</span><a href="#local-6989586621679162694"><span class="hs-identifier hs-var">testResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TestResult a) -&gt; PropertyIO (TestResult a)
+</span><a href="#local-6989586621679162476"><span class="hs-identifier hs-var">mvA</span></a></span><span>
+</span><span id="line-68"></span><span>    </span><span class="hs-comment">-- Extract the result of the test action from the TMVar 'mvA'.  This will block until the</span><span>
+</span><span id="line-69"></span><span>    </span><span class="hs-comment">-- action has completed and the result has been put in the TMVar.</span><span>
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679162483"><span class="annot"><span class="annottext">TestResult a
+</span><a href="#local-6989586621679162483"><span class="hs-identifier hs-var">testResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TestResult a) -&gt; PropertyIO (TestResult a)
 forall a. IO a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO (TestResult a) -&gt; PropertyIO (TestResult a))
@@ -361,18 +341,18 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a) -&gt; STM (TestResult a)
 forall a. TMVar a -&gt; STM a
 </span><span class="hs-identifier hs-var">STM.takeTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a)
-</span><a href="#local-6989586621679162687"><span class="hs-identifier hs-var">mvA</span></a></span><span>
-</span><span id="line-67"></span><span>    </span><span class="annot"><span class="annottext">TestResult a -&gt; PropertyIO a
+</span><a href="#local-6989586621679162476"><span class="hs-identifier hs-var">mvA</span></a></span><span>
+</span><span id="line-71"></span><span>    </span><span class="annot"><span class="annottext">TestResult a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a.
 (MonadThrow m, MonadError Failure m) =&gt;
 TestResult a -&gt; m a
 </span><a href="Hedgehog.Extras.Test.MonadAssertion.html#getTestResult"><span class="hs-identifier hs-var">getTestResult</span></a></span><span> </span><span class="annot"><span class="annottext">TestResult a
-</span><a href="#local-6989586621679162694"><span class="hs-identifier hs-var">testResult</span></a></span><span>
-</span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-discover-5.0.2-2b9a62a9b029b78a595ee3a999527888c8eccaae67d693b84fbeef8c0d5da77f/share/doc/html/src/Test.Tasty.Discover.html#Tasty"><span class="hs-identifier hs-type">Tasty</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-70"></span><span>  </span><span id="local-6989586621679162706"><span class="annot"><span class="annottext">tasty :: TastyInfo -&gt; PropertyIO () -&gt; IO TestTree
-</span><a href="#local-6989586621679162706"><span class="hs-identifier hs-var hs-var hs-var hs-var">tasty</span></a></span></span><span> </span><span id="local-6989586621679162708"><span class="annot"><span class="annottext">TastyInfo
-</span><a href="#local-6989586621679162708"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TestTree -&gt; IO TestTree
+</span><a href="#local-6989586621679162483"><span class="hs-identifier hs-var">testResult</span></a></span><span>
+</span><span id="line-72"></span><span>
+</span><span id="line-73"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-discover-5.0.2-2b9a62a9b029b78a595ee3a999527888c8eccaae67d693b84fbeef8c0d5da77f/share/doc/html/src/Test.Tasty.Discover.html#Tasty"><span class="hs-identifier hs-type">Tasty</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-74"></span><span>  </span><span id="local-6989586621679162495"><span class="annot"><span class="annottext">tasty :: TastyInfo -&gt; PropertyIO () -&gt; IO TestTree
+</span><a href="#local-6989586621679162495"><span class="hs-identifier hs-var hs-var hs-var hs-var">tasty</span></a></span></span><span> </span><span id="local-6989586621679162497"><span class="annot"><span class="annottext">TastyInfo
+</span><a href="#local-6989586621679162497"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TestTree -&gt; IO TestTree
 forall a. a -&gt; IO a
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">(TestTree -&gt; IO TestTree)
@@ -380,7 +360,7 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Property -&gt; TestTree
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-eaadc570d77fa93bb9b9d6cb6a2fef11b9e1c39d26b5307df58c3d399d34a94e/share/doc/html/src/Test.Tasty.Hedgehog.html#testProperty"><span class="hs-identifier hs-var">testProperty</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679162709"><span class="hs-identifier hs-var">testName</span></a></span><span> </span><span class="annot"><span class="annottext">(Property -&gt; TestTree)
+</span><a href="#local-6989586621679162498"><span class="hs-identifier hs-var">testName</span></a></span><span> </span><span class="annot"><span class="annottext">(Property -&gt; TestTree)
 -&gt; (PropertyIO () -&gt; Property) -&gt; PropertyIO () -&gt; TestTree
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">TestLimit -&gt; Property -&gt; Property
@@ -395,8 +375,8 @@ PropertyT IO () -&gt; Property
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">PropertyIO () -&gt; PropertyT IO ()
 </span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#propertyIOToPropertyT"><span class="hs-identifier hs-var">propertyIOToPropertyT</span></a></span><span>
-</span><span id="line-71"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679162709"><span class="annot"><span class="annottext">testName :: String
-</span><a href="#local-6989586621679162709"><span class="hs-identifier hs-var hs-var">testName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><span id="line-75"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679162498"><span class="annot"><span class="annottext">testName :: String
+</span><a href="#local-6989586621679162498"><span class="hs-identifier hs-var hs-var">testName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. a -&gt; Maybe a -&gt; a
 </span><span class="hs-identifier hs-var">fromMaybe</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;&quot;</span></span><span> </span><span class="annot"><span class="annottext">(Maybe String -&gt; String) -&gt; Maybe String -&gt; String
@@ -404,36 +384,36 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Last String -&gt; Maybe String
 forall a. Last a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">getLast</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TastyInfo
-</span><a href="#local-6989586621679162708"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="annot"><span class="annottext">TastyInfo
+</span><a href="#local-6989586621679162497"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="annot"><span class="annottext">TastyInfo
 -&gt; Getting (Last String) TastyInfo (Last String) -&gt; Last String
 forall s a. s -&gt; Getting a s a -&gt; a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/microlens-0.4.14.0-1d51715bca572ba7b87b0f58384440d5706f937fbc10dde834723592846ba584/share/doc/html/src/Lens.Micro.html#%5E."><span class="hs-operator hs-var">^.</span></a></span><span> </span><span class="annot"><span class="annottext">forall {k} (sel :: k) s t a b. HasAny sel s t a b =&gt; Lens s t a b
 forall (sel :: Symbol) s t a b. HasAny sel s t a b =&gt; Lens s t a b
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/generic-lens-2.2.2.0-0e49ecc58486d77be7645b26e2b6b0551daa3839a908ceb1b083d9fa9f9ca370/share/doc/html/src/Data.Generics.Product.Any.html#the"><span class="hs-identifier hs-var">the</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span class="hs-special">)</span><span>
-</span><span id="line-72"></span><span>
-</span><span id="line-73"></span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#propertyIOToPropertyT"><span class="hs-identifier hs-type">propertyIOToPropertyT</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-74"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-75"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#PropertyT"><span class="hs-identifier hs-type">H.PropertyT</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-76"></span><span id="propertyIOToPropertyT"><span class="annot"><span class="annottext">propertyIOToPropertyT :: PropertyIO () -&gt; PropertyT IO ()
-</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#propertyIOToPropertyT"><span class="hs-identifier hs-var hs-var">propertyIOToPropertyT</span></a></span></span><span> </span><span id="local-6989586621679162756"><span class="annot"><span class="annottext">PropertyIO ()
-</span><a href="#local-6989586621679162756"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-77"></span><span>  </span><span id="local-6989586621679162757"><span class="annot"><span class="annottext">TMVar (Either SomeException (Either Failure ()))
-</span><a href="#local-6989586621679162757"><span class="hs-identifier hs-var">tvResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (Either SomeException (Either Failure ())))
+</span><span id="line-76"></span><span>
+</span><span id="line-77"></span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#propertyIOToPropertyT"><span class="hs-identifier hs-type">propertyIOToPropertyT</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-78"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-79"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#PropertyT"><span class="hs-identifier hs-type">H.PropertyT</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-80"></span><span id="propertyIOToPropertyT"><span class="annot"><span class="annottext">propertyIOToPropertyT :: PropertyIO () -&gt; PropertyT IO ()
+</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#propertyIOToPropertyT"><span class="hs-identifier hs-var hs-var">propertyIOToPropertyT</span></a></span></span><span> </span><span id="local-6989586621679162545"><span class="annot"><span class="annottext">PropertyIO ()
+</span><a href="#local-6989586621679162545"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-81"></span><span>  </span><span id="local-6989586621679162546"><span class="annot"><span class="annottext">TMVar (Either SomeException (Either Failure ()))
+</span><a href="#local-6989586621679162546"><span class="hs-identifier hs-var">tvResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (Either SomeException (Either Failure ())))
 -&gt; PropertyT IO (TMVar (Either SomeException (Either Failure ())))
 forall a. IO a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">IO (TMVar (Either SomeException (Either Failure ())))
 forall a. IO (TMVar a)
 </span><span class="hs-identifier hs-var">STM.newEmptyTMVarIO</span></span><span>
-</span><span id="line-78"></span><span>  </span><span id="local-6989586621679162758"><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162758"><span class="hs-identifier hs-var">tvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (PropertyT IO ()))
+</span><span id="line-82"></span><span>  </span><span id="local-6989586621679162547"><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
+</span><a href="#local-6989586621679162547"><span class="hs-identifier hs-var">tvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (PropertyT IO ()))
 -&gt; PropertyT IO (TMVar (PropertyT IO ()))
 forall a. IO a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">IO (TMVar (PropertyT IO ()))
 forall a. IO (TMVar a)
 </span><span class="hs-identifier hs-var">STM.newEmptyTMVarIO</span></span><span>
-</span><span id="line-79"></span><span>  </span><span class="annot"><span class="annottext">PropertyT IO ThreadId
+</span><span id="line-83"></span><span>  </span><span class="annot"><span class="annottext">PropertyT IO ThreadId
 -&gt; (ThreadId -&gt; PropertyT IO ())
 -&gt; (ThreadId -&gt; PropertyT IO ())
 -&gt; PropertyT IO ()
@@ -441,7 +421,9 @@ forall (m :: * -&gt; *) a b c.
 MonadBaseControl IO m =&gt;
 m a -&gt; (a -&gt; m b) -&gt; (a -&gt; m c) -&gt; m c
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/lifted-base-0.2.3.12-f7a8c7a3c8575f08e3dcd91b0bc9df04ce451129d152a520ac002fa8074a63a5/share/doc/html/src/Control.Exception.Lifted.html#bracket"><span class="hs-identifier hs-var">CEL.bracket</span></a></span><span>
-</span><span id="line-80"></span><span>    </span><span class="hs-keyword">do</span><span>  </span><span class="annot"><span class="annottext">IO ThreadId -&gt; PropertyT IO ThreadId
+</span><span id="line-84"></span><span>    </span><span class="hs-comment">-- Fork a thread to run the test code.  The test code cannot run in the existing thread because that</span><span>
+</span><span id="line-85"></span><span>    </span><span class="hs-comment">-- thread is running in 'PropertyT' which does not implement 'MonadMask'.</span><span>
+</span><span id="line-86"></span><span>    </span><span class="hs-keyword">do</span><span>  </span><span class="annot"><span class="annottext">IO ThreadId -&gt; PropertyT IO ThreadId
 forall a. IO a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO ThreadId -&gt; PropertyT IO ThreadId)
@@ -452,8 +434,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; IO ThreadId
 forall a. IO a -&gt; (Either SomeException a -&gt; IO ()) -&gt; IO ThreadId
 </span><span class="hs-identifier hs-var">IO.forkFinally</span></span><span>
-</span><span id="line-81"></span><span>          </span><span class="hs-keyword">do</span><span>  </span><span class="annot"><span class="annottext">PropertyIO ()
-</span><a href="#local-6989586621679162756"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">PropertyIO ()
+</span><span id="line-87"></span><span>          </span><span class="hs-keyword">do</span><span>  </span><span class="annot"><span class="annottext">PropertyIO ()
+</span><a href="#local-6989586621679162545"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">PropertyIO ()
 -&gt; (PropertyIO ()
     -&gt; ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) ())
 -&gt; ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) ()
@@ -463,8 +445,8 @@ forall a b. a -&gt; (a -&gt; b) -&gt; b
 forall a.
 PropertyIO a
 -&gt; ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) a
-</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#runPropertIO"><span class="hs-identifier hs-var">runPropertIO</span></a></span><span>
-</span><span id="line-82"></span><span>                </span><span class="annot"><span class="annottext">ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) ()
+</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#runPropertyIO"><span class="hs-identifier hs-var">runPropertyIO</span></a></span><span>
+</span><span id="line-88"></span><span>                </span><span class="annot"><span class="annottext">ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) ()
 -&gt; (ExceptT Failure (ResourceT (ReaderT PropertyEnv IO)) ()
     -&gt; ResourceT (ReaderT PropertyEnv IO) (Either Failure ()))
 -&gt; ResourceT (ReaderT PropertyEnv IO) (Either Failure ())
@@ -473,7 +455,7 @@ forall a b. a -&gt; (a -&gt; b) -&gt; b
 -&gt; ResourceT (ReaderT PropertyEnv IO) (Either Failure ())
 forall e (m :: * -&gt; *) a. ExceptT e m a -&gt; m (Either e a)
 </span><span class="hs-identifier hs-var">runExceptT</span></span><span>
-</span><span id="line-83"></span><span>                </span><span class="annot"><span class="annottext">ResourceT (ReaderT PropertyEnv IO) (Either Failure ())
+</span><span id="line-89"></span><span>                </span><span class="annot"><span class="annottext">ResourceT (ReaderT PropertyEnv IO) (Either Failure ())
 -&gt; (ResourceT (ReaderT PropertyEnv IO) (Either Failure ())
     -&gt; ReaderT PropertyEnv IO (Either Failure ()))
 -&gt; ReaderT PropertyEnv IO (Either Failure ())
@@ -482,7 +464,7 @@ forall a b. a -&gt; (a -&gt; b) -&gt; b
 -&gt; ReaderT PropertyEnv IO (Either Failure ())
 forall (m :: * -&gt; *) a. MonadUnliftIO m =&gt; ResourceT m a -&gt; m a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html#runResourceT"><span class="hs-identifier hs-var">runResourceT</span></a></span><span>
-</span><span id="line-84"></span><span>                </span><span class="annot"><span class="annottext">ReaderT PropertyEnv IO (Either Failure ())
+</span><span id="line-90"></span><span>                </span><span class="annot"><span class="annottext">ReaderT PropertyEnv IO (Either Failure ())
 -&gt; (ReaderT PropertyEnv IO (Either Failure ())
     -&gt; IO (Either Failure ()))
 -&gt; IO (Either Failure ())
@@ -498,8 +480,8 @@ forall a b c. (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c
 forall r (m :: * -&gt; *) a. ReaderT r m a -&gt; r -&gt; m a
 </span><span class="hs-identifier hs-var">runReaderT</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TMVar (PropertyT IO ()) -&gt; PropertyEnv
 </span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-var">PropertyEnv</span></a></span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162758"><span class="hs-identifier hs-var">tvAction</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-85"></span><span>          </span><span class="hs-special">(</span><span class="annot"><span class="annottext">IO () -&gt; IO ()
+</span><a href="#local-6989586621679162547"><span class="hs-identifier hs-var">tvAction</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-91"></span><span>          </span><span class="hs-special">(</span><span class="annot"><span class="annottext">IO () -&gt; IO ()
 forall a. IO a -&gt; IO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; IO ())
@@ -518,8 +500,8 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 -&gt; Either SomeException (Either Failure ()) -&gt; STM ()
 forall a. TMVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">STM.putTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (Either SomeException (Either Failure ()))
-</span><a href="#local-6989586621679162757"><span class="hs-identifier hs-var">tvResult</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-86"></span><span>    </span><span class="hs-keyword">do</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; PropertyT IO ()
+</span><a href="#local-6989586621679162546"><span class="hs-identifier hs-var">tvResult</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-92"></span><span>    </span><span class="hs-keyword">do</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; PropertyT IO ()
 forall a. IO a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; PropertyT IO ())
@@ -527,15 +509,15 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">ThreadId -&gt; IO ()
 </span><span class="hs-identifier hs-var">IO.killThread</span></span><span>
-</span><span id="line-87"></span><span>    </span><span class="hs-keyword">do</span><span> </span><span class="hs-glyph">\</span><span class="annot"><span class="annottext">ThreadId
+</span><span id="line-93"></span><span>    </span><span class="hs-keyword">do</span><span> </span><span class="hs-glyph">\</span><span class="annot"><span class="annottext">ThreadId
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-88"></span><span>        </span><span class="annot"><span class="annottext">PropertyT IO (Maybe ()) -&gt; PropertyT IO ()
+</span><span id="line-94"></span><span>        </span><span class="annot"><span class="annottext">PropertyT IO (Maybe ()) -&gt; PropertyT IO ()
 forall (m :: * -&gt; *) a. Monad m =&gt; m (Maybe a) -&gt; m a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/src/HaskellWorks.Control.Monad.html#whileNothingM"><span class="hs-identifier hs-var">whileNothingM</span></a></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-89"></span><span>          </span><span id="local-6989586621679162767"><span class="annot"><span class="annottext">Maybe
+</span><span id="line-95"></span><span>          </span><span id="local-6989586621679162556"><span class="annot"><span class="annottext">Maybe
   (Either
      (PropertyT IO ()) (Either SomeException (Either Failure ())))
-</span><a href="#local-6989586621679162767"><span class="hs-identifier hs-var">mActionOrResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO
+</span><a href="#local-6989586621679162556"><span class="hs-identifier hs-var">mActionOrResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO
   (Maybe
      (Either
         (PropertyT IO ()) (Either SomeException (Either Failure ()))))
@@ -575,25 +557,25 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
            (PropertyT IO ()) (Either SomeException (Either Failure ()))))
 forall a. STM a -&gt; IO a
 </span><span class="hs-identifier hs-var">STM.atomically</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-90"></span><span>            </span><span id="local-6989586621679162768"><span class="annot"><span class="annottext">Maybe (PropertyT IO ())
-</span><a href="#local-6989586621679162768"><span class="hs-identifier hs-var">mAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ()) -&gt; STM (Maybe (PropertyT IO ()))
+</span><span id="line-96"></span><span>            </span><span id="local-6989586621679162557"><span class="annot"><span class="annottext">Maybe (PropertyT IO ())
+</span><a href="#local-6989586621679162557"><span class="hs-identifier hs-var">mAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ()) -&gt; STM (Maybe (PropertyT IO ()))
 forall a. TMVar a -&gt; STM (Maybe a)
 </span><span class="hs-identifier hs-var">STM.tryTakeTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162758"><span class="hs-identifier hs-var">tvAction</span></a></span><span>
-</span><span id="line-91"></span><span>            </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe (PropertyT IO ())
-</span><a href="#local-6989586621679162768"><span class="hs-identifier hs-var">mAction</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-92"></span><span>              </span><span class="annot"><span class="annottext">Maybe (PropertyT IO ())
+</span><a href="#local-6989586621679162547"><span class="hs-identifier hs-var">tvAction</span></a></span><span>
+</span><span id="line-97"></span><span>            </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe (PropertyT IO ())
+</span><a href="#local-6989586621679162557"><span class="hs-identifier hs-var">mAction</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-98"></span><span>              </span><span class="annot"><span class="annottext">Maybe (PropertyT IO ())
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-93"></span><span>                </span><span id="local-6989586621679162770"><span class="annot"><span class="annottext">Maybe (Either SomeException (Either Failure ()))
-</span><a href="#local-6989586621679162770"><span class="hs-identifier hs-var">mResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">TMVar (Either SomeException (Either Failure ()))
+</span><span id="line-99"></span><span>                </span><span id="local-6989586621679162559"><span class="annot"><span class="annottext">Maybe (Either SomeException (Either Failure ()))
+</span><a href="#local-6989586621679162559"><span class="hs-identifier hs-var">mResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">TMVar (Either SomeException (Either Failure ()))
 -&gt; STM (Maybe (Either SomeException (Either Failure ())))
 forall a. TMVar a -&gt; STM (Maybe a)
 </span><span class="hs-identifier hs-var">STM.tryTakeTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (Either SomeException (Either Failure ()))
-</span><a href="#local-6989586621679162757"><span class="hs-identifier hs-var">tvResult</span></a></span><span>
-</span><span id="line-94"></span><span>                </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe (Either SomeException (Either Failure ()))
-</span><a href="#local-6989586621679162770"><span class="hs-identifier hs-var">mResult</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-95"></span><span>                  </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679162771"><span class="annot"><span class="annottext">Either SomeException (Either Failure ())
-</span><a href="#local-6989586621679162771"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe
+</span><a href="#local-6989586621679162546"><span class="hs-identifier hs-var">tvResult</span></a></span><span>
+</span><span id="line-100"></span><span>                </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe (Either SomeException (Either Failure ()))
+</span><a href="#local-6989586621679162559"><span class="hs-identifier hs-var">mResult</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-101"></span><span>                  </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679162560"><span class="annot"><span class="annottext">Either SomeException (Either Failure ())
+</span><a href="#local-6989586621679162560"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe
   (Either
      (PropertyT IO ()) (Either SomeException (Either Failure ())))
 -&gt; STM
@@ -638,16 +620,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
      (PropertyT IO ()) (Either SomeException (Either Failure ()))
 forall a b. b -&gt; Either a b
 </span><span class="hs-identifier hs-var">Right</span></span><span> </span><span class="annot"><span class="annottext">Either SomeException (Either Failure ())
-</span><a href="#local-6989586621679162771"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-96"></span><span>                  </span><span class="annot"><span class="annottext">Maybe (Either SomeException (Either Failure ()))
+</span><a href="#local-6989586621679162560"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-102"></span><span>                  </span><span class="annot"><span class="annottext">Maybe (Either SomeException (Either Failure ()))
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">STM
   (Maybe
      (Either
         (PropertyT IO ()) (Either SomeException (Either Failure ()))))
 forall a. STM a
 </span><span class="hs-identifier hs-var">retry</span></span><span>
-</span><span id="line-97"></span><span>              </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679162773"><span class="annot"><span class="annottext">PropertyT IO ()
-</span><a href="#local-6989586621679162773"><span class="hs-identifier hs-var">action</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe
+</span><span id="line-103"></span><span>              </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679162562"><span class="annot"><span class="annottext">PropertyT IO ()
+</span><a href="#local-6989586621679162562"><span class="hs-identifier hs-var">action</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe
   (Either
      (PropertyT IO ()) (Either SomeException (Either Failure ())))
 -&gt; STM
@@ -692,13 +674,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
      (PropertyT IO ()) (Either SomeException (Either Failure ()))
 forall a b. a -&gt; Either a b
 </span><span class="hs-identifier hs-var">Left</span></span><span> </span><span class="annot"><span class="annottext">PropertyT IO ()
-</span><a href="#local-6989586621679162773"><span class="hs-identifier hs-var">action</span></a></span><span>
-</span><span id="line-98"></span><span>
-</span><span id="line-99"></span><span>          </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe
+</span><a href="#local-6989586621679162562"><span class="hs-identifier hs-var">action</span></a></span><span>
+</span><span id="line-104"></span><span>
+</span><span id="line-105"></span><span>          </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe
   (Either
      (PropertyT IO ()) (Either SomeException (Either Failure ())))
-</span><a href="#local-6989586621679162767"><span class="hs-identifier hs-var">mActionOrResult</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-100"></span><span>            </span><span class="annot"><span class="annottext">Maybe
+</span><a href="#local-6989586621679162556"><span class="hs-identifier hs-var">mActionOrResult</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-106"></span><span>            </span><span class="annot"><span class="annottext">Maybe
   (Either
      (PropertyT IO ()) (Either SomeException (Either Failure ())))
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe () -&gt; PropertyT IO (Maybe ())
@@ -707,9 +689,9 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">Maybe ()
 forall a. Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span>
-</span><span id="line-101"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Left</span></span><span> </span><span id="local-6989586621679162774"><span class="annot"><span class="annottext">PropertyT IO ()
-</span><a href="#local-6989586621679162774"><span class="hs-identifier hs-var">action</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">PropertyT IO ()
-</span><a href="#local-6989586621679162774"><span class="hs-identifier hs-var">action</span></a></span><span> </span><span class="annot"><span class="annottext">PropertyT IO ()
+</span><span id="line-107"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Left</span></span><span> </span><span id="local-6989586621679162563"><span class="annot"><span class="annottext">PropertyT IO ()
+</span><a href="#local-6989586621679162563"><span class="hs-identifier hs-var">action</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">PropertyT IO ()
+</span><a href="#local-6989586621679162563"><span class="hs-identifier hs-var">action</span></a></span><span> </span><span class="annot"><span class="annottext">PropertyT IO ()
 -&gt; PropertyT IO (Maybe ()) -&gt; PropertyT IO (Maybe ())
 forall a b. PropertyT IO a -&gt; PropertyT IO b -&gt; PropertyT IO b
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
@@ -719,8 +701,8 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">Maybe ()
 forall a. Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span>
-</span><span id="line-102"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Left</span></span><span> </span><span id="local-6989586621679162775"><span class="annot"><span class="annottext">SomeException
-</span><a href="#local-6989586621679162775"><span class="hs-identifier hs-var">e</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">IO (Maybe ()) -&gt; PropertyT IO (Maybe ())
+</span><span id="line-108"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Left</span></span><span> </span><span id="local-6989586621679162564"><span class="annot"><span class="annottext">SomeException
+</span><a href="#local-6989586621679162564"><span class="hs-identifier hs-var">e</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">IO (Maybe ()) -&gt; PropertyT IO (Maybe ())
 forall a. IO a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO (Maybe ()) -&gt; PropertyT IO (Maybe ()))
@@ -729,15 +711,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SomeException -&gt; IO (Maybe ())
 forall e a. Exception e =&gt; e -&gt; IO a
 </span><span class="hs-identifier hs-var">IO.throwIO</span></span><span> </span><span class="annot"><span class="annottext">SomeException
-</span><a href="#local-6989586621679162775"><span class="hs-identifier hs-var">e</span></a></span><span>
-</span><span id="line-103"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Left</span></span><span> </span><span id="local-6989586621679162777"><span class="annot"><span class="annottext">Failure
-</span><a href="#local-6989586621679162777"><span class="hs-identifier hs-var">e</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Failure -&gt; PropertyT IO (Maybe ())
+</span><a href="#local-6989586621679162564"><span class="hs-identifier hs-var">e</span></a></span><span>
+</span><span id="line-109"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Left</span></span><span> </span><span id="local-6989586621679162566"><span class="annot"><span class="annottext">Failure
+</span><a href="#local-6989586621679162566"><span class="hs-identifier hs-var">e</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Failure -&gt; PropertyT IO (Maybe ())
 forall a. Failure -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a. MonadAssertion m =&gt; Failure -&gt; m a
 </span><a href="Hedgehog.Extras.Test.MonadAssertion.html#throwAssertion"><span class="hs-identifier hs-var">throwAssertion</span></a></span><span> </span><span class="annot"><span class="annottext">Failure
-</span><a href="#local-6989586621679162777"><span class="hs-identifier hs-var">e</span></a></span><span>
-</span><span id="line-104"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span id="local-6989586621679162779"><span class="annot"><span class="annottext">()
-</span><a href="#local-6989586621679162779"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe () -&gt; PropertyT IO (Maybe ())
+</span><a href="#local-6989586621679162566"><span class="hs-identifier hs-var">e</span></a></span><span>
+</span><span id="line-110"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Right</span></span><span> </span><span id="local-6989586621679162568"><span class="annot"><span class="annottext">()
+</span><a href="#local-6989586621679162568"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Maybe () -&gt; PropertyT IO (Maybe ())
 forall a. a -&gt; PropertyT IO a
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">(Maybe () -&gt; PropertyT IO (Maybe ()))
@@ -746,26 +728,26 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">() -&gt; Maybe ()
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">()
-</span><a href="#local-6989586621679162779"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span id="local-6989586621679162300"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#forAll"><span class="hs-identifier hs-type">forAll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-107"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679162300"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-108"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Gen.html#Gen"><span class="hs-identifier hs-type">Gen</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162300"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-109"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162300"><span class="hs-identifier hs-type">a</span></a></span></span><span>
-</span><span id="line-110"></span><span id="forAll"><span class="annot"><span class="annottext">forAll :: forall a. Show a =&gt; Gen a -&gt; PropertyIO a
-</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#forAll"><span class="hs-identifier hs-var hs-var">forAll</span></a></span></span><span> </span><span id="local-6989586621679162794"><span class="annot"><span class="annottext">Gen a
-</span><a href="#local-6989586621679162794"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-111"></span><span>  </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span> </span><span id="local-6989586621679162795"><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162795"><span class="hs-identifier hs-var">tmvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall r (m :: * -&gt; *). MonadReader r m =&gt; m r
+</span><a href="#local-6989586621679162568"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-111"></span><span>
+</span><span id="line-112"></span><span id="local-6989586621679162105"><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#forAll"><span class="hs-identifier hs-type">forAll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-113"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679162105"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-114"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Gen.html#Gen"><span class="hs-identifier hs-type">Gen</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162105"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-115"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyIO"><span class="hs-identifier hs-type">PropertyIO</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162105"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-116"></span><span id="forAll"><span class="annot"><span class="annottext">forAll :: forall a. Show a =&gt; Gen a -&gt; PropertyIO a
+</span><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#forAll"><span class="hs-identifier hs-var hs-var">forAll</span></a></span></span><span> </span><span id="local-6989586621679162583"><span class="annot"><span class="annottext">Gen a
+</span><a href="#local-6989586621679162583"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-117"></span><span>  </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span> </span><span id="local-6989586621679162584"><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
+</span><a href="#local-6989586621679162584"><span class="hs-identifier hs-var">tmvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall r (m :: * -&gt; *). MonadReader r m =&gt; m r
 </span><span class="hs-identifier hs-var">ask</span></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.PropertyIO.html#PropertyEnv"><span class="hs-identifier hs-type">PropertyEnv</span></a></span><span>
-</span><span id="line-112"></span><span>  </span><span id="local-6989586621679162796"><span class="annot"><span class="annottext">TMVar a
-</span><a href="#local-6989586621679162796"><span class="hs-identifier hs-var">mvA</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar a) -&gt; PropertyIO (TMVar a)
+</span><span id="line-118"></span><span>  </span><span id="local-6989586621679162585"><span class="annot"><span class="annottext">TMVar a
+</span><a href="#local-6989586621679162585"><span class="hs-identifier hs-var">mvA</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar a) -&gt; PropertyIO (TMVar a)
 forall a. IO a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">IO (TMVar a)
 forall a. IO (TMVar a)
 </span><span class="hs-identifier hs-var">STM.newEmptyTMVarIO</span></span><span>
-</span><span id="line-113"></span><span>  </span><span class="annot"><span class="annottext">IO () -&gt; PropertyIO ()
+</span><span id="line-119"></span><span>  </span><span class="annot"><span class="annottext">IO () -&gt; PropertyIO ()
 forall a. IO a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; PropertyIO ()) -&gt; IO () -&gt; PropertyIO ()
@@ -777,12 +759,12 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ()) -&gt; PropertyT IO () -&gt; STM ()
 forall a. TMVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">putTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (PropertyT IO ())
-</span><a href="#local-6989586621679162795"><span class="hs-identifier hs-var">tmvAction</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Gen a -&gt; PropertyT IO a
+</span><a href="#local-6989586621679162584"><span class="hs-identifier hs-var">tmvAction</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Gen a -&gt; PropertyT IO a
 forall (m :: * -&gt; *) a.
 (Monad m, Show a, HasCallStack) =&gt;
 Gen a -&gt; PropertyT m a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#forAll"><span class="hs-identifier hs-var">H.forAll</span></a></span><span> </span><span class="annot"><span class="annottext">Gen a
-</span><a href="#local-6989586621679162794"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">PropertyT IO a -&gt; (a -&gt; PropertyT IO ()) -&gt; PropertyT IO ()
+</span><a href="#local-6989586621679162583"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">PropertyT IO a -&gt; (a -&gt; PropertyT IO ()) -&gt; PropertyT IO ()
 forall a b.
 PropertyT IO a -&gt; (a -&gt; PropertyT IO b) -&gt; PropertyT IO b
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; (a -&gt; m b) -&gt; m b
@@ -798,8 +780,8 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">TMVar a -&gt; a -&gt; STM ()
 forall a. TMVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">STM.putTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar a
-</span><a href="#local-6989586621679162796"><span class="hs-identifier hs-var">mvA</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-114"></span><span>  </span><span class="annot"><span class="annottext">IO a -&gt; PropertyIO a
+</span><a href="#local-6989586621679162585"><span class="hs-identifier hs-var">mvA</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-120"></span><span>  </span><span class="annot"><span class="annottext">IO a -&gt; PropertyIO a
 forall a. IO a -&gt; PropertyIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO a -&gt; PropertyIO a) -&gt; IO a -&gt; PropertyIO a
@@ -811,5 +793,5 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMVar a -&gt; STM a
 forall a. TMVar a -&gt; STM a
 </span><span class="hs-identifier hs-var">takeTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar a
-</span><a href="#local-6989586621679162796"><span class="hs-identifier hs-var">mvA</span></a></span><span>
-</span><span id="line-115"></span></pre></body></html>
+</span><a href="#local-6989586621679162585"><span class="hs-identifier hs-var">mvA</span></a></span><span>
+</span><span id="line-121"></span></pre></body></html>
