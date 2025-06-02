@@ -16,18 +16,18 @@
 </span><span id="line-16"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.html"><span class="hs-identifier">Network.Socket</span></a></span><span>
 </span><span id="line-17"></span><span>
 </span><span id="line-18"></span><span class="annot"><span class="hs-comment">-- | Return a random available port on a specified host address</span></span><span>
-</span><span id="line-19"></span><span id="local-6989586621679160247"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier hs-type">randomPort</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679160247"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFail</span></span><span> </span><span class="annot"><a href="#local-6989586621679160247"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-19"></span><span id="local-6989586621679147572"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier hs-type">randomPort</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679147572"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFail</span></span><span> </span><span class="annot"><a href="#local-6989586621679147572"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#HostAddress"><span class="hs-identifier hs-type">HostAddress</span></a></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679160247"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#PortNumber"><span class="hs-identifier hs-type">PortNumber</span></a></span></span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679147572"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#PortNumber"><span class="hs-identifier hs-type">PortNumber</span></a></span></span><span>
 </span><span id="line-24"></span><span id="randomPort"><span class="annot"><span class="annottext">randomPort :: forall (m :: * -&gt; *).
 (MonadIO m, MonadFail m) =&gt;
 HostAddress -&gt; m PortNumber
-</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier hs-var hs-var">randomPort</span></a></span></span><span> </span><span id="local-6989586621679160302"><span class="annot"><span class="annottext">HostAddress
-</span><a href="#local-6989586621679160302"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679160303"><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160303"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Socket -&gt; m Socket
+</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#randomPort"><span class="hs-identifier hs-var hs-var">randomPort</span></a></span></span><span> </span><span id="local-6989586621679147627"><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679147627"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679147628"><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679147628"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Socket -&gt; m Socket
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Socket -&gt; m Socket) -&gt; IO Socket -&gt; m Socket
@@ -45,7 +45,7 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; SocketOption -&gt; Int -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Options.html#setSocketOption"><span class="hs-identifier hs-var">setSocketOption</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160303"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
+</span><a href="#local-6989586621679147628"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Options.html#ReuseAddr"><span class="hs-identifier hs-var">ReuseAddr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">IO () -&gt; m ()
@@ -55,14 +55,14 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; SockAddr -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.SockAddr.html#bind"><span class="hs-identifier hs-var">bind</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160303"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">(SockAddr -&gt; IO ()) -&gt; SockAddr -&gt; IO ()
+</span><a href="#local-6989586621679147628"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">(SockAddr -&gt; IO ()) -&gt; SockAddr -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PortNumber -&gt; HostAddress -&gt; SockAddr
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-var">SockAddrInet</span></a></span><span> </span><span class="annot"><span class="annottext">PortNumber
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#defaultPort"><span class="hs-identifier hs-var">defaultPort</span></a></span><span> </span><span class="annot"><span class="annottext">HostAddress
-</span><a href="#local-6989586621679160302"><span class="hs-identifier hs-var">hostAddress</span></a></span><span>
-</span><span id="line-29"></span><span>  </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-type">SockAddrInet</span></a></span><span> </span><span id="local-6989586621679160314"><span class="annot"><span class="annottext">PortNumber
-</span><a href="#local-6989586621679160314"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679147627"><span class="hs-identifier hs-var">hostAddress</span></a></span><span>
+</span><span id="line-29"></span><span>  </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-type">SockAddrInet</span></a></span><span> </span><span id="local-6989586621679147639"><span class="annot"><span class="annottext">PortNumber
+</span><a href="#local-6989586621679147639"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="annot"><span class="annottext">HostAddress
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO SockAddr -&gt; m SockAddr
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -70,7 +70,7 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IO SockAddr
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.SockAddr.html#getSocketName"><span class="hs-identifier hs-var">getSocketName</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160303"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><a href="#local-6989586621679147628"><span class="hs-identifier hs-var">sock</span></a></span><span>
 </span><span id="line-30"></span><span>  </span><span class="annot"><span class="annottext">IO () -&gt; m ()
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -78,25 +78,25 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#close"><span class="hs-identifier hs-var">close</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160303"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><a href="#local-6989586621679147628"><span class="hs-identifier hs-var">sock</span></a></span><span>
 </span><span id="line-31"></span><span>  </span><span class="annot"><span class="annottext">PortNumber -&gt; m PortNumber
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">PortNumber
-</span><a href="#local-6989586621679160314"><span class="hs-identifier hs-var">port</span></a></span><span>
+</span><a href="#local-6989586621679147639"><span class="hs-identifier hs-var">port</span></a></span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span id="local-6989586621679160265"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#reserveRandomPort"><span class="hs-identifier hs-type">reserveRandomPort</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-34"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFail</span></span><span> </span><span class="annot"><a href="#local-6989586621679160265"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-35"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#MonadResource"><span class="hs-identifier hs-type">MonadResource</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679160265"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-33"></span><span id="local-6989586621679147590"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#reserveRandomPort"><span class="hs-identifier hs-type">reserveRandomPort</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-34"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFail</span></span><span> </span><span class="annot"><a href="#local-6989586621679147590"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-35"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#MonadResource"><span class="hs-identifier hs-type">MonadResource</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679147590"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-36"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#HostAddress"><span class="hs-identifier hs-type">HostAddress</span></a></span><span>
-</span><span id="line-37"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679160265"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#ReleaseKey"><span class="hs-identifier hs-type">ReleaseKey</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#PortNumber"><span class="hs-identifier hs-type">PortNumber</span></a></span><span class="hs-special">)</span></span><span>
+</span><span id="line-37"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679147590"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.Internal.html#ReleaseKey"><span class="hs-identifier hs-type">ReleaseKey</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#PortNumber"><span class="hs-identifier hs-type">PortNumber</span></a></span><span class="hs-special">)</span></span><span>
 </span><span id="line-38"></span><span id="reserveRandomPort"><span class="annot"><span class="annottext">reserveRandomPort :: forall (m :: * -&gt; *).
 (MonadFail m, MonadResource m) =&gt;
 HostAddress -&gt; m (ReleaseKey, PortNumber)
-</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#reserveRandomPort"><span class="hs-identifier hs-var hs-var">reserveRandomPort</span></a></span></span><span> </span><span id="local-6989586621679160335"><span class="annot"><span class="annottext">HostAddress
-</span><a href="#local-6989586621679160335"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>  </span><span id="local-6989586621679160336"><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160336"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Socket -&gt; m Socket
+</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#reserveRandomPort"><span class="hs-identifier hs-var hs-var">reserveRandomPort</span></a></span></span><span> </span><span id="local-6989586621679147660"><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679147660"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679147661"><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679147661"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Socket -&gt; m Socket
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Socket -&gt; m Socket) -&gt; IO Socket -&gt; m Socket
@@ -113,7 +113,7 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; SocketOption -&gt; Int -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Options.html#setSocketOption"><span class="hs-identifier hs-var">setSocketOption</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160336"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
+</span><a href="#local-6989586621679147661"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Options.html#ReuseAddr"><span class="hs-identifier hs-var">ReuseAddr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">IO () -&gt; m ()
@@ -123,14 +123,14 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; SockAddr -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.SockAddr.html#bind"><span class="hs-identifier hs-var">bind</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160336"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">(SockAddr -&gt; IO ()) -&gt; SockAddr -&gt; IO ()
+</span><a href="#local-6989586621679147661"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">(SockAddr -&gt; IO ()) -&gt; SockAddr -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PortNumber -&gt; HostAddress -&gt; SockAddr
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-var">SockAddrInet</span></a></span><span> </span><span class="annot"><span class="annottext">PortNumber
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#defaultPort"><span class="hs-identifier hs-var">defaultPort</span></a></span><span> </span><span class="annot"><span class="annottext">HostAddress
-</span><a href="#local-6989586621679160335"><span class="hs-identifier hs-var">hostAddress</span></a></span><span>
-</span><span id="line-42"></span><span>  </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-type">SockAddrInet</span></a></span><span> </span><span id="local-6989586621679160337"><span class="annot"><span class="annottext">PortNumber
-</span><a href="#local-6989586621679160337"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679147660"><span class="hs-identifier hs-var">hostAddress</span></a></span><span>
+</span><span id="line-42"></span><span>  </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-type">SockAddrInet</span></a></span><span> </span><span id="local-6989586621679147662"><span class="annot"><span class="annottext">PortNumber
+</span><a href="#local-6989586621679147662"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="annot"><span class="annottext">HostAddress
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO SockAddr -&gt; m SockAddr
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -138,36 +138,36 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IO SockAddr
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.SockAddr.html#getSocketName"><span class="hs-identifier hs-var">getSocketName</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160336"><span class="hs-identifier hs-var">sock</span></a></span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679160338"><span class="annot"><span class="annottext">ReleaseKey
-</span><a href="#local-6989586621679160338"><span class="hs-identifier hs-var">releaseKey</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; m ReleaseKey
+</span><a href="#local-6989586621679147661"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679147663"><span class="annot"><span class="annottext">ReleaseKey
+</span><a href="#local-6989586621679147663"><span class="hs-identifier hs-var">releaseKey</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; m ReleaseKey
 forall (m :: * -&gt; *). MonadResource m =&gt; IO () -&gt; m ReleaseKey
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html#register"><span class="hs-identifier hs-var">register</span></a></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; m ReleaseKey) -&gt; IO () -&gt; m ReleaseKey
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#close"><span class="hs-identifier hs-var">close</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160336"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><a href="#local-6989586621679147661"><span class="hs-identifier hs-var">sock</span></a></span><span>
 </span><span id="line-44"></span><span>  </span><span class="annot"><span class="annottext">(ReleaseKey, PortNumber) -&gt; m (ReleaseKey, PortNumber)
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ReleaseKey
-</span><a href="#local-6989586621679160338"><span class="hs-identifier hs-var">releaseKey</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">PortNumber
-</span><a href="#local-6989586621679160337"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679147663"><span class="hs-identifier hs-var">releaseKey</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">PortNumber
+</span><a href="#local-6989586621679147662"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-45"></span><span>
 </span><span id="line-46"></span><span class="annot"><span class="hs-comment">-- | Check if a port is in use on a specified host address</span></span><span>
-</span><span id="line-47"></span><span id="local-6989586621679160272"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#portInUse"><span class="hs-identifier hs-type">portInUse</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-48"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679160272"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-47"></span><span id="local-6989586621679147597"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#portInUse"><span class="hs-identifier hs-type">portInUse</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-48"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679147597"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-49"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#HostAddress"><span class="hs-identifier hs-type">HostAddress</span></a></span><span>
 </span><span id="line-50"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#PortNumber"><span class="hs-identifier hs-type">PortNumber</span></a></span><span>
-</span><span id="line-51"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679160272"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span></span><span>
+</span><span id="line-51"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679147597"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span></span><span>
 </span><span id="line-52"></span><span id="portInUse"><span class="annot"><span class="annottext">portInUse :: forall (m :: * -&gt; *).
 MonadIO m =&gt;
 HostAddress -&gt; PortNumber -&gt; m Bool
-</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#portInUse"><span class="hs-identifier hs-var hs-var">portInUse</span></a></span></span><span> </span><span id="local-6989586621679160353"><span class="annot"><span class="annottext">HostAddress
-</span><a href="#local-6989586621679160353"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span id="local-6989586621679160354"><span class="annot"><span class="annottext">PortNumber
-</span><a href="#local-6989586621679160354"><span class="hs-identifier hs-var">pn</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679160355"><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160355"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Socket -&gt; m Socket
+</span><a href="Hedgehog.Extras.Stock.IO.Network.Port.html#portInUse"><span class="hs-identifier hs-var hs-var">portInUse</span></a></span></span><span> </span><span id="local-6989586621679147678"><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679147678"><span class="hs-identifier hs-var">hostAddress</span></a></span></span><span> </span><span id="local-6989586621679147679"><span class="annot"><span class="annottext">PortNumber
+</span><a href="#local-6989586621679147679"><span class="hs-identifier hs-var">pn</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>  </span><span id="local-6989586621679147680"><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679147680"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Socket -&gt; m Socket
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Socket -&gt; m Socket) -&gt; IO Socket -&gt; m Socket
@@ -184,11 +184,11 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; SocketOption -&gt; Int -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Options.html#setSocketOption"><span class="hs-identifier hs-var">setSocketOption</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160355"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
+</span><a href="#local-6989586621679147680"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Options.html#ReuseAddr"><span class="hs-identifier hs-var">ReuseAddr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
-</span><span id="line-55"></span><span>  </span><span id="local-6989586621679160356"><span class="annot"><span class="annottext">Either SomeException ()
-</span><a href="#local-6989586621679160356"><span class="hs-identifier hs-var">result</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (Either SomeException ()) -&gt; m (Either SomeException ())
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679147681"><span class="annot"><span class="annottext">Either SomeException ()
+</span><a href="#local-6989586621679147681"><span class="hs-identifier hs-var">result</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (Either SomeException ()) -&gt; m (Either SomeException ())
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO (Either SomeException ()) -&gt; m (Either SomeException ()))
@@ -200,10 +200,10 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; SockAddr -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.SockAddr.html#bind"><span class="hs-identifier hs-var">bind</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160355"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">PortNumber -&gt; HostAddress -&gt; SockAddr
+</span><a href="#local-6989586621679147680"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">PortNumber -&gt; HostAddress -&gt; SockAddr
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#SockAddrInet"><span class="hs-identifier hs-var">SockAddrInet</span></a></span><span> </span><span class="annot"><span class="annottext">PortNumber
-</span><a href="#local-6989586621679160354"><span class="hs-identifier hs-var">pn</span></a></span><span> </span><span class="annot"><span class="annottext">HostAddress
-</span><a href="#local-6989586621679160353"><span class="hs-identifier hs-var">hostAddress</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679147679"><span class="hs-identifier hs-var">pn</span></a></span><span> </span><span class="annot"><span class="annottext">HostAddress
+</span><a href="#local-6989586621679147678"><span class="hs-identifier hs-var">hostAddress</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-56"></span><span>  </span><span class="annot"><span class="annottext">IO () -&gt; m ()
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -211,7 +211,7 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IO ()
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/network-3.2.7.0-bc9027d3d15ed5fa3ff400f097685562022c65686e9be9e4de0a2c62f145255a/share/doc/html/src/Network.Socket.Types.html#close"><span class="hs-identifier hs-var">close</span></a></span><span> </span><span class="annot"><span class="annottext">Socket
-</span><a href="#local-6989586621679160355"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><a href="#local-6989586621679147680"><span class="hs-identifier hs-var">sock</span></a></span><span>
 </span><span id="line-57"></span><span>  </span><span class="annot"><span class="annottext">Bool -&gt; m Bool
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
@@ -227,5 +227,5 @@ forall a b. a -&gt; b -&gt; a
 forall a b. a -&gt; b -&gt; a
 </span><span class="hs-identifier hs-var">const</span></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Either SomeException ()
-</span><a href="#local-6989586621679160356"><span class="hs-identifier hs-var">result</span></a></span><span>
+</span><a href="#local-6989586621679147681"><span class="hs-identifier hs-var">result</span></a></span><span>
 </span><span id="line-58"></span></pre></body></html>
