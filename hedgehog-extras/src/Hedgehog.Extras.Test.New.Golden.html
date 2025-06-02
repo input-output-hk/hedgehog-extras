@@ -44,11 +44,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-38"></span><span class="hs-pragma">{-# NOINLINE</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#sem"><span class="hs-pragma hs-type">sem</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span id="local-6989586621679167637"><span id="local-6989586621679167640"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-type">semBracket</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-41"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167637"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-42"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679167637"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-43"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167637"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167640"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-44"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167637"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167640"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
+</span><span id="line-40"></span><span id="local-6989586621679167591"><span id="local-6989586621679167594"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-type">semBracket</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-41"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167591"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-42"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679167591"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-43"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167591"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167594"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-44"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167591"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167594"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
 </span><span id="line-45"></span><span id="semBracket"><span class="annot"><span class="annottext">semBracket :: forall (m :: * -&gt; *) a. (MonadIO m, MonadMask m) =&gt; m a -&gt; m a
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-var hs-var">semBracket</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="annottext">m () -&gt; m () -&gt; m a -&gt; m a
@@ -90,8 +90,8 @@ forall a. IO a -&gt; a
 </span><span class="hs-identifier hs-var">IO.unsafePerformIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Bool -&gt; Bool) -&gt; IO Bool -&gt; Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-58"></span><span>  </span><span id="local-6989586621679167726"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679167726"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO (Maybe String)
+</span><span id="line-58"></span><span>  </span><span id="local-6989586621679167680"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679167680"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO (Maybe String)
 </span><span class="hs-identifier hs-var">IO.lookupEnv</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CREATE_GOLDEN_FILES&quot;</span></span><span>
 </span><span id="line-59"></span><span>  </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
@@ -100,7 +100,7 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; IO Bool) -&gt; Bool -&gt; IO Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679167726"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe String -&gt; Maybe String -&gt; Bool
+</span><a href="#local-6989586621679167680"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe String -&gt; Maybe String -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
 forall a. a -&gt; Maybe a
@@ -115,8 +115,8 @@ forall a. IO a -&gt; a
 </span><span class="hs-identifier hs-var">IO.unsafePerformIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Bool -&gt; Bool) -&gt; IO Bool -&gt; Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-64"></span><span>  </span><span id="local-6989586621679167728"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679167728"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO (Maybe String)
+</span><span id="line-64"></span><span>  </span><span id="local-6989586621679167682"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679167682"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO (Maybe String)
 </span><span class="hs-identifier hs-var">IO.lookupEnv</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RECREATE_GOLDEN_FILES&quot;</span></span><span>
 </span><span id="line-65"></span><span>  </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
@@ -125,26 +125,26 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; IO Bool) -&gt; Bool -&gt; IO Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679167728"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe String -&gt; Maybe String -&gt; Bool
+</span><a href="#local-6989586621679167682"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe String -&gt; Maybe String -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;1&quot;</span></span><span>
 </span><span id="line-66"></span><span>
-</span><span id="line-67"></span><span id="local-6989586621679167654"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-type">writeGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-67"></span><span id="local-6989586621679167608"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-type">writeGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-68"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-69"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167654"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-70"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167654"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-69"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167608"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-70"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167608"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-71"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
 </span><span id="line-72"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-73"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167654"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-73"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167608"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-74"></span><span id="writeGoldenFile"><span class="annot"><span class="annottext">writeGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var hs-var">writeGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167737"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167737"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679167738"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167738"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var hs-var">writeGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167691"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167691"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679167692"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167692"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -157,33 +157,33 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;Creating golden file &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167737"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><a href="#local-6989586621679167691"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
 </span><span id="line-76"></span><span>  </span><span class="annot"><span class="annottext">String -&gt; m ()
 forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.File.html#createDirectoryIfMissing_"><span class="hs-identifier hs-var">H.createDirectoryIfMissing_</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; String
 </span><span class="hs-identifier hs-var">takeDirectory</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167737"><span class="hs-identifier hs-var">goldenFile</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679167691"><span class="hs-identifier hs-var">goldenFile</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-77"></span><span>  </span><span class="annot"><span class="annottext">String -&gt; String -&gt; m ()
 forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.File.html#writeFile"><span class="hs-identifier hs-var">H.writeFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167737"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167738"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679167691"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167692"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-78"></span><span>
-</span><span id="line-79"></span><span id="local-6989586621679167663"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-type">reportGoldenFileMissing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-79"></span><span id="local-6989586621679167617"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-type">reportGoldenFileMissing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-80"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-81"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167663"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-82"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167663"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-81"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167617"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-82"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167617"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-83"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
-</span><span id="line-84"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167663"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-84"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167617"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-85"></span><span id="reportGoldenFileMissing"><span class="annot"><span class="annottext">reportGoldenFileMissing :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var hs-var">reportGoldenFileMissing</span></a></span></span><span> </span><span id="local-6989586621679167766"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167766"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var hs-var">reportGoldenFileMissing</span></a></span></span><span> </span><span id="local-6989586621679167720"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167720"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -198,7 +198,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;Golden file &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167766"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
+</span><a href="#local-6989586621679167720"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; does not exist.&quot;</span></span><span>
@@ -211,25 +211,25 @@ forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 forall (m :: * -&gt; *) a. (MonadTest m, HasCallStack) =&gt; m a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#failure"><span class="hs-identifier hs-var">H.failure</span></a></span><span>
 </span><span id="line-92"></span><span>
-</span><span id="line-93"></span><span id="local-6989586621679167667"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-type">checkAgainstGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-93"></span><span id="local-6989586621679167621"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-type">checkAgainstGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-94"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-95"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167667"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-96"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167667"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-95"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167621"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-96"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167621"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-97"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
 </span><span id="line-98"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
-</span><span id="line-99"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167667"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-99"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167621"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-100"></span><span id="checkAgainstGoldenFile"><span class="annot"><span class="annottext">checkAgainstGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; [String] -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var hs-var">checkAgainstGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167790"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167790"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679167791"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679167791"><span class="hs-identifier hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var hs-var">checkAgainstGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167744"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167744"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679167745"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679167745"><span class="hs-identifier hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-101"></span><span>  </span><span id="local-6989586621679167808"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679167808"><span class="hs-identifier hs-var">referenceLines</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><span id="line-101"></span><span>  </span><span id="local-6989586621679167762"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679167762"><span class="hs-identifier hs-var">referenceLines</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><span class="hs-identifier hs-var">List.lines</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; [String]) -&gt; m String -&gt; m [String]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; m String
@@ -237,15 +237,15 @@ forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 String -&gt; m String
 </span><a href="Hedgehog.Extras.Test.File.html#readFile"><span class="hs-identifier hs-var">H.readFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167790"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
-</span><span id="line-102"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679167814"><span class="annot"><span class="annottext">difference :: [Diff [String]]
-</span><a href="#local-6989586621679167814"><span class="hs-identifier hs-var hs-var">difference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[String] -&gt; [String] -&gt; [Diff [String]]
+</span><a href="#local-6989586621679167744"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><span id="line-102"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679167768"><span class="annot"><span class="annottext">difference :: [Diff [String]]
+</span><a href="#local-6989586621679167768"><span class="hs-identifier hs-var hs-var">difference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[String] -&gt; [String] -&gt; [Diff [String]]
 forall a. Eq a =&gt; [a] -&gt; [a] -&gt; [Diff [a]]
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/Diff-1.0.2-680593d42e13b46b936aab4ad98113ca630277282b28260da5d48b0f13ca3843/share/doc/html/src/Data.Algorithm.Diff.html#getGroupedDiff"><span class="hs-identifier hs-var">getGroupedDiff</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679167791"><span class="hs-identifier hs-var">actualLines</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679167808"><span class="hs-identifier hs-var">referenceLines</span></a></span><span>
+</span><a href="#local-6989586621679167745"><span class="hs-identifier hs-var">actualLines</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679167762"><span class="hs-identifier hs-var">referenceLines</span></a></span><span>
 </span><span id="line-103"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Diff [String]]
-</span><a href="#local-6989586621679167814"><span class="hs-identifier hs-var">difference</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679167768"><span class="hs-identifier hs-var">difference</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-104"></span><span>    </span><span class="hs-special">[</span><span class="hs-special">]</span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">() -&gt; m ()
 forall a. a -&gt; m a
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
@@ -275,7 +275,7 @@ HasCallStack =&gt; CallStack
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Diff [String]] -&gt; String
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/Diff-1.0.2-680593d42e13b46b936aab4ad98113ca630277282b28260da5d48b0f13ca3843/share/doc/html/src/Data.Algorithm.DiffOutput.html#ppDiff"><span class="hs-identifier hs-var">ppDiff</span></a></span><span> </span><span class="annot"><span class="annottext">[Diff [String]]
-</span><a href="#local-6989586621679167814"><span class="hs-identifier hs-var">difference</span></a></span><span>
+</span><a href="#local-6989586621679167768"><span class="hs-identifier hs-var">difference</span></a></span><span>
 </span><span id="line-112"></span><span>
 </span><span id="line-113"></span><span class="hs-comment">-- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
 </span><span id="line-114"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the golden file not exist it would be created.  If</span><span>
@@ -292,20 +292,20 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span id="line-125"></span><span class="hs-comment">--</span><span>
 </span><span id="line-126"></span><span class="hs-comment">-- TODO: Improve the help output by saying the difference of</span><span>
 </span><span id="line-127"></span><span class="hs-comment">-- each input.</span><span>
-</span><span id="line-128"></span><span id="local-6989586621679167679"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-type">diffVsGoldenFile</span></a></span><span>
+</span><span id="line-128"></span><span id="local-6989586621679167633"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-type">diffVsGoldenFile</span></a></span><span>
 </span><span id="line-129"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-130"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167679"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-131"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679167679"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-132"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167679"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-130"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167633"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-131"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679167633"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-132"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167633"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-133"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>   </span><span class="annot"><span class="hs-comment">-- ^ Actual content</span></span><span>
 </span><span id="line-134"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-comment">-- ^ Reference file</span></span><span>
-</span><span id="line-135"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167679"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-135"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167633"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-136"></span><span id="diffVsGoldenFile"><span class="annot"><span class="annottext">diffVsGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadMask m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167822"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167822"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span id="local-6989586621679167823"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167776"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167776"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span id="local-6989586621679167777"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-137"></span><span>  </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
@@ -322,8 +322,8 @@ t a -&gt; (a -&gt; m b) -&gt; m ()
 </span><span class="hs-identifier hs-var">forM_</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#mGoldenFileLogFile"><span class="hs-identifier hs-var">mGoldenFileLogFile</span></a></span><span> </span><span class="annot"><span class="annottext">((String -&gt; m ()) -&gt; m ()) -&gt; (String -&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679167852"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167852"><span class="hs-identifier hs-var">logFile</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679167806"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167806"><span class="hs-identifier hs-var">logFile</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span>
 </span><span id="line-139"></span><span>      </span><span class="annot"><span class="annottext">IO () -&gt; m ()
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -331,23 +331,23 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; IO ()
 </span><span class="hs-identifier hs-var">IO.appendFile</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167852"><span class="hs-identifier hs-var">logFile</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; IO ()) -&gt; String -&gt; IO ()
+</span><a href="#local-6989586621679167806"><span class="hs-identifier hs-var">logFile</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; IO ()) -&gt; String -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;\n&quot;</span></span><span>
 </span><span id="line-140"></span><span>
-</span><span id="line-141"></span><span>    </span><span id="local-6989586621679167854"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679167854"><span class="hs-identifier hs-var">fileExists</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; m Bool
+</span><span id="line-141"></span><span>    </span><span id="local-6989586621679167808"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679167808"><span class="hs-identifier hs-var">fileExists</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; m Bool
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Bool -&gt; m Bool) -&gt; IO Bool -&gt; m Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; IO Bool
 </span><span class="hs-identifier hs-var">IO.doesFileExist</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
 </span><span id="line-142"></span><span>
 </span><span id="line-143"></span><span>    </span><span class="hs-keyword">if</span><span>
 </span><span id="line-144"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
@@ -356,37 +356,37 @@ forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167822"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167776"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-145"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679167854"><span class="hs-identifier hs-var">fileExists</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; m ()
+</span><a href="#local-6989586621679167808"><span class="hs-identifier hs-var">fileExists</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; [String] -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var">checkAgainstGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679167856"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679167810"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
 </span><span id="line-146"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#createGoldenFiles"><span class="hs-identifier hs-var">createGoldenFiles</span></a></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167822"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167776"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-147"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">otherwise</span></span><span>           </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var">reportGoldenFileMissing</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167823"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><a href="#local-6989586621679167777"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
 </span><span id="line-148"></span><span>
 </span><span id="line-149"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-150"></span><span>    </span><span id="local-6989586621679167856"><span class="annot"><span class="annottext">actualLines :: [String]
-</span><a href="#local-6989586621679167856"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><span id="line-150"></span><span>    </span><span id="local-6989586621679167810"><span class="annot"><span class="annottext">actualLines :: [String]
+</span><a href="#local-6989586621679167810"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><span class="hs-identifier hs-var">List.lines</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167822"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679167776"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-151"></span><span>
 </span><span id="line-152"></span><span class="hs-comment">-- | Diff file against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
 </span><span id="line-153"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the gold file not exist it would be created.  If</span><span>
@@ -399,36 +399,36 @@ String -&gt; m ()
 </span><span id="line-160"></span><span class="hs-comment">--</span><span>
 </span><span id="line-161"></span><span class="hs-comment">-- To re-generate a golden file you must also delete the golden file because golden</span><span>
 </span><span id="line-162"></span><span class="hs-comment">-- files are never overwritten.</span><span>
-</span><span id="line-163"></span><span id="local-6989586621679167857"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-type">diffFileVsGoldenFile</span></a></span><span>
+</span><span id="line-163"></span><span id="local-6989586621679167811"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-type">diffFileVsGoldenFile</span></a></span><span>
 </span><span id="line-164"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-165"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167857"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-166"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679167857"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-167"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167857"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-165"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679167811"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-166"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679167811"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-167"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679167811"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-168"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-comment">-- ^ Actual file</span></span><span>
 </span><span id="line-169"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-comment">-- ^ Reference file</span></span><span>
-</span><span id="line-170"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167857"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-170"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679167811"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-171"></span><span id="diffFileVsGoldenFile"><span class="annot"><span class="annottext">diffFileVsGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadMask m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffFileVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167865"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167865"><span class="hs-identifier hs-var">actualFile</span></a></span></span><span> </span><span id="local-6989586621679167866"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167866"><span class="hs-identifier hs-var">referenceFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffFileVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679167819"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167819"><span class="hs-identifier hs-var">actualFile</span></a></span></span><span> </span><span id="local-6989586621679167820"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167820"><span class="hs-identifier hs-var">referenceFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-172"></span><span>  </span><span id="local-6989586621679167878"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167878"><span class="hs-identifier hs-var">contents</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; m String
+</span><span id="line-172"></span><span>  </span><span id="local-6989586621679167832"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167832"><span class="hs-identifier hs-var">contents</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; m String
 forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 String -&gt; m String
 </span><a href="Hedgehog.Extras.Test.File.html#readFile"><span class="hs-identifier hs-var">H.readFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167865"><span class="hs-identifier hs-var">actualFile</span></a></span><span>
+</span><a href="#local-6989586621679167819"><span class="hs-identifier hs-var">actualFile</span></a></span><span>
 </span><span id="line-173"></span><span>  </span><span class="annot"><span class="annottext">String -&gt; String -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadMask m, MonadTest m) =&gt;
 String -&gt; String -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var">diffVsGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167878"><span class="hs-identifier hs-var">contents</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679167866"><span class="hs-identifier hs-var">referenceFile</span></a></span><span>
+</span><a href="#local-6989586621679167832"><span class="hs-identifier hs-var">contents</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679167820"><span class="hs-identifier hs-var">referenceFile</span></a></span><span>
 </span><span id="line-174"></span></pre></body></html>
