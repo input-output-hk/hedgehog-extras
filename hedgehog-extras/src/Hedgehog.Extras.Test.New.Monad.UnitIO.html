@@ -250,9 +250,9 @@ throwM :: forall e a. (HasCallStack, Exception e) =&gt; e -&gt; UnitIO a
 </span><span id="line-57"></span><span>    </span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.UnitIO.html#UnitEnv"><span class="hs-identifier hs-type">UnitEnv</span></a></span><span> </span><span id="local-6989586621679161641"><span class="annot"><span class="annottext">TMVar (TestT IO ())
 </span><a href="#local-6989586621679161641"><span class="hs-identifier hs-var">tmvAction</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall r (m :: * -&gt; *). MonadReader r m =&gt; m r
 </span><span class="hs-identifier hs-var">ask</span></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="Hedgehog.Extras.Test.New.Monad.UnitIO.html#UnitEnv"><span class="hs-identifier hs-type">UnitEnv</span></a></span><span>
-</span><span id="line-58"></span><span>    </span><span class="hs-comment">-- Create a new TMVar in 'mvA' to hold the result of the test action.</span><span>
+</span><span id="line-58"></span><span>    </span><span class="hs-comment">-- Create a new TMVar in 'tmvA' to hold the result of the test action.</span><span>
 </span><span id="line-59"></span><span>    </span><span id="local-6989586621679161643"><span class="annot"><span class="annottext">TMVar (TestResult a)
-</span><a href="#local-6989586621679161643"><span class="hs-identifier hs-var">mvA</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (TestResult a)) -&gt; UnitIO (TMVar (TestResult a))
+</span><a href="#local-6989586621679161643"><span class="hs-identifier hs-var">tmvA</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TMVar (TestResult a)) -&gt; UnitIO (TMVar (TestResult a))
 forall a. IO a -&gt; UnitIO a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">IO (TMVar (TestResult a))
@@ -274,7 +274,7 @@ forall a. TMVar a -&gt; a -&gt; STM ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span>
 </span><span id="line-61"></span><span>      </span><span class="hs-comment">-- Send the action action to run by the 'PropertyT' thread.  This action will run the test</span><span>
-</span><span id="line-62"></span><span>      </span><span class="hs-comment">-- and put the result in the TMVar 'mvA'.  As the action is run in a separate thread, its</span><span>
+</span><span id="line-62"></span><span>      </span><span class="hs-comment">-- and put the result in the TMVar 'tmvA'.  As the action is run in a separate thread, its</span><span>
 </span><span id="line-63"></span><span>      </span><span class="hs-comment">-- result cannot be simply returned.</span><span>
 </span><span id="line-64"></span><span>      </span><span class="annot"><span class="annottext">TestT IO a -&gt; TestT IO (TestResult a)
 forall (m :: * -&gt; *) a.
@@ -302,8 +302,8 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a) -&gt; TestResult a -&gt; STM ()
 forall a. TMVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">STM.putTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a)
-</span><a href="#local-6989586621679161643"><span class="hs-identifier hs-var">mvA</span></a></span><span>
-</span><span id="line-65"></span><span>    </span><span class="hs-comment">-- Extract the result of the test action from the TMVar 'mvA'.  This will block until the</span><span>
+</span><a href="#local-6989586621679161643"><span class="hs-identifier hs-var">tmvA</span></a></span><span>
+</span><span id="line-65"></span><span>    </span><span class="hs-comment">-- Extract the result of the test action from the TMVar 'tmvA'.  This will block until the</span><span>
 </span><span id="line-66"></span><span>    </span><span class="hs-comment">-- action has completed and the result has been put in the TMVar.</span><span>
 </span><span id="line-67"></span><span>    </span><span id="local-6989586621679161650"><span class="annot"><span class="annottext">TestResult a
 </span><a href="#local-6989586621679161650"><span class="hs-identifier hs-var">testResult</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TestResult a) -&gt; UnitIO (TestResult a)
@@ -320,7 +320,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a) -&gt; STM (TestResult a)
 forall a. TMVar a -&gt; STM a
 </span><span class="hs-identifier hs-var">STM.takeTMVar</span></span><span> </span><span class="annot"><span class="annottext">TMVar (TestResult a)
-</span><a href="#local-6989586621679161643"><span class="hs-identifier hs-var">mvA</span></a></span><span>
+</span><a href="#local-6989586621679161643"><span class="hs-identifier hs-var">tmvA</span></a></span><span>
 </span><span id="line-68"></span><span>    </span><span class="annot"><span class="annottext">TestResult a -&gt; UnitIO a
 forall (m :: * -&gt; *) a.
 (MonadThrow m, MonadError Failure m) =&gt;
