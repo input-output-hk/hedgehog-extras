@@ -6,7 +6,7 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Hedgehog.Extras.Test.New.Monad.UnitIO
+module Hedgehog.Extras.Test.New.UnitIO
   ( UnitIO(..)
   , UnitEnv(..)
   , unitIOToTestT
