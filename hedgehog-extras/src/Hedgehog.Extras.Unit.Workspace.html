@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE FlexibleContexts #-}</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE ScopedTypeVariables #-}</span><span>
+</span><span id="line-3"></span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Hedgehog.Extras.Unit.Workspace</span><span>
+</span><span id="line-5"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Unit.Workspace.html#unitWorkspace"><span class="hs-identifier">unitWorkspace</span></a></span><span>
+</span><span id="line-6"></span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Unit.Workspace.html#unitModuleWorkspace"><span class="hs-identifier">unitModuleWorkspace</span></a></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Applicative</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Monad</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">when</span></span><span class="hs-special">)</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Control.Monad.IO.Class</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadIO</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/src/Control.Monad.Trans.Control.html"><span class="hs-identifier">Control.Monad.Trans.Control</span></a></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Eq</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Eq</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-operator">(/=)</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Function</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-operator">($)</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-operator">(.)</span></span><span class="hs-special">)</span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Maybe</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">listToMaybe</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">maybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Semigroup</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Semigroup</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.String</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">String</span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Data.Tuple</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">snd</span></span><span class="hs-special">)</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">GHC.Stack</span></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier">MonadTest</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-22"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="Hedgehog.Extras.Stock.CallStack.html"><span class="hs-identifier">Hedgehog.Extras.Stock.CallStack</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Hedgehog.Extras.Stock.CallStack.html#callerModuleName"><span class="hs-identifier">callerModuleName</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">System.FilePath</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-operator">(&lt;/&gt;)</span></span><span class="hs-special">)</span><span>
+</span><span id="line-24"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">System.IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">FilePath</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span class="hs-special">)</span><span>
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/lifted-base-0.2.3.12-f7a8c7a3c8575f08e3dcd91b0bc9df04ce451129d152a520ac002fa8074a63a5/share/doc/html/src/Control.Exception.Lifted.html"><span class="hs-identifier">Control.Exception.Lifted</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">CEL</span></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">GHC.Stack</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">GHC</span></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.Directory</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.Environment</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-31"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.IO</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/temporary-1.3-b71ec789d25a1e6e9902b183eec8608d723b4cce6027b6af410bfb0c5ce05910/share/doc/html/src/System.IO.Temp.html"><span class="hs-identifier">System.IO.Temp</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span class="hs-comment">{- HLINT ignore &quot;Reduce duplication&quot; -}</span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-comment">-- | Create a workspace directory which will exist for at least the duration of</span><span>
+</span><span id="line-37"></span><span class="hs-comment">-- the supplied block.</span><span>
+</span><span id="line-38"></span><span class="hs-comment">--</span><span>
+</span><span id="line-39"></span><span class="hs-comment">-- The directory will have the supplied prefix but contain a generated random</span><span>
+</span><span id="line-40"></span><span class="hs-comment">-- suffix to prevent interference between tests</span><span>
+</span><span id="line-41"></span><span class="hs-comment">--</span><span>
+</span><span id="line-42"></span><span class="hs-comment">-- The directory will be deleted if the block succeeds, but left behind if</span><span>
+</span><span id="line-43"></span><span class="hs-comment">-- the block fails.</span><span>
+</span><span id="line-44"></span><span id="local-6989586621679163571"><span class="annot"><a href="Hedgehog.Extras.Unit.Workspace.html#unitWorkspace"><span class="hs-identifier hs-type">unitWorkspace</span></a></span><span>
+</span><span id="line-45"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679163571"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-46"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163571"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-47"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
+</span><span id="line-48"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/src/Control.Monad.Trans.Control.html#MonadBaseControl"><span class="hs-identifier hs-type">MonadBaseControl</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163571"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-49"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
+</span><span id="line-50"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163571"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-51"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163571"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-52"></span><span id="unitWorkspace"><span class="annot"><span class="annottext">unitWorkspace :: forall (m :: * -&gt; *).
+(MonadTest m, MonadIO m, HasCallStack, MonadBaseControl IO m) =&gt;
+FilePath -&gt; (FilePath -&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Unit.Workspace.html#unitWorkspace"><span class="hs-identifier hs-var hs-var">unitWorkspace</span></a></span></span><span> </span><span id="local-6989586621679163631"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163631"><span class="hs-identifier hs-var">prefixPath</span></a></span></span><span> </span><span id="local-6989586621679163632"><span class="annot"><span class="annottext">FilePath -&gt; m ()
+</span><a href="#local-6989586621679163632"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-53"></span><span>  </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
+</span><span class="hs-identifier hs-var">withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">m FilePath -&gt; (FilePath -&gt; m ()) -&gt; (FilePath -&gt; m ()) -&gt; m ()
+forall (m :: * -&gt; *) a b c.
+MonadBaseControl IO m =&gt;
+m a -&gt; (a -&gt; m b) -&gt; (a -&gt; m c) -&gt; m c
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/lifted-base-0.2.3.12-f7a8c7a3c8575f08e3dcd91b0bc9df04ce451129d152a520ac002fa8074a63a5/share/doc/html/src/Control.Exception.Lifted.html#bracket"><span class="hs-identifier hs-var">CEL.bracket</span></a></span><span> </span><span class="annot"><span class="annottext">m FilePath
+forall (m :: * -&gt; *). (MonadIO m, MonadTest m) =&gt; m FilePath
+</span><a href="#local-6989586621679163641"><span class="hs-identifier hs-var">init</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m ()
+forall (m :: * -&gt; *). (MonadIO m, MonadTest m) =&gt; FilePath -&gt; m ()
+</span><a href="#local-6989586621679163642"><span class="hs-identifier hs-var">fini</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m ()
+</span><a href="#local-6989586621679163632"><span class="hs-identifier hs-var">f</span></a></span><span>
+</span><span id="line-54"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679163586"><span class="annot"><a href="#local-6989586621679163641"><span class="hs-identifier hs-type">init</span></a></span><span>
+</span><span id="line-56"></span><span>      </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163586"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-57"></span><span>      </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679163586"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-58"></span><span>      </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163586"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span></span><span>
+</span><span id="line-59"></span><span>    </span><span id="local-6989586621679163641"><span class="annot"><span class="annottext">init :: forall (m :: * -&gt; *). (MonadIO m, MonadTest m) =&gt; m FilePath
+</span><a href="#local-6989586621679163641"><span class="hs-identifier hs-var hs-var">init</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-60"></span><span>      </span><span id="local-6989586621679163674"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163674"><span class="hs-identifier hs-var">systemTemp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO FilePath -&gt; m FilePath
+forall (m :: * -&gt; *) a.
+(MonadTest m, MonadIO m, HasCallStack) =&gt;
+IO a -&gt; m a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#evalIO"><span class="hs-identifier hs-var">H.evalIO</span></a></span><span> </span><span class="annot"><span class="annottext">IO FilePath
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/temporary-1.3-b71ec789d25a1e6e9902b183eec8608d723b4cce6027b6af410bfb0c5ce05910/share/doc/html/src/System.IO.Temp.html#getCanonicalTemporaryDirectory"><span class="hs-identifier hs-var">IO.getCanonicalTemporaryDirectory</span></a></span><span>
+</span><span id="line-61"></span><span>      </span><span id="local-6989586621679163677"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163677"><span class="hs-identifier hs-var">ws</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO FilePath -&gt; m FilePath
+forall (m :: * -&gt; *) a.
+(MonadTest m, MonadIO m, HasCallStack) =&gt;
+IO a -&gt; m a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#evalIO"><span class="hs-identifier hs-var">H.evalIO</span></a></span><span> </span><span class="annot"><span class="annottext">(IO FilePath -&gt; m FilePath) -&gt; IO FilePath -&gt; m FilePath
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; IO FilePath
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/temporary-1.3-b71ec789d25a1e6e9902b183eec8608d723b4cce6027b6af410bfb0c5ce05910/share/doc/html/src/System.IO.Temp.html#createTempDirectory"><span class="hs-identifier hs-var">IO.createTempDirectory</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163674"><span class="hs-identifier hs-var">systemTemp</span></a></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; IO FilePath) -&gt; FilePath -&gt; IO FilePath
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163631"><span class="hs-identifier hs-var">prefixPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+forall a. Semigroup a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;-test&quot;</span></span><span>
+</span><span id="line-62"></span><span>      </span><span class="annot"><span class="annottext">FilePath -&gt; m ()
+forall (m :: * -&gt; *).
+(MonadTest m, HasCallStack) =&gt;
+FilePath -&gt; m ()
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#annotate"><span class="hs-identifier hs-var">H.annotate</span></a></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; m ()) -&gt; FilePath -&gt; m ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;Workspace: &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+forall a. Semigroup a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163677"><span class="hs-identifier hs-var">ws</span></a></span><span>
+</span><span id="line-63"></span><span>      </span><span class="annot"><span class="annottext">IO () -&gt; m ()
+forall (m :: * -&gt; *) a.
+(MonadTest m, MonadIO m, HasCallStack) =&gt;
+IO a -&gt; m a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#evalIO"><span class="hs-identifier hs-var">H.evalIO</span></a></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; m ()) -&gt; IO () -&gt; m ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; IO ()
+</span><span class="hs-identifier hs-var">IO.writeFile</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163677"><span class="hs-identifier hs-var">ws</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><span class="hs-operator hs-var">&lt;/&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;module&quot;</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">FilePath
+HasCallStack =&gt; FilePath
+</span><a href="Hedgehog.Extras.Stock.CallStack.html#callerModuleName"><span class="hs-identifier hs-var">callerModuleName</span></a></span><span>
+</span><span id="line-64"></span><span>      </span><span class="annot"><span class="annottext">FilePath -&gt; m FilePath
+forall a. a -&gt; m a
+forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
+</span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163677"><span class="hs-identifier hs-var">ws</span></a></span><span>
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679163587"><span class="annot"><a href="#local-6989586621679163642"><span class="hs-identifier hs-type">fini</span></a></span><span>
+</span><span id="line-66"></span><span>      </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163587"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-67"></span><span>      </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679163587"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-68"></span><span>      </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
+</span><span id="line-69"></span><span>      </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163587"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679163642"><span class="annot"><span class="annottext">fini :: forall (m :: * -&gt; *). (MonadIO m, MonadTest m) =&gt; FilePath -&gt; m ()
+</span><a href="#local-6989586621679163642"><span class="hs-identifier hs-var hs-var">fini</span></a></span></span><span> </span><span id="local-6989586621679163701"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163701"><span class="hs-identifier hs-var">ws</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-71"></span><span>      </span><span id="local-6989586621679163702"><span class="annot"><span class="annottext">Maybe FilePath
+</span><a href="#local-6989586621679163702"><span class="hs-identifier hs-var">maybeKeepWorkspace</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (Maybe FilePath) -&gt; m (Maybe FilePath)
+forall (m :: * -&gt; *) a.
+(MonadTest m, MonadIO m, HasCallStack) =&gt;
+IO a -&gt; m a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#evalIO"><span class="hs-identifier hs-var">H.evalIO</span></a></span><span> </span><span class="annot"><span class="annottext">(IO (Maybe FilePath) -&gt; m (Maybe FilePath))
+-&gt; IO (Maybe FilePath) -&gt; m (Maybe FilePath)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO (Maybe FilePath)
+</span><span class="hs-identifier hs-var">IO.lookupEnv</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;KEEP_WORKSPACE&quot;</span></span><span>
+</span><span id="line-72"></span><span>      </span><span class="annot"><span class="annottext">Bool -&gt; m () -&gt; m ()
+forall (f :: * -&gt; *). Applicative f =&gt; Bool -&gt; f () -&gt; f ()
+</span><span class="hs-identifier hs-var">when</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Maybe FilePath
+</span><a href="#local-6989586621679163702"><span class="hs-identifier hs-var">maybeKeepWorkspace</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath -&gt; Maybe FilePath -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">/=</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Maybe FilePath
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;1&quot;</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(m () -&gt; m ()) -&gt; m () -&gt; m ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-73"></span><span>        </span><span class="annot"><span class="annottext">IO () -&gt; m ()
+forall (m :: * -&gt; *) a.
+(MonadTest m, MonadIO m, HasCallStack) =&gt;
+IO a -&gt; m a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#evalIO"><span class="hs-identifier hs-var">H.evalIO</span></a></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; m ()) -&gt; IO () -&gt; m ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO ()
+</span><span class="hs-identifier hs-var">IO.removePathForcibly</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163701"><span class="hs-identifier hs-var">ws</span></a></span><span>
+</span><span id="line-74"></span><span>
+</span><span id="line-75"></span><span class="hs-comment">-- | Create a workspace directory which will exist for at least the duration of</span><span>
+</span><span id="line-76"></span><span class="hs-comment">-- the supplied block.</span><span>
+</span><span id="line-77"></span><span class="hs-comment">--</span><span>
+</span><span id="line-78"></span><span class="hs-comment">-- The directory will have the prefix as &quot;$prefixPath/$moduleName&quot; but contain a generated random</span><span>
+</span><span id="line-79"></span><span class="hs-comment">-- suffix to prevent interference between tests</span><span>
+</span><span id="line-80"></span><span class="hs-comment">--</span><span>
+</span><span id="line-81"></span><span class="hs-comment">-- The directory will be deleted if the block succeeds, but left behind if</span><span>
+</span><span id="line-82"></span><span class="hs-comment">-- the block fails.</span><span>
+</span><span id="line-83"></span><span class="hs-comment">--</span><span>
+</span><span id="line-84"></span><span class="hs-comment">-- The 'prefix' argument should not contain directory delimeters.</span><span>
+</span><span id="line-85"></span><span id="local-6989586621679163604"><span class="annot"><a href="Hedgehog.Extras.Unit.Workspace.html#unitModuleWorkspace"><span class="hs-identifier hs-type">unitModuleWorkspace</span></a></span><span>
+</span><span id="line-86"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
+</span><span id="line-87"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/src/Control.Monad.Trans.Control.html#MonadBaseControl"><span class="hs-identifier hs-type">MonadBaseControl</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163604"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-88"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163604"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-89"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679163604"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-90"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-91"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163604"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-92"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163604"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-93"></span><span id="unitModuleWorkspace"><span class="annot"><span class="annottext">unitModuleWorkspace :: forall (m :: * -&gt; *).
+(HasCallStack, MonadBaseControl IO m, MonadIO m, MonadTest m) =&gt;
+FilePath -&gt; (FilePath -&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Unit.Workspace.html#unitModuleWorkspace"><span class="hs-identifier hs-var hs-var">unitModuleWorkspace</span></a></span></span><span> </span><span id="local-6989586621679163711"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163711"><span class="hs-identifier hs-var">prefix</span></a></span></span><span> </span><span id="local-6989586621679163712"><span class="annot"><span class="annottext">FilePath -&gt; m ()
+</span><a href="#local-6989586621679163712"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
+</span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-94"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679163723"><span class="annot"><span class="annottext">srcModule :: FilePath
+</span><a href="#local-6989586621679163723"><span class="hs-identifier hs-var hs-var">srcModule</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
+-&gt; ((FilePath, SrcLoc) -&gt; FilePath)
+-&gt; Maybe (FilePath, SrcLoc)
+-&gt; FilePath
+forall b a. b -&gt; (a -&gt; b) -&gt; Maybe a -&gt; b
+</span><span class="hs-identifier hs-var">maybe</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;UnknownModule&quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">SrcLoc -&gt; FilePath
+</span><span class="hs-identifier hs-var">GHC.srcLocModule</span></span><span> </span><span class="annot"><span class="annottext">(SrcLoc -&gt; FilePath)
+-&gt; ((FilePath, SrcLoc) -&gt; SrcLoc) -&gt; (FilePath, SrcLoc) -&gt; FilePath
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">(FilePath, SrcLoc) -&gt; SrcLoc
+forall a b. (a, b) -&gt; b
+</span><span class="hs-identifier hs-var">snd</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[(FilePath, SrcLoc)] -&gt; Maybe (FilePath, SrcLoc)
+forall a. [a] -&gt; Maybe a
+</span><span class="hs-identifier hs-var">listToMaybe</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">CallStack -&gt; [(FilePath, SrcLoc)]
+</span><span class="hs-identifier hs-var">GHC.getCallStack</span></span><span> </span><span class="annot"><span class="annottext">CallStack
+HasCallStack =&gt; CallStack
+</span><span class="hs-identifier hs-var">GHC.callStack</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-95"></span><span>  </span><span class="annot"><span class="annottext">FilePath -&gt; (FilePath -&gt; m ()) -&gt; m ()
+forall (m :: * -&gt; *).
+(MonadTest m, MonadIO m, HasCallStack, MonadBaseControl IO m) =&gt;
+FilePath -&gt; (FilePath -&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Unit.Workspace.html#unitWorkspace"><span class="hs-identifier hs-var">unitWorkspace</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163711"><span class="hs-identifier hs-var">prefix</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+forall a. Semigroup a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span class="hs-string">&quot;-&quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+forall a. Semigroup a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163723"><span class="hs-identifier hs-var">srcModule</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m ()
+</span><a href="#local-6989586621679163712"><span class="hs-identifier hs-var">f</span></a></span><span>
+</span><span id="line-96"></span></pre></body></html>

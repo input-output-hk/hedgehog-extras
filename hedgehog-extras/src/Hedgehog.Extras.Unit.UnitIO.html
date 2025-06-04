@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE BlockArguments #-}</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE DataKinds #-}</span><span>
+</span><span id="line-3"></span><span class="hs-pragma">{-# LANGUAGE DerivingStrategies #-}</span><span>
+</span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE FlexibleInstances #-}</span><span>
+</span><span id="line-5"></span><span class="hs-pragma">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span><span>
+</span><span id="line-6"></span><span class="hs-pragma">{-# LANGUAGE ImportQualifiedPost #-}</span><span>
+</span><span id="line-7"></span><span class="hs-pragma">{-# LANGUAGE TypeApplications #-}</span><span>
+</span><span id="line-8"></span><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+</span><span id="line-9"></span><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses #-}</span><span>
+</span><span id="line-10"></span><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Hedgehog.Extras.Unit.UnitIO</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Unit.UnitIO.html#UnitIO"><span class="hs-identifier">UnitIO</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/transformers-base-0.4.6-6293943fa9e4d34929f55693eb7463412a86adb89fdec13f65f5ec268b158223/share/doc/html/src/Control.Monad.Base.html"><span class="hs-identifier">Control.Monad.Base</span></a></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Catch</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">MonadCatch</span></span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/src/Control.Monad.Trans.Control.html"><span class="hs-identifier">Control.Monad.Trans.Control</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/src/Control.Monad.Trans.Control.html#MonadBaseControl"><span class="hs-identifier">MonadBaseControl</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/src/Control.Monad.Trans.Resource.html"><span class="hs-identifier">Control.Monad.Trans.Resource</span></a></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/generic-lens-2.2.2.0-0e49ecc58486d77be7645b26e2b6b0551daa3839a908ceb1b083d9fa9f9ca370/share/doc/html/src/Data.Generics.Product.Any.html"><span class="hs-identifier">Data.Generics.Product.Any</span></a></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Monoid</span></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/src/HaskellWorks.Prelude.html"><span class="hs-identifier">HaskellWorks.Prelude</span></a></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.html"><span class="hs-identifier">Hedgehog</span></a></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html"><span class="hs-identifier">Hedgehog.Internal.Property</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">H</span></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/microlens-0.4.14.0-1d51715bca572ba7b87b0f58384440d5706f937fbc10dde834723592846ba584/share/doc/html/src/Lens.Micro.html"><span class="hs-identifier">Lens.Micro</span></a></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-discover-5.0.2-42bc7a49febe49416fb857cbefd9b85cb60e73d18397e70de57bb6f940af50b2/share/doc/html/src/Test.Tasty.Discover.html"><span class="hs-identifier">Test.Tasty.Discover</span></a></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-3630bb415f4ed6fe948887e191ff7578f7de99d9e6828c1004a5ab953bc118f4/share/doc/html/src/Test.Tasty.Hedgehog.html"><span class="hs-identifier">Test.Tasty.Hedgehog</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-3630bb415f4ed6fe948887e191ff7578f7de99d9e6828c1004a5ab953bc118f4/share/doc/html/src/Test.Tasty.Hedgehog.html#testProperty"><span class="hs-identifier">testProperty</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">newtype</span><span> </span><span id="UnitIO"><span class="annot"><a href="Hedgehog.Extras.Unit.UnitIO.html#UnitIO"><span class="hs-identifier hs-var">UnitIO</span></a></span></span><span> </span><span id="local-6989586621679163134"><span class="annot"><a href="#local-6989586621679163134"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="UnitIO"><span class="annot"><a href="Hedgehog.Extras.Unit.UnitIO.html#UnitIO"><span class="hs-identifier hs-var">UnitIO</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="runTestIO"><span class="annot"><span class="annottext">forall a. UnitIO a -&gt; TestT IO a
+</span><a href="Hedgehog.Extras.Unit.UnitIO.html#runTestIO"><span class="hs-identifier hs-var hs-var">runTestIO</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#TestT"><span class="hs-identifier hs-type">TestT</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163134"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163340"><span id="local-6989586621679163346"><span id="local-6989586621679163351"><span id="local-6989586621679163356"><span id="local-6989586621679163361"><span class="annot"><span class="annottext">Functor UnitIO
+Functor UnitIO =&gt;
+(forall a. a -&gt; UnitIO a)
+-&gt; (forall a b. UnitIO (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b)
+-&gt; (forall a b c.
+    (a -&gt; b -&gt; c) -&gt; UnitIO a -&gt; UnitIO b -&gt; UnitIO c)
+-&gt; (forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b)
+-&gt; (forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO a)
+-&gt; Applicative UnitIO
+forall a. a -&gt; UnitIO a
+forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO a
+forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b
+forall a b. UnitIO (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b
+forall a b c. (a -&gt; b -&gt; c) -&gt; UnitIO a -&gt; UnitIO b -&gt; UnitIO c
+forall (f :: * -&gt; *).
+Functor f =&gt;
+(forall a. a -&gt; f a)
+-&gt; (forall a b. f (a -&gt; b) -&gt; f a -&gt; f b)
+-&gt; (forall a b c. (a -&gt; b -&gt; c) -&gt; f a -&gt; f b -&gt; f c)
+-&gt; (forall a b. f a -&gt; f b -&gt; f b)
+-&gt; (forall a b. f a -&gt; f b -&gt; f a)
+-&gt; Applicative f
+$cpure :: forall a. a -&gt; UnitIO a
+pure :: forall a. a -&gt; UnitIO a
+$c&lt;*&gt; :: forall a b. UnitIO (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b
+&lt;*&gt; :: forall a b. UnitIO (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b
+$cliftA2 :: forall a b c. (a -&gt; b -&gt; c) -&gt; UnitIO a -&gt; UnitIO b -&gt; UnitIO c
+liftA2 :: forall a b c. (a -&gt; b -&gt; c) -&gt; UnitIO a -&gt; UnitIO b -&gt; UnitIO c
+$c*&gt; :: forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b
+*&gt; :: forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b
+$c&lt;* :: forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO a
+&lt;* :: forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO a
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Applicative</span></span></span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163369"><span id="local-6989586621679163375"><span class="annot"><span class="annottext">(forall a b. (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b)
+-&gt; (forall a b. a -&gt; UnitIO b -&gt; UnitIO a) -&gt; Functor UnitIO
+forall a b. a -&gt; UnitIO b -&gt; UnitIO a
+forall a b. (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b
+forall (f :: * -&gt; *).
+(forall a b. (a -&gt; b) -&gt; f a -&gt; f b)
+-&gt; (forall a b. a -&gt; f b -&gt; f a) -&gt; Functor f
+$cfmap :: forall a b. (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b
+fmap :: forall a b. (a -&gt; b) -&gt; UnitIO a -&gt; UnitIO b
+$c&lt;$ :: forall a b. a -&gt; UnitIO b -&gt; UnitIO a
+&lt;$ :: forall a b. a -&gt; UnitIO b -&gt; UnitIO a
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Functor</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163384"><span id="local-6989586621679163390"><span id="local-6989586621679163395"><span class="annot"><span class="annottext">Applicative UnitIO
+Applicative UnitIO =&gt;
+(forall a b. UnitIO a -&gt; (a -&gt; UnitIO b) -&gt; UnitIO b)
+-&gt; (forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b)
+-&gt; (forall a. a -&gt; UnitIO a)
+-&gt; Monad UnitIO
+forall a. a -&gt; UnitIO a
+forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b
+forall a b. UnitIO a -&gt; (a -&gt; UnitIO b) -&gt; UnitIO b
+forall (m :: * -&gt; *).
+Applicative m =&gt;
+(forall a b. m a -&gt; (a -&gt; m b) -&gt; m b)
+-&gt; (forall a b. m a -&gt; m b -&gt; m b)
+-&gt; (forall a. a -&gt; m a)
+-&gt; Monad m
+$c&gt;&gt;= :: forall a b. UnitIO a -&gt; (a -&gt; UnitIO b) -&gt; UnitIO b
+&gt;&gt;= :: forall a b. UnitIO a -&gt; (a -&gt; UnitIO b) -&gt; UnitIO b
+$c&gt;&gt; :: forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b
+&gt;&gt; :: forall a b. UnitIO a -&gt; UnitIO b -&gt; UnitIO b
+$creturn :: forall a. a -&gt; UnitIO a
+return :: forall a. a -&gt; UnitIO a
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Monad</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-34"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163411"><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/transformers-base-0.4.6-6293943fa9e4d34929f55693eb7463412a86adb89fdec13f65f5ec268b158223/share/doc/html/src/Control.Monad.Base.html#MonadBase"><span class="hs-identifier hs-type">MonadBase</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-35"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163422"><span id="local-6989586621679163429"><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/src/Control.Monad.Trans.Control.html#MonadBaseControl"><span class="hs-identifier hs-type">MonadBaseControl</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-36"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163446"><span class="annot"><span class="annottext">MonadThrow UnitIO
+MonadThrow UnitIO =&gt;
+(forall e a.
+ (HasCallStack, Exception e) =&gt;
+ UnitIO a -&gt; (e -&gt; UnitIO a) -&gt; UnitIO a)
+-&gt; MonadCatch UnitIO
+forall e a.
+(HasCallStack, Exception e) =&gt;
+UnitIO a -&gt; (e -&gt; UnitIO a) -&gt; UnitIO a
+forall (m :: * -&gt; *).
+MonadThrow m =&gt;
+(forall e a.
+ (HasCallStack, Exception e) =&gt;
+ m a -&gt; (e -&gt; m a) -&gt; m a)
+-&gt; MonadCatch m
+$ccatch :: forall e a.
+(HasCallStack, Exception e) =&gt;
+UnitIO a -&gt; (e -&gt; UnitIO a) -&gt; UnitIO a
+catch :: forall e a.
+(HasCallStack, Exception e) =&gt;
+UnitIO a -&gt; (e -&gt; UnitIO a) -&gt; UnitIO a
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadCatch</span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-37"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163462"><span class="annot"><span class="annottext">Monad UnitIO
+Monad UnitIO =&gt; (forall a. String -&gt; UnitIO a) -&gt; MonadFail UnitIO
+forall a. String -&gt; UnitIO a
+forall (m :: * -&gt; *).
+Monad m =&gt;
+(forall a. String -&gt; m a) -&gt; MonadFail m
+$cfail :: forall a. String -&gt; UnitIO a
+fail :: forall a. String -&gt; UnitIO a
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadFail</span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-38"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163472"><span class="annot"><span class="annottext">Monad UnitIO
+Monad UnitIO =&gt; (forall &#945;. IO &#945; -&gt; UnitIO &#945;) -&gt; MonadIO UnitIO
+forall &#945;. IO &#945; -&gt; UnitIO &#945;
+forall (m :: * -&gt; *).
+Monad m =&gt;
+(forall a. IO a -&gt; m a) -&gt; MonadIO m
+$cliftIO :: forall &#945;. IO &#945; -&gt; UnitIO &#945;
+liftIO :: forall &#945;. IO &#945; -&gt; UnitIO &#945;
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadIO</span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-39"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163483"><span class="annot"><span class="annottext">Monad UnitIO
+Monad UnitIO =&gt; (forall a. Test a -&gt; UnitIO a) -&gt; MonadTest UnitIO
+forall a. Test a -&gt; UnitIO a
+forall (m :: * -&gt; *).
+Monad m =&gt;
+(forall a. Test a -&gt; m a) -&gt; MonadTest m
+$cliftTest :: forall a. Test a -&gt; UnitIO a
+liftTest :: forall a. Test a -&gt; UnitIO a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadTest</span></a></span></span><span class="hs-special">)</span><span>
+</span><span id="line-40"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">newtype</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679163498"><span class="annot"><span class="annottext">Monad UnitIO
+Monad UnitIO =&gt;
+(forall e a. (HasCallStack, Exception e) =&gt; e -&gt; UnitIO a)
+-&gt; MonadThrow UnitIO
+forall e a. (HasCallStack, Exception e) =&gt; e -&gt; UnitIO a
+forall (m :: * -&gt; *).
+Monad m =&gt;
+(forall e a. (HasCallStack, Exception e) =&gt; e -&gt; m a)
+-&gt; MonadThrow m
+$cthrowM :: forall e a. (HasCallStack, Exception e) =&gt; e -&gt; UnitIO a
+throwM :: forall e a. (HasCallStack, Exception e) =&gt; e -&gt; UnitIO a
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var">MonadThrow</span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-41"></span><span>
+</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-discover-5.0.2-42bc7a49febe49416fb857cbefd9b85cb60e73d18397e70de57bb6f940af50b2/share/doc/html/src/Test.Tasty.Discover.html#Tasty"><span class="hs-identifier hs-type">Tasty</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Hedgehog.Extras.Unit.UnitIO.html#UnitIO"><span class="hs-identifier hs-type">UnitIO</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679163559"><span class="annot"><span class="annottext">tasty :: TastyInfo -&gt; UnitIO () -&gt; IO TestTree
+</span><a href="#local-6989586621679163559"><span class="hs-identifier hs-var hs-var hs-var hs-var">tasty</span></a></span></span><span> </span><span id="local-6989586621679163561"><span class="annot"><span class="annottext">TastyInfo
+</span><a href="#local-6989586621679163561"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TestTree -&gt; IO TestTree
+forall a. a -&gt; IO a
+forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
+</span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">(TestTree -&gt; IO TestTree)
+-&gt; (UnitIO () -&gt; TestTree) -&gt; UnitIO () -&gt; IO TestTree
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Property -&gt; TestTree
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-hedgehog-1.4.0.2-3630bb415f4ed6fe948887e191ff7578f7de99d9e6828c1004a5ab953bc118f4/share/doc/html/src/Test.Tasty.Hedgehog.html#testProperty"><span class="hs-identifier hs-var">testProperty</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679163563"><span class="hs-identifier hs-var">testName</span></a></span><span> </span><span class="annot"><span class="annottext">(Property -&gt; TestTree)
+-&gt; (UnitIO () -&gt; Property) -&gt; UnitIO () -&gt; TestTree
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">TestLimit -&gt; Property -&gt; Property
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#withTests"><span class="hs-identifier hs-var">H.withTests</span></a></span><span> </span><span class="annot"><span class="annottext">TestLimit
+</span><span class="hs-number">1</span></span><span> </span><span class="annot"><span class="annottext">(Property -&gt; Property)
+-&gt; (UnitIO () -&gt; Property) -&gt; UnitIO () -&gt; Property
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">HasCallStack =&gt; PropertyT IO () -&gt; Property
+PropertyT IO () -&gt; Property
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#property"><span class="hs-identifier hs-var">H.property</span></a></span><span> </span><span class="annot"><span class="annottext">(PropertyT IO () -&gt; Property)
+-&gt; (UnitIO () -&gt; PropertyT IO ()) -&gt; UnitIO () -&gt; Property
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">TestT IO () -&gt; PropertyT IO ()
+forall (m :: * -&gt; *) a. Monad m =&gt; TestT m a -&gt; PropertyT m a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#test"><span class="hs-identifier hs-var">H.test</span></a></span><span> </span><span class="annot"><span class="annottext">(TestT IO () -&gt; PropertyT IO ())
+-&gt; (UnitIO () -&gt; TestT IO ()) -&gt; UnitIO () -&gt; PropertyT IO ()
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">UnitIO () -&gt; TestT IO ()
+forall a. UnitIO a -&gt; TestT IO a
+</span><a href="Hedgehog.Extras.Unit.UnitIO.html#runTestIO"><span class="hs-identifier hs-var">runTestIO</span></a></span><span>
+</span><span id="line-44"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679163563"><span class="annot"><span class="annottext">testName :: String
+</span><a href="#local-6989586621679163563"><span class="hs-identifier hs-var hs-var">testName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. a -&gt; Maybe a -&gt; a
+</span><span class="hs-identifier hs-var">fromMaybe</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span> </span><span class="annot"><span class="annottext">(Maybe String -&gt; String) -&gt; Maybe String -&gt; String
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Last String -&gt; Maybe String
+forall a. Last a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">getLast</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TastyInfo
+</span><a href="#local-6989586621679163561"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="annot"><span class="annottext">TastyInfo
+-&gt; Getting (Last String) TastyInfo (Last String) -&gt; Last String
+forall s a. s -&gt; Getting a s a -&gt; a
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/microlens-0.4.14.0-1d51715bca572ba7b87b0f58384440d5706f937fbc10dde834723592846ba584/share/doc/html/src/Lens.Micro.html#%5E."><span class="hs-operator hs-var">^.</span></a></span><span> </span><span class="annot"><span class="annottext">forall {k} (sel :: k) s t a b. HasAny sel s t a b =&gt; Lens s t a b
+forall (sel :: Symbol) s t a b. HasAny sel s t a b =&gt; Lens s t a b
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/generic-lens-2.2.2.0-0e49ecc58486d77be7645b26e2b6b0551daa3839a908ceb1b083d9fa9f9ca370/share/doc/html/src/Data.Generics.Product.Any.html#the"><span class="hs-identifier hs-var">the</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span class="hs-special">)</span><span>
+</span><span id="line-45"></span></pre></body></html>
