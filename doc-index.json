@@ -1344,7 +1344,7 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Unit-Golden.html#v:diffFileVsGoldenFile"
   },
   {
-    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:UnitIO\">UnitIO</a> a = <a href=\"#v:UnitIO\">UnitIO</a> {<ul class=\"subs\"><li><a href=\"#v:runTestIO\">runTestIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog.html#t:TestT\" title=\"Hedgehog\">TestT</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a</li></ul>}",
+    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:UnitIO\">UnitIO</a> a = <a href=\"#v:UnitIO\">UnitIO</a> {<ul class=\"subs\"><li><a href=\"#v:runTestIO\">runTestIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog.html#t:TestT\" title=\"Hedgehog\">TestT</a> (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/conduit-1.3.6.1-624e11825c7f0ed1d0e721b8a1a63c1db75e66a0ce4da00312ce254bfc8db623/share/doc/html/Conduit.html#t:ResourceT\" title=\"Conduit\">ResourceT</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a>) a</li></ul>}",
     "name": "UnitIO UnitIO runTestIO",
     "module": "Hedgehog.Extras.Unit.UnitIO",
     "link": "hedgehog-extras/Hedgehog-Extras-Unit-UnitIO.html#t:UnitIO"
