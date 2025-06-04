@@ -240,6 +240,12 @@
     "link": "hedgehog-extras/"
   },
   {
+    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:UnitIO\">UnitIO</a> a = <a href=\"#v:UnitIO\">UnitIO</a> {<ul class=\"subs\"><li><a href=\"#v:runTestIO\">runTestIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog.html#t:TestT\" title=\"Hedgehog\">TestT</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> a</li></ul>}",
+    "name": "UnitIO UnitIO runTestIO",
+    "module": "Hedgehog.Extras.Test.New.UnitIO",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-New-UnitIO.html#t:UnitIO"
+  },
+  {
     "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:TestResult\">TestResult</a> a<ul class=\"subs\"><li>= <a href=\"#v:TestResult\">TestResult</a> a</li><li>| <a href=\"#v:TestFailure\">TestFailure</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a></li><li>| <a href=\"#v:TestError\">TestError</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Exception-Base.html#t:SomeException\" title=\"Control.Exception.Base\">SomeException</a></li></ul>",
     "name": "TestResult TestResult TestFailure TestError",
     "module": "Hedgehog.Extras.Test.TestResult",
@@ -268,24 +274,6 @@
     "name": "getTestResult",
     "module": "Hedgehog.Extras.Test.MonadAssertion",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-MonadAssertion.html#v:getTestResult"
-  },
-  {
-    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:UnitIO\">UnitIO</a> a = <a href=\"#v:UnitIO\">UnitIO</a> {<ul class=\"subs\"><li><a href=\"#v:runTestIO\">runTestIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-0c765c5647c4112d3872e76f45aba7567038ec5e5d27a497cd85f9a113b4181d/share/doc/html/HaskellWorks-Prelude.html#t:ExceptT\" title=\"HaskellWorks.Prelude\">ExceptT</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a> (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/conduit-1.3.6.1-624e11825c7f0ed1d0e721b8a1a63c1db75e66a0ce4da00312ce254bfc8db623/share/doc/html/Conduit.html#t:ResourceT\" title=\"Conduit\">ResourceT</a> (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/mtl-2.3.1/Control-Monad-Reader.html#t:ReaderT\" title=\"Control.Monad.Reader\">ReaderT</a> <a href=\"Hedgehog-Extras-Test-New-UnitIO.html#t:UnitEnv\" title=\"Hedgehog.Extras.Test.New.UnitIO\">UnitEnv</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a>)) a</li></ul>}",
-    "name": "UnitIO UnitIO runTestIO",
-    "module": "Hedgehog.Extras.Test.New.UnitIO",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-New-UnitIO.html#t:UnitIO"
-  },
-  {
-    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:UnitEnv\">UnitEnv</a> = <a href=\"#v:UnitEnv\">UnitEnv</a> {<ul class=\"subs\"><li><a href=\"#v:unUnitEnv\">unUnitEnv</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/stm-2.5.1.0/Control-Concurrent-STM-TMVar.html#t:TMVar\" title=\"Control.Concurrent.STM.TMVar\">TMVar</a> (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog.html#t:TestT\" title=\"Hedgehog\">TestT</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> ())</li></ul>}",
-    "name": "UnitEnv UnitEnv unUnitEnv",
-    "module": "Hedgehog.Extras.Test.New.UnitIO",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-New-UnitIO.html#t:UnitEnv"
-  },
-  {
-    "display_html": "<a href=\"#v:unitIOToTestT\">unitIOToTestT</a> &#8759; <a href=\"Hedgehog-Extras-Test-New-UnitIO.html#t:UnitIO\" title=\"Hedgehog.Extras.Test.New.UnitIO\">UnitIO</a> () &#8594; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog.html#t:TestT\" title=\"Hedgehog\">TestT</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> ()",
-    "name": "unitIOToTestT",
-    "module": "Hedgehog.Extras.Test.New.UnitIO",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-New-UnitIO.html#v:unitIOToTestT"
   },
   {
     "display_html": "<a href=\"#v:propertyOnce\">propertyOnce</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> () &#8594; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/Hedgehog.html#t:Property\" title=\"Hedgehog\">Property</a>",

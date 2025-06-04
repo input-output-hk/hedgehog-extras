@@ -38,17 +38,17 @@
 </span><span id="line-38"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.Environment</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
 </span><span id="line-39"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.IO.Unsafe</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span id="local-6989586621679164445"><span id="local-6989586621679164448"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-type">semBracket</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-42"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679164445"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-43"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679164445"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-41"></span><span id="local-6989586621679162731"><span id="local-6989586621679162734"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-type">semBracket</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-42"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679162731"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-43"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679162731"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO.QSem</span></span><span>
-</span><span id="line-45"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164445"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164448"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-46"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164445"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164448"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
+</span><span id="line-45"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679162731"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162734"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-46"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679162731"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162734"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
 </span><span id="line-47"></span><span id="semBracket"><span class="annot"><span class="annottext">semBracket :: forall (m :: * -&gt; *) a.
 (MonadIO m, MonadMask m) =&gt;
 QSem -&gt; m a -&gt; m a
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-var hs-var">semBracket</span></a></span></span><span> </span><span id="local-6989586621679164555"><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164555"><span class="hs-identifier hs-var">sem</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-var hs-var">semBracket</span></a></span></span><span> </span><span id="local-6989586621679162841"><span class="annot"><span class="annottext">QSem
+</span><a href="#local-6989586621679162841"><span class="hs-identifier hs-var">sem</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-48"></span><span>  </span><span class="annot"><span class="annottext">m () -&gt; m () -&gt; m a -&gt; m a
 forall (m :: * -&gt; *) a c b.
 (HasCallStack, MonadMask m) =&gt;
@@ -59,13 +59,13 @@ forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">QSem -&gt; IO ()
 </span><span class="hs-identifier hs-var">IO.waitQSem</span></span><span> </span><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164555"><span class="hs-identifier hs-var">sem</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679162841"><span class="hs-identifier hs-var">sem</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-50"></span><span>    </span><span class="hs-special">(</span><span class="annot"><span class="annottext">IO () -&gt; m ()
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">QSem -&gt; IO ()
 </span><span class="hs-identifier hs-var">IO.signalQSem</span></span><span> </span><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164555"><span class="hs-identifier hs-var">sem</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679162841"><span class="hs-identifier hs-var">sem</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-51"></span><span>
 </span><span id="line-52"></span><span class="annot"><span class="hs-comment">-- | The file to log whenever a golden file is referenced.</span></span><span>
 </span><span id="line-53"></span><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#mGoldenFileLogFile"><span class="hs-identifier hs-type">mGoldenFileLogFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
@@ -88,8 +88,8 @@ forall a. IO a -&gt; a
 </span><span class="hs-identifier hs-var">IO.unsafePerformIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Bool -&gt; Bool) -&gt; IO Bool -&gt; Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-60"></span><span>  </span><span id="local-6989586621679164562"><span class="annot"><span class="annottext">Maybe FilePath
-</span><a href="#local-6989586621679164562"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO (Maybe FilePath)
+</span><span id="line-60"></span><span>  </span><span id="local-6989586621679162848"><span class="annot"><span class="annottext">Maybe FilePath
+</span><a href="#local-6989586621679162848"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO (Maybe FilePath)
 </span><span class="hs-identifier hs-var">IO.lookupEnv</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;CREATE_GOLDEN_FILES&quot;</span></span><span>
 </span><span id="line-61"></span><span>  </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
@@ -98,7 +98,7 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; IO Bool) -&gt; Bool -&gt; IO Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath
-</span><a href="#local-6989586621679164562"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath -&gt; Maybe FilePath -&gt; Bool
+</span><a href="#local-6989586621679162848"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath -&gt; Maybe FilePath -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Maybe FilePath
 forall a. a -&gt; Maybe a
@@ -113,8 +113,8 @@ forall a. IO a -&gt; a
 </span><span class="hs-identifier hs-var">IO.unsafePerformIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Bool -&gt; Bool) -&gt; IO Bool -&gt; Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-66"></span><span>  </span><span id="local-6989586621679164564"><span class="annot"><span class="annottext">Maybe FilePath
-</span><a href="#local-6989586621679164564"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO (Maybe FilePath)
+</span><span id="line-66"></span><span>  </span><span id="local-6989586621679162850"><span class="annot"><span class="annottext">Maybe FilePath
+</span><a href="#local-6989586621679162850"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO (Maybe FilePath)
 </span><span class="hs-identifier hs-var">IO.lookupEnv</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;RECREATE_GOLDEN_FILES&quot;</span></span><span>
 </span><span id="line-67"></span><span>  </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
@@ -123,26 +123,26 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; IO Bool) -&gt; Bool -&gt; IO Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath
-</span><a href="#local-6989586621679164564"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath -&gt; Maybe FilePath -&gt; Bool
+</span><a href="#local-6989586621679162850"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath -&gt; Maybe FilePath -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Maybe FilePath
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;1&quot;</span></span><span>
 </span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span id="local-6989586621679164466"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-type">writeGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-69"></span><span id="local-6989586621679162752"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-type">writeGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-70"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-71"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679164466"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-72"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164466"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-71"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679162752"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-72"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162752"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-73"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
 </span><span id="line-74"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-75"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164466"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-75"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679162752"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-76"></span><span id="writeGoldenFile"><span class="annot"><span class="annottext">writeGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var hs-var">writeGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679164573"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164573"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679164574"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164574"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var hs-var">writeGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679162859"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162859"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679162860"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162860"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -157,33 +157,33 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;Creating golden file &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164573"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><a href="#local-6989586621679162859"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
 </span><span id="line-78"></span><span>  </span><span class="annot"><span class="annottext">FilePath -&gt; m ()
 forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 FilePath -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.File.html#createDirectoryIfMissing_"><span class="hs-identifier hs-var">H.createDirectoryIfMissing_</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; FilePath
 </span><span class="hs-identifier hs-var">takeDirectory</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164573"><span class="hs-identifier hs-var">goldenFile</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679162859"><span class="hs-identifier hs-var">goldenFile</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-79"></span><span>  </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; m ()
 forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.File.html#writeFile"><span class="hs-identifier hs-var">H.writeFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164573"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164574"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679162859"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162860"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-80"></span><span>
-</span><span id="line-81"></span><span id="local-6989586621679164475"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-type">reportGoldenFileMissing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-81"></span><span id="local-6989586621679162761"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-type">reportGoldenFileMissing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-82"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-83"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679164475"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-84"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164475"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-83"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679162761"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-84"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162761"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-85"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
-</span><span id="line-86"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164475"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-86"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679162761"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-87"></span><span id="reportGoldenFileMissing"><span class="annot"><span class="annottext">reportGoldenFileMissing :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var hs-var">reportGoldenFileMissing</span></a></span></span><span> </span><span id="local-6989586621679164602"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164602"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var hs-var">reportGoldenFileMissing</span></a></span></span><span> </span><span id="local-6989586621679162888"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162888"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -200,7 +200,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;Golden file &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164602"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679162888"><span class="hs-identifier hs-var">goldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot; does not exist.&quot;</span></span><span>
@@ -213,25 +213,25 @@ forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 forall (m :: * -&gt; *) a. (MonadTest m, HasCallStack) =&gt; m a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#failure"><span class="hs-identifier hs-var">H.failure</span></a></span><span>
 </span><span id="line-94"></span><span>
-</span><span id="line-95"></span><span id="local-6989586621679164479"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-type">checkAgainstGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-95"></span><span id="local-6989586621679162765"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-type">checkAgainstGoldenFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-96"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-97"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679164479"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-98"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164479"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-97"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679162765"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-98"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162765"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-99"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
 </span><span id="line-100"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
-</span><span id="line-101"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164479"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-101"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679162765"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-102"></span><span id="checkAgainstGoldenFile"><span class="annot"><span class="annottext">checkAgainstGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; [FilePath] -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var hs-var">checkAgainstGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679164626"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164626"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679164627"><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679164627"><span class="hs-identifier hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var hs-var">checkAgainstGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679162912"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162912"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span id="local-6989586621679162913"><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679162913"><span class="hs-identifier hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-103"></span><span>  </span><span id="local-6989586621679164644"><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679164644"><span class="hs-identifier hs-var">referenceLines</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; [FilePath]
+</span><span id="line-103"></span><span>  </span><span id="local-6989586621679162930"><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679162930"><span class="hs-identifier hs-var">referenceLines</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; [FilePath]
 </span><span class="hs-identifier hs-var">List.lines</span></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; [FilePath]) -&gt; m FilePath -&gt; m [FilePath]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m FilePath
@@ -239,15 +239,15 @@ forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 FilePath -&gt; m FilePath
 </span><a href="Hedgehog.Extras.Test.File.html#readFile"><span class="hs-identifier hs-var">H.readFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164626"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
-</span><span id="line-104"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679164650"><span class="annot"><span class="annottext">difference :: [Diff [FilePath]]
-</span><a href="#local-6989586621679164650"><span class="hs-identifier hs-var hs-var">difference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; [FilePath] -&gt; [Diff [FilePath]]
+</span><a href="#local-6989586621679162912"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><span id="line-104"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679162936"><span class="annot"><span class="annottext">difference :: [Diff [FilePath]]
+</span><a href="#local-6989586621679162936"><span class="hs-identifier hs-var hs-var">difference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; [FilePath] -&gt; [Diff [FilePath]]
 forall a. Eq a =&gt; [a] -&gt; [a] -&gt; [Diff [a]]
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/Diff-1.0.2-680593d42e13b46b936aab4ad98113ca630277282b28260da5d48b0f13ca3843/share/doc/html/src/Data.Algorithm.Diff.html#getGroupedDiff"><span class="hs-identifier hs-var">getGroupedDiff</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679164627"><span class="hs-identifier hs-var">actualLines</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679164644"><span class="hs-identifier hs-var">referenceLines</span></a></span><span>
+</span><a href="#local-6989586621679162913"><span class="hs-identifier hs-var">actualLines</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679162930"><span class="hs-identifier hs-var">referenceLines</span></a></span><span>
 </span><span id="line-105"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Diff [FilePath]]
-</span><a href="#local-6989586621679164650"><span class="hs-identifier hs-var">difference</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679162936"><span class="hs-identifier hs-var">difference</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-106"></span><span>    </span><span class="hs-special">[</span><span class="hs-special">]</span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">() -&gt; m ()
 forall a. a -&gt; m a
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
@@ -279,7 +279,7 @@ HasCallStack =&gt; CallStack
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Diff [FilePath]] -&gt; FilePath
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/Diff-1.0.2-680593d42e13b46b936aab4ad98113ca630277282b28260da5d48b0f13ca3843/share/doc/html/src/Data.Algorithm.DiffOutput.html#ppDiff"><span class="hs-identifier hs-var">ppDiff</span></a></span><span> </span><span class="annot"><span class="annottext">[Diff [FilePath]]
-</span><a href="#local-6989586621679164650"><span class="hs-identifier hs-var">difference</span></a></span><span>
+</span><a href="#local-6989586621679162936"><span class="hs-identifier hs-var">difference</span></a></span><span>
 </span><span id="line-114"></span><span>
 </span><span id="line-115"></span><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#tvGoldenFileSems"><span class="hs-identifier hs-type">tvGoldenFileSems</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">STM.TVar</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Map</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO.QSem</span></span><span class="hs-special">)</span><span>
 </span><span id="line-116"></span><span id="tvGoldenFileSems"><span class="annot"><span class="annottext">tvGoldenFileSems :: TVar (Map FilePath QSem)
@@ -297,10 +297,10 @@ forall a. Monoid a =&gt; a
 </span><span id="line-118"></span><span>
 </span><span id="line-119"></span><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#getGoldenFileSem"><span class="hs-identifier hs-type">getGoldenFileSem</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO.QSem</span></span><span>
 </span><span id="line-120"></span><span id="getGoldenFileSem"><span class="annot"><span class="annottext">getGoldenFileSem :: FilePath -&gt; IO QSem
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#getGoldenFileSem"><span class="hs-identifier hs-var hs-var">getGoldenFileSem</span></a></span></span><span> </span><span id="local-6989586621679164654"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164654"><span class="hs-identifier hs-var">filePath</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-121"></span><span>  </span><span id="local-6989586621679164655"><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164655"><span class="hs-identifier hs-var">newSem</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Int -&gt; IO QSem
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#getGoldenFileSem"><span class="hs-identifier hs-var hs-var">getGoldenFileSem</span></a></span></span><span> </span><span id="local-6989586621679162940"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162940"><span class="hs-identifier hs-var">filePath</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-121"></span><span>  </span><span id="local-6989586621679162941"><span class="annot"><span class="annottext">QSem
+</span><a href="#local-6989586621679162941"><span class="hs-identifier hs-var">newSem</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Int -&gt; IO QSem
 </span><span class="hs-identifier hs-var">IO.newQSem</span></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-122"></span><span>
@@ -309,41 +309,41 @@ forall a. STM a -&gt; IO a
 </span><span class="hs-identifier hs-var">STM.atomically</span></span><span> </span><span class="annot"><span class="annottext">(STM QSem -&gt; IO QSem) -&gt; STM QSem -&gt; IO QSem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-124"></span><span>    </span><span id="local-6989586621679164658"><span class="annot"><span class="annottext">Map FilePath QSem
-</span><a href="#local-6989586621679164658"><span class="hs-identifier hs-var">sems</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">TVar (Map FilePath QSem) -&gt; STM (Map FilePath QSem)
+</span><span id="line-124"></span><span>    </span><span id="local-6989586621679162944"><span class="annot"><span class="annottext">Map FilePath QSem
+</span><a href="#local-6989586621679162944"><span class="hs-identifier hs-var">sems</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">TVar (Map FilePath QSem) -&gt; STM (Map FilePath QSem)
 forall a. TVar a -&gt; STM a
 </span><span class="hs-identifier hs-var">STM.readTVar</span></span><span> </span><span class="annot"><span class="annottext">TVar (Map FilePath QSem)
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#tvGoldenFileSems"><span class="hs-identifier hs-var">tvGoldenFileSems</span></a></span><span>
 </span><span id="line-125"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Map FilePath QSem -&gt; Maybe QSem
 forall k a. Ord k =&gt; k -&gt; Map k a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Map.lookup</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164654"><span class="hs-identifier hs-var">filePath</span></a></span><span> </span><span class="annot"><span class="annottext">Map FilePath QSem
-</span><a href="#local-6989586621679164658"><span class="hs-identifier hs-var">sems</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-126"></span><span>      </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679164661"><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164661"><span class="hs-identifier hs-var">sem</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">QSem -&gt; STM QSem
+</span><a href="#local-6989586621679162940"><span class="hs-identifier hs-var">filePath</span></a></span><span> </span><span class="annot"><span class="annottext">Map FilePath QSem
+</span><a href="#local-6989586621679162944"><span class="hs-identifier hs-var">sems</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-126"></span><span>      </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679162947"><span class="annot"><span class="annottext">QSem
+</span><a href="#local-6989586621679162947"><span class="hs-identifier hs-var">sem</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">QSem -&gt; STM QSem
 forall a. a -&gt; STM a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164661"><span class="hs-identifier hs-var">sem</span></a></span><span>
+</span><a href="#local-6989586621679162947"><span class="hs-identifier hs-var">sem</span></a></span><span>
 </span><span id="line-127"></span><span>      </span><span class="annot"><span class="annottext">Maybe QSem
 </span><span class="hs-identifier hs-var">Nothing</span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-128"></span><span>        </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679164664"><span class="annot"><span class="annottext">newGoldenFileSems :: Map FilePath QSem
-</span><a href="#local-6989586621679164664"><span class="hs-identifier hs-var hs-var">newGoldenFileSems</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; QSem -&gt; Map FilePath QSem -&gt; Map FilePath QSem
+</span><span id="line-128"></span><span>        </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679162950"><span class="annot"><span class="annottext">newGoldenFileSems :: Map FilePath QSem
+</span><a href="#local-6989586621679162950"><span class="hs-identifier hs-var hs-var">newGoldenFileSems</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; QSem -&gt; Map FilePath QSem -&gt; Map FilePath QSem
 forall k a. Ord k =&gt; k -&gt; a -&gt; Map k a -&gt; Map k a
 </span><span class="hs-identifier hs-var">Map.insert</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164654"><span class="hs-identifier hs-var">filePath</span></a></span><span> </span><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164655"><span class="hs-identifier hs-var">newSem</span></a></span><span> </span><span class="annot"><span class="annottext">Map FilePath QSem
-</span><a href="#local-6989586621679164658"><span class="hs-identifier hs-var">sems</span></a></span><span>
+</span><a href="#local-6989586621679162940"><span class="hs-identifier hs-var">filePath</span></a></span><span> </span><span class="annot"><span class="annottext">QSem
+</span><a href="#local-6989586621679162941"><span class="hs-identifier hs-var">newSem</span></a></span><span> </span><span class="annot"><span class="annottext">Map FilePath QSem
+</span><a href="#local-6989586621679162944"><span class="hs-identifier hs-var">sems</span></a></span><span>
 </span><span id="line-129"></span><span>        </span><span class="annot"><span class="annottext">TVar (Map FilePath QSem) -&gt; Map FilePath QSem -&gt; STM ()
 forall a. TVar a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">STM.writeTVar</span></span><span> </span><span class="annot"><span class="annottext">TVar (Map FilePath QSem)
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#tvGoldenFileSems"><span class="hs-identifier hs-var">tvGoldenFileSems</span></a></span><span> </span><span class="annot"><span class="annottext">Map FilePath QSem
-</span><a href="#local-6989586621679164664"><span class="hs-identifier hs-var">newGoldenFileSems</span></a></span><span>
+</span><a href="#local-6989586621679162950"><span class="hs-identifier hs-var">newGoldenFileSems</span></a></span><span>
 </span><span id="line-130"></span><span>        </span><span class="annot"><span class="annottext">QSem -&gt; STM QSem
 forall a. a -&gt; STM a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164655"><span class="hs-identifier hs-var">newSem</span></a></span><span>
+</span><a href="#local-6989586621679162941"><span class="hs-identifier hs-var">newSem</span></a></span><span>
 </span><span id="line-131"></span><span>
 </span><span id="line-132"></span><span class="hs-comment">-- | Diff contents against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
 </span><span id="line-133"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the golden file not exist it would be created.  If</span><span>
@@ -360,51 +360,51 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span id="line-144"></span><span class="hs-comment">--</span><span>
 </span><span id="line-145"></span><span class="hs-comment">-- TODO: Improve the help output by saying the difference of</span><span>
 </span><span id="line-146"></span><span class="hs-comment">-- each input.</span><span>
-</span><span id="line-147"></span><span id="local-6989586621679164501"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-type">diffVsGoldenFile</span></a></span><span>
+</span><span id="line-147"></span><span id="local-6989586621679162787"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-type">diffVsGoldenFile</span></a></span><span>
 </span><span id="line-148"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-149"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679164501"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-150"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679164501"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-151"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164501"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-149"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679162787"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-150"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679162787"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-151"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679162787"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-152"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>   </span><span class="annot"><span class="hs-comment">-- ^ Actual content</span></span><span>
 </span><span id="line-153"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-comment">-- ^ Reference file</span></span><span>
-</span><span id="line-154"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164501"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-154"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679162787"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-155"></span><span id="diffVsGoldenFile"><span class="annot"><span class="annottext">diffVsGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadMask m, MonadTest m) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679164680"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164680"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span id="local-6989586621679164681"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164681"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-156"></span><span>  </span><span id="local-6989586621679164682"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164682"><span class="hs-identifier hs-var">realPath</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO FilePath -&gt; m FilePath
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679162966"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162966"><span class="hs-identifier hs-var">actualContent</span></a></span></span><span> </span><span id="local-6989586621679162967"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162967"><span class="hs-identifier hs-var">goldenFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-156"></span><span>  </span><span id="local-6989586621679162968"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162968"><span class="hs-identifier hs-var">realPath</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO FilePath -&gt; m FilePath
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO FilePath -&gt; m FilePath) -&gt; IO FilePath -&gt; m FilePath
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO FilePath
 </span><span class="hs-identifier hs-var">canonicalizePath</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164681"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
-</span><span id="line-157"></span><span>  </span><span id="local-6989586621679164683"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164683"><span class="hs-identifier hs-var">cwd</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO FilePath -&gt; m FilePath
+</span><a href="#local-6989586621679162967"><span class="hs-identifier hs-var">goldenFile</span></a></span><span>
+</span><span id="line-157"></span><span>  </span><span id="local-6989586621679162969"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162969"><span class="hs-identifier hs-var">cwd</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO FilePath -&gt; m FilePath
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">IO FilePath
 </span><span class="hs-identifier hs-var">getCurrentDirectory</span></span><span>
 </span><span id="line-158"></span><span>
-</span><span id="line-159"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679164684"><span class="annot"><span class="annottext">relativeGoldenPath :: FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var hs-var">relativeGoldenPath</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><span id="line-159"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679162970"><span class="annot"><span class="annottext">relativeGoldenPath :: FilePath
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var hs-var">relativeGoldenPath</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 </span><span class="hs-identifier hs-var">makeRelative</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164683"><span class="hs-identifier hs-var">cwd</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164682"><span class="hs-identifier hs-var">realPath</span></a></span><span>
+</span><a href="#local-6989586621679162969"><span class="hs-identifier hs-var">cwd</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162968"><span class="hs-identifier hs-var">realPath</span></a></span><span>
 </span><span id="line-160"></span><span>
-</span><span id="line-161"></span><span>  </span><span id="local-6989586621679164685"><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164685"><span class="hs-identifier hs-var">sem</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO QSem -&gt; m QSem
+</span><span id="line-161"></span><span>  </span><span id="local-6989586621679162971"><span class="annot"><span class="annottext">QSem
+</span><a href="#local-6989586621679162971"><span class="hs-identifier hs-var">sem</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO QSem -&gt; m QSem
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO QSem -&gt; m QSem) -&gt; IO QSem -&gt; m QSem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO QSem
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#getGoldenFileSem"><span class="hs-identifier hs-var">getGoldenFileSem</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span>
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span>
 </span><span id="line-162"></span><span>
 </span><span id="line-163"></span><span>  </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
@@ -415,7 +415,7 @@ forall (m :: * -&gt; *) a.
 (MonadIO m, MonadMask m) =&gt;
 QSem -&gt; m a -&gt; m a
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#semBracket"><span class="hs-identifier hs-var">semBracket</span></a></span><span> </span><span class="annot"><span class="annottext">QSem
-</span><a href="#local-6989586621679164685"><span class="hs-identifier hs-var">sem</span></a></span><span> </span><span class="annot"><span class="annottext">(m () -&gt; m ()) -&gt; m () -&gt; m ()
+</span><a href="#local-6989586621679162971"><span class="hs-identifier hs-var">sem</span></a></span><span> </span><span class="annot"><span class="annottext">(m () -&gt; m ()) -&gt; m () -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-164"></span><span>    </span><span class="annot"><span class="annottext">Maybe FilePath -&gt; (FilePath -&gt; m ()) -&gt; m ()
@@ -425,8 +425,8 @@ t a -&gt; (a -&gt; m b) -&gt; m ()
 </span><span class="hs-identifier hs-var">forM_</span></span><span> </span><span class="annot"><span class="annottext">Maybe FilePath
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#mGoldenFileLogFile"><span class="hs-identifier hs-var">mGoldenFileLogFile</span></a></span><span> </span><span class="annot"><span class="annottext">((FilePath -&gt; m ()) -&gt; m ()) -&gt; (FilePath -&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679164714"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164714"><span class="hs-identifier hs-var">logFile</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679163000"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163000"><span class="hs-identifier hs-var">logFile</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span>
 </span><span id="line-165"></span><span>      </span><span class="annot"><span class="annottext">IO () -&gt; m ()
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -434,23 +434,23 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; IO ()
 </span><span class="hs-identifier hs-var">IO.appendFile</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164714"><span class="hs-identifier hs-var">logFile</span></a></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; IO ()) -&gt; FilePath -&gt; IO ()
+</span><a href="#local-6989586621679163000"><span class="hs-identifier hs-var">logFile</span></a></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; IO ()) -&gt; FilePath -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;\n&quot;</span></span><span>
 </span><span id="line-166"></span><span>
-</span><span id="line-167"></span><span>    </span><span id="local-6989586621679164716"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679164716"><span class="hs-identifier hs-var">fileExists</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; m Bool
+</span><span id="line-167"></span><span>    </span><span id="local-6989586621679163002"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679163002"><span class="hs-identifier hs-var">fileExists</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; m Bool
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO Bool -&gt; m Bool) -&gt; IO Bool -&gt; m Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO Bool
 </span><span class="hs-identifier hs-var">IO.doesFileExist</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span>
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span>
 </span><span id="line-168"></span><span>
 </span><span id="line-169"></span><span>    </span><span class="hs-keyword">if</span><span>
 </span><span id="line-170"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
@@ -459,37 +459,37 @@ forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164680"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162966"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-171"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679164716"><span class="hs-identifier hs-var">fileExists</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; [FilePath] -&gt; m ()
+</span><a href="#local-6989586621679163002"><span class="hs-identifier hs-var">fileExists</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; [FilePath] -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; [FilePath] -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#checkAgainstGoldenFile"><span class="hs-identifier hs-var">checkAgainstGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679164718"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679163004"><span class="hs-identifier hs-var">actualLines</span></a></span><span>
 </span><span id="line-172"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#createGoldenFiles"><span class="hs-identifier hs-var">createGoldenFiles</span></a></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#writeGoldenFile"><span class="hs-identifier hs-var">writeGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164680"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679162966"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-173"></span><span>      </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">otherwise</span></span><span>           </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadTest m) =&gt;
 FilePath -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#reportGoldenFileMissing"><span class="hs-identifier hs-var">reportGoldenFileMissing</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164684"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span>
+</span><a href="#local-6989586621679162970"><span class="hs-identifier hs-var">relativeGoldenPath</span></a></span><span>
 </span><span id="line-174"></span><span>
 </span><span id="line-175"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-176"></span><span>    </span><span id="local-6989586621679164718"><span class="annot"><span class="annottext">actualLines :: [FilePath]
-</span><a href="#local-6989586621679164718"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; [FilePath]
+</span><span id="line-176"></span><span>    </span><span id="local-6989586621679163004"><span class="annot"><span class="annottext">actualLines :: [FilePath]
+</span><a href="#local-6989586621679163004"><span class="hs-identifier hs-var hs-var">actualLines</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; [FilePath]
 </span><span class="hs-identifier hs-var">List.lines</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164680"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
+</span><a href="#local-6989586621679162966"><span class="hs-identifier hs-var">actualContent</span></a></span><span>
 </span><span id="line-177"></span><span>
 </span><span id="line-178"></span><span class="hs-comment">-- | Diff file against the golden file.  If CREATE_GOLDEN_FILES environment is</span><span>
 </span><span id="line-179"></span><span class="hs-comment">-- set to &quot;1&quot;, then should the gold file not exist it would be created.  If</span><span>
@@ -502,36 +502,36 @@ FilePath -&gt; m ()
 </span><span id="line-186"></span><span class="hs-comment">--</span><span>
 </span><span id="line-187"></span><span class="hs-comment">-- To re-generate a golden file you must also delete the golden file because golden</span><span>
 </span><span id="line-188"></span><span class="hs-comment">-- files are never overwritten.</span><span>
-</span><span id="line-189"></span><span id="local-6989586621679164719"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-type">diffFileVsGoldenFile</span></a></span><span>
+</span><span id="line-189"></span><span id="local-6989586621679163005"><span class="annot"><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-type">diffFileVsGoldenFile</span></a></span><span>
 </span><span id="line-190"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span>
-</span><span id="line-191"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679164719"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-192"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679164719"><span class="hs-identifier hs-type">m</span></a></span><span>
-</span><span id="line-193"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679164719"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-191"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679163005"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-192"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadMask</span></span><span> </span><span class="annot"><a href="#local-6989586621679163005"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-193"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-ef8c3e841dba545ec2eb5d239ba323331797d4703b44ecc3632b7881c819b166/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679163005"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-194"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-comment">-- ^ Actual file</span></span><span>
 </span><span id="line-195"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="annot"><span class="hs-comment">-- ^ Reference file</span></span><span>
-</span><span id="line-196"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679164719"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-196"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679163005"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-197"></span><span id="diffFileVsGoldenFile"><span class="annot"><span class="annottext">diffFileVsGoldenFile :: forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadMask m, MonadTest m) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
-</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffFileVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679164727"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164727"><span class="hs-identifier hs-var">actualFile</span></a></span></span><span> </span><span id="local-6989586621679164728"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164728"><span class="hs-identifier hs-var">referenceFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
+</span><a href="Hedgehog.Extras.Test.New.Golden.html#diffFileVsGoldenFile"><span class="hs-identifier hs-var hs-var">diffFileVsGoldenFile</span></a></span></span><span> </span><span id="local-6989586621679163013"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163013"><span class="hs-identifier hs-var">actualFile</span></a></span></span><span> </span><span id="local-6989586621679163014"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163014"><span class="hs-identifier hs-var">referenceFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m ()) -&gt; m ()
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m ()) -&gt; m ()) -&gt; (HasCallStack =&gt; m ()) -&gt; m ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-198"></span><span>  </span><span id="local-6989586621679164740"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164740"><span class="hs-identifier hs-var">contents</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m FilePath
+</span><span id="line-198"></span><span>  </span><span id="local-6989586621679163026"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163026"><span class="hs-identifier hs-var">contents</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; m FilePath
 forall (m :: * -&gt; *).
 (MonadTest m, MonadIO m, HasCallStack) =&gt;
 FilePath -&gt; m FilePath
 </span><a href="Hedgehog.Extras.Test.File.html#readFile"><span class="hs-identifier hs-var">H.readFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164727"><span class="hs-identifier hs-var">actualFile</span></a></span><span>
+</span><a href="#local-6989586621679163013"><span class="hs-identifier hs-var">actualFile</span></a></span><span>
 </span><span id="line-199"></span><span>  </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; m ()
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m, MonadMask m, MonadTest m) =&gt;
 FilePath -&gt; FilePath -&gt; m ()
 </span><a href="Hedgehog.Extras.Test.New.Golden.html#diffVsGoldenFile"><span class="hs-identifier hs-var">diffVsGoldenFile</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164740"><span class="hs-identifier hs-var">contents</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679164728"><span class="hs-identifier hs-var">referenceFile</span></a></span><span>
+</span><a href="#local-6989586621679163026"><span class="hs-identifier hs-var">contents</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679163014"><span class="hs-identifier hs-var">referenceFile</span></a></span><span>
 </span><span id="line-200"></span></pre></body></html>
