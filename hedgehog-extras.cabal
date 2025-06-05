@@ -110,6 +110,7 @@ library
   exposed-modules:      Hedgehog.Extras
                         Hedgehog.Extras.Aeson
                         Hedgehog.Extras.Internal.Cli
+                        Hedgehog.Extras.Internal.Orphans
                         Hedgehog.Extras.Internal.Plan
                         Hedgehog.Extras.Internal.Test.Integration
                         Hedgehog.Extras.Stock
