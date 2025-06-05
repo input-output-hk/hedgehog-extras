@@ -5,6 +5,7 @@
 module Hedgehog.Extras.Test.Golden
   ( diffVsGoldenFile,
     diffFileVsGoldenFile,
+    diffVsGoldenFileExcludeTrace,
   ) where
 
 import           Control.Applicative
@@ -33,6 +34,7 @@ import qualified Control.Concurrent.QSem as IO
 import qualified Control.Concurrent.STM as STM
 import qualified Data.List as List
 import qualified Data.Map as Map
+import qualified Data.Text as Text
 import qualified GHC.Stack as GHC
 import qualified Hedgehog.Extras.Test as H
 import qualified Hedgehog.Internal.Property as H
@@ -201,3 +203,32 @@ diffFileVsGoldenFile
 diffFileVsGoldenFile actualFile referenceFile = GHC.withFrozenCallStack $ do
   contents <- H.readFile actualFile
   diffVsGoldenFile contents referenceFile
+
+-- | Diff contents against the golden file, excluding the trace.  If CREATE_GOLDEN_FILES environment is
+-- set to "1", then should the golden file not exist it would be created.  If
+-- RECREATE_GOLDEN_FILES is set to "1", then should the golden file exist it would
+-- be recreated. If GOLDEN_FILE_LOG_FILE is set to a filename, then the golden file
+-- path will be logged to the specified file.
+--
+-- Set the environment variable when you intend to generate or re-generate the golden
+-- file for example when running the test for the first time or if the golden file
+-- genuinely needs to change.
+--
+-- To re-generate a golden file you must also delete the golden file because golden
+-- files are never overwritten.
+diffVsGoldenFileExcludeTrace
+  :: MonadBaseControl IO m
+  => MonadIO m
+  => MonadTest m
+  => HasCallStack
+  => String -> FilePath -> m ()
+diffVsGoldenFileExcludeTrace inputString refFile =
+  GHC.withFrozenCallStack $ do
+    case List.uncons $ Text.splitOn "CallStack" $ Text.pack inputString of
+      Just (stackTraceRemoved, _) -> diffVsGoldenFile (Text.unpack stackTraceRemoved) refFile
+      Nothing ->
+        H.failWith Nothing $
+          List.unlines
+            [ "Input string was empty"
+            , "Reference file: " <> refFile
+            ]
