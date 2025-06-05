@@ -21,6 +21,7 @@ common aeson-pretty                 { build-depends: aeson-pretty               
 common async                        { build-depends: async                                                        }
 common base                         { build-depends: base                             >= 4.12       && < 4.22     }
 common bytestring                   { build-depends: bytestring                                                   }
+common containers                   { build-depends: containers                                                   }
 common deepseq                      { build-depends: deepseq                                                      }
 common Diff                         { build-depends: Diff                                                         }
 common directory                    { build-depends: directory                                                    }
@@ -79,6 +80,7 @@ library
                         aeson,
                         async,
                         bytestring,
+                        containers,
                         deepseq,
                         Diff,
                         directory,
