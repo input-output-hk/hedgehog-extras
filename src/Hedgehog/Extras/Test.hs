@@ -10,3 +10,4 @@ import           Hedgehog.Extras.Test.Network as X
 import           Hedgehog.Extras.Test.Process as X
 import           Hedgehog.Extras.Test.TestWatchdog as X
 import           Hedgehog.Extras.Test.Tripwire as X
+import           Hedgehog.Extras.Test.Unit as X
