@@ -26,11 +26,14 @@ common Diff                         { build-depends: Diff                       
 common directory                    { build-depends: directory                                                    }
 common exceptions                   { build-depends: exceptions                                                   }
 common filepath                     { build-depends: filepath                                                     }
+common generic-lens                 { build-depends: generic-lens                                                 }
 common hedgehog                     { build-depends: hedgehog                                                     }
 common hedgehog-quickcheck          { build-depends: hedgehog-quickcheck                                          }
 common http-conduit                 { build-depends: http-conduit                                                 }
+common hw-prelude                   { build-depends: hw-prelude                                                   }
 common lifted-async                 { build-depends: lifted-async                                                 }
 common lifted-base                  { build-depends: lifted-base                                                  }
+common microlens                    { build-depends: microlens                                                    }
 common mmorph                       { build-depends: mmorph                                                       }
 common monad-control                { build-depends: monad-control                                                }
 common mtl                          { build-depends: mtl                                                          }
@@ -41,6 +44,7 @@ common retry                        { build-depends: retry                      
 common stm                          { build-depends: stm                                                          }
 common tar                          { build-depends: tar                              ^>= 0.6                     }
 common tasty                        { build-depends: tasty                                                        }
+common tasty-discover               { build-depends: tasty-discover                   >= 5.0.2                    }
 common tasty-hedgehog               { build-depends: tasty-hedgehog                                               }
 common tasty-quickcheck             { build-depends: tasty-quickcheck                                             }
 common temporary                    { build-depends: temporary                                                    }
@@ -80,12 +84,15 @@ library
                         directory,
                         exceptions,
                         filepath,
+                        generic-lens,
                         hedgehog,
                         http-conduit,
+                        hw-prelude,
                         lifted-async,
                         lifted-base,
-                        monad-control,
+                        microlens,
                         mmorph,
+                        monad-control,
                         mtl,
                         network,
                         process,
@@ -93,6 +100,8 @@ library
                         retry,
                         stm,
                         tar,
+                        tasty-discover,
+                        tasty-hedgehog,
                         temporary,
                         text,
                         time,
@@ -136,15 +145,18 @@ library
                         Hedgehog.Extras.Test.Process
                         Hedgehog.Extras.Test.TestWatchdog
                         Hedgehog.Extras.Test.Tripwire
+                        Hedgehog.Extras.Test.Unit
 
 test-suite hedgehog-extras-test
   import:               base, project-config,
                         hedgehog,
                         hedgehog-extras,
+                        lifted-base,
                         network,
                         process,
                         resourcet,
                         tasty,
+                        tasty-discover,
                         tasty-hedgehog,
                         transformers,
                         time,
@@ -155,6 +167,7 @@ test-suite hedgehog-extras-test
   other-modules:        Hedgehog.Extras.Stock.IO.Network.PortSpec
                         Hedgehog.Extras.Test.TestExpectFailure
                         Hedgehog.Extras.Test.TestWatchdogSpec
+                        Hedgehog.Extras.Test.UnitSpec
 
   build-tool-depends:   tasty-discover:tasty-discover
   ghc-options:          -threaded -rtsopts "-with-rtsopts=-N -T"
