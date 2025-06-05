@@ -1,8 +1,6 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
-{-# OPTIONS_GHC -Wno-orphans #-}
-
 
 {- | This modules provides concurrency abstractions for hedgehog tests. Using "lifted-base" one can execute
 expensive test actions concurrently.
@@ -73,20 +71,17 @@ module Hedgehog.Extras.Test.Concurrent
   , module System.Timeout.Lifted
   ) where
 
-import           Control.Applicative
 import           Control.Concurrent.Async.Lifted
 import qualified Control.Concurrent.Lifted as IO
 import           Control.Concurrent.MVar.Lifted
-import           Control.Monad.Base
 import           Control.Monad.IO.Class
-import           Control.Monad.Trans.Control
 import           Control.Monad.Trans.Resource
 import           Data.Function
 import           Data.Int
 import qualified GHC.Stack as GHC
 import           System.IO (IO)
 import           System.Timeout.Lifted
-import qualified UnliftIO
+import           Hedgehog.Extras.Internal.Orphans ()
 
 import           Control.Monad
 import           Control.Monad.Catch (MonadCatch)
@@ -109,11 +104,3 @@ asyncRegister_ act = GHC.withFrozenCallStack $ void . H.evalM $ allocate (async 
   where
     cleanUp :: Async a -> IO ()
     cleanUp a = cancel a >> void (link a)
-
-instance MonadBase IO (ResourceT IO) where
-  liftBase = liftIO
-
-instance MonadBaseControl IO (ResourceT IO) where
-  type StM (ResourceT IO) a = a
-  liftBaseWith = UnliftIO.withRunInIO
-  restoreM = pure
