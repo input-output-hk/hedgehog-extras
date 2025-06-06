@@ -62,6 +62,9 @@ module Hedgehog.Extras.Test.Base
   , failMessage
   , expectFailure
   , expectFailureWith
+  , tryAssertion
+  , assertFailure
+  , assertFailure_
 
   , assertByDeadlineM
   , assertByDeadlineIO
@@ -90,6 +93,7 @@ module Hedgehog.Extras.Test.Base
   ) where
 
 import           Control.Applicative (Applicative (..))
+import           Control.Exception (IOException)
 import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
 import           Control.Monad.Catch (Handler (..), MonadCatch)
 import           Control.Monad.Morph (hoist)
@@ -104,7 +108,6 @@ import           Data.Function (const, ($), (.))
 import           Data.Functor ((<$>))
 import           Data.Int (Int)
 import           Data.Maybe (Maybe (..), listToMaybe, maybe)
-import           Data.Monoid (Monoid (..))
 import           Data.Semigroup (Semigroup (..))
 import           Data.String (String)
 import           Data.Time.Clock (NominalDiffTime, UTCTime)
@@ -115,8 +118,8 @@ import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
 import           Hedgehog.Extras.Stock.CallStack (callerModuleName)
 import           Hedgehog.Extras.Stock.Monad (forceM)
-import           Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
-import           Hedgehog.Internal.Property (Diff, liftTest, mkTest)
+import           Hedgehog.Extras.Test.MonadAssertion
+import           Hedgehog.Extras.Test.Prim
 import           Hedgehog.Internal.Source (getCaller)
 import           Prelude (Num (..), Ord (..), floor)
 import           System.FilePath ((</>))
@@ -125,7 +128,6 @@ import           Text.Show (Show (show))
 
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
-import           Control.Exception (IOException)
 import qualified Control.Monad.Trans.Resource as IO
 import qualified Control.Retry as R
 import qualified Data.List as L
@@ -148,14 +150,6 @@ import qualified System.IO.Temp as IO
 -- to run unit tests.
 propertyOnce :: HasCallStack => Integration () -> H.Property
 propertyOnce = H.withTests 1 . H.property . hoist runResourceT . hoist H.runIntegrationReaderT
-
--- | Takes a 'CallStack' so the error can be rendered at the appropriate call site.
-failWithCustom :: MonadTest m => CallStack -> Maybe Diff -> String -> m a
-failWithCustom cs mdiff msg = liftTest $ mkTest (Left $ H.Failure (getCaller cs) msg mdiff, mempty)
-
--- | Takes a 'CallStack' so the error can be rendered at the appropriate call site.
-failMessage :: MonadTest m => CallStack -> String -> m a
-failMessage cs = failWithCustom cs Nothing
 
 -- | Invert the behavior of a property: success becomes failure and vice versa.
 expectFailure :: (MonadTest m, MonadIO m, HasCallStack) => H.TestT IO a -> m ()
