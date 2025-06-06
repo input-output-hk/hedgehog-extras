@@ -90,10 +90,16 @@ module Hedgehog.Extras.Test.Base
 
   , retry
   , retry'
+
+  , MonadBaseControl
+  , bracket
+  , bracket_
   ) where
 
 import           Control.Applicative (Applicative (..))
 import           Control.Exception (IOException)
+import           Control.Exception.Lifted (bracket, bracket_)
+import           Control.Monad.Trans.Control (MonadBaseControl)
 import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
 import           Control.Monad.Catch (Handler (..), MonadCatch)
 import           Control.Monad.Morph (hoist)
