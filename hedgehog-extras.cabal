@@ -144,6 +144,7 @@ library
                         Hedgehog.Extras.Test.Golden
                         Hedgehog.Extras.Test.MonadAssertion
                         Hedgehog.Extras.Test.Network
+                        Hedgehog.Extras.Test.Prim
                         Hedgehog.Extras.Test.Process
                         Hedgehog.Extras.Test.TestWatchdog
                         Hedgehog.Extras.Test.Tripwire
