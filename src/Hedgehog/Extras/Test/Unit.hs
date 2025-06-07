@@ -11,6 +11,7 @@
 
 module Hedgehog.Extras.Test.Unit
   ( UnitIO(..)
+  , testUnitIO
   ) where
 
 import Control.Monad.Base
@@ -30,6 +31,8 @@ import Lens.Micro
 import Test.Tasty.Discover
 import Test.Tasty.Hedgehog (testProperty)
 
+import qualified Test.Tasty as T
+
 newtype UnitIO a = UnitIO { runTestIO :: TestT (ResourceT IO) a }
   deriving newtype (Applicative)
   deriving newtype (Functor)
@@ -45,5 +48,9 @@ newtype UnitIO a = UnitIO { runTestIO :: TestT (ResourceT IO) a }
   deriving newtype (MonadThrow)
 
 instance Tasty (UnitIO ()) where
-  tasty info = pure . testProperty testName . H.withTests 1 . H.property . hoist runResourceT . H.test .  runTestIO
+  tasty info = pure . testUnitIO testName
     where testName = fromMaybe "" $ getLast (info ^. the @"name")
+
+testUnitIO :: T.TestName -> UnitIO () -> T.TestTree
+testUnitIO testName =
+  testProperty testName . H.withTests 1 . H.property . hoist runResourceT . H.test . runTestIO
