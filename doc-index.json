@@ -1344,6 +1344,12 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Unit.html#t:UnitIO"
   },
   {
+    "display_html": "<a href=\"#v:testUnitIO\">testUnitIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-1.5.3-94224daa9cb4fb02466ca67ee0cfb067e56a5b093959f2a23f95c6c382328702/share/doc/html/Test-Tasty-Providers.html#t:TestName\" title=\"Test.Tasty.Providers\">TestName</a> &#8594; <a href=\"Hedgehog-Extras-Test-Unit.html#t:UnitIO\" title=\"Hedgehog.Extras.Test.Unit\">UnitIO</a> () &#8594; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-1.5.3-94224daa9cb4fb02466ca67ee0cfb067e56a5b093959f2a23f95c6c382328702/share/doc/html/Test-Tasty-Providers.html#t:TestTree\" title=\"Test.Tasty.Providers\">TestTree</a>",
+    "name": "testUnitIO",
+    "module": "Hedgehog.Extras.Test.Unit",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Unit.html#v:testUnitIO"
+  },
+  {
     "display_html": "module <a href=\"Hedgehog-Extras-Test-Unit.html\">Hedgehog.Extras.Test.Unit</a>",
     "name": "",
     "module": "Hedgehog.Extras.Test",
