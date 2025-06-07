@@ -102,6 +102,7 @@ library
                         retry,
                         stm,
                         tar,
+                        tasty,
                         tasty-discover,
                         tasty-hedgehog,
                         temporary,
