@@ -1,4 +1,6 @@
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
@@ -25,20 +27,21 @@ module Hedgehog.Extras.Test.Process
   , defaultExecConfig
   ) where
 
-import           Control.Monad (Monad (..), MonadFail (fail), void, unless)
+import           Control.Applicative (pure, (<|>))
+import           Control.Monad (Monad (..), MonadFail (fail), unless, void)
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.IO.Class (MonadIO, liftIO)
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register)
 import           Data.Aeson (eitherDecode)
-import           Data.Bool (Bool (..))
+import           Data.Bool (Bool (True), otherwise)
 import           Data.Either (Either (..))
 import           Data.Eq (Eq (..))
-import           Data.Function (($), (&), (.))
+import           Data.Function (($), (.))
 import           Data.Functor ((<$>))
 import           Data.Int (Int)
 import           Data.Maybe (Maybe (..))
 import           Data.Monoid (Last (..), mempty, (<>))
-import           Data.String (String)
+import           Data.String (IsString (..), String)
 import           GHC.Generics (Generic)
 import           GHC.Stack (HasCallStack)
 import           Hedgehog (MonadTest)
@@ -55,6 +58,7 @@ import           Text.Show (Show (show))
 
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.List as L
+import           Data.Text (Text)
 import qualified Data.Text as T
 import qualified GHC.Stack as GHC
 import qualified Hedgehog as H
@@ -308,19 +312,26 @@ binDist pkg binaryEnv = do
               <> "\" if you are working with sources. Otherwise define "
               <> binaryEnv
               <> " and have it point to the executable you want."
-  contents <- H.evalIO . LBS.readFile $ planJsonFile
 
-  case eitherDecode contents of
-    Right plan -> case L.filter matching (plan & installPlan) of
-      (component:_) -> case component & binFile of
-        Just bin -> return $ addExeSuffix (T.unpack bin)
-        Nothing -> error $ "missing \"bin-file\" key in plan component: " <> show component <> " in the plan in: " <> planJsonFile
-      [] -> error $ "Cannot find \"component-name\" key with the value \"exe:" <> pkg <> "\" in the plan in: " <> planJsonFile
-    Left message -> error $ "Cannot decode plan in " <> planJsonFile <> ": " <> message
-  where matching :: Component -> Bool
-        matching component = case componentName component of
-          Just name -> name == "exe:" <> T.pack pkg
-          Nothing -> False
+  Plan{installPlan} <- eitherDecode <$> H.evalIO (LBS.readFile planJsonFile)
+      >>= \case
+        Left message -> error $ "Cannot decode plan in " <> planJsonFile <> ": " <> message
+        Right plan -> pure plan
+
+  let componentName = "exe:" <> fromString pkg
+  case findComponent componentName installPlan of
+    Just Component{binFile=Just binFilePath} -> pure . addExeSuffix $ T.unpack binFilePath
+    Just component@Component{binFile=Nothing} ->
+      error $ "missing \"bin-file\" key in plan component: " <> show component <> " in the plan in: " <> planJsonFile
+    Nothing ->
+      error $ "Cannot find \"component-name\" key with the value \"exe:" <> pkg <> "\" in the plan in: " <> planJsonFile
+  where
+    findComponent :: Text -> [Component] -> Maybe Component
+    findComponent _ [] = Nothing
+    findComponent needle (c@Component{componentName, components}:topLevelComponents)
+      | componentName == Just needle = Just c
+      | otherwise = findComponent needle topLevelComponents <|> findComponent needle components
+
 
 -- | Create a 'CreateProcess' describing how to start a process given the Cabal package name
 -- corresponding to the executable, an environment variable pointing to the executable,
