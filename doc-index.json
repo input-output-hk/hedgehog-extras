@@ -19,13 +19,13 @@
   },
   {
     "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:Plan\">Plan</a> = <a href=\"#v:Plan\">Plan</a> {<ul class=\"subs\"><li><a href=\"#v:installPlan\">installPlan</a> &#8759; [<a href=\"Hedgehog-Extras-Internal-Plan.html#t:Component\" title=\"Hedgehog.Extras.Internal.Plan\">Component</a>]</li></ul>}",
-    "name": "Plan Plan installPlan",
+    "name": "Plan Plan $sel:installPlan:Plan",
     "module": "Hedgehog.Extras.Internal.Plan",
     "link": "hedgehog-extras/Hedgehog-Extras-Internal-Plan.html#t:Plan"
   },
   {
-    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Component\">Component</a> = <a href=\"#v:Component\">Component</a> {<ul class=\"subs\"><li><a href=\"#v:componentName\">componentName</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-8f2a5498f4a43540d805be7a3eec9e1f9bfc6d4835047307f8dfba69f52a3179/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a></li><li><a href=\"#v:binFile\">binFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-8f2a5498f4a43540d805be7a3eec9e1f9bfc6d4835047307f8dfba69f52a3179/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a></li></ul>}",
-    "name": "Component Component componentName binFile",
+    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Component\">Component</a> = <a href=\"#v:Component\">Component</a> {<ul class=\"subs\"><li><a href=\"#v:componentName\">componentName</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/text-2.0.2/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a></li><li><a href=\"#v:binFile\">binFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/text-2.0.2/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a></li><li><a href=\"#v:components\">components</a> &#8759; [<a href=\"Hedgehog-Extras-Internal-Plan.html#t:Component\" title=\"Hedgehog.Extras.Internal.Plan\">Component</a>]</li></ul>}",
+    "name": "Component Component $sel:components:Component $sel:componentName:Component $sel:binFile:Component",
     "module": "Hedgehog.Extras.Internal.Plan",
     "link": "hedgehog-extras/Hedgehog-Extras-Internal-Plan.html#t:Component"
   },
@@ -240,40 +240,10 @@
     "link": "hedgehog-extras/"
   },
   {
-    "display_html": "<a href=\"#v:failWithCustom\">failWithCustom</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:CallStack\" title=\"GHC.Stack\">CallStack</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Diff\" title=\"Hedgehog.Internal.Property\">Diff</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m a",
-    "name": "failWithCustom",
-    "module": "Hedgehog.Extras.Test.Prim",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Prim.html#v:failWithCustom"
-  },
-  {
-    "display_html": "<a href=\"#v:failMessage\">failMessage</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:CallStack\" title=\"GHC.Stack\">CallStack</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m a",
-    "name": "failMessage",
-    "module": "Hedgehog.Extras.Test.Prim",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Prim.html#v:failMessage"
-  },
-  {
     "display_html": "<span class=\"keyword\">class</span> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad.html#t:Monad\" title=\"Control.Monad\">Monad</a> m &#8658; <a href=\"#t:MonadAssertion\">MonadAssertion</a> m <span class=\"keyword\">where</span><ul class=\"subs\"><li><a href=\"#v:throwAssertion\">throwAssertion</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a> &#8594; m a</li><li><a href=\"#v:catchAssertion\">catchAssertion</a> &#8759; m a &#8594; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a> &#8594; m a) &#8594; m a</li></ul>",
     "name": "MonadAssertion throwAssertion catchAssertion",
     "module": "Hedgehog.Extras.Test.MonadAssertion",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion"
-  },
-  {
-    "display_html": "<a href=\"#v:assertFailure\">assertFailure</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a &#8658; <a href=\"Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion\" title=\"Hedgehog.Extras.Test.MonadAssertion\">MonadAssertion</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; m a &#8594; m <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a>",
-    "name": "assertFailure",
-    "module": "Hedgehog.Extras.Test.MonadAssertion",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-MonadAssertion.html#v:assertFailure"
-  },
-  {
-    "display_html": "<a href=\"#v:assertFailure_\">assertFailure_</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a &#8658; <a href=\"Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion\" title=\"Hedgehog.Extras.Test.MonadAssertion\">MonadAssertion</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; m a &#8594; m ()",
-    "name": "assertFailure_",
-    "module": "Hedgehog.Extras.Test.MonadAssertion",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-MonadAssertion.html#v:assertFailure_"
-  },
-  {
-    "display_html": "<a href=\"#v:tryAssertion\">tryAssertion</a> &#8759; <a href=\"Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion\" title=\"Hedgehog.Extras.Test.MonadAssertion\">MonadAssertion</a> m &#8658; m a &#8594; m (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Either.html#t:Either\" title=\"Data.Either\">Either</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a> a)",
-    "name": "tryAssertion",
-    "module": "Hedgehog.Extras.Test.MonadAssertion",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-MonadAssertion.html#v:tryAssertion"
   },
   {
     "display_html": "<a href=\"#v:propertyOnce\">propertyOnce</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:Integration\" title=\"Hedgehog.Extras.Test.Base\">Integration</a> () &#8594; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:Property\" title=\"Hedgehog\">Property</a>",
@@ -570,24 +540,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:expectFailureWith"
   },
   {
-    "display_html": "<a href=\"#v:tryAssertion\">tryAssertion</a> &#8759; <a href=\"Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion\" title=\"Hedgehog.Extras.Test.MonadAssertion\">MonadAssertion</a> m &#8658; m a &#8594; m (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Either.html#t:Either\" title=\"Data.Either\">Either</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a> a)",
-    "name": "tryAssertion",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:tryAssertion"
-  },
-  {
-    "display_html": "<a href=\"#v:assertFailure\">assertFailure</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a &#8658; <a href=\"Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion\" title=\"Hedgehog.Extras.Test.MonadAssertion\">MonadAssertion</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; m a &#8594; m <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog-Internal-Property.html#t:Failure\" title=\"Hedgehog.Internal.Property\">Failure</a>",
-    "name": "assertFailure",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:assertFailure"
-  },
-  {
-    "display_html": "<a href=\"#v:assertFailure_\">assertFailure_</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Text-Show.html#t:Show\" title=\"Text.Show\">Show</a> a &#8658; <a href=\"Hedgehog-Extras-Test-MonadAssertion.html#t:MonadAssertion\" title=\"Hedgehog.Extras.Test.MonadAssertion\">MonadAssertion</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; m a &#8594; m ()",
-    "name": "assertFailure_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:assertFailure_"
-  },
-  {
     "display_html": "<a href=\"#v:assertByDeadlineM\">assertByDeadlineM</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/time-1.12.2/Data-Time-Clock.html#t:UTCTime\" title=\"Data.Time.Clock\">UTCTime</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a> &#8594; m ()",
     "name": "assertByDeadlineM",
     "module": "Hedgehog.Extras.Test.Base",
@@ -702,72 +654,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:retry-39-"
   },
   {
-    "display_html": "<span class=\"keyword\">class</span> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/transformers-base-0.4.6-6293943fa9e4d34929f55693eb7463412a86adb89fdec13f65f5ec268b158223/share/doc/html/Control-Monad-Base.html#t:MonadBase\" title=\"Control.Monad.Base\">MonadBase</a> b m &#8658; <a href=\"#t:MonadBaseControl\">MonadBaseControl</a> (b &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Kind.html#t:Type\" title=\"Data.Kind\">Type</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Kind.html#t:Type\" title=\"Data.Kind\">Type</a>) (m &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Kind.html#t:Type\" title=\"Data.Kind\">Type</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Kind.html#t:Type\" title=\"Data.Kind\">Type</a>) | m &#8594; b",
-    "name": "MonadBaseControl",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#t:MonadBaseControl"
-  },
-  {
-    "display_html": "<a href=\"#v:bracket\">bracket</a> &#8759; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; m a &#8594; (a &#8594; m b) &#8594; (a &#8594; m c) &#8594; m c",
-    "name": "bracket",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:bracket"
-  },
-  {
-    "display_html": "<a href=\"#v:bracket_\">bracket_</a> &#8759; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; m a &#8594; m b &#8594; m c &#8594; m c",
-    "name": "bracket_",
-    "module": "Hedgehog.Extras.Test.Base",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Base.html#v:bracket_"
-  },
-  {
-    "display_html": "<a href=\"#v:doesFileExists\">doesFileExists</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
-    "name": "doesFileExists",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:doesFileExists"
-  },
-  {
-    "display_html": "<a href=\"#v:isPortOpen\">isPortOpen</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
-    "name": "isPortOpen",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:isPortOpen"
-  },
-  {
-    "display_html": "<a href=\"#v:doesSocketExist\">doesSocketExist</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
-    "name": "doesSocketExist",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:doesSocketExist"
-  },
-  {
-    "display_html": "<a href=\"#v:assertPortOpen\">assertPortOpen</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m ()",
-    "name": "assertPortOpen",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:assertPortOpen"
-  },
-  {
-    "display_html": "<a href=\"#v:assertSocketExists\">assertSocketExists</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
-    "name": "assertSocketExists",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:assertSocketExists"
-  },
-  {
-    "display_html": "<a href=\"#v:doesSprocketExist\">doesSprocketExist</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"Hedgehog-Extras-Stock-IO-Network-Sprocket.html#t:Sprocket\" title=\"Hedgehog.Extras.Stock.IO.Network.Sprocket\">Sprocket</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
-    "name": "doesSprocketExist",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:doesSprocketExist"
-  },
-  {
-    "display_html": "<a href=\"#v:downloadToFile\">downloadToFile</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
-    "name": "downloadToFile",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:downloadToFile"
-  },
-  {
-    "display_html": "<a href=\"#v:downloadAndExtractGithubCommitToTemp\">downloadAndExtractGithubCommitToTemp</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a>",
-    "name": "downloadAndExtractGithubCommitToTemp",
-    "module": "Hedgehog.Extras.Test.Network",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:downloadAndExtractGithubCommitToTemp"
-  },
-  {
     "display_html": "<a href=\"#v:createDirectoryIfMissing\">createDirectoryIfMissing</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a>",
     "name": "createDirectoryIfMissing",
     "module": "Hedgehog.Extras.Test.File",
@@ -852,13 +738,13 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:lbsReadFile"
   },
   {
-    "display_html": "<a href=\"#v:textWriteFile\">textWriteFile</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-8f2a5498f4a43540d805be7a3eec9e1f9bfc6d4835047307f8dfba69f52a3179/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a> &#8594; m ()",
+    "display_html": "<a href=\"#v:textWriteFile\">textWriteFile</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/text-2.0.2/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a> &#8594; m ()",
     "name": "textWriteFile",
     "module": "Hedgehog.Extras.Test.File",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:textWriteFile"
   },
   {
-    "display_html": "<a href=\"#v:textReadFile\">textReadFile</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-8f2a5498f4a43540d805be7a3eec9e1f9bfc6d4835047307f8dfba69f52a3179/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a>",
+    "display_html": "<a href=\"#v:textReadFile\">textReadFile</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/text-2.0.2/Data-Text.html#t:Text\" title=\"Data.Text\">Text</a>",
     "name": "textReadFile",
     "module": "Hedgehog.Extras.Test.File",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:textReadFile"
@@ -1002,24 +888,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-File.html#v:assertDirectoryExists"
   },
   {
-    "display_html": "<a href=\"#v:diffVsGoldenFile\">diffVsGoldenFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
-    "name": "diffVsGoldenFile",
-    "module": "Hedgehog.Extras.Test.Golden",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Golden.html#v:diffVsGoldenFile"
-  },
-  {
-    "display_html": "<a href=\"#v:diffFileVsGoldenFile\">diffFileVsGoldenFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
-    "name": "diffFileVsGoldenFile",
-    "module": "Hedgehog.Extras.Test.Golden",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Golden.html#v:diffFileVsGoldenFile"
-  },
-  {
-    "display_html": "<a href=\"#v:diffVsGoldenFileExcludeTrace\">diffVsGoldenFileExcludeTrace</a> &#8759; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
-    "name": "diffVsGoldenFileExcludeTrace",
-    "module": "Hedgehog.Extras.Test.Golden",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Golden.html#v:diffVsGoldenFileExcludeTrace"
-  },
-  {
     "display_html": "<a href=\"#v:strip\">strip</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a>",
     "name": "strip",
     "module": "Hedgehog.Extras.Stock.String",
@@ -1108,6 +976,54 @@
     "name": "",
     "module": "Hedgehog.Extras.Stock",
     "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "<a href=\"#v:doesFileExists\">doesFileExists</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
+    "name": "doesFileExists",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:doesFileExists"
+  },
+  {
+    "display_html": "<a href=\"#v:isPortOpen\">isPortOpen</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
+    "name": "isPortOpen",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:isPortOpen"
+  },
+  {
+    "display_html": "<a href=\"#v:doesSocketExist\">doesSocketExist</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
+    "name": "doesSocketExist",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:doesSocketExist"
+  },
+  {
+    "display_html": "<a href=\"#v:assertPortOpen\">assertPortOpen</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Int.html#t:Int\" title=\"Data.Int\">Int</a> &#8594; m ()",
+    "name": "assertPortOpen",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:assertPortOpen"
+  },
+  {
+    "display_html": "<a href=\"#v:assertSocketExists\">assertSocketExists</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
+    "name": "assertSocketExists",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:assertSocketExists"
+  },
+  {
+    "display_html": "<a href=\"#v:doesSprocketExist\">doesSprocketExist</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"Hedgehog-Extras-Stock-IO-Network-Sprocket.html#t:Sprocket\" title=\"Hedgehog.Extras.Stock.IO.Network.Sprocket\">Sprocket</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Bool.html#t:Bool\" title=\"Data.Bool\">Bool</a>",
+    "name": "doesSprocketExist",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:doesSprocketExist"
+  },
+  {
+    "display_html": "<a href=\"#v:downloadToFile\">downloadToFile</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
+    "name": "downloadToFile",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:downloadToFile"
+  },
+  {
+    "display_html": "<a href=\"#v:downloadAndExtractGithubCommitToTemp\">downloadAndExtractGithubCommitToTemp</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; m <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a>",
+    "name": "downloadAndExtractGithubCommitToTemp",
+    "module": "Hedgehog.Extras.Test.Network",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Network.html#v:downloadAndExtractGithubCommitToTemp"
   },
   {
     "display_html": "<a href=\"#v:createProcess\">createProcess</a> &#8759; (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m, <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/conduit-1.3.6.1-624e11825c7f0ed1d0e721b8a1a63c1db75e66a0ce4da00312ce254bfc8db623/share/doc/html/Conduit.html#t:MonadResource\" title=\"Conduit\">MonadResource</a> m, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a>) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/process-1.6.19.0/System-Process.html#t:CreateProcess\" title=\"System.Process\">CreateProcess</a> &#8594; m (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-IO-Handle.html#t:Handle\" title=\"GHC.IO.Handle\">Handle</a>, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-IO-Handle.html#t:Handle\" title=\"GHC.IO.Handle\">Handle</a>, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-IO-Handle.html#t:Handle\" title=\"GHC.IO.Handle\">Handle</a>, <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/process-1.6.19.0/System-Process.html#t:ProcessHandle\" title=\"System.Process\">ProcessHandle</a>, <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/resourcet-1.3.0-9e3f9df79ea24a8f685ce1b9440d2f20583ec96410f544b6573f6b2a78dd67b4/share/doc/html/Control-Monad-Trans-Resource.html#t:ReleaseKey\" title=\"Control.Monad.Trans.Resource\">ReleaseKey</a>)",
@@ -1212,25 +1128,25 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Process.html#v:defaultExecConfig"
   },
   {
-    "display_html": "<a href=\"#v:runWithWatchdog_\">runWithWatchdog_</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig\" title=\"Hedgehog.Extras.Test.TestWatchdog\">WatchdogConfig</a> &#8594; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; m a) &#8594; m a",
+    "display_html": "<a href=\"#v:runWithWatchdog_\">runWithWatchdog_</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/Control-Monad-Trans-Control.html#t:MonadBaseControl\" title=\"Control.Monad.Trans.Control\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig\" title=\"Hedgehog.Extras.Test.TestWatchdog\">WatchdogConfig</a> &#8594; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; m a) &#8594; m a",
     "name": "runWithWatchdog_",
     "module": "Hedgehog.Extras.Test.TestWatchdog",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithWatchdog_"
   },
   {
-    "display_html": "<a href=\"#v:runWithWatchdog\">runWithWatchdog</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig\" title=\"Hedgehog.Extras.Test.TestWatchdog\">WatchdogConfig</a> &#8594; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m a) &#8594; m a",
+    "display_html": "<a href=\"#v:runWithWatchdog\">runWithWatchdog</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/Control-Monad-Trans-Control.html#t:MonadBaseControl\" title=\"Control.Monad.Trans.Control\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:WatchdogConfig\" title=\"Hedgehog.Extras.Test.TestWatchdog\">WatchdogConfig</a> &#8594; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m a) &#8594; m a",
     "name": "runWithWatchdog",
     "module": "Hedgehog.Extras.Test.TestWatchdog",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithWatchdog"
   },
   {
-    "display_html": "<a href=\"#v:runWithDefaultWatchdog_\">runWithDefaultWatchdog_</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; m a) &#8594; m a",
+    "display_html": "<a href=\"#v:runWithDefaultWatchdog_\">runWithDefaultWatchdog_</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/Control-Monad-Trans-Control.html#t:MonadBaseControl\" title=\"Control.Monad.Trans.Control\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; m a) &#8594; m a",
     "name": "runWithDefaultWatchdog_",
     "module": "Hedgehog.Extras.Test.TestWatchdog",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithDefaultWatchdog_"
   },
   {
-    "display_html": "<a href=\"#v:runWithDefaultWatchdog\">runWithDefaultWatchdog</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-Base.html#t:MonadBaseControl\" title=\"Hedgehog.Extras.Test.Base\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m a) &#8594; m a",
+    "display_html": "<a href=\"#v:runWithDefaultWatchdog\">runWithDefaultWatchdog</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/monad-control-1.0.3.1-818ef8408dcdcf8676e3f689897d0f71977ee8a1a5e2fdaeb7f88387536979f4/share/doc/html/Control-Monad-Trans-Control.html#t:MonadBaseControl\" title=\"Control.Monad.Trans.Control\">MonadBaseControl</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m a) &#8594; m a",
     "name": "runWithDefaultWatchdog",
     "module": "Hedgehog.Extras.Test.TestWatchdog",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWithDefaultWatchdog"
@@ -1338,24 +1254,6 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-Tripwire.html#v:assertTripped"
   },
   {
-    "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:UnitIO\">UnitIO</a> a = <a href=\"#v:UnitIO\">UnitIO</a> {<ul class=\"subs\"><li><a href=\"#v:runTestIO\">runTestIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:TestT\" title=\"Hedgehog\">TestT</a> (<a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/conduit-1.3.6.1-624e11825c7f0ed1d0e721b8a1a63c1db75e66a0ce4da00312ce254bfc8db623/share/doc/html/Conduit.html#t:ResourceT\" title=\"Conduit\">ResourceT</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a>) a</li></ul>}",
-    "name": "UnitIO UnitIO runTestIO",
-    "module": "Hedgehog.Extras.Test.Unit",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Unit.html#t:UnitIO"
-  },
-  {
-    "display_html": "<a href=\"#v:testUnitIO\">testUnitIO</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-1.5.3-94224daa9cb4fb02466ca67ee0cfb067e56a5b093959f2a23f95c6c382328702/share/doc/html/Test-Tasty-Providers.html#t:TestName\" title=\"Test.Tasty.Providers\">TestName</a> &#8594; <a href=\"Hedgehog-Extras-Test-Unit.html#t:UnitIO\" title=\"Hedgehog.Extras.Test.Unit\">UnitIO</a> () &#8594; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-1.5.3-94224daa9cb4fb02466ca67ee0cfb067e56a5b093959f2a23f95c6c382328702/share/doc/html/Test-Tasty-Providers.html#t:TestTree\" title=\"Test.Tasty.Providers\">TestTree</a>",
-    "name": "testUnitIO",
-    "module": "Hedgehog.Extras.Test.Unit",
-    "link": "hedgehog-extras/Hedgehog-Extras-Test-Unit.html#v:testUnitIO"
-  },
-  {
-    "display_html": "module <a href=\"Hedgehog-Extras-Test-Unit.html\">Hedgehog.Extras.Test.Unit</a>",
-    "name": "",
-    "module": "Hedgehog.Extras.Test",
-    "link": "hedgehog-extras/"
-  },
-  {
     "display_html": "module <a href=\"Hedgehog-Extras-Test-Tripwire.html\">Hedgehog.Extras.Test.Tripwire</a>",
     "name": "",
     "module": "Hedgehog.Extras.Test",
@@ -1386,12 +1284,6 @@
     "link": "hedgehog-extras/"
   },
   {
-    "display_html": "module <a href=\"Hedgehog-Extras-Test-Golden.html\">Hedgehog.Extras.Test.Golden</a>",
-    "name": "",
-    "module": "Hedgehog.Extras.Test",
-    "link": "hedgehog-extras/"
-  },
-  {
     "display_html": "module <a href=\"Hedgehog-Extras-Test-File.html\">Hedgehog.Extras.Test.File</a>",
     "name": "",
     "module": "Hedgehog.Extras.Test",
@@ -1408,6 +1300,18 @@
     "name": "",
     "module": "Hedgehog.Extras.Test",
     "link": "hedgehog-extras/"
+  },
+  {
+    "display_html": "<a href=\"#v:diffVsGoldenFile\">diffVsGoldenFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-String.html#t:String\" title=\"Data.String\">String</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
+    "name": "diffVsGoldenFile",
+    "module": "Hedgehog.Extras.Test.Golden",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Golden.html#v:diffVsGoldenFile"
+  },
+  {
+    "display_html": "<a href=\"#v:diffFileVsGoldenFile\">diffFileVsGoldenFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; (<a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Control-Monad-IO-Class.html#t:MonadIO\" title=\"Control.Monad.IO.Class\">MonadIO</a> m, <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.5-3d58f44e01e3d596752c61cce5ead7bb1026e680e833c92fbb38efee4e4588b1/share/doc/html/Hedgehog.html#t:MonadTest\" title=\"Hedgehog\">MonadTest</a> m) &#8658; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:FilePath\" title=\"System.IO\">FilePath</a> &#8594; m ()",
+    "name": "diffFileVsGoldenFile",
+    "module": "Hedgehog.Extras.Test.Golden",
+    "link": "hedgehog-extras/Hedgehog-Extras-Test-Golden.html#v:diffFileVsGoldenFile"
   },
   {
     "display_html": "module <a href=\"Hedgehog-Extras-Test.html\">Hedgehog.Extras.Test</a>",
