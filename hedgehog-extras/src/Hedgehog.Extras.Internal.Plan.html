@@ -141,7 +141,7 @@ forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-0bcb539f3d3fef49139c87edcc0d248f6061b6586ff847f9f06b26f1befddfa2/share/doc/html/src/Data.Aeson.Types.FromJSON.html#.%3A%3F"><span class="hs-operator hs-var">.:?</span></a></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;bin-file&quot;</span></span><span>
 </span><span id="line-43"></span><span>      </span><span id="local-6989586621679147711"><span class="annot"><span class="annottext">[(Key, Object)]
-</span><a href="#local-6989586621679147711"><span class="hs-identifier hs-var">componentsTuples</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[[(Key, Object)]] -&gt; [(Key, Object)]
+</span><a href="#local-6989586621679147711"><span class="hs-identifier hs-var">componentsTuples</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[[(Key, Object)]] -&gt; [(Key, Object)]
 forall (m :: * -&gt; *) a. Monad m =&gt; m (m a) -&gt; m a
 </span><span class="hs-identifier hs-var">join</span></span><span> </span><span class="annot"><span class="annottext">([[(Key, Object)]] -&gt; [(Key, Object)])
 -&gt; (Maybe (KeyMap Object) -&gt; [[(Key, Object)]])
@@ -161,7 +161,7 @@ forall a b. (a -&gt; b) -&gt; Maybe a -&gt; Maybe b
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-identifier hs-var">fmap</span></span><span> </span><span class="annot"><span class="annottext">KeyMap Object -&gt; [(Key, Object)]
 forall v. KeyMap v -&gt; [(Key, v)]
-</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-0bcb539f3d3fef49139c87edcc0d248f6061b6586ff847f9f06b26f1befddfa2/share/doc/html/src/Data.Aeson.KeyMap.html#toAscList"><span class="hs-identifier hs-var">M.toAscList</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(Maybe (KeyMap Object) -&gt; [(Key, Object)])
+</span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-0bcb539f3d3fef49139c87edcc0d248f6061b6586ff847f9f06b26f1befddfa2/share/doc/html/src/Data.Aeson.KeyMap.html#toAscList"><span class="hs-identifier hs-var">M.toAscList</span></a></span><span> </span><span class="annot"><span class="annottext">(Maybe (KeyMap Object) -&gt; [(Key, Object)])
 -&gt; Parser (Maybe (KeyMap Object)) -&gt; Parser [(Key, Object)]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">Object
