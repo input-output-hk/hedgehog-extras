@@ -19,13 +19,13 @@
   },
   {
     "display_html": "<span class=\"keyword\">newtype</span> <a href=\"#t:Plan\">Plan</a> = <a href=\"#v:Plan\">Plan</a> {<ul class=\"subs\"><li><a href=\"#v:installPlan\">installPlan</a> &#8759; [<a href=\"Hedgehog-Extras-Internal-Plan.html#t:Component\" title=\"Hedgehog.Extras.Internal.Plan\">Component</a>]</li></ul>}",
-    "name": "Plan Plan installPlan",
+    "name": "Plan Plan $sel:installPlan:Plan",
     "module": "Hedgehog.Extras.Internal.Plan",
     "link": "hedgehog-extras/Hedgehog-Extras-Internal-Plan.html#t:Plan"
   },
   {
-    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Component\">Component</a> = <a href=\"#v:Component\">Component</a> {<ul class=\"subs\"><li><a href=\"#v:componentName\">componentName</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-42f9c31d112c5f266cf1185c6b012106fcb438eb7150d356f27e03a99be8066a/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a></li><li><a href=\"#v:binFile\">binFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-42f9c31d112c5f266cf1185c6b012106fcb438eb7150d356f27e03a99be8066a/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a></li></ul>}",
-    "name": "Component Component componentName binFile",
+    "display_html": "<span class=\"keyword\">data</span> <a href=\"#t:Component\">Component</a> = <a href=\"#v:Component\">Component</a> {<ul class=\"subs\"><li><a href=\"#v:componentName\">componentName</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-42f9c31d112c5f266cf1185c6b012106fcb438eb7150d356f27e03a99be8066a/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a></li><li><a href=\"#v:binFile\">binFile</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/Data-Maybe.html#t:Maybe\" title=\"Data.Maybe\">Maybe</a> <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hw-prelude-0.0.5.0-42f9c31d112c5f266cf1185c6b012106fcb438eb7150d356f27e03a99be8066a/share/doc/html/HaskellWorks-Prelude.html#t:Text\" title=\"HaskellWorks.Prelude\">Text</a></li><li><a href=\"#v:components\">components</a> &#8759; [<a href=\"Hedgehog-Extras-Internal-Plan.html#t:Component\" title=\"Hedgehog.Extras.Internal.Plan\">Component</a>]</li></ul>}",
+    "name": "Component Component $sel:components:Component $sel:componentName:Component $sel:binFile:Component",
     "module": "Hedgehog.Extras.Internal.Plan",
     "link": "hedgehog-extras/Hedgehog-Extras-Internal-Plan.html#t:Component"
   },
