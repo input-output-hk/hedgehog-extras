@@ -98,13 +98,13 @@ module Hedgehog.Extras.Test.Base
 
 import           Control.Applicative (Applicative (..))
 import           Control.Exception (IOException)
-import           Control.Exception.Lifted (bracket, bracket_)
+import           Control.Exception.Lifted (bracket, bracket_, try)
 import           Control.Monad.Trans.Control (MonadBaseControl)
 import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
-import           Control.Monad.Catch (Handler (..), MonadCatch)
+import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
-import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, register, runResourceT)
+import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
 import           Data.Bool (Bool (..), otherwise, (&&))
 import           Data.Either (Either (..), either)
@@ -135,7 +135,6 @@ import           Text.Show (Show (show))
 import qualified Control.Concurrent as IO
 import qualified Control.Concurrent.STM as STM
 import qualified Control.Monad.Trans.Resource as IO
-import qualified Control.Retry as R
 import qualified Data.List as L
 import qualified Data.Time.Clock as DTC
 import qualified GHC.Stack as GHC
@@ -181,31 +180,46 @@ expectFailureWith checkFailure prop = GHC.withFrozenCallStack $ do
 -- The directory will be deleted if the block succeeds, but left behind if
 -- the block fails.
 workspace
-  :: MonadTest m
-  => HasCallStack
+  :: HasCallStack
+  => MonadBaseControl IO m
   => MonadResource m
+  => MonadTest m
   => FilePath
   -> (FilePath -> m ())
   -> m ()
-workspace prefixPath f = withFrozenCallStack $ do
-  systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
-  maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
-  ws <- H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
-  H.annotate $ "Workspace: " <> ws
-  H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
-  f ws
-  when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $ do
-    -- try to delete the directory 20 times, 100ms apart
-    let retryPolicy = R.constantDelay 100000 <> R.limitRetries 20
-        -- retry only on IOExceptions
-        ioExH _ = Handler $ \(_ :: IOException) -> pure True
-    -- For some reason, the temporary directory removal sometimes fails.
-    -- Lets wrap this in MonadResource to try multiple times, during the cleanup, before we fail.
-    void
-      . register
-      . R.recovering retryPolicy [ioExH]
-      . const
-      $ IO.removePathForcibly ws
+workspace prefixPath f =
+  withFrozenCallStack $
+    bracket init fini $ \ws -> do
+      H.annotate $ "Workspace: " <> ws
+      H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
+      f ws
+  where
+    init = do
+      systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
+      H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
+    fini ws = do
+      maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
+      when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $
+        removeWorkspaceRetries ws 20
+    removeWorkspaceRetries
+      :: MonadBaseControl IO m
+      => MonadResource m
+      => MonadTest m
+      => FilePath
+      -> Int
+      -> m ()
+    removeWorkspaceRetries ws retries = GHC.withFrozenCallStack $ do
+      result <- try (liftIO (IO.removePathForcibly ws))
+      case result of
+        Right () -> return ()
+        Left (_ :: IOException) -> do
+          if retries > 0
+            then do
+              liftIO (IO.threadDelay 100000) -- wait 100ms before retrying
+              removeWorkspaceRetries ws (retries - 1)
+            else do
+              failMessage GHC.callStack "Failed to remove workspace directory after multiple attempts"
+
 
 -- | Create a workspace directory which will exist for at least the duration of
 -- the supplied block.
@@ -217,7 +231,14 @@ workspace prefixPath f = withFrozenCallStack $ do
 -- the block fails.
 --
 -- The 'prefix' argument should not contain directory delimeters.
-moduleWorkspace :: (MonadTest m, MonadResource m, HasCallStack) => String -> (FilePath -> m ()) -> m ()
+moduleWorkspace
+  :: HasCallStack
+  => MonadBaseControl IO m
+  => MonadResource m
+  => MonadTest m
+  => String
+  -> (FilePath -> m ())
+  -> m ()
 moduleWorkspace prefix f = GHC.withFrozenCallStack $ do
   let srcModule = maybe "UnknownModule" (GHC.srcLocModule . snd) (listToMaybe (GHC.getCallStack GHC.callStack))
   workspace (prefix <> "-" <> srcModule) f

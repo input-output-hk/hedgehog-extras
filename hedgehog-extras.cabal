@@ -99,7 +99,6 @@ library
                         network,
                         process,
                         resourcet,
-                        retry,
                         stm,
                         tar,
                         tasty,
