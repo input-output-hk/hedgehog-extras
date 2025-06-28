@@ -95,24 +95,40 @@ makeWatchdog config watchedThreadId' = liftBase $ do
   kickWatchdog watchdog
   pure watchdog
 
+getCallerLocation :: HasCallStack => String
+getCallerLocation =
+  case getCallStack callStack of
+    (_funcName, _) : (_callerName, callerLoc) : _ ->
+      srcLocFile callerLoc ++ ":" ++ show (srcLocStartLine callerLoc)
+    _ -> "<no call stack>"
+
 -- | Run watchdog in a loop in the current thread. Usually this function should be used with 'H.withAsync'
 -- to run it in the background.
-runWatchdog :: MonadBase IO m
-            => Watchdog
-            -> m ()
-runWatchdog w@Watchdog{watchedThreadId, startTime, kickChan} = liftBase $ do
-  atomically (tryReadTChan kickChan) >>= \case
-    Just PoisonPill ->
-      -- deactivate watchdog
-      pure ()
-    Just (Kick timeout) -> do
-      -- got a kick, wait for another period
-      threadDelay $ timeout * 1_000_000
-      runWatchdog w
-    Nothing -> do
-      -- we are out of scheduled timeouts, kill the monitored thread
-      currentTime <- getCurrentTime
-      throwTo watchedThreadId . WatchdogException $ diffUTCTime currentTime startTime
+runWatchdog
+  :: HasCallStack
+  => MonadBase IO m
+  => Watchdog
+  -> m ()
+runWatchdog w@Watchdog{watchedThreadId, startTime, kickChan} =
+  withFrozenCallStack $ liftBase $ do
+    atomically (tryReadTChan kickChan) >>= \case
+      Just PoisonPill ->
+        -- deactivate watchdog
+        pure ()
+      Just (Kick timeout) -> do
+        -- got a kick, wait for another period
+        threadDelay $ timeout * 1_000_000
+        runWatchdog w
+      Nothing -> do
+        -- we are out of scheduled timeouts, kill the monitored thread
+        currentTime <- getCurrentTime
+        liftIO $ appendFile "/tmp/watchdog.log" $ mconcat
+          [ "Watchdog: killing thread " <> show watchedThreadId
+          , " after " <> show (diffUTCTime currentTime startTime)
+          , "at " <> getCallerLocation
+          , "\n"
+          ]
+        throwTo watchedThreadId . WatchdogException $ diffUTCTime currentTime startTime
 
 -- | Watchdog command
 data WatchdogCommand

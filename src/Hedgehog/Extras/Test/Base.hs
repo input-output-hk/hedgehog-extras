@@ -197,28 +197,8 @@ workspace prefixPath f =
     init = do
       systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
       H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
-    fini ws = do
-      maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
-      when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $
-        removeWorkspaceRetries ws 20
-    removeWorkspaceRetries
-      :: MonadBaseControl IO m
-      => MonadResource m
-      => MonadTest m
-      => FilePath
-      -> Int
-      -> m ()
-    removeWorkspaceRetries ws retries = GHC.withFrozenCallStack $ do
-      result <- try (liftIO (IO.removePathForcibly ws))
-      case result of
-        Right () -> return ()
-        Left (_ :: IOException) -> do
-          if retries > 0
-            then do
-              liftIO (IO.threadDelay 100000) -- wait 100ms before retrying
-              removeWorkspaceRetries ws (retries - 1)
-            else do
-              failMessage GHC.callStack "Failed to remove workspace directory after multiple attempts"
+    fini _ = do
+      pure ()
 
 
 -- | Create a workspace directory which will exist for at least the duration of
