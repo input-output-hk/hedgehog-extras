@@ -1272,7 +1272,7 @@
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:makeWatchdog"
   },
   {
-    "display_html": "<a href=\"#v:runWatchdog\">runWatchdog</a> &#8759; <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/GHC-Stack.html#t:HasCallStack\" title=\"GHC.Stack\">HasCallStack</a> &#8658; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/transformers-base-0.4.6-6293943fa9e4d34929f55693eb7463412a86adb89fdec13f65f5ec268b158223/share/doc/html/Control-Monad-Base.html#t:MonadBase\" title=\"Control.Monad.Base\">MonadBase</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m ()",
+    "display_html": "<a href=\"#v:runWatchdog\">runWatchdog</a> &#8759; <a href=\"file:///home/runner/.local/state/cabal/store/ghc-9.6.7/transformers-base-0.4.6-6293943fa9e4d34929f55693eb7463412a86adb89fdec13f65f5ec268b158223/share/doc/html/Control-Monad-Base.html#t:MonadBase\" title=\"Control.Monad.Base\">MonadBase</a> <a href=\"${pkgroot}/../../../share/doc/ghc-9.6.7/html/libraries/base-4.18.3.0/System-IO.html#t:IO\" title=\"System.IO\">IO</a> m &#8658; <a href=\"Hedgehog-Extras-Test-TestWatchdog.html#t:Watchdog\" title=\"Hedgehog.Extras.Test.TestWatchdog\">Watchdog</a> &#8594; m ()",
     "name": "runWatchdog",
     "module": "Hedgehog.Extras.Test.TestWatchdog",
     "link": "hedgehog-extras/Hedgehog-Extras-Test-TestWatchdog.html#v:runWatchdog"
