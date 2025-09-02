@@ -152,6 +152,7 @@ library
 
 test-suite hedgehog-extras-test
   import:               base, project-config,
+                        directory,
                         hedgehog,
                         hedgehog-extras,
                         lifted-base,
