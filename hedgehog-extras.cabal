@@ -171,6 +171,7 @@ test-suite hedgehog-extras-test
                         Hedgehog.Extras.Test.TestExpectFailure
                         Hedgehog.Extras.Test.TestWatchdogSpec
                         Hedgehog.Extras.Test.UnitSpec
+                        Hedgehog.Extras.Test.WorkspaceSpec
 
   build-tool-depends:   tasty-discover:tasty-discover
   ghc-options:          -threaded -rtsopts "-with-rtsopts=-N -T"
