@@ -26,7 +26,7 @@
 </span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/tasty-1.5.3-c17002632437887b50559e947be65a9676301bbbed4a790bb3a2c208ca7aa3de/share/doc/html/src/Control.Concurrent.Async.html"><span class="hs-identifier">Control.Concurrent.Async</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
 </span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.Process</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
 </span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">data</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679157096"><span id="local-6989586621679157098"><span class="annot"><span class="annottext">(forall x. TimedOut -&gt; Rep TimedOut x)
+</span><span id="line-29"></span><span class="hs-keyword">data</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="TimedOut"><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679156992"><span id="local-6989586621679156994"><span class="annot"><span class="annottext">(forall x. TimedOut -&gt; Rep TimedOut x)
 -&gt; (forall x. Rep TimedOut x -&gt; TimedOut) -&gt; Generic TimedOut
 forall x. Rep TimedOut x -&gt; TimedOut
 forall x. TimedOut -&gt; Rep TimedOut x
@@ -36,7 +36,7 @@ $cfrom :: forall x. TimedOut -&gt; Rep TimedOut x
 from :: forall x. TimedOut -&gt; Rep TimedOut x
 $cto :: forall x. Rep TimedOut x -&gt; TimedOut
 to :: forall x. Rep TimedOut x -&gt; TimedOut
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679157102"><span id="local-6989586621679157104"><span class="annot"><span class="annottext">TimedOut -&gt; TimedOut -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156998"><span id="local-6989586621679157000"><span class="annot"><span class="annottext">TimedOut -&gt; TimedOut -&gt; Bool
 (TimedOut -&gt; TimedOut -&gt; Bool)
 -&gt; (TimedOut -&gt; TimedOut -&gt; Bool) -&gt; Eq TimedOut
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -44,7 +44,7 @@ $c== :: TimedOut -&gt; TimedOut -&gt; Bool
 == :: TimedOut -&gt; TimedOut -&gt; Bool
 $c/= :: TimedOut -&gt; TimedOut -&gt; Bool
 /= :: TimedOut -&gt; TimedOut -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679157109"><span id="local-6989586621679157111"><span id="local-6989586621679157115"><span class="annot"><span class="annottext">Int -&gt; TimedOut -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679157005"><span id="local-6989586621679157007"><span id="local-6989586621679157011"><span class="annot"><span class="annottext">Int -&gt; TimedOut -&gt; ShowS
 [TimedOut] -&gt; ShowS
 TimedOut -&gt; String
 (Int -&gt; TimedOut -&gt; ShowS)
@@ -63,8 +63,8 @@ showList :: [TimedOut] -&gt; ShowS
 </span><span id="line-32"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ProcessHandle</span></span><span>
 </span><span id="line-33"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ExitCode</span></span><span class="hs-special">)</span><span>
 </span><span id="line-34"></span><span id="maybeWaitForProcess"><span class="annot"><span class="annottext">maybeWaitForProcess :: ProcessHandle -&gt; IO (Maybe ExitCode)
-</span><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-var hs-var">maybeWaitForProcess</span></a></span></span><span> </span><span id="local-6989586621679157118"><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679157118"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-var hs-var">maybeWaitForProcess</span></a></span></span><span> </span><span id="local-6989586621679157014"><span class="annot"><span class="annottext">ProcessHandle
+</span><a href="#local-6989586621679157014"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">IO (Maybe ExitCode)
 -&gt; (AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode)
 forall e a. Exception e =&gt; IO a -&gt; (e -&gt; IO a) -&gt; IO a
@@ -75,7 +75,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ProcessHandle -&gt; IO ExitCode
 </span><span class="hs-identifier hs-var">IO.waitForProcess</span></span><span> </span><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679157118"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">((AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode))
+</span><a href="#local-6989586621679157014"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">((AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode))
 -&gt; (AsyncCancelled -&gt; IO (Maybe ExitCode)) -&gt; IO (Maybe ExitCode)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span class="annot"><span class="annottext">AsyncCancelled
@@ -91,15 +91,15 @@ forall a. Maybe a
 </span><span id="line-39"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ProcessHandle</span></span><span>
 </span><span id="line-40"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Either</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-type">TimedOut</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ExitCode</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-41"></span><span id="waitSecondsForProcess"><span class="annot"><span class="annottext">waitSecondsForProcess :: Int -&gt; ProcessHandle -&gt; IO (Either TimedOut (Maybe ExitCode))
-</span><a href="Hedgehog.Extras.Stock.IO.Process.html#waitSecondsForProcess"><span class="hs-identifier hs-var hs-var">waitSecondsForProcess</span></a></span></span><span> </span><span id="local-6989586621679157121"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679157121"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span id="local-6989586621679157122"><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679157122"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO TimedOut
+</span><a href="Hedgehog.Extras.Stock.IO.Process.html#waitSecondsForProcess"><span class="hs-identifier hs-var hs-var">waitSecondsForProcess</span></a></span></span><span> </span><span id="local-6989586621679157017"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679157017"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span id="local-6989586621679157018"><span class="annot"><span class="annottext">ProcessHandle
+</span><a href="#local-6989586621679157018"><span class="hs-identifier hs-var">hProcess</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO TimedOut
 -&gt; IO (Maybe ExitCode) -&gt; IO (Either TimedOut (Maybe ExitCode))
 forall a b. IO a -&gt; IO b -&gt; IO (Either a b)
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/async-2.2.5-20d7575e08e3b55b9bceedbbb9afef623a307251d5a186ff53b965910440a132/share/doc/html/src/Control.Concurrent.Async.Internal.html#race"><span class="hs-identifier hs-var">IO.race</span></a></span><span>
 </span><span id="line-42"></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; IO ()
 </span><span class="hs-identifier hs-var">IO.threadDelay</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679157121"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679157017"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1000000</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO TimedOut -&gt; IO TimedOut
@@ -112,5 +112,5 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="Hedgehog.Extras.Stock.IO.Process.html#TimedOut"><span class="hs-identifier hs-var">TimedOut</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-43"></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ProcessHandle -&gt; IO (Maybe ExitCode)
 </span><a href="Hedgehog.Extras.Stock.IO.Process.html#maybeWaitForProcess"><span class="hs-identifier hs-var">maybeWaitForProcess</span></a></span><span> </span><span class="annot"><span class="annottext">ProcessHandle
-</span><a href="#local-6989586621679157122"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679157018"><span class="hs-identifier hs-var">hProcess</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-44"></span></pre></body></html>
