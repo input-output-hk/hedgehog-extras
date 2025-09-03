@@ -148,6 +148,7 @@ import qualified System.Environment as IO
 import qualified System.Info as IO
 import qualified System.IO as IO
 import qualified System.IO.Temp as IO
+import qualified System.Timeout as IO
 
 {- HLINT ignore "Reduce duplication" -}
 
@@ -208,17 +209,19 @@ workspace prefixPath f =
       => FilePath
       -> Int
       -> m ()
-    removeWorkspaceRetries ws retries = GHC.withFrozenCallStack $ do
-      result <- try (liftIO (IO.removePathForcibly ws))
-      case result of
-        Right () -> return ()
-        Left (_ :: IOException) -> do
-          if retries > 0
-            then do
-              liftIO (IO.threadDelay 100000) -- wait 100ms before retrying
-              removeWorkspaceRetries ws (retries - 1)
-            else do
-              failMessage GHC.callStack "Failed to remove workspace directory after multiple attempts"
+    removeWorkspaceRetries ws retries =
+      GHC.withFrozenCallStack $ do
+        result <- try (liftIO (IO.timeout (5 * 1000) (IO.removePathForcibly ws)))
+        case result of
+          Right (Just ()) -> return ()
+          Right Nothing -> pure ()
+          Left (_ :: IOException) -> do
+            if retries > 0
+              then do
+                liftIO (IO.threadDelay 100000) -- wait 100ms before retrying
+                removeWorkspaceRetries ws (retries - 1)
+              else do
+                failMessage GHC.callStack "Failed to remove workspace directory after multiple attempts"
 
 
 -- | Create a workspace directory which will exist for at least the duration of
