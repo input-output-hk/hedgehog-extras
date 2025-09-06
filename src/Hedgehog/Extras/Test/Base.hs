@@ -6,6 +6,7 @@ module Hedgehog.Extras.Test.Base
   ( propertyOnce
 
   , workspace
+  , workspaceWithConfig
   , moduleWorkspace
 
   , note
@@ -100,15 +101,15 @@ import           Control.Applicative (Applicative (..))
 import           Control.Exception (IOException)
 import           Control.Exception.Lifted (bracket, bracket_, try)
 import           Control.Monad.Trans.Control (MonadBaseControl)
-import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void, when)
+import           Control.Monad (Functor (fmap), Monad (return, (>>=)), mapM_, unless, void)
 import           Control.Monad.Catch (MonadCatch)
 import           Control.Monad.Morph (hoist)
 import           Control.Monad.Reader (MonadIO (..), MonadReader (ask))
 import           Control.Monad.Trans.Resource (MonadResource, ReleaseKey, runResourceT)
 import           Data.Aeson (Result (..))
-import           Data.Bool (Bool (..), otherwise, (&&))
+import           Data.Bool (Bool (..), otherwise, (||))
 import           Data.Either (Either (..), either)
-import           Data.Eq (Eq ((/=)))
+import           Data.Eq (Eq ((==)))
 import           Data.Foldable (for_)
 import           Data.Function (const, ($), (.))
 import           Data.Functor ((<$>))
@@ -120,7 +121,6 @@ import           Data.Time.Clock (NominalDiffTime, UTCTime)
 import           Data.Traversable (Traversable)
 import           Data.Tuple (snd)
 import           GHC.Stack
-import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
 import           Hedgehog.Extras.Stock.CallStack (callerModuleName)
 import           Hedgehog.Extras.Stock.Monad (forceM)
@@ -148,6 +148,7 @@ import qualified System.Environment as IO
 import qualified System.Info as IO
 import qualified System.IO as IO
 import qualified System.IO.Temp as IO
+import Hedgehog.Internal.Property
 
 {- HLINT ignore "Reduce duplication" -}
 
@@ -181,26 +182,59 @@ expectFailureWith checkFailure prop = GHC.withFrozenCallStack $ do
 -- the block fails.
 workspace
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => FilePath
   -> (FilePath -> m ())
   -> m ()
-workspace prefixPath f =
-  withFrozenCallStack $
-    bracket init fini $ \ws -> do
-      H.annotate $ "Workspace: " <> ws
-      H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
-      f ws
-  where
-    init = do
-      systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
-      H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
-    fini ws = do
-      maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
-      when (IO.os /= "mingw32" && maybeKeepWorkspace /= Just "1") $
+workspace prefixPath f = withFrozenCallStack $ do
+  maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
+  let keepWorkspace = IO.os == "mingw32" || maybeKeepWorkspace == Just "1"
+  workspaceWithConfig keepWorkspace prefixPath f
+
+-- | Create a workspace directory with explicit configuration for cleanup behavior.
+--
+-- The directory will have the supplied prefix but contain a generated random
+-- suffix to prevent interference between tests
+--
+-- The directory will be deleted if the block succeeds, but left behind if
+-- the block fails (unless keepWorkspace is True, in which case it's always preserved).
+workspaceWithConfig
+  :: HasCallStack
+  => MonadCatch m
+  => MonadBaseControl IO m
+  => MonadResource m
+  => MonadTest m
+  => H.MonadAssertion m
+  => Bool  -- ^ keepWorkspace: if True, always preserve workspace; if False, delete on success only
+  -> FilePath
+  -> (FilePath -> m ())
+  -> m ()
+workspaceWithConfig keepWorkspace prefixPath f = withFrozenCallStack $ evalM $ do
+  ws <- do
+    systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
+    H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
+  
+  H.annotate $ "Workspace: " <> ws
+  H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
+  
+  result <- H.catchAssertion (fmap Right (f ws)) (return . Left)
+  
+  case result of
+    Right _ -> do
+      -- Test succeeded, clean up if not keeping workspace
+      unless keepWorkspace $
         removeWorkspaceRetries ws 20
+    Left assertion -> do
+      -- Test failed, preserve workspace for debugging (unless keepWorkspace forces cleanup)
+      unless keepWorkspace $ do
+        H.annotate $ "Test failed, preserving workspace for debugging: " <> ws
+      -- Re-throw the original assertion failure
+      H.throwAssertion assertion
+  where
     removeWorkspaceRetries
       :: MonadBaseControl IO m
       => MonadResource m
@@ -233,9 +267,11 @@ workspace prefixPath f =
 -- The 'prefix' argument should not contain directory delimeters.
 moduleWorkspace
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => String
   -> (FilePath -> m ())
   -> m ()

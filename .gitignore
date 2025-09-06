@@ -1,2 +1,6 @@
 .ghc.environment.*
 dist-newstyle
+
+.ai/scratch
+.claude/settings.local.json
+
