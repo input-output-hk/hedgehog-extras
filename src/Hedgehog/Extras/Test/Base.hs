@@ -7,6 +7,7 @@ module Hedgehog.Extras.Test.Base
 
   , workspace
   , workspaceWithConfig
+  , WorkspacePolicy(..)
   , moduleWorkspace
 
   , note
@@ -121,7 +122,6 @@ import           Data.Time.Clock (NominalDiffTime, UTCTime)
 import           Data.Traversable (Traversable)
 import           Data.Tuple (snd)
 import           GHC.Stack
-import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
 import           Hedgehog.Extras.Stock.CallStack (callerModuleName)
 import           Hedgehog.Extras.Stock.Monad (forceM)
@@ -149,8 +149,15 @@ import qualified System.Environment as IO
 import qualified System.Info as IO
 import qualified System.IO as IO
 import qualified System.IO.Temp as IO
+import Hedgehog.Internal.Property
 
 {- HLINT ignore "Reduce duplication" -}
+
+-- | Policy for workspace directory cleanup behavior
+data WorkspacePolicy
+  = PreserveWorkspace    -- ^ Always preserve workspace directories, even on success
+  | CleanupOnSuccess     -- ^ Clean up workspace directories only when tests succeed
+  deriving (Eq, Show)
 
 -- | Run a property with only one test.  This is intended for allowing hedgehog
 -- to run unit tests.
@@ -182,16 +189,20 @@ expectFailureWith checkFailure prop = GHC.withFrozenCallStack $ do
 -- the block fails.
 workspace
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => FilePath
   -> (FilePath -> m ())
   -> m ()
 workspace prefixPath f = withFrozenCallStack $ do
   maybeKeepWorkspace <- H.evalIO $ IO.lookupEnv "KEEP_WORKSPACE"
-  let keepWorkspace = IO.os == "mingw32" || maybeKeepWorkspace == Just "1"
-  workspaceWithConfig keepWorkspace prefixPath f
+  let policy = if IO.os == "mingw32" || maybeKeepWorkspace == Just "1"
+              then PreserveWorkspace
+              else CleanupOnSuccess
+  workspaceWithConfig policy prefixPath f
 
 -- | Create a workspace directory with explicit configuration for cleanup behavior.
 --
@@ -199,29 +210,43 @@ workspace prefixPath f = withFrozenCallStack $ do
 -- suffix to prevent interference between tests
 --
 -- The directory will be deleted if the block succeeds, but left behind if
--- the block fails (unless keepWorkspace is True, in which case it's always preserved).
+-- the block fails (unless policy is PreserveWorkspace, in which case it's always preserved).
 workspaceWithConfig
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
-  => Bool  -- ^ keepWorkspace: if True, always preserve workspace; if False, delete on success only
+  => H.MonadAssertion m
+  => WorkspacePolicy  -- ^ Cleanup policy: PreserveWorkspace always preserves, CleanupOnSuccess deletes on success only
   -> FilePath
   -> (FilePath -> m ())
   -> m ()
-workspaceWithConfig keepWorkspace prefixPath f =
-  withFrozenCallStack $
-    bracket init fini $ \ws -> do
-      H.annotate $ "Workspace: " <> ws
-      H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
-      f ws
+workspaceWithConfig policy prefixPath f = withFrozenCallStack $ evalM $ do
+  ws <- do
+    systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
+    H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
+  
+  H.annotate $ "Workspace: " <> ws
+  H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
+  
+  result <- H.catchAssertion (fmap Right (f ws)) (return . Left)
+  
+  case result of
+    Right _ -> do
+      -- Test succeeded, clean up if policy allows
+      case policy of
+        CleanupOnSuccess -> removeWorkspaceRetries ws 20
+        PreserveWorkspace -> pure ()
+    Left assertion -> do
+      -- Test failed, preserve workspace for debugging (unless policy forces cleanup)
+      case policy of
+        CleanupOnSuccess -> do
+          H.annotate $ "Test failed, preserving workspace for debugging: " <> ws
+        PreserveWorkspace -> pure ()
+      -- Re-throw the original assertion failure
+      H.throwAssertion assertion
   where
-    init = do
-      systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
-      H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
-    fini ws = do
-      unless keepWorkspace $
-        removeWorkspaceRetries ws 20
     removeWorkspaceRetries
       :: MonadBaseControl IO m
       => MonadResource m
@@ -254,9 +279,11 @@ workspaceWithConfig keepWorkspace prefixPath f =
 -- The 'prefix' argument should not contain directory delimeters.
 moduleWorkspace
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => String
   -> (FilePath -> m ())
   -> m ()
