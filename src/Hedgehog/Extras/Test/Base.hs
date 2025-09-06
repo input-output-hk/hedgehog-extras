@@ -121,7 +121,6 @@ import           Data.Time.Clock (NominalDiffTime, UTCTime)
 import           Data.Traversable (Traversable)
 import           Data.Tuple (snd)
 import           GHC.Stack
-import           Hedgehog (MonadTest)
 import           Hedgehog.Extras.Internal.Test.Integration (Integration, IntegrationState (..))
 import           Hedgehog.Extras.Stock.CallStack (callerModuleName)
 import           Hedgehog.Extras.Stock.Monad (forceM)
@@ -149,6 +148,7 @@ import qualified System.Environment as IO
 import qualified System.Info as IO
 import qualified System.IO as IO
 import qualified System.IO.Temp as IO
+import Hedgehog.Internal.Property
 
 {- HLINT ignore "Reduce duplication" -}
 
@@ -182,9 +182,11 @@ expectFailureWith checkFailure prop = GHC.withFrozenCallStack $ do
 -- the block fails.
 workspace
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => FilePath
   -> (FilePath -> m ())
   -> m ()
@@ -202,26 +204,37 @@ workspace prefixPath f = withFrozenCallStack $ do
 -- the block fails (unless keepWorkspace is True, in which case it's always preserved).
 workspaceWithConfig
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => Bool  -- ^ keepWorkspace: if True, always preserve workspace; if False, delete on success only
   -> FilePath
   -> (FilePath -> m ())
   -> m ()
-workspaceWithConfig keepWorkspace prefixPath f =
-  withFrozenCallStack $
-    bracket init fini $ \ws -> do
-      H.annotate $ "Workspace: " <> ws
-      H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
-      f ws
-  where
-    init = do
-      systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
-      H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
-    fini ws = do
+workspaceWithConfig keepWorkspace prefixPath f = withFrozenCallStack $ evalM $ do
+  ws <- do
+    systemTemp <- H.evalIO IO.getCanonicalTemporaryDirectory
+    H.evalIO $ IO.createTempDirectory systemTemp $ prefixPath <> "-test"
+  
+  H.annotate $ "Workspace: " <> ws
+  H.evalIO $ IO.writeFile (ws </> "module") callerModuleName
+  
+  result <- H.catchAssertion (fmap Right (f ws)) (return . Left)
+  
+  case result of
+    Right _ -> do
+      -- Test succeeded, clean up if not keeping workspace
       unless keepWorkspace $
         removeWorkspaceRetries ws 20
+    Left assertion -> do
+      -- Test failed, preserve workspace for debugging (unless keepWorkspace forces cleanup)
+      unless keepWorkspace $ do
+        H.annotate $ "Test failed, preserving workspace for debugging: " <> ws
+      -- Re-throw the original assertion failure
+      H.throwAssertion assertion
+  where
     removeWorkspaceRetries
       :: MonadBaseControl IO m
       => MonadResource m
@@ -254,9 +267,11 @@ workspaceWithConfig keepWorkspace prefixPath f =
 -- The 'prefix' argument should not contain directory delimeters.
 moduleWorkspace
   :: HasCallStack
+  => MonadCatch m
   => MonadBaseControl IO m
   => MonadResource m
   => MonadTest m
+  => H.MonadAssertion m
   => String
   -> (FilePath -> m ())
   -> m ()
