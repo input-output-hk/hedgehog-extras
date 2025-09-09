@@ -7,13 +7,17 @@ and this project adheres to the [Package Versioning Policy (PVP)](https://pvp.ha
 
 ## [Unreleased]
 
+## [0.10.0.0] - 2025-09-09
+
 ### Added
+- Comprehensive CHANGELOG.md with complete project history
 - Descriptive error messages for workspace test failures
 - Sum type `WorkspacePolicy` to replace boolean blindness in `workspaceWithConfig`
 
 ### Changed
 - `workspaceWithConfig` now uses `WorkspacePolicy` instead of `Bool` parameter
 - Improved error messages in workspace tests with specific failure contexts
+- Updated documentation to reference Package Versioning Policy (PVP) instead of SemVer
 
 ## [0.9.0.0] - 2025-06-24
 
@@ -330,7 +334,8 @@ and this project adheres to the [Package Versioning Policy (PVP)](https://pvp.ha
 - Run a chairman process per node
 - Increase test code re-use by moving test support code into separate common hedgehog-extras library
 
-[Unreleased]: https://github.com/input-output-hk/hedgehog-extras/compare/v0.9.0.0...HEAD
+[Unreleased]: https://github.com/input-output-hk/hedgehog-extras/compare/v0.10.0.0...HEAD
+[0.10.0.0]: https://github.com/input-output-hk/hedgehog-extras/compare/v0.9.0.0...v0.10.0.0
 [0.9.0.0]: https://github.com/input-output-hk/hedgehog-extras/compare/v0.8.0.0...v0.9.0.0
 [0.8.0.0]: https://github.com/input-output-hk/hedgehog-extras/compare/v0.7.2.0...v0.8.0.0
 [0.7.2.0]: https://github.com/input-output-hk/hedgehog-extras/compare/v0.7.1.0...v0.7.2.0
