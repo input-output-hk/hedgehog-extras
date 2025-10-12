@@ -16,6 +16,7 @@ module Hedgehog.Extras.Test.Unit
 
 import Control.Monad.Base
 import Control.Monad.Catch (MonadCatch)
+import Control.Monad.IO.Class (MonadIO)
 import Control.Monad.Morph
 import Control.Monad.Trans.Control (MonadBaseControl(..))
 import Control.Monad.Trans.Resource
