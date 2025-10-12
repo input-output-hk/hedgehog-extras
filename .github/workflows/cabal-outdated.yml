@@ -1,0 +1,117 @@
+name: Check Outdated Dependencies
+
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-outdated:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Haskell
+      uses: input-output-hk/actions/haskell@latest
+      with:
+        ghc-version: '9.12'
+        cabal-version: '3.14'
+
+    - name: Update Cabal package index
+      run: cabal update
+
+    - name: Check for outdated dependencies
+      id: outdated
+      run: |
+        echo "## Outdated Dependencies Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Generated on: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if cabal outdated --exit-code --simple-output > outdated.txt 2>&1; then
+          echo "✅ All dependencies are up to date!" >> $GITHUB_STEP_SUMMARY
+          echo "status=up-to-date" >> $GITHUB_OUTPUT
+        else
+          echo "⚠️ Some dependencies have newer versions available:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat outdated.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "status=outdated" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Upload outdated dependencies list
+      if: steps.outdated.outputs.status == 'outdated'
+      uses: actions/upload-artifact@v4
+      with:
+        name: outdated-dependencies-${{ github.run_number }}
+        path: outdated.txt
+        retention-days: 30
+
+    - name: Create issue if dependencies are outdated
+      if: steps.outdated.outputs.status == 'outdated'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const outdated = fs.readFileSync('outdated.txt', 'utf8');
+
+          // Check if an issue already exists
+          const issues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: 'dependencies,automated'
+          });
+
+          const existingIssue = issues.data.find(issue =>
+            issue.title.includes('Outdated Dependencies Detected')
+          );
+
+          const body = `## Outdated Dependencies Detected
+
+          This is an automated report from the daily dependency check.
+
+          **Run Date:** ${new Date().toISOString().split('T')[0]}
+          **Workflow Run:** https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
+
+          ### Outdated Packages
+
+          \`\`\`
+          ${outdated}
+          \`\`\`
+
+          ### Action Required
+
+          Please review these outdated dependencies and consider updating them. You can update dependencies by:
+
+          1. Updating version bounds in your \`.cabal\` file
+          2. Running \`cabal update && cabal build\` to ensure compatibility
+          3. Testing thoroughly before merging
+
+          ---
+          *This issue was automatically created by the [Check Outdated Dependencies workflow](.github/workflows/cabal-outdated.yml)*`;
+
+          if (existingIssue) {
+            // Update existing issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: existingIssue.number,
+              body: `### Updated Report - ${new Date().toISOString().split('T')[0]}\n\n${body}`
+            });
+            console.log(`Updated existing issue #${existingIssue.number}`);
+          } else {
+            // Create new issue
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '⚠️ Outdated Dependencies Detected',
+              body: body,
+              labels: ['dependencies', 'automated', 'maintenance']
+            });
+            console.log(`Created new issue #${issue.data.number}`);
+          }
