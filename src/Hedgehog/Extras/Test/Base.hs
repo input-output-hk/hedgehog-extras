@@ -176,7 +176,7 @@ expectFailureWith :: (MonadTest m, MonadIO m, HasCallStack) => (H.Failure -> m (
 expectFailureWith checkFailure prop = GHC.withFrozenCallStack $ do
   (res, _) <- H.evalIO $ H.runTestT prop
   case res of
-    Left failure -> checkFailure failure
+    Left e -> checkFailure e
     _ -> H.failWith Nothing "Expected the test to fail but it passed" -- Property pased but we expected a failure
 
 -- | Create a workspace directory which will exist for at least the duration of
@@ -614,8 +614,8 @@ byDurationM period duration errorMessage f = GHC.withFrozenCallStack $ do
 -- Expiration of the deadline results in an assertion failure
 assertByDeadlineIO :: (MonadTest m, MonadIO m, HasCallStack) => UTCTime -> IO Bool -> m ()
 assertByDeadlineIO deadline f = GHC.withFrozenCallStack $ do
-  success <- liftIO f
-  unless success $ do
+  succeeded <- liftIO f
+  unless succeeded $ do
     currentTime <- liftIO DTC.getCurrentTime
     if currentTime < deadline
       then do
@@ -630,8 +630,8 @@ assertByDeadlineIO deadline f = GHC.withFrozenCallStack $ do
 -- Expiration of the deadline results in an assertion failure
 assertByDeadlineM :: (MonadTest m, MonadIO m, HasCallStack) => UTCTime -> m Bool -> m ()
 assertByDeadlineM deadline f = GHC.withFrozenCallStack $ do
-  success <- f
-  unless success $ do
+  succeeded <- f
+  unless succeeded $ do
     currentTime <- liftIO DTC.getCurrentTime
     if currentTime < deadline
       then do
@@ -649,8 +649,8 @@ assertByDeadlineM deadline f = GHC.withFrozenCallStack $ do
 -- Expiration of the deadline results in an assertion failure
 assertByDeadlineIOFinally :: (MonadTest m, MonadIO m, HasCallStack) => UTCTime -> IO Bool -> m () -> m ()
 assertByDeadlineIOFinally deadline f g = GHC.withFrozenCallStack $ do
-  success <- liftIO f
-  unless success $ do
+  succeeded <- liftIO f
+  unless succeeded $ do
     currentTime <- liftIO DTC.getCurrentTime
     if currentTime < deadline
       then do
@@ -669,8 +669,8 @@ assertByDeadlineIOFinally deadline f g = GHC.withFrozenCallStack $ do
 -- Expiration of the deadline results in an assertion failure
 assertByDeadlineMFinally :: (MonadTest m, MonadIO m, HasCallStack) => UTCTime -> m Bool -> m () -> m ()
 assertByDeadlineMFinally deadline f g = GHC.withFrozenCallStack $ do
-  success <- f
-  unless success $ do
+  succeeded <- f
+  unless succeeded $ do
     currentTime <- liftIO DTC.getCurrentTime
     if currentTime < deadline
       then do
