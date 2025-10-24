@@ -41,6 +41,7 @@ jobs:
           cat outdated.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           echo "status=outdated" >> $GITHUB_OUTPUT
+          exit 1
         fi
 
     - name: Upload outdated dependencies list
