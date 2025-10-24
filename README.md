@@ -67,6 +67,6 @@ After the workflow completes:
 
 ## License
 
-Copyright 2025 Input Output (Hong Kong) Ltd.
+Copyright 2025 Input Output Global, Inc.
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
