@@ -204,38 +204,21 @@ jobs:
 
       - name: Publish to hackage
         env:
-          server: http://hackage.haskell.org
-          username: ${{ secrets.HACKAGE_USER }}
-          password: ${{ secrets.HACKAGE_PASS }}
-          candidate: true
+          HACKAGE_USERNAME: ${{ secrets.HACKAGE_USER }}
+          HACKAGE_PASSWORD: ${{ secrets.HACKAGE_PASS }}
         run: |
-          package_version="$(cat *.cabal | grep '^version:' | cut -d : -f 2 | xargs)"
+          # Configure cabal with Hackage credentials
+          cat > ~/.cabal/config <<EOF
+          repository hackage.haskell.org
+            url: http://hackage.haskell.org/
+          username: $HACKAGE_USERNAME
+          password: $HACKAGE_PASSWORD
+          EOF
 
+          # Upload as candidate (without --publish flag)
           for PACKAGE_TARBALL in $(find ./build/sdist/ -name "*.tar.gz"); do
-            PACKAGE_NAME=$(basename ${PACKAGE_TARBALL%.*.*})
-
-            if ${{ env.candidate }}; then
-              TARGET_URL="${{ env.server }}/packages/candidates";
-              CHECK_URL="${{ env.server }}/package/$PACKAGE_NAME/candidate"
-            else
-              TARGET_URL="${{ env.server }}/packages/upload";
-              CHECK_URL="${{ env.server }}/package/$PACKAGE_NAME"
-            fi
-
-            # Check if this specific version exists (either as release or candidate)
-            HACKAGE_STATUS=$(curl --silent --head -w %{http_code} -XGET --anyauth --user "${{ env.username }}:${{ env.password }}" $CHECK_URL -o /dev/null)
-
-            if [ "$HACKAGE_STATUS" = "404" ]; then
-              echo "Uploading $PACKAGE_NAME to $TARGET_URL"
-
-              if curl -X POST -f --user "${{ env.username }}:${{ env.password }}" $TARGET_URL -F "package=@$PACKAGE_TARBALL"; then
-                echo "Successfully uploaded $PACKAGE_NAME"
-              else
-                echo "Failed to upload $PACKAGE_NAME (may already exist)"
-              fi
-            else
-              echo "Package $PACKAGE_NAME already exists on Hackage (status: $HACKAGE_STATUS)."
-            fi
+            echo "Uploading $PACKAGE_TARBALL as candidate"
+            cabal upload --username="$HACKAGE_USERNAME" --password="$HACKAGE_PASSWORD" "$PACKAGE_TARBALL" || echo "Upload failed (package may already exist)"
           done
 
       - name: Generate Changelog
@@ -267,7 +250,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
-    if: ${{ needs.check.outputs.tag != '' }}
+    if: ${{ needs.check.outputs.tag != '' || startsWith(github.ref, 'refs/tags/v') }}
 
     strategy:
       fail-fast: false
