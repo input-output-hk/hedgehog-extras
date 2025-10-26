@@ -193,6 +193,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install Haskell
+        uses: input-output-hk/actions/haskell@latest
+        with:
+          ghc-version: '9.12'
+          cabal-version: '3.14'
+
       - name: Create source distribution
         run: |
           PROJECT_DIR="$PWD"
@@ -207,6 +213,9 @@ jobs:
           HACKAGE_USERNAME: ${{ secrets.HACKAGE_USER }}
           HACKAGE_PASSWORD: ${{ secrets.HACKAGE_PASS }}
         run: |
+          # Ensure .cabal directory exists
+          mkdir -p ~/.cabal
+
           # Configure cabal with Hackage credentials
           cat > ~/.cabal/config <<EOF
           repository hackage.haskell.org
