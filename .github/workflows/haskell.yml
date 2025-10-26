@@ -202,6 +202,38 @@ jobs:
             cabal v2-sdist -o $PROJECT_DIR/build/sdist
           done;
 
+      - name: Publish to hackage
+        env:
+          server: http://hackage.haskell.org
+          username: ${{ secrets.HACKAGE_USER }}
+          password: ${{ secrets.HACKAGE_PASS }}
+          candidate: true
+        run: |
+          package_version="$(cat *.cabal | grep '^version:' | cut -d : -f 2 | xargs)"
+
+          for PACKAGE_TARBALL in $(find ./build/sdist/ -name "*.tar.gz"); do
+            PACKAGE_NAME=$(basename ${PACKAGE_TARBALL%.*.*})
+
+            if ${{ env.candidate }}; then
+              TARGET_URL="${{ env.server }}/packages/candidates";
+              DOCS_URL="${{ env.server }}/package/$PACKAGE_NAME/candidate/docs"
+            else
+              TARGET_URL="${{ env.server }}/packages/upload";
+              DOCS_URL="${{ env.server }}/package/$PACKAGE_NAME/docs"
+            fi
+
+            HACKAGE_STATUS=$(curl --silent --head -w %{http_code} -XGET --anyauth --user "${{ env.username }}:${{ env.password }}" ${{ env.server }}/package/$PACKAGE_NAME -o /dev/null)
+
+            if [ "$HACKAGE_STATUS" = "404" ]; then
+              echo "Uploading $PACKAGE_NAME to $TARGET_URL"
+
+              curl -X POST -f --user "${{ env.username }}:${{ env.password }}" $TARGET_URL -F "package=@$PACKAGE_TARBALL"
+              echo "Uploaded $PACKAGE_NAME"
+            else
+              echo "Package $PACKAGE_NAME already exists on Hackage."
+            fi
+          done
+
       - name: Generate Changelog
         run: |
           git fetch --unshallow
