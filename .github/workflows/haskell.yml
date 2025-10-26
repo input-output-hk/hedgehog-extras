@@ -216,21 +216,25 @@ jobs:
 
             if ${{ env.candidate }}; then
               TARGET_URL="${{ env.server }}/packages/candidates";
-              DOCS_URL="${{ env.server }}/package/$PACKAGE_NAME/candidate/docs"
+              CHECK_URL="${{ env.server }}/package/$PACKAGE_NAME/candidate"
             else
               TARGET_URL="${{ env.server }}/packages/upload";
-              DOCS_URL="${{ env.server }}/package/$PACKAGE_NAME/docs"
+              CHECK_URL="${{ env.server }}/package/$PACKAGE_NAME"
             fi
 
-            HACKAGE_STATUS=$(curl --silent --head -w %{http_code} -XGET --anyauth --user "${{ env.username }}:${{ env.password }}" ${{ env.server }}/package/$PACKAGE_NAME -o /dev/null)
+            # Check if this specific version exists (either as release or candidate)
+            HACKAGE_STATUS=$(curl --silent --head -w %{http_code} -XGET --anyauth --user "${{ env.username }}:${{ env.password }}" $CHECK_URL -o /dev/null)
 
             if [ "$HACKAGE_STATUS" = "404" ]; then
               echo "Uploading $PACKAGE_NAME to $TARGET_URL"
 
-              curl -X POST -f --user "${{ env.username }}:${{ env.password }}" $TARGET_URL -F "package=@$PACKAGE_TARBALL"
-              echo "Uploaded $PACKAGE_NAME"
+              if curl -X POST -f --user "${{ env.username }}:${{ env.password }}" $TARGET_URL -F "package=@$PACKAGE_TARBALL"; then
+                echo "Successfully uploaded $PACKAGE_NAME"
+              else
+                echo "Failed to upload $PACKAGE_NAME (may already exist)"
+              fi
             else
-              echo "Package $PACKAGE_NAME already exists on Hackage."
+              echo "Package $PACKAGE_NAME already exists on Hackage (status: $HACKAGE_STATUS)."
             fi
           done
 
