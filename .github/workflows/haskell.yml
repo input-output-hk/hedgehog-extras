@@ -14,6 +14,9 @@ on:
   schedule:
     - cron: '0 0 */6 * *'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ${{ matrix.sys.os }}
@@ -185,13 +188,19 @@ jobs:
     needs: [build, check]
     runs-on: ubuntu-latest
 
-    if: ${{ needs.check.outputs.tag != '' }}
+    if: ${{ needs.check.outputs.tag != '' || startsWith(github.ref, 'refs/tags/v') }}
 
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install Haskell
+        uses: input-output-hk/actions/haskell@latest
+        with:
+          ghc-version: '9.12'
+          cabal-version: '3.14'
 
       - name: Create source distribution
         run: |
@@ -201,6 +210,28 @@ jobs:
             cd "$PROJECT_DIR" && cd "$(dirname $i)"
             cabal v2-sdist -o $PROJECT_DIR/build/sdist
           done;
+
+      - name: Publish to hackage
+        env:
+          HACKAGE_USERNAME: ${{ secrets.HACKAGE_USER }}
+          HACKAGE_PASSWORD: ${{ secrets.HACKAGE_PASS }}
+        run: |
+          # Ensure .cabal directory exists
+          mkdir -p ~/.cabal
+
+          # Configure cabal with Hackage credentials
+          cat > ~/.cabal/config <<EOF
+          repository hackage.haskell.org
+            url: http://hackage.haskell.org/
+          username: $HACKAGE_USERNAME
+          password: $HACKAGE_PASSWORD
+          EOF
+
+          # Upload as candidate (without --publish flag)
+          for PACKAGE_TARBALL in $(find ./build/sdist/ -name "*.tar.gz"); do
+            echo "Uploading $PACKAGE_TARBALL as candidate"
+            cabal upload --username="$HACKAGE_USERNAME" --password="$HACKAGE_PASSWORD" "$PACKAGE_TARBALL" || echo "Upload failed (package may already exist)"
+          done
 
       - name: Generate Changelog
         run: |
@@ -216,62 +247,10 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.check.outputs.tag }}
-          release_name: Release ${{ needs.check.outputs.tag }}
+          tag_name: ${{ needs.check.outputs.tag != '' && needs.check.outputs.tag || github.ref_name }}
+          name: Release ${{ needs.check.outputs.tag != '' && needs.check.outputs.tag || github.ref_name }}
+          body_path: changelog.txt
           draft: false
           prerelease: false
-          body_path: changelog.txt
-
-  publish:
-    needs: [build, release]
-
-    runs-on: ${{ matrix.os }}
-
-    if: ${{ needs.check.outputs.tag != '' }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        ghc: ["8.10.4"]
-        os: [ubuntu-latest, macos-latest]
-
-    steps:
-      - uses: actions/download-artifact@v4
-        id: download_artifact
-        with:
-          name: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
-          path: .
-
-      - name: Compute axes
-        id: axes
-        run: |
-          case ${{ matrix.os }} in
-            ubuntu-*)   os="linux"    ;;
-            macos-*)    os="darwin"   ;;
-            windows-*)  os="windows"  ;;
-            *)          exit 1        ;; # error
-          esac
-          arch_os="$(uname -m)-$os"
-          echo "::set-output name=arch_os::$arch_os"
-
-      - name: Upload Artifacts to Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
-
-      - name: Upload Artifacts to Release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
-          asset_name: artifacts-${{ runner.OS }}-${{ matrix.ghc }}.tar.gz
-          asset_content_type: application/tar+gzip
