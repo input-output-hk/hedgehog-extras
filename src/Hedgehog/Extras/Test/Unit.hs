@@ -23,12 +23,12 @@ import Control.Monad.Trans.Resource
 import Data.Generics.Product.Any
 import Data.Maybe
 import Data.Monoid
-import HaskellWorks.Prelude
 import Hedgehog
 import Hedgehog.Extras.Internal.Orphans ()
 import Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
 import Hedgehog.Internal.Property qualified as H
 import Lens.Micro
+import Prelude
 import Test.Tasty.Discover
 import Test.Tasty.Hedgehog (testProperty)
 
