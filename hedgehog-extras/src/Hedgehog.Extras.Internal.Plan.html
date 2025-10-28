@@ -28,7 +28,7 @@
 </span><span id="line-26"></span><span>  </span><span class="hs-special">,</span><span> </span><span id="%24sel%3Acomponents%3AComponent"><span class="annot"><span class="annottext">Component -&gt; [Component]
 </span><a href="Hedgehog.Extras.Internal.Plan.html#%24sel%3Acomponents%3AComponent"><span class="hs-identifier hs-var hs-var">components</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679156610"><span id="local-6989586621679156612"><span class="annot"><span class="annottext">(forall x. Component -&gt; Rep Component x)
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679156200"><span id="local-6989586621679156202"><span class="annot"><span class="annottext">(forall x. Component -&gt; Rep Component x)
 -&gt; (forall x. Rep Component x -&gt; Component) -&gt; Generic Component
 forall x. Rep Component x -&gt; Component
 forall x. Component -&gt; Rep Component x
@@ -38,7 +38,7 @@ $cfrom :: forall x. Component -&gt; Rep Component x
 from :: forall x. Component -&gt; Rep Component x
 $cto :: forall x. Rep Component x -&gt; Component
 to :: forall x. Rep Component x -&gt; Component
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156616"><span id="local-6989586621679156625"><span class="annot"><span class="annottext">Component -&gt; Component -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156206"><span id="local-6989586621679156215"><span class="annot"><span class="annottext">Component -&gt; Component -&gt; Bool
 (Component -&gt; Component -&gt; Bool)
 -&gt; (Component -&gt; Component -&gt; Bool) -&gt; Eq Component
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -46,7 +46,7 @@ $c== :: Component -&gt; Component -&gt; Bool
 == :: Component -&gt; Component -&gt; Bool
 $c/= :: Component -&gt; Component -&gt; Bool
 /= :: Component -&gt; Component -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156631"><span id="local-6989586621679156642"><span id="local-6989586621679156646"><span class="annot"><span class="annottext">Int -&gt; Component -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156221"><span id="local-6989586621679156232"><span id="local-6989586621679156236"><span class="annot"><span class="annottext">Int -&gt; Component -&gt; ShowS
 [Component] -&gt; ShowS
 Component -&gt; String
 (Int -&gt; Component -&gt; ShowS)
@@ -67,7 +67,7 @@ showList :: [Component] -&gt; ShowS
 </span><span id="line-31"></span><span>  </span><span class="hs-special">{</span><span> </span><span id="%24sel%3AinstallPlan%3APlan"><span class="annot"><span class="annottext">Plan -&gt; [Component]
 </span><a href="Hedgehog.Extras.Internal.Plan.html#%24sel%3AinstallPlan%3APlan"><span class="hs-identifier hs-var hs-var">installPlan</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-33"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679156653"><span id="local-6989586621679156655"><span class="annot"><span class="annottext">(forall x. Plan -&gt; Rep Plan x)
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679156243"><span id="local-6989586621679156245"><span class="annot"><span class="annottext">(forall x. Plan -&gt; Rep Plan x)
 -&gt; (forall x. Rep Plan x -&gt; Plan) -&gt; Generic Plan
 forall x. Rep Plan x -&gt; Plan
 forall x. Plan -&gt; Rep Plan x
@@ -77,14 +77,14 @@ $cfrom :: forall x. Plan -&gt; Rep Plan x
 from :: forall x. Plan -&gt; Rep Plan x
 $cto :: forall x. Rep Plan x -&gt; Plan
 to :: forall x. Rep Plan x -&gt; Plan
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156658"><span id="local-6989586621679156663"><span class="annot"><span class="annottext">Plan -&gt; Plan -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156248"><span id="local-6989586621679156253"><span class="annot"><span class="annottext">Plan -&gt; Plan -&gt; Bool
 (Plan -&gt; Plan -&gt; Bool) -&gt; (Plan -&gt; Plan -&gt; Bool) -&gt; Eq Plan
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 $c== :: Plan -&gt; Plan -&gt; Bool
 == :: Plan -&gt; Plan -&gt; Bool
 $c/= :: Plan -&gt; Plan -&gt; Bool
 /= :: Plan -&gt; Plan -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156669"><span id="local-6989586621679156674"><span id="local-6989586621679156678"><span class="annot"><span class="annottext">Int -&gt; Plan -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156259"><span id="local-6989586621679156264"><span id="local-6989586621679156268"><span class="annot"><span class="annottext">Int -&gt; Plan -&gt; ShowS
 [Plan] -&gt; ShowS
 Plan -&gt; String
 (Int -&gt; Plan -&gt; ShowS)
@@ -99,49 +99,49 @@ $cshowList :: [Plan] -&gt; ShowS
 showList :: [Plan] -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679156682"><span id="local-6989586621679156686"><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#FromJSON"><span class="hs-identifier hs-type">FromJSON</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-type">Plan</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679156697"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Plan
-</span><a href="#local-6989586621679156697"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Plan) -&gt; Value -&gt; Parser Plan
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679156272"><span id="local-6989586621679156276"><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#FromJSON"><span class="hs-identifier hs-type">FromJSON</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-type">Plan</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679156287"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Plan
+</span><a href="#local-6989586621679156287"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Plan) -&gt; Value -&gt; Parser Plan
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#withObject"><span class="hs-identifier hs-var">withObject</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Plan&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Plan) -&gt; Value -&gt; Parser Plan)
 -&gt; (Object -&gt; Parser Plan) -&gt; Value -&gt; Parser Plan
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679156700"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156700"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Component] -&gt; Plan
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679156290"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679156290"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Component] -&gt; Plan
 </span><a href="Hedgehog.Extras.Internal.Plan.html#Plan"><span class="hs-identifier hs-var">Plan</span></a></span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">([Component] -&gt; Plan) -&gt; Parser [Component] -&gt; Parser Plan
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156700"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser [Component]
+</span><a href="#local-6989586621679156290"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser [Component]
 forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#.%3A"><span class="hs-operator hs-var">.:</span></a></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;install-plan&quot;</span></span><span>
 </span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679156705"><span id="local-6989586621679156708"><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#FromJSON"><span class="hs-identifier hs-type">FromJSON</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679156740"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Component
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679156295"><span id="local-6989586621679156298"><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#FromJSON"><span class="hs-identifier hs-type">FromJSON</span></a></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Internal.Plan.html#Component"><span class="hs-identifier hs-type">Component</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679156330"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Component
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#parseJSON"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Component) -&gt; Value -&gt; Parser Component
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#withObject"><span class="hs-identifier hs-var">withObject</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Plan&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Component) -&gt; Value -&gt; Parser Component)
 -&gt; (Object -&gt; Parser Component) -&gt; Value -&gt; Parser Component
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679156741"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156741"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>      </span><span id="local-6989586621679156742"><span class="annot"><span class="annottext">Maybe Text
-</span><a href="#local-6989586621679156742"><span class="hs-identifier hs-var">componentName</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156741"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser (Maybe Text)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679156331"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679156331"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>      </span><span id="local-6989586621679156332"><span class="annot"><span class="annottext">Maybe Text
+</span><a href="#local-6989586621679156332"><span class="hs-identifier hs-var">componentName</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679156331"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser (Maybe Text)
 forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#.%3A%3F"><span class="hs-operator hs-var">.:?</span></a></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;component-name&quot;</span></span><span>
-</span><span id="line-42"></span><span>      </span><span id="local-6989586621679156744"><span class="annot"><span class="annottext">Maybe Text
-</span><a href="#local-6989586621679156744"><span class="hs-identifier hs-var">binFile</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156741"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser (Maybe Text)
+</span><span id="line-42"></span><span>      </span><span id="local-6989586621679156334"><span class="annot"><span class="annottext">Maybe Text
+</span><a href="#local-6989586621679156334"><span class="hs-identifier hs-var">binFile</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679156331"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser (Maybe Text)
 forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#.%3A%3F"><span class="hs-operator hs-var">.:?</span></a></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;bin-file&quot;</span></span><span>
-</span><span id="line-43"></span><span>      </span><span id="local-6989586621679156745"><span class="annot"><span class="annottext">[(Key, Object)]
-</span><a href="#local-6989586621679156745"><span class="hs-identifier hs-var">componentsTuples</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[[(Key, Object)]] -&gt; [(Key, Object)]
+</span><span id="line-43"></span><span>      </span><span id="local-6989586621679156335"><span class="annot"><span class="annottext">[(Key, Object)]
+</span><a href="#local-6989586621679156335"><span class="hs-identifier hs-var">componentsTuples</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[[(Key, Object)]] -&gt; [(Key, Object)]
 forall (m :: * -&gt; *) a. Monad m =&gt; m (m a) -&gt; m a
 </span><span class="hs-identifier hs-var">join</span></span><span> </span><span class="annot"><span class="annottext">([[(Key, Object)]] -&gt; [(Key, Object)])
 -&gt; (Maybe (KeyMap Object) -&gt; [[(Key, Object)]])
@@ -165,24 +165,24 @@ forall v. KeyMap v -&gt; [(Key, v)]
 -&gt; Parser (Maybe (KeyMap Object)) -&gt; Parser [(Key, Object)]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156741"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser (Maybe (KeyMap Object))
+</span><a href="#local-6989586621679156331"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser (Maybe (KeyMap Object))
 forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser (Maybe a)
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#.%3A%3F"><span class="hs-operator hs-var">.:?</span></a></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;components&quot;</span></span><span>
 </span><span id="line-44"></span><span>      </span><span class="hs-comment">-- sub-components are an object with components name as a key</span><span>
-</span><span id="line-45"></span><span>      </span><span id="local-6989586621679156749"><span class="annot"><span class="annottext">[Component]
-</span><a href="#local-6989586621679156749"><span class="hs-identifier hs-var">components</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[(Key, Object)]
+</span><span id="line-45"></span><span>      </span><span id="local-6989586621679156339"><span class="annot"><span class="annottext">[Component]
+</span><a href="#local-6989586621679156339"><span class="hs-identifier hs-var">components</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[(Key, Object)]
 -&gt; ((Key, Object) -&gt; Parser Component) -&gt; Parser [Component]
 forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
 (Traversable t, Monad m) =&gt;
 t a -&gt; (a -&gt; m b) -&gt; m (t b)
 </span><span class="hs-identifier hs-var">forM</span></span><span> </span><span class="annot"><span class="annottext">[(Key, Object)]
-</span><a href="#local-6989586621679156745"><span class="hs-identifier hs-var">componentsTuples</span></a></span><span> </span><span class="annot"><span class="annottext">(((Key, Object) -&gt; Parser Component) -&gt; Parser [Component])
+</span><a href="#local-6989586621679156335"><span class="hs-identifier hs-var">componentsTuples</span></a></span><span> </span><span class="annot"><span class="annottext">(((Key, Object) -&gt; Parser Component) -&gt; Parser [Component])
 -&gt; ((Key, Object) -&gt; Parser Component) -&gt; Parser [Component]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621679156751"><span class="annot"><span class="annottext">Key
-</span><a href="#local-6989586621679156751"><span class="hs-identifier hs-var">subComponentName</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156752"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156752"><span class="hs-identifier hs-var">subComponent</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621679156341"><span class="annot"><span class="annottext">Key
+</span><a href="#local-6989586621679156341"><span class="hs-identifier hs-var">subComponentName</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679156342"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679156342"><span class="hs-identifier hs-var">subComponent</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">Value -&gt; Parser Component
 forall a. FromJSON a =&gt; Value -&gt; Parser a
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.FromJSON.html#parseJSON"><span class="hs-identifier hs-var">parseJSON</span></a></span><span> </span><span class="annot"><span class="annottext">(Value -&gt; Parser Component) -&gt; Value -&gt; Parser Component
@@ -198,8 +198,8 @@ forall v. Key -&gt; v -&gt; KeyMap v -&gt; KeyMap v
 </span><span class="hs-string">&quot;component-name&quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Key -&gt; Value
 forall a. ToJSON a =&gt; a -&gt; Value
 </span><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/aeson-2.2.3.0-ea24239abe6d6111939caf7d83a24a5429a41a2aea49d7017e6735f6b6ef6549/share/doc/html/src/Data.Aeson.Types.ToJSON.html#toJSON"><span class="hs-identifier hs-var">toJSON</span></a></span><span> </span><span class="annot"><span class="annottext">Key
-</span><a href="#local-6989586621679156751"><span class="hs-identifier hs-var">subComponentName</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679156752"><span class="hs-identifier hs-var">subComponent</span></a></span><span>
+</span><a href="#local-6989586621679156341"><span class="hs-identifier hs-var">subComponentName</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679156342"><span class="hs-identifier hs-var">subComponent</span></a></span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">Component -&gt; Parser Component
 forall a. a -&gt; Parser a
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
