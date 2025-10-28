@@ -31,7 +31,6 @@ common generic-lens                 { build-depends: generic-lens               
 common hedgehog                     { build-depends: hedgehog                                       < 1.6         }
 common hedgehog-quickcheck          { build-depends: hedgehog-quickcheck                            < 0.2         }
 common http-conduit                 { build-depends: http-conduit                                   < 2.4         }
-common hw-prelude                   { build-depends: hw-prelude                                     < 0.1         }
 common lifted-async                 { build-depends: lifted-async                                   < 0.11        }
 common lifted-base                  { build-depends: lifted-base                                    < 0.3         }
 common microlens                    { build-depends: microlens                                      < 0.5         }
@@ -89,7 +88,6 @@ library
                         generic-lens,
                         hedgehog,
                         http-conduit,
-                        hw-prelude,
                         lifted-async,
                         lifted-base,
                         microlens,
