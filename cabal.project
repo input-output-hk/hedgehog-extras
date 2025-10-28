@@ -2,3 +2,10 @@ packages: .
 
 test-show-details: direct
 
+program-options
+  ghc-options: -Werror
+
+-- enable parallel builds
+jobs: $ncpus
+semaphore: True
+
