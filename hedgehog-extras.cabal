@@ -27,13 +27,11 @@ common Diff                         { build-depends: Diff                       
 common directory                    { build-depends: directory                                      < 1.4         }
 common exceptions                   { build-depends: exceptions                                     < 0.11        }
 common filepath                     { build-depends: filepath                                       < 1.6         }
-common generic-lens                 { build-depends: generic-lens                                   < 2.3         }
 common hedgehog                     { build-depends: hedgehog                                       < 1.6         }
 common hedgehog-quickcheck          { build-depends: hedgehog-quickcheck                            < 0.2         }
 common http-conduit                 { build-depends: http-conduit                                   < 2.4         }
 common lifted-async                 { build-depends: lifted-async                                   < 0.11        }
 common lifted-base                  { build-depends: lifted-base                                    < 0.3         }
-common microlens                    { build-depends: microlens                                      < 0.5         }
 common mmorph                       { build-depends: mmorph                                         < 1.3         }
 common monad-control                { build-depends: monad-control                                  < 1.1         }
 common mtl                          { build-depends: mtl                                            < 2.4         }
@@ -85,12 +83,10 @@ library
                         directory,
                         exceptions,
                         filepath,
-                        generic-lens,
                         hedgehog,
                         http-conduit,
                         lifted-async,
                         lifted-base,
-                        microlens,
                         mmorph,
                         monad-control,
                         mtl,

@@ -20,16 +20,15 @@ import Control.Monad.IO.Class (MonadIO)
 import Control.Monad.Morph
 import Control.Monad.Trans.Control (MonadBaseControl(..))
 import Control.Monad.Trans.Resource
-import Data.Generics.Product.Any
 import Data.Maybe
 import Data.Monoid
 import Hedgehog
 import Hedgehog.Extras.Internal.Orphans ()
 import Hedgehog.Extras.Test.MonadAssertion (MonadAssertion)
 import Hedgehog.Internal.Property qualified as H
-import Lens.Micro
 import Prelude
 import Test.Tasty.Discover
+import Test.Tasty.Discover.TastyInfo qualified as TastyInfo
 import Test.Tasty.Hedgehog (testProperty)
 
 import qualified Test.Tasty as T
@@ -50,7 +49,7 @@ newtype UnitIO a = UnitIO { runTestIO :: TestT (ResourceT IO) a }
 
 instance Tasty (UnitIO ()) where
   tasty info = pure . testUnitIO testName
-    where testName = fromMaybe "" $ getLast (info ^. the @"name")
+    where testName = fromMaybe "" . getLast $ TastyInfo.name info
 
 testUnitIO :: T.TestName -> UnitIO () -> T.TestTree
 testUnitIO testName =
