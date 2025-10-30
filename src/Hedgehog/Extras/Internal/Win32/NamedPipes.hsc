@@ -23,7 +23,6 @@ import Data.Function (($))
 import Data.String (String)
 import Foreign.C.String (withCString)
 import System.IO (IO)
-import System.Win32.File
 import System.Win32.Types hiding (try)
 
 -- | Timeout in milliseconds.

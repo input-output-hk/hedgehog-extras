@@ -1,6 +1,7 @@
 name: Haskell CI
 
 on:
+  merge_group:
   pull_request:
   push:
     # we need this to populate cache for `main` branch to make it available to the child branches, see
@@ -140,15 +141,30 @@ jobs:
         KEEP_WORKSPACE: 1
       run: cabal test all --enable-tests --test-show-details=direct
 
-  check:
-    needs: build
+  build-successful:
+    needs: [build]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check if any previous job failed
+      run: |
+        if [[ "${{ needs.build.result }}" == "failure" ]]; then
+          # this ignores skipped dependencies
+          echo 'Required jobs failed to build.'
+          exit 1
+        else
+          echo 'Build complete'
+        fi
+
+  make-tag:
+    needs: build-successful
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
 
     steps:
       - uses: actions/checkout@v3
-
       - name: Check if cabal project is sane
         run: |
           PROJECT_DIR="$PWD"
@@ -160,7 +176,6 @@ jobs:
 
       - name: Tag new version
         id: tag
-        if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           package_version="$(cat *.cabal | grep '^version:' | cut -d : -f 2 | xargs)"
 
@@ -176,19 +191,22 @@ jobs:
 
               echo "::set-output name=tag::v$package_version"
             fi
+          else
+            echo "Tag v$package_version already exists. Not making new git tag."
           fi
 
-      - name: Show tag
+      - name: Show new tag
+        if: steps.tag.outputs.tag != ''
         run: |
           echo "Ref: ${{ github.ref }}"
           echo "Tag: ${{ steps.tag.outputs.tag }}"
 
 
   release:
-    needs: [build, check]
+    needs: [make-tag]
     runs-on: ubuntu-latest
 
-    if: ${{ needs.check.outputs.tag != '' || startsWith(github.ref, 'refs/tags/v') }}
+    if: ${{ needs.make-tag.outputs.tag != '' || startsWith(github.ref, 'refs/tags/v') }}
 
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
@@ -249,8 +267,9 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.check.outputs.tag != '' && needs.check.outputs.tag || github.ref_name }}
-          name: Release ${{ needs.check.outputs.tag != '' && needs.check.outputs.tag || github.ref_name }}
+          tag_name: ${{ needs.make-tag.outputs.tag != '' && needs.make-tag.outputs.tag || github.ref_name }}
+          name: Release ${{ needs.make-tag.outputs.tag != '' && needs.make-tag.outputs.tag || github.ref_name }}
           body_path: changelog.txt
           draft: false
           prerelease: false
+
