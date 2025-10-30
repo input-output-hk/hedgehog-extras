@@ -11,7 +11,8 @@ license:                Apache-2.0
 license-files:          LICENSE
                         NOTICE
 build-type:             Simple
-
+extra-doc-files:        CHANGELOG.md
+                        README.md
 source-repository head
   type:                 git
   location:             https://github.com/input-output-hk/hedgehog-extras

@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the [Package Versioning Policy (PVP)](https://pvp.haskell.org/).
 
 ## [Unreleased]
+- Updated dependency on tar ^>= 0.7
 
 ## [0.10.0.0] - 2025-09-09
 
