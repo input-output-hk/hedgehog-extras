@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the [Package Versioning Policy (PVP)](https://pvp.haskell.org/).
 
-## [Unreleased]
+## *Unreleased*
+
+## [0.10.1.0] - 2025-11-03
+
+### Changed
 - Updated dependency on tar ^>= 0.7
 
 ## [0.10.0.0] - 2025-09-09

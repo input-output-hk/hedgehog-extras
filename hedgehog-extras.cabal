@@ -1,7 +1,7 @@
 cabal-version: 2.4
 
 name:                   hedgehog-extras
-version:                0.10.0.0
+version:                0.10.1.0
 synopsis:               Supplemental library for hedgehog
 description:            Supplemental library for hedgehog.
 category:               Test
