@@ -26,10 +26,11 @@ This project has a hybrid automated/manual release flow:
 
 When you push a version bump to main, CI automatically creates a git tag:
 
+1. Update [CHANGELOG.md] to include the *Unreleased* changes in the changelog for the new version.
 1. Update `hedgehog-extras.cabal` and set `version:` to the new version
-2. Commit and push to main: `git commit -m "Bump version to X.Y.Z.W" && git push origin main`
-3. CI automatically creates and pushes tag `vX.Y.Z.W`
-4. The release workflow then runs automatically
+1. Commit and push to main: `git commit -m "Bump version to X.Y.Z.W" && git push origin main`
+1. CI automatically creates and pushes tag `vX.Y.Z.W`
+1. The release workflow then runs automatically
 
 ### Manual Tagging
 
