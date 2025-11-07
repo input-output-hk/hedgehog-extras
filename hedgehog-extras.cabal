@@ -19,6 +19,7 @@ source-repository head
 
 common aeson                        { build-depends: aeson                            >= 2.0.0.0 && < 2.3         }
 common aeson-pretty                 { build-depends: aeson-pretty                     >= 0.8.5   && < 0.9         }
+common annotated-exception          { build-depends: annotated-exception                            < 0.4         }
 common async                        { build-depends: async                                          < 2.3         }
 common base                         { build-depends: base                             >= 4.12    && < 4.22        }
 common bytestring                   { build-depends: bytestring                                     < 0.13        }
@@ -76,6 +77,7 @@ library
   import:               base, project-config,
                         aeson-pretty,
                         aeson,
+                        annotated-exception,
                         async,
                         bytestring,
                         containers,
@@ -118,6 +120,7 @@ library
                         Hedgehog.Extras.Internal.Cli
                         Hedgehog.Extras.Internal.Orphans
                         Hedgehog.Extras.Internal.Plan
+                        Hedgehog.Extras.Internal.Process 
                         Hedgehog.Extras.Internal.Test.Integration
                         Hedgehog.Extras.Stock
                         Hedgehog.Extras.Stock.Aeson
@@ -141,6 +144,7 @@ library
                         Hedgehog.Extras.Test.Network
                         Hedgehog.Extras.Test.Prim
                         Hedgehog.Extras.Test.Process
+                        Hedgehog.Extras.Test.ProcessIO
                         Hedgehog.Extras.Test.TestWatchdog
                         Hedgehog.Extras.Test.Tripwire
                         Hedgehog.Extras.Test.Unit

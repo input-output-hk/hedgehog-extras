@@ -60,33 +60,32 @@ Please note that only @FAIL1@ and @FAIL2@ annotations were reported - @FAIL3@ an
 below was swallowed without any information.
 
 __Don't use concurrency abstractions from this module, when you need to aggregate and report failures!__
-
 -}
-module Hedgehog.Extras.Test.Concurrent
-  ( threadDelay
-  , asyncRegister_
-  -- * Re-exports of concurrency abstractions from @lifted-base@
-  , module Control.Concurrent.Async.Lifted
-  , module Control.Concurrent.MVar.Lifted
-  , module System.Timeout.Lifted
-  ) where
+module Hedgehog.Extras.Test.Concurrent (
+    threadDelay,
+    asyncRegister_,
 
-import           Control.Concurrent.Async.Lifted
+    -- * Re-exports of concurrency abstractions from @lifted-base@
+    module Control.Concurrent.Async.Lifted,
+    module Control.Concurrent.MVar.Lifted,
+    module System.Timeout.Lifted,
+) where
+
+import Control.Concurrent.Async.Lifted
 import qualified Control.Concurrent.Lifted as IO
-import           Control.Concurrent.MVar.Lifted
-import           Control.Monad.IO.Class
-import           Control.Monad.Trans.Resource
-import           Data.Function
-import           Data.Int
+import Control.Concurrent.MVar.Lifted
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Resource
+import Data.Function
+import Data.Int
 import qualified GHC.Stack as GHC
-import           System.IO (IO)
-import           System.Timeout.Lifted
-import           Hedgehog.Extras.Internal.Orphans ()
+import Hedgehog.Extras.Internal.Orphans ()
+import System.IO (IO)
+import System.Timeout.Lifted
 
-import           Control.Monad
-import           Control.Monad.Catch (MonadCatch)
-import           GHC.Stack
-import           Hedgehog
+import Control.Monad
+import GHC.Stack
+import Hedgehog
 import qualified Hedgehog as H
 
 -- | Delay the thread by 'n' microseconds.
@@ -94,13 +93,20 @@ threadDelay :: (HasCallStack, MonadTest m, MonadIO m) => Int -> m ()
 threadDelay n = GHC.withFrozenCallStack . H.evalIO $ IO.threadDelay n
 
 -- | Runs an action in background, and registers its cancellation to 'MonadResource'.
-asyncRegister_ :: HasCallStack
-               => MonadTest m
-               => MonadResource m
-               => MonadCatch m
-               => IO a -- ^ Action to run in background
-               -> m ()
-asyncRegister_ act = GHC.withFrozenCallStack $ void . H.evalM $ allocate (async act) cleanUp
+asyncRegister_ ::
+    (HasCallStack) =>
+    (MonadResource m) =>
+    -- | Action to run in background
+    IO a ->
+    m (ReleaseKey, Async a)
+asyncRegister_ act = GHC.withFrozenCallStack $ do
+    allocate
+        ( do
+            a <- async act
+            link a
+            return a
+        )
+        cleanUp
   where
     cleanUp :: Async a -> IO ()
-    cleanUp a = cancel a >> void (link a)
+    cleanUp = cancel
