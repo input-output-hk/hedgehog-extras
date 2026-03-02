@@ -25,8 +25,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ghc: ["9.6", "9.8", "9.10", "9.12"]
-        cabal: ["3.14"]
+        ghc: ["9.6", "9.8", "9.10", "9.12", "9.14"]
+        cabal: ["3.16"]
         sys:
           - { os: windows-latest, shell: 'C:/msys64/usr/bin/bash.exe -e {0}' }
           - { os: ubuntu-latest, shell: bash }
