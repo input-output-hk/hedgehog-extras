@@ -9,27 +9,27 @@ program-options
 jobs: $ncpus
 semaphore: True
 
-if impl (ghc >= 9.14)
+if impl(ghc >= 9.14)
   allow-newer:
-    , aeson:containers
-    , aeson:indexed-traversable
-    , aeson:template-haskell
-    , aeson:these
-    , binary:containers
-    , boring:base
-    , cborg:base
-    , cborg:bytestring
-    , cborg:containers
-    , indexed-traversable:base
-    , indexed-traversable:containers
-    , indexed-traversable-instances:base
-    , semialign:base
-    , semialign:containers
-    , serialise:base
-    , serialise:bytestring
-    , serialise:cborg
-    , serialise:containers
-    , text:bytestring
-    , these:base
-    , transformers:base
-    , uuid-types:template-haskell
+    aeson:containers,
+    aeson:indexed-traversable,
+    aeson:template-haskell,
+    aeson:these,
+    binary:containers,
+    boring:base,
+    cborg:base,
+    cborg:bytestring,
+    cborg:containers,
+    indexed-traversable:base,
+    indexed-traversable:containers,
+    indexed-traversable-instances:base,
+    semialign:base,
+    semialign:containers,
+    serialise:base,
+    serialise:bytestring,
+    serialise:cborg,
+    serialise:containers,
+    text:bytestring,
+    these:base,
+    transformers:base,
+    uuid-types:template-haskell
