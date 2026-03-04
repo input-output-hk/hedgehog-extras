@@ -1,0 +1,156 @@
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeApplications #-}
+
+module Hedgehog.Extras.Test.ProcessIO 
+  ( execFlex
+  , procFlex
+  ) where
+
+import           Control.Exception.Annotated (exceptionWithCallStack)
+import           Control.Monad (Monad (..))
+import           Control.Monad.Catch 
+import           Control.Monad.IO.Class (MonadIO, liftIO)
+import           Data.Bool (Bool (True))
+import           Data.Function (($))
+import           Data.Int (Int)
+import           Data.Maybe (Maybe (..))
+import           Data.Monoid (Last (..))
+import           Data.String (String)
+import           GHC.Stack (HasCallStack)
+import           Prelude ((++))
+import           System.Exit (ExitCode)
+import           System.IO (FilePath, IO)
+import           System.Process (CreateProcess (..))
+import           Text.Show (Show (show))
+import           UnliftIO.Exception (throwString)
+
+import qualified Data.List as L
+import qualified GHC.Stack as GHC
+import           Hedgehog.Extras.Internal.Process (binDist)
+import           Hedgehog.Extras.Test.Process (ExecConfig (..), defaultExecConfig)
+import qualified System.Environment as IO
+import qualified System.Exit as IO
+import qualified System.Process as IO
+
+-- | Create a process returning its stdout.
+--
+-- Being a 'flex' function means that the environment determines how the process is launched.
+--
+-- When running in a nix environment, the 'envBin' argument describes the environment variable
+-- that defines the binary to use to launch the process.
+--
+-- When running outside a nix environment, the `pkgBin` describes the name of the binary
+-- to launch via cabal exec.
+execFlex
+  :: HasCallStack
+  => MonadIO m
+  => String
+  -> String
+  -> [String]
+  -> m String
+execFlex = execFlex' defaultExecConfig
+
+execFlex'
+  :: MonadIO m
+  => HasCallStack
+  => ExecConfig
+  -> String
+  -> String
+  -> [String]
+  -> m String
+execFlex' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
+  (exitResult, stdout', _stderr) <- execFlexAny' execConfig pkgBin envBin arguments
+  case exitResult of
+    IO.ExitFailure exitCode -> throwString $
+         L.unlines $
+                [ "Process exited with non-zero exit-code: " ++ show @Int exitCode ]
+              ++ (if L.null stdout' then [] else ["━━━━ stdout ━━━━" , stdout'])
+              ++ (if L.null _stderr then [] else ["━━━━ stderr ━━━━" , _stderr])
+    IO.ExitSuccess -> return stdout'
+
+-- | Run a process, returning its exit code, its stdout, and its stderr.
+
+-- Contrary to @execFlex'@, this function doesn't fail if the call fails.
+-- So, if you want to test something negative, this is the function to use.
+execFlexAny'
+  :: HasCallStack
+  => MonadIO m
+  => ExecConfig
+  -> String -- ^ @pkgBin@: name of the binary to launch via 'cabal exec'
+  -> String -- ^ @envBin@: environment variable defining the binary to launch the process, when in Nix
+  -> [String]
+  -> m (ExitCode, String, String) -- ^ exit code, stdout, stderr
+execFlexAny' execConfig pkgBin envBin arguments = GHC.withFrozenCallStack $ do
+  cp <- procFlex' execConfig pkgBin envBin arguments
+  --H.annotate . ("━━━━ command ━━━━\n" <>) $ case IO.cmdspec cp of
+  --  IO.ShellCommand cmd -> cmd
+  --  IO.RawCommand cmd args -> cmd <> " " <> L.unwords (argQuote <$> args)
+  liftIOAnnotated $ IO.readCreateProcessWithExitCode cp ""
+
+
+
+procFlex'
+  :: HasCallStack
+  => MonadIO m
+  => ExecConfig
+  -> String
+  -- ^ Cabal package name corresponding to the executable
+  -> String
+  -- ^ Environment variable pointing to the binary to run
+  -> [String]
+  -- ^ Arguments to the CLI command
+  -> m CreateProcess
+  -- ^ Captured stdout
+procFlex' execConfig pkg binaryEnv arguments = GHC.withFrozenCallStack $ do
+  bin <- binFlex pkg binaryEnv
+  return (IO.proc bin arguments)
+    { IO.env = getLast $ execConfigEnv execConfig
+    , IO.cwd = getLast $ execConfigCwd execConfig
+    -- this allows sending signals to the created processes, without killing the test-suite process
+    , IO.create_group = True
+    }
+
+-- | Compute the path to the binary given a package name or an environment variable override.
+binFlex
+  :: HasCallStack
+  => MonadIO m
+  => String
+  -- ^ Package name
+  -> String
+  -- ^ Environment variable pointing to the binary to run
+  -> m FilePath
+  -- ^ Path to executable
+binFlex pkg binaryEnv = do
+  maybeEnvBin <- liftIOAnnotated $ IO.lookupEnv binaryEnv
+  case maybeEnvBin of
+    Just envBin -> return envBin
+    Nothing -> binDist pkg binaryEnv
+
+
+-- | Create a 'CreateProcess' describing how to start a process given the Cabal package name
+-- corresponding to the executable, an environment variable pointing to the executable,
+-- and an argument list.
+--
+-- The actual executable used will the one specified by the environment variable, but if
+-- the environment variable is not defined, it will be found instead by consulting the
+-- "plan.json" generated by cabal.  It is assumed that the project has already been
+-- configured and the executable has been built.
+procFlex
+  :: HasCallStack
+  => MonadIO m
+  => String
+  -- ^ Cabal package name corresponding to the executable
+  -> String
+  -- ^ Environment variable pointing to the binary to run
+  -> [String]
+  -- ^ Arguments to the CLI command
+  -> m CreateProcess
+  -- ^ Captured stdout
+procFlex = procFlex' defaultExecConfig
+
+
+-- This will also catch async exceptions as well.
+liftIOAnnotated :: (HasCallStack, MonadIO m) => IO a -> m a
+liftIOAnnotated action = GHC.withFrozenCallStack $
+  liftIO $ action `catch` (\(e :: SomeException) -> throwM $ exceptionWithCallStack e)
