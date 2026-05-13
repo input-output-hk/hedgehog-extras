@@ -7,6 +7,13 @@ and this project adheres to the [Package Versioning Policy (PVP)](https://pvp.ha
 
 ## *Unreleased*
 
+### Added
+- `procCustom'` and `procCustom`: build a `CreateProcess` from an already-resolved binary path
+- Export `procFlex'` and `binDist` (previously internal)
+
+### Changed
+- Generalize `procFlex'`, `procFlex`, `binFlex`, `binDist` from `MonadTest` to `MonadIO`
+
 ## [0.10.1.0] - 2025-11-03
 
 ### Changed
