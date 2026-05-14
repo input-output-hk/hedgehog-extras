@@ -1152,61 +1152,24 @@ forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f a -&gt; f a
 </span><a href="#local-6989586621679156595"><span class="hs-identifier hs-var">needle</span></a></span><span> </span><span class="annot"><span class="annottext">[Component]
 </span><a href="#local-6989586621679156599"><span class="hs-identifier hs-var">components</span></a></span><span>
 </span><span id="line-338"></span><span>
-</span><span id="line-339"></span><span>
-</span><span id="line-340"></span><span class="annot"><span class="hs-comment">-- | Build a 'CreateProcess' from an already-resolved binary path, arguments, and 'ExecConfig'.</span></span><span>
-</span><span id="line-341"></span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-type">procCustom'</span></a></span><span>
-</span><span id="line-342"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#ExecConfig"><span class="hs-identifier hs-type">ExecConfig</span></a></span><span>
-</span><span id="line-343"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
-</span><span id="line-344"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Path to the binary</span></span><span>
-</span><span id="line-345"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
-</span><span id="line-346"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
-</span><span id="line-347"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span><span>
-</span><span id="line-348"></span><span id="procCustom%27"><span class="annot"><span class="annottext">procCustom' :: ExecConfig -&gt; [Char] -&gt; [[Char]] -&gt; CreateProcess
-</span><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-var hs-var">procCustom'</span></a></span></span><span> </span><span id="local-6989586621679156602"><span class="annot"><span class="annottext">ExecConfig
-</span><a href="#local-6989586621679156602"><span class="hs-identifier hs-var">execConfig</span></a></span></span><span> </span><span id="local-6989586621679156603"><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156603"><span class="hs-identifier hs-var">bin</span></a></span></span><span> </span><span id="local-6989586621679156604"><span class="annot"><span class="annottext">[[Char]]
-</span><a href="#local-6989586621679156604"><span class="hs-identifier hs-var">arguments</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-349"></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Char] -&gt; [[Char]] -&gt; CreateProcess
-</span><span class="hs-identifier hs-var">IO.proc</span></span><span> </span><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156603"><span class="hs-identifier hs-var">bin</span></a></span><span> </span><span class="annot"><span class="annottext">[[Char]]
-</span><a href="#local-6989586621679156604"><span class="hs-identifier hs-var">arguments</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-350"></span><span>    </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="hs-identifier hs-var">IO.env</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-var">getLast</span></span><span> </span><span class="annot"><span class="hs-operator hs-type">$</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#execConfigEnv"><span class="hs-identifier hs-var">execConfigEnv</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679156602"><span class="hs-identifier hs-type">execConfig</span></a></span><span>
-</span><span id="line-351"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-var">IO.cwd</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-var">getLast</span></span><span> </span><span class="annot"><span class="hs-operator hs-type">$</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#execConfigCwd"><span class="hs-identifier hs-var">execConfigCwd</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679156602"><span class="hs-identifier hs-type">execConfig</span></a></span><span>
-</span><span id="line-352"></span><span>    </span><span class="hs-comment">-- this allows sending signals to the created processes, without killing the test-suite process</span><span>
-</span><span id="line-353"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-var">IO.create_group</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">True</span></span><span>
-</span><span id="line-354"></span><span>    </span><span class="hs-special">}</span><span>
-</span><span id="line-355"></span><span>
-</span><span id="line-356"></span><span class="hs-comment">-- | Like 'procFlex', but takes an explicit binary path instead of resolving</span><span>
-</span><span id="line-357"></span><span class="hs-comment">-- via package name and environment variable.</span><span>
-</span><span id="line-358"></span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procCustom"><span class="hs-identifier hs-type">procCustom</span></a></span><span>
-</span><span id="line-359"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
-</span><span id="line-360"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Path to the binary</span></span><span>
-</span><span id="line-361"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
-</span><span id="line-362"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
-</span><span id="line-363"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span><span>
-</span><span id="line-364"></span><span id="procCustom"><span class="annot"><span class="annottext">procCustom :: [Char] -&gt; [[Char]] -&gt; CreateProcess
-</span><a href="Hedgehog.Extras.Test.Process.html#procCustom"><span class="hs-identifier hs-var hs-var">procCustom</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ExecConfig -&gt; [Char] -&gt; [[Char]] -&gt; CreateProcess
-</span><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-var">procCustom'</span></a></span><span> </span><span class="annot"><span class="annottext">ExecConfig
-</span><a href="Hedgehog.Extras.Test.Process.html#defaultExecConfig"><span class="hs-identifier hs-var">defaultExecConfig</span></a></span><span>
-</span><span id="line-365"></span><span>
-</span><span id="line-366"></span><span class="hs-comment">-- | Create a 'CreateProcess' describing how to start a process given the Cabal package name</span><span>
-</span><span id="line-367"></span><span class="hs-comment">-- corresponding to the executable, an environment variable pointing to the executable,</span><span>
-</span><span id="line-368"></span><span class="hs-comment">-- and an argument list.</span><span>
-</span><span id="line-369"></span><span class="hs-comment">--</span><span>
-</span><span id="line-370"></span><span class="hs-comment">-- The actual executable used will the one specified by the environment variable, but if</span><span>
-</span><span id="line-371"></span><span class="hs-comment">-- the environment variable is not defined, it will be found instead by consulting the</span><span>
-</span><span id="line-372"></span><span class="hs-comment">-- &quot;plan.json&quot; generated by cabal.  It is assumed that the project has already been</span><span>
-</span><span id="line-373"></span><span class="hs-comment">-- configured and the executable has been built.</span><span>
-</span><span id="line-374"></span><span id="local-6989586621679156059"><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procFlex"><span class="hs-identifier hs-type">procFlex</span></a></span><span>
-</span><span id="line-375"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679156059"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span class="hs-special">)</span><span>
-</span><span id="line-376"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-377"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Cabal package name corresponding to the executable</span></span><span>
-</span><span id="line-378"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-379"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Environment variable pointing to the binary to run</span></span><span>
-</span><span id="line-380"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
-</span><span id="line-381"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
-</span><span id="line-382"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679156059"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span></span><span>
-</span><span id="line-383"></span><span id="procFlex"><span class="annot"><span class="annottext">procFlex :: forall (m :: * -&gt; *).
+</span><span id="line-339"></span><span class="hs-comment">-- | Create a 'CreateProcess' describing how to start a process given the Cabal package name</span><span>
+</span><span id="line-340"></span><span class="hs-comment">-- corresponding to the executable, an environment variable pointing to the executable,</span><span>
+</span><span id="line-341"></span><span class="hs-comment">-- and an argument list.</span><span>
+</span><span id="line-342"></span><span class="hs-comment">--</span><span>
+</span><span id="line-343"></span><span class="hs-comment">-- The actual executable used will the one specified by the environment variable, but if</span><span>
+</span><span id="line-344"></span><span class="hs-comment">-- the environment variable is not defined, it will be found instead by consulting the</span><span>
+</span><span id="line-345"></span><span class="hs-comment">-- &quot;plan.json&quot; generated by cabal.  It is assumed that the project has already been</span><span>
+</span><span id="line-346"></span><span class="hs-comment">-- configured and the executable has been built.</span><span>
+</span><span id="line-347"></span><span id="local-6989586621679156059"><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procFlex"><span class="hs-identifier hs-type">procFlex</span></a></span><span>
+</span><span id="line-348"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679156059"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span class="hs-special">)</span><span>
+</span><span id="line-349"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-350"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Cabal package name corresponding to the executable</span></span><span>
+</span><span id="line-351"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-352"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Environment variable pointing to the binary to run</span></span><span>
+</span><span id="line-353"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
+</span><span id="line-354"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
+</span><span id="line-355"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679156059"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span></span><span>
+</span><span id="line-356"></span><span id="procFlex"><span class="annot"><span class="annottext">procFlex :: forall (m :: * -&gt; *).
 (MonadIO m, HasCallStack) =&gt;
 [Char] -&gt; [Char] -&gt; [[Char]] -&gt; m CreateProcess
 </span><a href="Hedgehog.Extras.Test.Process.html#procFlex"><span class="hs-identifier hs-var hs-var">procFlex</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ExecConfig -&gt; [Char] -&gt; [Char] -&gt; [[Char]] -&gt; m CreateProcess
@@ -1215,39 +1178,39 @@ forall (m :: * -&gt; *).
 ExecConfig -&gt; [Char] -&gt; [Char] -&gt; [[Char]] -&gt; m CreateProcess
 </span><a href="Hedgehog.Extras.Test.Process.html#procFlex%27"><span class="hs-identifier hs-var">procFlex'</span></a></span><span> </span><span class="annot"><span class="annottext">ExecConfig
 </span><a href="Hedgehog.Extras.Test.Process.html#defaultExecConfig"><span class="hs-identifier hs-var">defaultExecConfig</span></a></span><span>
-</span><span id="line-384"></span><span>
-</span><span id="line-385"></span><span id="local-6989586621679156018"><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procFlex%27"><span class="hs-identifier hs-type">procFlex'</span></a></span><span>
-</span><span id="line-386"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679156018"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span class="hs-special">)</span><span>
-</span><span id="line-387"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#ExecConfig"><span class="hs-identifier hs-type">ExecConfig</span></a></span><span>
-</span><span id="line-388"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-389"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Cabal package name corresponding to the executable</span></span><span>
-</span><span id="line-390"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-391"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Environment variable pointing to the binary to run</span></span><span>
-</span><span id="line-392"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
-</span><span id="line-393"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
-</span><span id="line-394"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679156018"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span></span><span>
-</span><span id="line-395"></span><span id="procFlex%27"><span class="annot"><span class="annottext">procFlex' :: forall (m :: * -&gt; *).
+</span><span id="line-357"></span><span>
+</span><span id="line-358"></span><span id="local-6989586621679156018"><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procFlex%27"><span class="hs-identifier hs-type">procFlex'</span></a></span><span>
+</span><span id="line-359"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679156018"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span class="hs-special">)</span><span>
+</span><span id="line-360"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#ExecConfig"><span class="hs-identifier hs-type">ExecConfig</span></a></span><span>
+</span><span id="line-361"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-362"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Cabal package name corresponding to the executable</span></span><span>
+</span><span id="line-363"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-364"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Environment variable pointing to the binary to run</span></span><span>
+</span><span id="line-365"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
+</span><span id="line-366"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
+</span><span id="line-367"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679156018"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span></span><span>
+</span><span id="line-368"></span><span id="procFlex%27"><span class="annot"><span class="annottext">procFlex' :: forall (m :: * -&gt; *).
 (MonadIO m, HasCallStack) =&gt;
 ExecConfig -&gt; [Char] -&gt; [Char] -&gt; [[Char]] -&gt; m CreateProcess
-</span><a href="Hedgehog.Extras.Test.Process.html#procFlex%27"><span class="hs-identifier hs-var hs-var">procFlex'</span></a></span></span><span> </span><span id="local-6989586621679156617"><span class="annot"><span class="annottext">ExecConfig
-</span><a href="#local-6989586621679156617"><span class="hs-identifier hs-var">execConfig</span></a></span></span><span> </span><span id="local-6989586621679156618"><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156618"><span class="hs-identifier hs-var">pkg</span></a></span></span><span> </span><span id="local-6989586621679156619"><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156619"><span class="hs-identifier hs-var">binaryEnv</span></a></span></span><span> </span><span id="local-6989586621679156620"><span class="annot"><span class="annottext">[[Char]]
-</span><a href="#local-6989586621679156620"><span class="hs-identifier hs-var">arguments</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m CreateProcess) -&gt; m CreateProcess
+</span><a href="Hedgehog.Extras.Test.Process.html#procFlex%27"><span class="hs-identifier hs-var hs-var">procFlex'</span></a></span></span><span> </span><span id="local-6989586621679156613"><span class="annot"><span class="annottext">ExecConfig
+</span><a href="#local-6989586621679156613"><span class="hs-identifier hs-var">execConfig</span></a></span></span><span> </span><span id="local-6989586621679156614"><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156614"><span class="hs-identifier hs-var">pkg</span></a></span></span><span> </span><span id="local-6989586621679156615"><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156615"><span class="hs-identifier hs-var">binaryEnv</span></a></span></span><span> </span><span id="local-6989586621679156616"><span class="annot"><span class="annottext">[[Char]]
+</span><a href="#local-6989586621679156616"><span class="hs-identifier hs-var">arguments</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(HasCallStack =&gt; m CreateProcess) -&gt; m CreateProcess
 forall a. HasCallStack =&gt; (HasCallStack =&gt; a) -&gt; a
 </span><span class="hs-identifier hs-var">GHC.withFrozenCallStack</span></span><span> </span><span class="annot"><span class="annottext">((HasCallStack =&gt; m CreateProcess) -&gt; m CreateProcess)
 -&gt; (HasCallStack =&gt; m CreateProcess) -&gt; m CreateProcess
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-396"></span><span>  </span><span id="local-6989586621679156627"><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156627"><span class="hs-identifier hs-var">bin</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; [Char] -&gt; m [Char]
+</span><span id="line-369"></span><span>  </span><span id="local-6989586621679156623"><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156623"><span class="hs-identifier hs-var">bin</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; [Char] -&gt; m [Char]
 forall (m :: * -&gt; *).
 (HasCallStack, MonadIO m) =&gt;
 [Char] -&gt; [Char] -&gt; m [Char]
 </span><a href="Hedgehog.Extras.Test.Process.html#binFlex"><span class="hs-identifier hs-var">binFlex</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156618"><span class="hs-identifier hs-var">pkg</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156619"><span class="hs-identifier hs-var">binaryEnv</span></a></span><span>
-</span><span id="line-397"></span><span>  </span><span class="annot"><span class="annottext">CreateProcess -&gt; m CreateProcess
+</span><a href="#local-6989586621679156614"><span class="hs-identifier hs-var">pkg</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156615"><span class="hs-identifier hs-var">binaryEnv</span></a></span><span>
+</span><span id="line-370"></span><span>  </span><span class="annot"><span class="annottext">CreateProcess -&gt; m CreateProcess
 forall a. a -&gt; m a
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">(CreateProcess -&gt; m CreateProcess)
@@ -1255,23 +1218,59 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ExecConfig -&gt; [Char] -&gt; [[Char]] -&gt; CreateProcess
 </span><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-var">procCustom'</span></a></span><span> </span><span class="annot"><span class="annottext">ExecConfig
-</span><a href="#local-6989586621679156617"><span class="hs-identifier hs-var">execConfig</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
-</span><a href="#local-6989586621679156627"><span class="hs-identifier hs-var">bin</span></a></span><span> </span><span class="annot"><span class="annottext">[[Char]]
-</span><a href="#local-6989586621679156620"><span class="hs-identifier hs-var">arguments</span></a></span><span>
-</span><span id="line-398"></span><span>
-</span><span id="line-399"></span><span class="hs-comment">-- | Compute the project base.  This will be based on either the &quot;CARDANO_NODE_SRC&quot;</span><span>
-</span><span id="line-400"></span><span class="hs-comment">-- environment variable or the first parent directory that contains the `cabal.project`.</span><span>
-</span><span id="line-401"></span><span class="hs-comment">-- Both should point to the root directory of the Github project checkout.</span><span>
-</span><span id="line-402"></span><span id="local-6989586621679156062"><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#getProjectBase"><span class="hs-identifier hs-type">getProjectBase</span></a></span><span>
-</span><span id="line-403"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.7-54dd99ca5f3a623f3c1c6bb034ff6b4e964a20f86954dcb483bf7f306e561696/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679156062"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679156062"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-404"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679156062"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
-</span><span id="line-405"></span><span id="getProjectBase"><span class="annot"><span class="annottext">getProjectBase :: forall (m :: * -&gt; *). (MonadTest m, MonadIO m) =&gt; m [Char]
+</span><a href="#local-6989586621679156613"><span class="hs-identifier hs-var">execConfig</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156623"><span class="hs-identifier hs-var">bin</span></a></span><span> </span><span class="annot"><span class="annottext">[[Char]]
+</span><a href="#local-6989586621679156616"><span class="hs-identifier hs-var">arguments</span></a></span><span>
+</span><span id="line-371"></span><span>
+</span><span id="line-372"></span><span class="annot"><span class="hs-comment">-- | Build a 'CreateProcess' from an already-resolved binary path, arguments, and 'ExecConfig'.</span></span><span>
+</span><span id="line-373"></span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-type">procCustom'</span></a></span><span>
+</span><span id="line-374"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#ExecConfig"><span class="hs-identifier hs-type">ExecConfig</span></a></span><span>
+</span><span id="line-375"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
+</span><span id="line-376"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Path to the binary</span></span><span>
+</span><span id="line-377"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
+</span><span id="line-378"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
+</span><span id="line-379"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span><span>
+</span><span id="line-380"></span><span id="procCustom%27"><span class="annot"><span class="annottext">procCustom' :: ExecConfig -&gt; [Char] -&gt; [[Char]] -&gt; CreateProcess
+</span><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-var hs-var">procCustom'</span></a></span></span><span> </span><span id="local-6989586621679156624"><span class="annot"><span class="annottext">ExecConfig
+</span><a href="#local-6989586621679156624"><span class="hs-identifier hs-var">execConfig</span></a></span></span><span> </span><span id="local-6989586621679156625"><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156625"><span class="hs-identifier hs-var">bin</span></a></span></span><span> </span><span id="local-6989586621679156626"><span class="annot"><span class="annottext">[[Char]]
+</span><a href="#local-6989586621679156626"><span class="hs-identifier hs-var">arguments</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-381"></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Char] -&gt; [[Char]] -&gt; CreateProcess
+</span><span class="hs-identifier hs-var">IO.proc</span></span><span> </span><span class="annot"><span class="annottext">[Char]
+</span><a href="#local-6989586621679156625"><span class="hs-identifier hs-var">bin</span></a></span><span> </span><span class="annot"><span class="annottext">[[Char]]
+</span><a href="#local-6989586621679156626"><span class="hs-identifier hs-var">arguments</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-382"></span><span>    </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="hs-identifier hs-var">IO.env</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-var">getLast</span></span><span> </span><span class="annot"><span class="hs-operator hs-type">$</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#execConfigEnv"><span class="hs-identifier hs-var">execConfigEnv</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679156624"><span class="hs-identifier hs-type">execConfig</span></a></span><span>
+</span><span id="line-383"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-var">IO.cwd</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-var">getLast</span></span><span> </span><span class="annot"><span class="hs-operator hs-type">$</span></span><span> </span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#execConfigCwd"><span class="hs-identifier hs-var">execConfigCwd</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679156624"><span class="hs-identifier hs-type">execConfig</span></a></span><span>
+</span><span id="line-384"></span><span>    </span><span class="hs-comment">-- this allows sending signals to the created processes, without killing the test-suite process</span><span>
+</span><span id="line-385"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-var">IO.create_group</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">True</span></span><span>
+</span><span id="line-386"></span><span>    </span><span class="hs-special">}</span><span>
+</span><span id="line-387"></span><span>
+</span><span id="line-388"></span><span class="hs-comment">-- | Like 'procFlex', but takes an explicit binary path instead of resolving</span><span>
+</span><span id="line-389"></span><span class="hs-comment">-- via package name and environment variable.</span><span>
+</span><span id="line-390"></span><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#procCustom"><span class="hs-identifier hs-type">procCustom</span></a></span><span>
+</span><span id="line-391"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span>
+</span><span id="line-392"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Path to the binary</span></span><span>
+</span><span id="line-393"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
+</span><span id="line-394"></span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Arguments to the CLI command</span></span><span>
+</span><span id="line-395"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">CreateProcess</span></span><span>
+</span><span id="line-396"></span><span id="procCustom"><span class="annot"><span class="annottext">procCustom :: [Char] -&gt; [[Char]] -&gt; CreateProcess
+</span><a href="Hedgehog.Extras.Test.Process.html#procCustom"><span class="hs-identifier hs-var hs-var">procCustom</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ExecConfig -&gt; [Char] -&gt; [[Char]] -&gt; CreateProcess
+</span><a href="Hedgehog.Extras.Test.Process.html#procCustom%27"><span class="hs-identifier hs-var">procCustom'</span></a></span><span> </span><span class="annot"><span class="annottext">ExecConfig
+</span><a href="Hedgehog.Extras.Test.Process.html#defaultExecConfig"><span class="hs-identifier hs-var">defaultExecConfig</span></a></span><span>
+</span><span id="line-397"></span><span>
+</span><span id="line-398"></span><span class="hs-comment">-- | Compute the project base.  This will be based on either the &quot;CARDANO_NODE_SRC&quot;</span><span>
+</span><span id="line-399"></span><span class="hs-comment">-- environment variable or the first parent directory that contains the `cabal.project`.</span><span>
+</span><span id="line-400"></span><span class="hs-comment">-- Both should point to the root directory of the Github project checkout.</span><span>
+</span><span id="line-401"></span><span id="local-6989586621679156062"><span class="annot"><a href="Hedgehog.Extras.Test.Process.html#getProjectBase"><span class="hs-identifier hs-type">getProjectBase</span></a></span><span>
+</span><span id="line-402"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="file:///home/runner/.local/state/cabal/store/ghc-9.6.7/hedgehog-1.7-54dd99ca5f3a623f3c1c6bb034ff6b4e964a20f86954dcb483bf7f306e561696/share/doc/html/src/Hedgehog.Internal.Property.html#MonadTest"><span class="hs-identifier hs-type">MonadTest</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679156062"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679156062"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-403"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679156062"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-404"></span><span id="getProjectBase"><span class="annot"><span class="annottext">getProjectBase :: forall (m :: * -&gt; *). (MonadTest m, MonadIO m) =&gt; m [Char]
 </span><a href="Hedgehog.Extras.Test.Process.html#getProjectBase"><span class="hs-identifier hs-var hs-var">getProjectBase</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-406"></span><span>  </span><span class="hs-keyword">let</span><span>
-</span><span id="line-407"></span><span>    </span><span id="local-6989586621679156652"><span class="annot"><span class="annottext">findUp :: [Char] -&gt; m [Char]
+</span><span id="line-405"></span><span>  </span><span class="hs-keyword">let</span><span>
+</span><span id="line-406"></span><span>    </span><span id="local-6989586621679156652"><span class="annot"><span class="annottext">findUp :: [Char] -&gt; m [Char]
 </span><a href="#local-6989586621679156652"><span class="hs-identifier hs-var hs-var">findUp</span></a></span></span><span> </span><span id="local-6989586621679156653"><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156653"><span class="hs-identifier hs-var">dir</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-408"></span><span>      </span><span id="local-6989586621679156654"><span class="annot"><span class="annottext">Bool
+</span><span id="line-407"></span><span>      </span><span id="local-6989586621679156654"><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679156654"><span class="hs-identifier hs-var">atBase</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; m Bool
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -1282,20 +1281,20 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="#local-6989586621679156653"><span class="hs-identifier hs-var">dir</span></a></span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; ShowS
 </span><span class="hs-operator hs-var">&lt;/&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;cabal.project&quot;</span></span><span class="hs-special">)</span><span>
-</span><span id="line-409"></span><span>      </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span id="line-408"></span><span>      </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679156654"><span class="hs-identifier hs-var">atBase</span></a></span><span>
-</span><span id="line-410"></span><span>        </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; m [Char]
+</span><span id="line-409"></span><span>        </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; m [Char]
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156653"><span class="hs-identifier hs-var">dir</span></a></span><span>
-</span><span id="line-411"></span><span>        </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-412"></span><span>          </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679156655"><span class="annot"><span class="annottext">up :: [Char]
+</span><span id="line-410"></span><span>        </span><span class="hs-keyword">else</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-411"></span><span>          </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679156655"><span class="annot"><span class="annottext">up :: [Char]
 </span><a href="#local-6989586621679156655"><span class="hs-identifier hs-var hs-var">up</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156653"><span class="hs-identifier hs-var">dir</span></a></span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; ShowS
 </span><span class="hs-operator hs-var">&lt;/&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;..&quot;</span></span><span>
-</span><span id="line-413"></span><span>          </span><span id="local-6989586621679156656"><span class="annot"><span class="annottext">Bool
+</span><span id="line-412"></span><span>          </span><span id="local-6989586621679156656"><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679156656"><span class="hs-identifier hs-var">upExist</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; m Bool
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -1304,12 +1303,12 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; IO Bool
 </span><span class="hs-identifier hs-var">IO.doesDirectoryExist</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156655"><span class="hs-identifier hs-var">up</span></a></span><span>
-</span><span id="line-414"></span><span>          </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span id="line-413"></span><span>          </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679156656"><span class="hs-identifier hs-var">upExist</span></a></span><span>
-</span><span id="line-415"></span><span>            </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; m [Char]
+</span><span id="line-414"></span><span>            </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; m [Char]
 </span><a href="#local-6989586621679156652"><span class="hs-identifier hs-var">findUp</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156655"><span class="hs-identifier hs-var">up</span></a></span><span>
-</span><span id="line-416"></span><span>            </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">IO [Char] -&gt; m [Char]
+</span><span id="line-415"></span><span>            </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">IO [Char] -&gt; m [Char]
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="annot"><span class="annottext">(IO [Char] -&gt; m [Char]) -&gt; IO [Char] -&gt; m [Char]
@@ -1319,7 +1318,7 @@ forall a. [Char] -&gt; IO a
 forall (m :: * -&gt; *) a. MonadFail m =&gt; [Char] -&gt; m a
 </span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;Could not detect project base directory (containing cabal.project)&quot;</span></span><span>
-</span><span id="line-417"></span><span>  </span><span id="local-6989586621679156658"><span class="annot"><span class="annottext">Maybe [Char]
+</span><span id="line-416"></span><span>  </span><span id="local-6989586621679156658"><span class="annot"><span class="annottext">Maybe [Char]
 </span><a href="#local-6989586621679156658"><span class="hs-identifier hs-var">maybeNodeSrc</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (Maybe [Char]) -&gt; m (Maybe [Char])
 forall a. IO a -&gt; m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -1329,17 +1328,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; IO (Maybe [Char])
 </span><span class="hs-identifier hs-var">IO.lookupEnv</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;CARDANO_NODE_SRC&quot;</span></span><span>
-</span><span id="line-418"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe [Char]
+</span><span id="line-417"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe [Char]
 </span><a href="#local-6989586621679156658"><span class="hs-identifier hs-var">maybeNodeSrc</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-419"></span><span>    </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679156659"><span class="annot"><span class="annottext">[Char]
+</span><span id="line-418"></span><span>    </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679156659"><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156659"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; m [Char]
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><a href="#local-6989586621679156659"><span class="hs-identifier hs-var">path</span></a></span><span>
-</span><span id="line-420"></span><span>    </span><span class="annot"><span class="annottext">Maybe [Char]
+</span><span id="line-419"></span><span>    </span><span class="annot"><span class="annottext">Maybe [Char]
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Char] -&gt; m [Char]
 forall {m :: * -&gt; *}. MonadIO m =&gt; [Char] -&gt; m [Char]
 </span><a href="#local-6989586621679156652"><span class="hs-identifier hs-var">findUp</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;.&quot;</span></span><span>
-</span><span id="line-421"></span></pre></body></html>
+</span><span id="line-420"></span></pre></body></html>
