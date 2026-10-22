@@ -28,19 +28,16 @@ jobs:
         ghc: ["9.6", "9.8", "9.10", "9.12", "9.14"]
         cabal: ["3.16"]
         sys:
-          - { os: windows-latest, shell: 'C:/msys64/usr/bin/bash.exe -e {0}' }
-          - { os: ubuntu-latest, shell: bash }
+          - { os: windows-latest }
+          - { os: ubuntu-latest }
 
     defaults:
       run:
-        shell: ${{ matrix.sys.shell }}
+        shell: bash
 
     env:
       # Modify this value to "invalidate" the cabal cache.
       CABAL_CACHE_VERSION: "2024-05-01-1"
-      # these two are msys2 env vars, they have no effect on non-msys2 installs.
-      MSYS2_PATH_TYPE: inherit
-      MSYSTEM: MINGW64
 
     concurrency:
       group: >
